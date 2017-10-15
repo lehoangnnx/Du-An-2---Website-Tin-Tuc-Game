@@ -29,22 +29,6 @@ public class HomeController {
 		return "login";
 	}
 
-	@PostMapping("/saveroles")
-	List<Roles> save(@RequestBody Roles roles) {
-		System.out.println(roles.getName() + roles.getStatus()+ roles.getRoleId());
-		rolesServiceImpl.saveorupdate(roles);
-		return (List<Roles>) rolesServiceImpl.findAll() ;
-	}
-	@PutMapping("/updateroles")
-	List<Roles> update(@RequestBody Roles roles) {
-		System.out.println(roles.getName() + roles.getStatus()+ roles.getRoleId());
-		rolesServiceImpl.saveorupdate(roles);
-		return (List<Roles>) rolesServiceImpl.findAll() ;
-	}
-	@DeleteMapping("/delete/{roleId}")
-	List<Roles> delete(@PathVariable Integer roleId) {
-				rolesServiceImpl.delete(roleId);
-		return (List<Roles>) rolesServiceImpl.findAll() ;
-	}
-	
+
+
 }

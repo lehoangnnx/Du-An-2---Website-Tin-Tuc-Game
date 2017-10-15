@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaweb.model.Roles;
-
 import com.javaweb.repository.RolesRepository;
 
 
@@ -21,13 +20,7 @@ public class RolesServiceImpl implements RolesService {
 		
 	}
 	
-	public void saveorupdate(Roles roles) {
-		rolesRepository.save(roles);
-	}
 	
-	public void delete(Integer roleId) {
-		rolesRepository.delete(roleId);
-	}
 	@Override
 	public List<Roles> findAllBy() {
 		
