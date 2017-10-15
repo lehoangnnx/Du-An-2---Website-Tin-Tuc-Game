@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="adminlayout" template="/WEB-INF/views/layout/layout-admin.jsp">
+    <put-attribute name="title" value="Layout Admin" />
+  </definition>
+
+  <definition name="home" extends="adminlayout">
+    <put-attribute name="noidung" value="/WEB-INF/views/administrator/index.jsp" />
+  </definition>
+<definition name="login" extends="adminlayout">
+	<put-attribute name="title" value="Trang Login Amdin" />
+    <put-attribute name="noidung" value="/WEB-INF/views/administrator/login.jsp" />
+  </definition>
+</tiles-definitions>

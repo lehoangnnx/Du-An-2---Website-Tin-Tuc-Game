@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter{
@@ -17,15 +20,36 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 	registry.addViewController("/login").setViewName("login");
 	registry.addViewController("/403").setViewName("403");
 	}*/
-	@Bean
-	public InternalResourceViewResolver getViewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-		
-	}
 	
+	//Cấu hình ViewResolver
+		/*@Bean
+		public InternalResourceViewResolver getViewResolver() {
+			InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+			viewResolver.setPrefix("/WEB-INF/views/");
+			viewResolver.setSuffix(".jsp");
+			return viewResolver;
+			
+		}*/
+	
+	//Cấu hình Apache Title
+	@Bean
+    public TilesConfigurer tilesConfigurer() {
+        TilesConfigurer configurer = new TilesConfigurer();
+        configurer.setDefinitions(new String[]{"WEB-INF/configtiles/layout-administrator-tiles.xml"});
+        configurer.setCheckRefresh(true);
+ 
+        return configurer;
+    }
+ 
+    @Bean
+    public TilesViewResolver tilesViewResolver() {
+        TilesViewResolver resolver = new TilesViewResolver();
+        resolver.setViewClass(TilesView.class);
+ 
+        return resolver;
+    }
+	
+    //Cấu hình servlet
 	@Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
