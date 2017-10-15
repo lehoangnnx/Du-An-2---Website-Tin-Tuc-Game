@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DuAn2WebsiteTinTucGameApplicationTests {
+public class DuAn2ApplicationTests {
 
 	@Test
 	public void contextLoads() {
