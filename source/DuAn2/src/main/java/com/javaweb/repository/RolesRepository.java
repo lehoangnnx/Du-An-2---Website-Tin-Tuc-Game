@@ -7,5 +7,5 @@ import com.javaweb.model.*;
 
 @Repository("rolesRepository")
 public interface RolesRepository extends JpaRepository<Roles, Integer> {
-
+	public Roles findByName(String name);
 }

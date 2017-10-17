@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
-public class WebMvcConfig extends WebMvcConfigurerAdapter{
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	/*@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -37,7 +37,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
         TilesConfigurer configurer = new TilesConfigurer();
         configurer.setDefinitions(new String[]{"WEB-INF/configtiles/layout-administrator-tiles.xml"});
         configurer.setCheckRefresh(true);
- 
+
         return configurer;
     }
  
@@ -48,11 +48,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
  
         return resolver;
     }
-	
+
     //Cấu hình servlet
 	@Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
-    }  
+    }
 }

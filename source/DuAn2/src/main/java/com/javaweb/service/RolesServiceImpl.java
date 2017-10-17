@@ -14,24 +14,14 @@ import com.javaweb.repository.RolesRepository;
 public class RolesServiceImpl implements RolesService {
 	@Autowired
 	RolesRepository rolesRepository;
-	RolesService rolesService;
 	
+	@Override
 	public List<Roles> findAll() {
 		return rolesRepository.findAll();
 		
 	}
+	 
 	
-	public void saveorupdate(Roles roles) {
-		rolesRepository.save(roles);
-	}
 	
-	public void delete(Integer roleId) {
-		rolesRepository.delete(roleId);
-	}
-	@Override
-	public List<Roles> findAllBy() {
-		
-		return rolesService.findAllBy();
-	}
 	
 }

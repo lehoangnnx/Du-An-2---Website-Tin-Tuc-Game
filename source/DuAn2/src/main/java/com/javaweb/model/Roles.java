@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 15, 2017 3:20:39 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -22,19 +22,19 @@ public class Roles implements java.io.Serializable {
 
 	private Integer roleId;
 	private String name;
-	private byte status;
+	private String status;
 	private String description;
 	private Set<Users> userses = new HashSet<Users>(0);
 
 	public Roles() {
 	}
 
-	public Roles(String name, byte status) {
+	public Roles(String name, String status) {
 		this.name = name;
 		this.status = status;
 	}
 
-	public Roles(String name, byte status, String description, Set<Users> userses) {
+	public Roles(String name, String status, String description, Set<Users> userses) {
 		this.name = name;
 		this.status = status;
 		this.description = description;
@@ -62,12 +62,12 @@ public class Roles implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "status", nullable = false)
-	public byte getStatus() {
+	@Column(name = "status", nullable = false, length = 8)
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -80,7 +80,7 @@ public class Roles implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roleses")
 	public Set<Users> getUserses() {
 		return this.userses;
 	}

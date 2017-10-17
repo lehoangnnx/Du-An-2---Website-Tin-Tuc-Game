@@ -2,21 +2,38 @@ package com.javaweb.controller;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import com.google.gson.Gson;
 import com.javaweb.model.Roles;
+import com.javaweb.model.Users;
+import com.javaweb.service.RolesService;
 import com.javaweb.service.RolesServiceImpl;
 
 @RestController
 public class HomeController {
 	@Autowired
-	RolesServiceImpl rolesServiceImpl;
+	RolesService rolesService;
 	
 	@RequestMapping("/home")
 	List<Roles> home() {
-		return (List<Roles>) rolesServiceImpl.findAll() ;
+		System.out.println("llllllllllllllllll"+(List<Roles>) rolesService.findAll());
+		List<Roles> lr = rolesService.findAll();
+		for(Roles r : lr) {
+			System.out.println("Roles :" + r.getName() );
+			for(Users s : r.getUserses()) {
+				System.out.println("Usser :" + s.getUserName());
+			}
+			System.out.println("-------------------");
+		}
+		
+		String json = new Gson().toJson(lr );
+		System.out.println("JSON :" + json);
+		
+		return null ;
 	}
 	@GetMapping("/home1")
 	public String home1(@RequestParam("name") String name ) {
@@ -29,22 +46,6 @@ public class HomeController {
 		return "login";
 	}
 
-	@PostMapping("/saveroles")
-	List<Roles> save(@RequestBody Roles roles) {
-		System.out.println(roles.getName() + roles.getStatus()+ roles.getRoleId());
-		rolesServiceImpl.saveorupdate(roles);
-		return (List<Roles>) rolesServiceImpl.findAll() ;
-	}
-	@PutMapping("/updateroles")
-	List<Roles> update(@RequestBody Roles roles) {
-		System.out.println(roles.getName() + roles.getStatus()+ roles.getRoleId());
-		rolesServiceImpl.saveorupdate(roles);
-		return (List<Roles>) rolesServiceImpl.findAll() ;
-	}
-	@DeleteMapping("/delete/{roleId}")
-	List<Roles> delete(@PathVariable Integer roleId) {
-				rolesServiceImpl.delete(roleId);
-		return (List<Roles>) rolesServiceImpl.findAll() ;
-	}
+	
 	
 }

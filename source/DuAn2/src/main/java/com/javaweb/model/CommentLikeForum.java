@@ -1,10 +1,12 @@
 package com.javaweb.model;
-// Generated Oct 15, 2017 3:20:39 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "comment_like_forum", catalog = "duan2_webapplication_tintucgame")
 public class CommentLikeForum implements java.io.Serializable {
 
-	private int commentLikeForumId;
+	private Integer commentLikeForumId;
 	private CommentForum commentForum;
 	private Users users;
 	private Date createDate;
@@ -28,16 +30,13 @@ public class CommentLikeForum implements java.io.Serializable {
 	public CommentLikeForum() {
 	}
 
-	public CommentLikeForum(int commentLikeForumId, CommentForum commentForum, Users users, Date createDate) {
-		this.commentLikeForumId = commentLikeForumId;
+	public CommentLikeForum(CommentForum commentForum, Users users, Date createDate) {
 		this.commentForum = commentForum;
 		this.users = users;
 		this.createDate = createDate;
 	}
 
-	public CommentLikeForum(int commentLikeForumId, CommentForum commentForum, Users users, Date createDate,
-			String description) {
-		this.commentLikeForumId = commentLikeForumId;
+	public CommentLikeForum(CommentForum commentForum, Users users, Date createDate, String description) {
 		this.commentForum = commentForum;
 		this.users = users;
 		this.createDate = createDate;
@@ -45,13 +44,14 @@ public class CommentLikeForum implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "comment_like_forum_id", unique = true, nullable = false)
-	public int getCommentLikeForumId() {
+	public Integer getCommentLikeForumId() {
 		return this.commentLikeForumId;
 	}
 
-	public void setCommentLikeForumId(int commentLikeForumId) {
+	public void setCommentLikeForumId(Integer commentLikeForumId) {
 		this.commentLikeForumId = commentLikeForumId;
 	}
 

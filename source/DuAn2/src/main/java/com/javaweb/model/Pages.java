@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 15, 2017 3:20:39 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,20 +20,20 @@ public class Pages implements java.io.Serializable {
 	private String name;
 	private String slug;
 	private String content;
-	private byte status;
+	private String status;
 	private String description;
 
 	public Pages() {
 	}
 
-	public Pages(String name, String slug, String content, byte status) {
+	public Pages(String name, String slug, String content, String status) {
 		this.name = name;
 		this.slug = slug;
 		this.content = content;
 		this.status = status;
 	}
 
-	public Pages(String name, String slug, String content, byte status, String description) {
+	public Pages(String name, String slug, String content, String status, String description) {
 		this.name = name;
 		this.slug = slug;
 		this.content = content;
@@ -80,12 +80,12 @@ public class Pages implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "status", nullable = false)
-	public byte getStatus() {
+	@Column(name = "status", nullable = false, length = 8)
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

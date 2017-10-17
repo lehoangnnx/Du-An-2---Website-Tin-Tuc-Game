@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 15, 2017 3:20:39 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -7,9 +7,12 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,37 +27,35 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "user_name") })
 public class Users implements java.io.Serializable {
 
-	private int userId;
-	private Roles roles;
+	private Integer userId;
 	private String userName;
 	private String pasword;
 	private String email;
 	private String firstName;
 	private String lastName;
-	private byte status;
+	private String status;
 	private Date createdDate;
 	private String phoneNumber;
 	private byte isOnline;
 	private String ip;
 	private Date loggedInDate;
 	private String description;
-	private Set<Article> articles = new HashSet<Article>(0);
 	private Set<CommentLikeForum> commentLikeForums = new HashSet<CommentLikeForum>(0);
 	private Set<ArticleForum> articleForums = new HashSet<ArticleForum>(0);
+	private Set<CommentForum> commentForums = new HashSet<CommentForum>(0);
+	private Set<Article> articles = new HashSet<Article>(0);
 	private Set<ArticleLikeForum> articleLikeForums = new HashSet<ArticleLikeForum>(0);
 	private Set<ArticleLike> articleLikes = new HashSet<ArticleLike>(0);
 	private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
 	private Set<Comment> comments = new HashSet<Comment>(0);
-	private Set<CommentForum> commentForums = new HashSet<CommentForum>(0);
+	private Set<Roles> roleses = new HashSet<Roles>(0);
 	private Set<CommentLike> commentLikes = new HashSet<CommentLike>(0);
 
 	public Users() {
 	}
 
-	public Users(int userId, Roles roles, String userName, String pasword, String email, byte status, Date createdDate,
-			byte isOnline, Date loggedInDate) {
-		this.userId = userId;
-		this.roles = roles;
+	public Users(String userName, String pasword, String email, String status, Date createdDate, byte isOnline,
+			Date loggedInDate) {
 		this.userName = userName;
 		this.pasword = pasword;
 		this.email = email;
@@ -64,14 +65,11 @@ public class Users implements java.io.Serializable {
 		this.loggedInDate = loggedInDate;
 	}
 
-	public Users(int userId, Roles roles, String userName, String pasword, String email, String firstName,
-			String lastName, byte status, Date createdDate, String phoneNumber, byte isOnline, String ip,
-			Date loggedInDate, String description, Set<Article> articles, Set<CommentLikeForum> commentLikeForums,
-			Set<ArticleForum> articleForums, Set<ArticleLikeForum> articleLikeForums, Set<ArticleLike> articleLikes,
-			Set<GameReviews> gameReviewses, Set<Comment> comments, Set<CommentForum> commentForums,
-			Set<CommentLike> commentLikes) {
-		this.userId = userId;
-		this.roles = roles;
+	public Users(String userName, String pasword, String email, String firstName, String lastName, String status,
+			Date createdDate, String phoneNumber, byte isOnline, String ip, Date loggedInDate, String description,
+			Set<CommentLikeForum> commentLikeForums, Set<ArticleForum> articleForums, Set<CommentForum> commentForums,
+			Set<Article> articles, Set<ArticleLikeForum> articleLikeForums, Set<ArticleLike> articleLikes,
+			Set<GameReviews> gameReviewses, Set<Comment> comments, Set<Roles> roleses, Set<CommentLike> commentLikes) {
 		this.userName = userName;
 		this.pasword = pasword;
 		this.email = email;
@@ -84,36 +82,28 @@ public class Users implements java.io.Serializable {
 		this.ip = ip;
 		this.loggedInDate = loggedInDate;
 		this.description = description;
-		this.articles = articles;
 		this.commentLikeForums = commentLikeForums;
 		this.articleForums = articleForums;
+		this.commentForums = commentForums;
+		this.articles = articles;
 		this.articleLikeForums = articleLikeForums;
 		this.articleLikes = articleLikes;
 		this.gameReviewses = gameReviewses;
 		this.comments = comments;
-		this.commentForums = commentForums;
+		this.roleses = roleses;
 		this.commentLikes = commentLikes;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "user_id", unique = true, nullable = false)
-	public int getUserId() {
+	public Integer getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", nullable = false)
-	public Roles getRoles() {
-		return this.roles;
-	}
-
-	public void setRoles(Roles roles) {
-		this.roles = roles;
 	}
 
 	@Column(name = "user_name", unique = true, nullable = false, length = 50)
@@ -161,12 +151,12 @@ public class Users implements java.io.Serializable {
 		this.lastName = lastName;
 	}
 
-	@Column(name = "status", nullable = false)
-	public byte getStatus() {
+	@Column(name = "status", nullable = false, length = 8)
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -227,15 +217,6 @@ public class Users implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	public Set<Article> getArticles() {
-		return this.articles;
-	}
-
-	public void setArticles(Set<Article> articles) {
-		this.articles = articles;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	public Set<CommentLikeForum> getCommentLikeForums() {
 		return this.commentLikeForums;
 	}
@@ -251,6 +232,24 @@ public class Users implements java.io.Serializable {
 
 	public void setArticleForums(Set<ArticleForum> articleForums) {
 		this.articleForums = articleForums;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	public Set<CommentForum> getCommentForums() {
+		return this.commentForums;
+	}
+
+	public void setCommentForums(Set<CommentForum> commentForums) {
+		this.commentForums = commentForums;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	public Set<Article> getArticles() {
+		return this.articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
@@ -289,13 +288,16 @@ public class Users implements java.io.Serializable {
 		this.comments = comments;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	public Set<CommentForum> getCommentForums() {
-		return this.commentForums;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "users_roles", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "user_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
+	public Set<Roles> getRoleses() {
+		return this.roleses;
 	}
 
-	public void setCommentForums(Set<CommentForum> commentForums) {
-		this.commentForums = commentForums;
+	public void setRoleses(Set<Roles> roleses) {
+		this.roleses = roleses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")

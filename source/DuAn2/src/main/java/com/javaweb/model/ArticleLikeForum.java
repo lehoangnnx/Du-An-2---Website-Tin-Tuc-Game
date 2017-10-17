@@ -1,10 +1,12 @@
 package com.javaweb.model;
-// Generated Oct 15, 2017 3:20:39 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "article_like_forum", catalog = "duan2_webapplication_tintucgame")
 public class ArticleLikeForum implements java.io.Serializable {
 
-	private int articleLikeForumId;
+	private Integer articleLikeForumId;
 	private ArticleForum articleForum;
 	private Users users;
 	private Date createDate;
@@ -28,16 +30,13 @@ public class ArticleLikeForum implements java.io.Serializable {
 	public ArticleLikeForum() {
 	}
 
-	public ArticleLikeForum(int articleLikeForumId, ArticleForum articleForum, Users users, Date createDate) {
-		this.articleLikeForumId = articleLikeForumId;
+	public ArticleLikeForum(ArticleForum articleForum, Users users, Date createDate) {
 		this.articleForum = articleForum;
 		this.users = users;
 		this.createDate = createDate;
 	}
 
-	public ArticleLikeForum(int articleLikeForumId, ArticleForum articleForum, Users users, Date createDate,
-			String description) {
-		this.articleLikeForumId = articleLikeForumId;
+	public ArticleLikeForum(ArticleForum articleForum, Users users, Date createDate, String description) {
 		this.articleForum = articleForum;
 		this.users = users;
 		this.createDate = createDate;
@@ -45,13 +44,14 @@ public class ArticleLikeForum implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "article_like_forum_id", unique = true, nullable = false)
-	public int getArticleLikeForumId() {
+	public Integer getArticleLikeForumId() {
 		return this.articleLikeForumId;
 	}
 
-	public void setArticleLikeForumId(int articleLikeForumId) {
+	public void setArticleLikeForumId(Integer articleLikeForumId) {
 		this.articleLikeForumId = articleLikeForumId;
 	}
 

@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 15, 2017 3:20:39 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,14 +35,15 @@ public class Games implements java.io.Serializable {
 	private String platforms;
 	private String release;
 	private String info;
-	private byte status;
+	private String status;
 	private String description;
 	private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
 
 	public Games() {
 	}
 
-	public Games(GameCategory gameCategory, String name, String slug, String publishers, String release, byte status) {
+	public Games(GameCategory gameCategory, String name, String slug, String publishers, String release,
+			String status) {
 		this.gameCategory = gameCategory;
 		this.name = name;
 		this.slug = slug;
@@ -52,8 +53,8 @@ public class Games implements java.io.Serializable {
 	}
 
 	public Games(GameCategory gameCategory, String name, String slug, String developers, String publishers,
-			String writers, String composers, String engine, String platforms, String release, String info, byte status,
-			String description, Set<GameReviews> gameReviewses) {
+			String writers, String composers, String engine, String platforms, String release, String info,
+			String status, String description, Set<GameReviews> gameReviewses) {
 		this.gameCategory = gameCategory;
 		this.name = name;
 		this.slug = slug;
@@ -182,12 +183,12 @@ public class Games implements java.io.Serializable {
 		this.info = info;
 	}
 
-	@Column(name = "status", nullable = false)
-	public byte getStatus() {
+	@Column(name = "status", nullable = false, length = 8)
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
