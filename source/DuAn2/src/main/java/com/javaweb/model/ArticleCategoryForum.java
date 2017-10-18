@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -115,7 +115,7 @@ public class ArticleCategoryForum implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleCategoryForum")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "articleCategoryForums")
 	public Set<ArticleForum> getArticleForums() {
 		return this.articleForums;
 	}

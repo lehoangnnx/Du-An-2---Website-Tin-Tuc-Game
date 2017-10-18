@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -24,7 +25,6 @@ import javax.persistence.UniqueConstraint;
 public class Games implements java.io.Serializable {
 
 	private Integer gameId;
-	private GameCategory gameCategory;
 	private String name;
 	private String slug;
 	private String developers;
@@ -38,13 +38,12 @@ public class Games implements java.io.Serializable {
 	private String status;
 	private String description;
 	private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
+	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
 
 	public Games() {
 	}
 
-	public Games(GameCategory gameCategory, String name, String slug, String publishers, String release,
-			String status) {
-		this.gameCategory = gameCategory;
+	public Games(String name, String slug, String publishers, String release, String status) {
 		this.name = name;
 		this.slug = slug;
 		this.publishers = publishers;
@@ -52,10 +51,9 @@ public class Games implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Games(GameCategory gameCategory, String name, String slug, String developers, String publishers,
-			String writers, String composers, String engine, String platforms, String release, String info,
-			String status, String description, Set<GameReviews> gameReviewses) {
-		this.gameCategory = gameCategory;
+	public Games(String name, String slug, String developers, String publishers, String writers, String composers,
+			String engine, String platforms, String release, String info, String status, String description,
+			Set<GameReviews> gameReviewses, Set<GameCategory> gameCategories) {
 		this.name = name;
 		this.slug = slug;
 		this.developers = developers;
@@ -69,6 +67,7 @@ public class Games implements java.io.Serializable {
 		this.status = status;
 		this.description = description;
 		this.gameReviewses = gameReviewses;
+		this.gameCategories = gameCategories;
 	}
 
 	@Id
@@ -81,16 +80,6 @@ public class Games implements java.io.Serializable {
 
 	public void setGameId(Integer gameId) {
 		this.gameId = gameId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "game_category_id", nullable = false)
-	public GameCategory getGameCategory() {
-		return this.gameCategory;
-	}
-
-	public void setGameCategory(GameCategory gameCategory) {
-		this.gameCategory = gameCategory;
 	}
 
 	@Column(name = "name", unique = true, nullable = false)
@@ -208,6 +197,18 @@ public class Games implements java.io.Serializable {
 
 	public void setGameReviewses(Set<GameReviews> gameReviewses) {
 		this.gameReviewses = gameReviewses;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "games_games_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "game_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "game_category_id", nullable = false, updatable = false) })
+	public Set<GameCategory> getGameCategories() {
+		return this.gameCategories;
+	}
+
+	public void setGameCategories(Set<GameCategory> gameCategories) {
+		this.gameCategories = gameCategories;
 	}
 
 }
