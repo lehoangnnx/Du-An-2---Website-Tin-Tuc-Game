@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -29,7 +29,6 @@ import javax.persistence.UniqueConstraint;
 public class Article implements java.io.Serializable {
 
 	private Integer articleId;
-	private ArticleCategory articleCategory;
 	private Users users;
 	private Integer gameId;
 	private String title;
@@ -51,6 +50,7 @@ public class Article implements java.io.Serializable {
 	private String allowComment;
 	private Byte isHot;
 	private String linkSource;
+	private Set<ArticleCategory> articleCategories = new HashSet<ArticleCategory>(0);
 	private Set<Tags> tagses = new HashSet<Tags>(0);
 	private Set<ArticleLike> articleLikes = new HashSet<ArticleLike>(0);
 	private Set<Comment> comments = new HashSet<Comment>(0);
@@ -58,9 +58,8 @@ public class Article implements java.io.Serializable {
 	public Article() {
 	}
 
-	public Article(ArticleCategory articleCategory, Users users, String title, String slug, String subContent,
-			String mainContent, String author, String status, long views, String createdDate) {
-		this.articleCategory = articleCategory;
+	public Article(Users users, String title, String slug, String subContent, String mainContent, String author,
+			String status, long views, String createdDate) {
 		this.users = users;
 		this.title = title;
 		this.slug = slug;
@@ -72,12 +71,11 @@ public class Article implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Article(ArticleCategory articleCategory, Users users, Integer gameId, String title, String slug,
-			String subContent, String mainContent, String author, String imagesThumbnail, String imagesList,
-			String video, String status, long views, String createdDate, Date modifiedDate, Integer modifiedUserId,
-			Date activateDate, Integer activateUserId, Date showDate, String allowComment, Byte isHot,
-			String linkSource, Set<Tags> tagses, Set<ArticleLike> articleLikes, Set<Comment> comments) {
-		this.articleCategory = articleCategory;
+	public Article(Users users, Integer gameId, String title, String slug, String subContent, String mainContent,
+			String author, String imagesThumbnail, String imagesList, String video, String status, long views,
+			String createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
+			Date showDate, String allowComment, Byte isHot, String linkSource, Set<ArticleCategory> articleCategories,
+			Set<Tags> tagses, Set<ArticleLike> articleLikes, Set<Comment> comments) {
 		this.users = users;
 		this.gameId = gameId;
 		this.title = title;
@@ -99,6 +97,7 @@ public class Article implements java.io.Serializable {
 		this.allowComment = allowComment;
 		this.isHot = isHot;
 		this.linkSource = linkSource;
+		this.articleCategories = articleCategories;
 		this.tagses = tagses;
 		this.articleLikes = articleLikes;
 		this.comments = comments;
@@ -114,16 +113,6 @@ public class Article implements java.io.Serializable {
 
 	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "article_category_id", nullable = false)
-	public ArticleCategory getArticleCategory() {
-		return this.articleCategory;
-	}
-
-	public void setArticleCategory(ArticleCategory articleCategory) {
-		this.articleCategory = articleCategory;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -317,6 +306,18 @@ public class Article implements java.io.Serializable {
 
 	public void setLinkSource(String linkSource) {
 		this.linkSource = linkSource;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "article_article_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "article_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "article_category_id", nullable = false, updatable = false) })
+	public Set<ArticleCategory> getArticleCategories() {
+		return this.articleCategories;
+	}
+
+	public void setArticleCategories(Set<ArticleCategory> articleCategories) {
+		this.articleCategories = articleCategories;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

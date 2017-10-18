@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 17, 2017 2:11:23 PM by Hibernate Tools 5.2.5.Final
+// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,7 +29,6 @@ import javax.persistence.UniqueConstraint;
 public class ArticleForum implements java.io.Serializable {
 
 	private Integer articleForumId;
-	private ArticleCategoryForum articleCategoryForum;
 	private Users users;
 	private String title;
 	private String slug;
@@ -44,14 +45,14 @@ public class ArticleForum implements java.io.Serializable {
 	private Byte isHot;
 	private String linkSource;
 	private Set<ArticleLikeForum> articleLikeForums = new HashSet<ArticleLikeForum>(0);
+	private Set<ArticleCategoryForum> articleCategoryForums = new HashSet<ArticleCategoryForum>(0);
 	private Set<CommentForum> commentForums = new HashSet<CommentForum>(0);
 
 	public ArticleForum() {
 	}
 
-	public ArticleForum(ArticleCategoryForum articleCategoryForum, Users users, String title, String slug,
-			String mainContent, String status, long views, String createdDate) {
-		this.articleCategoryForum = articleCategoryForum;
+	public ArticleForum(Users users, String title, String slug, String mainContent, String status, long views,
+			String createdDate) {
 		this.users = users;
 		this.title = title;
 		this.slug = slug;
@@ -61,11 +62,10 @@ public class ArticleForum implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public ArticleForum(ArticleCategoryForum articleCategoryForum, Users users, String title, String slug,
-			String mainContent, String status, long views, String createdDate, Date modifiedDate,
-			Integer modifiedUserId, Date activateDate, Integer activateUserId, Date showDate, String allowComment,
-			Byte isHot, String linkSource, Set<ArticleLikeForum> articleLikeForums, Set<CommentForum> commentForums) {
-		this.articleCategoryForum = articleCategoryForum;
+	public ArticleForum(Users users, String title, String slug, String mainContent, String status, long views,
+			String createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
+			Date showDate, String allowComment, Byte isHot, String linkSource, Set<ArticleLikeForum> articleLikeForums,
+			Set<ArticleCategoryForum> articleCategoryForums, Set<CommentForum> commentForums) {
 		this.users = users;
 		this.title = title;
 		this.slug = slug;
@@ -82,6 +82,7 @@ public class ArticleForum implements java.io.Serializable {
 		this.isHot = isHot;
 		this.linkSource = linkSource;
 		this.articleLikeForums = articleLikeForums;
+		this.articleCategoryForums = articleCategoryForums;
 		this.commentForums = commentForums;
 	}
 
@@ -95,16 +96,6 @@ public class ArticleForum implements java.io.Serializable {
 
 	public void setArticleForumId(Integer articleForumId) {
 		this.articleForumId = articleForumId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "article_category_forum_id", nullable = false)
-	public ArticleCategoryForum getArticleCategoryForum() {
-		return this.articleCategoryForum;
-	}
-
-	public void setArticleCategoryForum(ArticleCategoryForum articleCategoryForum) {
-		this.articleCategoryForum = articleCategoryForum;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -253,6 +244,18 @@ public class ArticleForum implements java.io.Serializable {
 
 	public void setArticleLikeForums(Set<ArticleLikeForum> articleLikeForums) {
 		this.articleLikeForums = articleLikeForums;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "article_forum_article_category_forum", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "article_forum_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "article_category_forum_id", nullable = false, updatable = false) })
+	public Set<ArticleCategoryForum> getArticleCategoryForums() {
+		return this.articleCategoryForums;
+	}
+
+	public void setArticleCategoryForums(Set<ArticleCategoryForum> articleCategoryForums) {
+		this.articleCategoryForums = articleCategoryForums;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleForum")
