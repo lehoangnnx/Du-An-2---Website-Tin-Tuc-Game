@@ -1,5 +1,6 @@
 package com.javaweb.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -29,13 +30,26 @@ public class HomeController {
 			}
 			System.out.println("-------------------");
 		}
+		System.out.println(" VI Tri 0 :" + lr.get(0).getName());
+		System.out.println(" VI Tri 0 :" + lr.get(0).getUserses().toString());
+		System.out.println("====================");
+		System.out.println(" VI Tri 0 :" + lr.get(1).getName());
+		System.out.println(" VI Tri 0 :" + lr.get(1).getUserses().toString());
+		List<String> s = new ArrayList<String>(); 
+		s.add("123");
+		s.add("123");
+		s.add("123");
+		System.out.println(s);
 		
-		String json = new Gson().toJson(lr );
-		System.out.println("JSON :" + json);
+		Object[] ar = lr.toArray();
 		
-		return null ;
+		System.out.println("MMMMMMM " + ar);
+		
+		String json = new Gson().toJson(s );
+		System.out.println("Gson " + s);
+		return  null ;
 	}
-	@GetMapping("/home1")
+	@GetMapping("/admin")
 	public String home1(@RequestParam("name") String name ) {
 		System.out.println("Name" + name);
 		return "Name :" + name ;
@@ -46,6 +60,10 @@ public class HomeController {
 		return "login";
 	}
 
-	
+	@RequestMapping("/403")
+	String error() {
+		return "403";
+	}
+
 	
 }

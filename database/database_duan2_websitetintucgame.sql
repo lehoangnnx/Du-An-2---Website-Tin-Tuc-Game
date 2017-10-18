@@ -24,7 +24,6 @@ DROP TABLE IF EXISTS `article`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article` (
   `article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `article_category_id` int(11) unsigned NOT NULL,
   `game_id` int(11) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
@@ -50,10 +49,8 @@ CREATE TABLE `article` (
   UNIQUE KEY `article_id_UNIQUE` (`article_id`),
   UNIQUE KEY `title_UNIQUE` (`title`),
   UNIQUE KEY `slug_UNIQUE` (`slug`),
-  KEY `fk_users_article_idx` (`created_user_id`),
-  KEY `fk_article_category_article_idx` (`article_category_id`),
-  CONSTRAINT `fk_article_category_article` FOREIGN KEY (`article_category_id`) REFERENCES `article_category` (`article_category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_article` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_users_category_article_idx` (`created_user_id`),
+  CONSTRAINT `fk_users_category_article` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -64,6 +61,32 @@ CREATE TABLE `article` (
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `article_article_category`
+--
+
+DROP TABLE IF EXISTS `article_article_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `article_article_category` (
+  `article_id` int(11) unsigned NOT NULL,
+  `article_category_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`article_id`,`article_category_id`),
+  KEY `fk_article_category_article_article_category_idx` (`article_category_id`),
+  CONSTRAINT `fk_article_article_article_category` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_article_category_article_article_category` FOREIGN KEY (`article_category_id`) REFERENCES `article_category` (`article_category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `article_article_category`
+--
+
+LOCK TABLES `article_article_category` WRITE;
+/*!40000 ALTER TABLE `article_article_category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `article_article_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,7 +101,7 @@ CREATE TABLE `article_category` (
   `sub_article_category_id` int(11) unsigned DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `sort_order` tinyint(4) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`article_category_id`),
@@ -109,10 +132,11 @@ CREATE TABLE `article_category_forum` (
   `sub_article_category_forum_id` int(11) unsigned DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `sort_order` tinyint(4) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`article_category_forum_id`)
+  PRIMARY KEY (`article_category_forum_id`),
+  UNIQUE KEY `article_category_forum_id_UNIQUE` (`article_category_forum_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -134,7 +158,6 @@ DROP TABLE IF EXISTS `article_forum`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article_forum` (
   `article_forum_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `article_category_forum_id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `main_content` text NOT NULL,
@@ -151,10 +174,11 @@ CREATE TABLE `article_forum` (
   `is_hot` tinyint(4) DEFAULT NULL,
   `link_source` text,
   PRIMARY KEY (`article_forum_id`),
-  KEY `fk_users_article_forum_idx` (`created_user_id`),
-  KEY `fk_article_category_forum_article_forum_idx` (`article_category_forum_id`),
-  CONSTRAINT `fk_article_category_forum_article_forum` FOREIGN KEY (`article_category_forum_id`) REFERENCES `article_category_forum` (`article_category_forum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_article_forum` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `title_UNIQUE` (`title`),
+  UNIQUE KEY `slug_UNIQUE` (`slug`),
+  UNIQUE KEY `article_forum_id_UNIQUE` (`article_forum_id`),
+  KEY `fk_users_category_forum_article_forum_idx` (`created_user_id`),
+  CONSTRAINT `fk_users_category_forum_article_forum` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,6 +192,32 @@ LOCK TABLES `article_forum` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `article_forum_article_category_forum`
+--
+
+DROP TABLE IF EXISTS `article_forum_article_category_forum`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `article_forum_article_category_forum` (
+  `article_forum_id` int(11) unsigned NOT NULL,
+  `article_category_forum_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`article_forum_id`,`article_category_forum_id`),
+  KEY `fk_article_category_forum_article_forum_article_category_fo_idx` (`article_category_forum_id`),
+  CONSTRAINT `fk_article_category_forum_article_forum_article_category_forum` FOREIGN KEY (`article_category_forum_id`) REFERENCES `article_category_forum` (`article_category_forum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_article_forum_article_forum_article_category_forum` FOREIGN KEY (`article_forum_id`) REFERENCES `article_forum` (`article_forum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `article_forum_article_category_forum`
+--
+
+LOCK TABLES `article_forum_article_category_forum` WRITE;
+/*!40000 ALTER TABLE `article_forum_article_category_forum` DISABLE KEYS */;
+/*!40000 ALTER TABLE `article_forum_article_category_forum` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `article_like`
 --
 
@@ -175,14 +225,15 @@ DROP TABLE IF EXISTS `article_like`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article_like` (
-  `article_like_id` int(11) unsigned NOT NULL,
+  `article_like_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `article_id` int(11) unsigned NOT NULL,
   `create_date` datetime NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`article_like_id`),
-  KEY `fk_users_article_like_idx` (`user_id`),
+  UNIQUE KEY `article_like_id_UNIQUE` (`article_like_id`),
   KEY `fk_article_article_like_idx` (`article_id`),
+  KEY `fk_users_article_like_idx` (`user_id`),
   CONSTRAINT `fk_article_article_like` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_article_like` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -205,14 +256,15 @@ DROP TABLE IF EXISTS `article_like_forum`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article_like_forum` (
-  `article_like_forum_id` int(11) unsigned NOT NULL,
+  `article_like_forum_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `article_forum_id` int(11) unsigned NOT NULL,
   `create_date` datetime NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`article_like_forum_id`),
-  KEY `fk_users_article_like_forum_idx` (`user_id`),
+  UNIQUE KEY `article_like_forum_id_UNIQUE` (`article_like_forum_id`),
   KEY `fk_article_forum_article_like_forum_idx` (`article_forum_id`),
+  KEY `fk_users_article_like_forum_idx` (`user_id`),
   CONSTRAINT `fk_article_forum_article_like_forum` FOREIGN KEY (`article_forum_id`) REFERENCES `article_forum` (`article_forum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_article_like_forum` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -273,8 +325,8 @@ CREATE TABLE `comment` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`comment_id`),
   UNIQUE KEY `comment_id_UNIQUE` (`comment_id`),
-  KEY `fk_users_comment_idx` (`user_id`),
   KEY `fk_article_comment_idx` (`article_id`),
+  KEY `fk_users_comment_idx` (`user_id`),
   CONSTRAINT `fk_article_comment` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_comment` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -308,10 +360,11 @@ CREATE TABLE `comment_forum` (
   `ip` varchar(50) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`comment_forum_id`),
-  KEY `fk_users_comment_forum_idx` (`user_id`),
+  UNIQUE KEY `comment_forum_id_UNIQUE` (`comment_forum_id`),
   KEY `fk_article_forum_comment_forum_idx` (`article_forum_id`),
+  KEY `fk_users_forum_comment_forum_idx` (`user_id`),
   CONSTRAINT `fk_article_forum_comment_forum` FOREIGN KEY (`article_forum_id`) REFERENCES `article_forum` (`article_forum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_comment_forum` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_users_forum_comment_forum` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -332,15 +385,15 @@ DROP TABLE IF EXISTS `comment_like`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment_like` (
-  `comment_like_id` int(11) unsigned NOT NULL,
+  `comment_like_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `comment_id` int(11) unsigned NOT NULL,
   `create_date` datetime NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`comment_like_id`),
   UNIQUE KEY `comment_like_id_UNIQUE` (`comment_like_id`),
-  KEY `fk_users_comment_like_idx` (`user_id`),
   KEY `fk_comment_comment_like_idx` (`comment_id`),
+  KEY `fk_users_comment_like_idx` (`user_id`),
   CONSTRAINT `fk_comment_comment_like` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_comment_like` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -363,16 +416,17 @@ DROP TABLE IF EXISTS `comment_like_forum`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment_like_forum` (
-  `comment_like_forum_id` int(11) unsigned NOT NULL,
+  `comment_like_forum_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `comment_forum_id` int(11) unsigned NOT NULL,
   `create_date` datetime NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`comment_like_forum_id`),
-  KEY `fk_users_comment_like_forum_idx` (`user_id`),
+  UNIQUE KEY `comment_like_forum_id_UNIQUE` (`comment_like_forum_id`),
   KEY `fk_comment_forum_comment_like_forum_idx` (`comment_forum_id`),
+  KEY `fk_users_forum_comment_like_forum_idx` (`user_id`),
   CONSTRAINT `fk_comment_forum_comment_like_forum` FOREIGN KEY (`comment_forum_id`) REFERENCES `comment_forum` (`comment_forum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_comment_like_forum` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_users_forum_comment_like_forum` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -397,10 +451,11 @@ CREATE TABLE `game_category` (
   `sub_game_category_id` int(11) unsigned DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `sort_order` tinyint(4) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`game_category_id`)
+  PRIMARY KEY (`game_category_id`),
+  UNIQUE KEY `game_category_id_UNIQUE` (`game_category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -421,17 +476,17 @@ DROP TABLE IF EXISTS `game_reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game_reviews` (
-  `game_review_id` int(11) unsigned NOT NULL,
+  `game_review_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `create_date` datetime NOT NULL,
   `game_id` int(11) unsigned NOT NULL,
   `review` double NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'active',
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`game_review_id`),
   UNIQUE KEY `game_review_id_UNIQUE` (`game_review_id`),
-  KEY `fk_users_game_reviews_idx` (`user_id`),
   KEY `fk_gane_game_reviews_idx` (`game_id`),
+  KEY `fk_users_game_reviews_idx` (`user_id`),
   CONSTRAINT `fk_gane_game_reviews` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_game_reviews` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -455,7 +510,6 @@ DROP TABLE IF EXISTS `games`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `games` (
   `game_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `game_category_id` int(11) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `developers` varchar(1000) DEFAULT NULL,
@@ -466,14 +520,12 @@ CREATE TABLE `games` (
   `platforms` varchar(1000) DEFAULT NULL,
   `release` varchar(1000) NOT NULL,
   `info` varchar(1000) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`game_id`),
   UNIQUE KEY `game_id_UNIQUE` (`game_id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
-  UNIQUE KEY `slug_UNIQUE` (`slug`),
-  KEY `fk_game_category_games_idx` (`game_category_id`),
-  CONSTRAINT `fk_game_category_games` FOREIGN KEY (`game_category_id`) REFERENCES `game_category` (`game_category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `slug_UNIQUE` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -487,6 +539,32 @@ LOCK TABLES `games` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `games_games_category`
+--
+
+DROP TABLE IF EXISTS `games_games_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `games_games_category` (
+  `game_id` int(11) unsigned NOT NULL,
+  `game_category_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`game_id`,`game_category_id`),
+  KEY `fk_games_category_games_games_category_idx` (`game_category_id`),
+  CONSTRAINT `fk_games_category_games_games_category` FOREIGN KEY (`game_category_id`) REFERENCES `game_category` (`game_category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_games_games_games_category` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `games_games_category`
+--
+
+LOCK TABLES `games_games_category` WRITE;
+/*!40000 ALTER TABLE `games_games_category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `games_games_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `menu`
 --
 
@@ -497,7 +575,7 @@ CREATE TABLE `menu` (
   `menu_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`menu_id`),
   UNIQUE KEY `menu_id_UNIQUE` (`menu_id`)
@@ -525,7 +603,7 @@ CREATE TABLE `pages` (
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`page_id`),
   UNIQUE KEY `page_id_UNIQUE` (`page_id`),
@@ -552,12 +630,12 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `role_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_id`),
   UNIQUE KEY `idquyen_UNIQUE` (`role_id`),
   UNIQUE KEY `tenquyen_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -566,7 +644,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Admin',1,'Quan Tri Vien'),(2,'Nguoi Dung',1,'Nguoi Dung');
+INSERT INTO `roles` VALUES (5,'ROLE_ADMIN','active',NULL),(6,'ROLE_MEMBER','active',NULL);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -606,14 +684,13 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `user_id` int(11) unsigned NOT NULL,
-  `role_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL,
   `pasword` varchar(70) NOT NULL,
   `email` varchar(255) NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` enum('deleted','draft','inactive','active') NOT NULL DEFAULT 'inactive',
   `created_date` datetime NOT NULL,
   `phone_number` varchar(25) DEFAULT NULL,
   `is_online` tinyint(4) NOT NULL,
@@ -623,10 +700,8 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   UNIQUE KEY `user_name_UNIQUE` (`user_name`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  KEY `fk_roles_users_idx` (`role_id`),
-  CONSTRAINT `fk_roles_users` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,7 +710,36 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (3,'admin','$2a$10$MBL6FteloVnYjVMxeeYUbul9MARInxTrAWkfHJlGXyD9HQZ.oo2fK','admin@gmail.com',NULL,NULL,'active','2017-10-17 14:13:51',NULL,1,NULL,'2017-10-17 14:13:51',NULL),(4,'nguoidung','$2a$10$kd1g0Vd7B8V2IPH.liImKOazmy/JVTat5HH4SJ01ubf5uOXsITS6O','nguoidung@gmail.com',NULL,NULL,'active','2017-10-17 14:13:51',NULL,1,NULL,'2017-10-17 14:13:51',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_roles`
+--
+
+DROP TABLE IF EXISTS `users_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_roles` (
+  `user_id` int(11) unsigned NOT NULL,
+  `role_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `fk_users_users_roles_idx` (`user_id`),
+  KEY `fk_roles_users_roles_idx` (`role_id`),
+  CONSTRAINT `fk_roles_users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_users_roles` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_roles`
+--
+
+LOCK TABLES `users_roles` WRITE;
+/*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
+INSERT INTO `users_roles` VALUES (3,5),(3,6),(4,6);
+/*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -647,4 +751,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-15 13:24:12
+-- Dump completed on 2017-10-18  9:17:48
