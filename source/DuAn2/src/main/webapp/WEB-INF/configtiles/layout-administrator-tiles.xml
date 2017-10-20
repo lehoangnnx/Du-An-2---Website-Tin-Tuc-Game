@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="adminlayout" template="/WEB-INF/views/layout/layout-admin.jsp">
-    <put-attribute name="title" value="Layout Admin" />
-  </definition>
+	<definition name="adminlayout" template="/WEB-INF/views/layout/administrator/layout-admin.jsp">
+	
+		<put-attribute name="title" value="Layout Admin" />
+		<put-attribute name="head" value="/WEB-INF/views/layout/administrator/head/head.jsp" />
+		<put-attribute name="headtag" value="/WEB-INF/views/layout/administrator/headtag/headtag.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/layout/administrator/navbar/navbar.jsp" />
+		<put-attribute name="sitebar" value="/WEB-INF/views/layout/administrator/sitebar/sitebar.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/administrator/footer/footer.jsp" />
+		<put-attribute name="footertag" value="/WEB-INF/views/layout/administrator/footertag/footertag.jsp" />
+	</definition>
 
-  <definition name="home" extends="adminlayout">
-    <put-attribute name="noidung" value="/WEB-INF/views/administrator/index.jsp" />
-  </definition>
-<definition name="login" extends="adminlayout">
-	<put-attribute name="title" value="Trang Login Amdin" />
-    <put-attribute name="noidung" value="/WEB-INF/views/administrator/login.jsp" />
-  </definition>
+	<definition name="home" extends="adminlayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/administrator/index.jsp" />
+	</definition>
+	<definition name="login" extends="adminlayout">
+		<put-attribute name="title" value="Trang Login Amdin" />
+		<put-attribute name="noidung"
+			value="/WEB-INF/views/administrator/login.jsp" />
+	</definition>
+	<definition name="403" extends="adminlayout">
+	<put-attribute name="title" value="Trag Loi" />
+		<put-attribute name="noidung"
+			value="/WEB-INF/views/administrator/403.jsp" />
+	</definition>
 </tiles-definitions>
