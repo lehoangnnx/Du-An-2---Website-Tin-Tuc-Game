@@ -87,12 +87,18 @@
 		</dependency>
 		<!-- Gson -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		 <dependency>
+		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			
+
 			<scope>compile</scope>
-		</dependency> 
+		</dependency>
+		<!-- Spring Dev Tool -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 
 	</dependencies>
 

@@ -30,7 +30,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		// Roles
+		/*// Roles
 		if (rolesRepository.findByName("ROLE_ADMIN") == null) {
 			rolesRepository.save(new Roles("ROLE_ADMIN", "active"));
 		}
@@ -71,7 +71,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			roles.add(rolesRepository.findByName("ROLE_MEMBER"));
 			user.setRoleses(roles);
 			usersRepository.save(user);
-		}
+		}*/
 	}
 
 }

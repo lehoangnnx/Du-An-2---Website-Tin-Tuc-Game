@@ -59,7 +59,7 @@ public class HomeController {
 		
 		Object[] ar = lr.toArray();
 		
-		System.out.println("MMMMMMM " + ar);
+		System.out.println("MMMMMMM NNNNNNN AA" + ar);
 		
 //		String json = new Gson().toJson(s );
 //		System.out.println("Gson " + s);
