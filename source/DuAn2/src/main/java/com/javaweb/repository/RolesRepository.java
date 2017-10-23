@@ -13,6 +13,4 @@ import com.javaweb.model.*;
 public interface RolesRepository extends JpaRepository<Roles, Integer> {
 	 Roles findByName(String name);
 	 
-	 @Query("select r.roleId from Roles  r")
-	 List<Roles> findAllBy();
 }

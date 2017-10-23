@@ -54,7 +54,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/resources/administrator/vendor/")
         .setCachePeriod(31556926);
-        registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/resources/administrator/vendor/").setCachePeriod(31556926);
+        registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/resources/administrator/vendor/")
+        .setCachePeriod(31556926);
+        registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/files/images/")
+        .setCachePeriod(31556926);
         registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/resources/administrator/vendor/").setCachePeriod(31556926);
     }
     //Cấu hình servlet

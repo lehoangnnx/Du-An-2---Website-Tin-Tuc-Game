@@ -39,6 +39,7 @@ public class Users implements java.io.Serializable {
 	private byte isOnline;
 	private String ip;
 	private Date loggedInDate;
+	private String avatar;
 	private String description;
 	private Set<CommentLikeForum> commentLikeForums = new HashSet<CommentLikeForum>(0);
 	private Set<ArticleForum> articleForums = new HashSet<ArticleForum>(0);
@@ -66,7 +67,7 @@ public class Users implements java.io.Serializable {
 	}
 
 	public Users(String userName, String pasword, String email, String firstName, String lastName, String status,
-			Date createdDate, String phoneNumber, byte isOnline, String ip, Date loggedInDate, String description,
+			Date createdDate, String phoneNumber, byte isOnline, String ip, Date loggedInDate, String description,String avatar,
 			Set<CommentLikeForum> commentLikeForums, Set<ArticleForum> articleForums, Set<CommentForum> commentForums,
 			Set<Article> articles, Set<ArticleLikeForum> articleLikeForums, Set<ArticleLike> articleLikes,
 			Set<GameReviews> gameReviewses, Set<Comment> comments, Set<Roles> roleses, Set<CommentLike> commentLikes) {
@@ -82,6 +83,7 @@ public class Users implements java.io.Serializable {
 		this.ip = ip;
 		this.loggedInDate = loggedInDate;
 		this.description = description;
+		this.avatar = avatar;
 		this.commentLikeForums = commentLikeForums;
 		this.articleForums = articleForums;
 		this.commentForums = commentForums;
@@ -206,7 +208,14 @@ public class Users implements java.io.Serializable {
 	public void setLoggedInDate(Date loggedInDate) {
 		this.loggedInDate = loggedInDate;
 	}
+	@Column(name = "avatar")
+	public String getAvatar() {
+		return this.avatar;
+	}
 
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	@Column(name = "description")
 	public String getDescription() {
 		return this.description;

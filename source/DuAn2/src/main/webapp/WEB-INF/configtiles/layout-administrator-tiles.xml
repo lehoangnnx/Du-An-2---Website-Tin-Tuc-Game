@@ -3,7 +3,6 @@
 <tiles-definitions>
 	<definition name="adminlayout"
 		template="/WEB-INF/views/layout/administrator/layout-admin.jsp">
-
 		<put-attribute name="title" value="Layout Admin" />
 		<put-attribute name="head"
 			value="/WEB-INF/views/layout/administrator/head/head.jsp" />
@@ -19,24 +18,45 @@
 		<put-attribute name="footertag"
 			value="/WEB-INF/views/layout/administrator/footertag/footertag.jsp" />
 	</definition>
-
+	
+	<!-- Trang Chủ -->
 	<definition name="index" extends="adminlayout">
 		<put-attribute name="title" value="Trang Chủ" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/administrator/index.jsp" />
 	</definition>
+	<!-- Trang Người Dùng -->
 	<definition name="users" extends="adminlayout">
 		<put-attribute name="title" value="Trang Quản Trị Người Dùng" />
 		<put-attribute name="headtag"
-			value="/WEB-INF/views/administrator/headtag/users-headtag.jsp" />
+			value="/WEB-INF/views/administrator/headtag/users/users-headtag.jsp" />
 		<put-attribute name="footertag"
-			value="/WEB-INF/views/administrator/footertag/users-footertag.jsp" />
+			value="/WEB-INF/views/administrator/footertag/users/users-footertag.jsp" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/administrator/users.jsp" />
+			value="/WEB-INF/views/administrator/users/users.jsp" />
 	</definition>
 
+<!-- Trang Thêm Người Dùng -->
+	<definition name="addusers" extends="adminlayout">
+		<put-attribute name="title" value="Thêm Người Dùng" />
+		<put-attribute name="headtag"
+			value="/WEB-INF/views/administrator/headtag/users/addusers-headtag.jsp" />
+		<put-attribute name="footertag"
+			value="/WEB-INF/views/administrator/footertag/users/addusers-footertag.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/administrator/users/addusers.jsp" />
+	</definition>
 
-
+<!-- Trang Sửa Người Dùng -->
+	<definition name="updateusers" extends="adminlayout">
+		<put-attribute name="title" value="Thêm Người Dùng" />
+		<put-attribute name="headtag"
+			value="/WEB-INF/views/administrator/headtag/users/updateusers-headtag.jsp" />
+		<put-attribute name="footertag"
+			value="/WEB-INF/views/administrator/footertag/users/updateusers-footertag.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/administrator/users/updateusers.jsp" />
+	</definition>
 
 
 	<definition name="login" extends="adminlayout">

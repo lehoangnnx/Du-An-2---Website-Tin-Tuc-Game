@@ -72,6 +72,21 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			user.setRoleses(roles);
 			usersRepository.save(user);
 		}*/
+		/*for (int i = 0; i < 500; i++) {
+			Users user = new Users();
+			user.setUserName("nguoidung"+i+"");
+			user.setEmail("nguoidung"+i+"@gmail.com");
+			user.setPasword(passwordEncoder.encode("123456"));
+			user.setStatus("active");
+			user.setCreatedDate(new Date());
+			user.setLoggedInDate(new Date());
+			user.setIsOnline((byte) 1);
+			HashSet<Roles> roles = new HashSet<>();
+			
+			roles.add(rolesRepository.findByName("ROLE_MEMBER"));
+			user.setRoleses(roles);
+			usersRepository.save(user);
+		}*/
 	}
 
 }

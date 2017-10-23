@@ -32,7 +32,15 @@ public class RolesServiceImpl implements RolesService {
     
 	@Override
 	public List<Roles> findAll() {
-		return rolesRepository.findAllBy();
+		return rolesRepository.findAll();
+	}
+
+
+
+	@Override
+	public Roles findByName(String name) {
+		
+		return rolesRepository.findByName(name);
 	}
 	 
 	
