@@ -4,6 +4,11 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+
+
+@Component
 public class ImagesManager {
 	public boolean checkFolderExists(String path) {
 		File file = new File(path);
