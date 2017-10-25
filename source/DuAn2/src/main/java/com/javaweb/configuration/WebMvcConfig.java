@@ -23,7 +23,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}*/
 	
 	//Cấu hình ViewResolver
-		/*@Bean
+	/*	@Bean
 		public InternalResourceViewResolver getViewResolver() {
 			InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 			viewResolver.setPrefix("/WEB-INF/views/");

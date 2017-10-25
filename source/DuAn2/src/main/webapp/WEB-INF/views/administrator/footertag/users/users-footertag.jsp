@@ -73,7 +73,8 @@
 					result.splice(result.indexOf('on'), 1 );
 				}
 		});
-		document.getElementById("arrayId").innerHTML = result;
+	
+		$("#arrayUserId").val(result);
 	
 	});
 </script>
@@ -96,4 +97,23 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+</script>
+<script>
+	function deleteUser(userId){
+			$("#arrayUserId").val(userId);
+			$("#command").attr("action", "${pageContext.request.contextPath}/admin/users");
+		}
+	function deleteAllUser(){
+			$("#command").attr("action", "${pageContext.request.contextPath}/admin/users");
+	}
+</script>
+<script>
+$(document).ready(function() {
+	var msg = $("#msg").val();
+	if(msg != "" ){
+		alert(msg);
+	}
+	
+	
+});
 </script>

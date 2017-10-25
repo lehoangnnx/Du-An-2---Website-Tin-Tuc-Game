@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
 <style>
 </style>
 <div class="container-fluid">
@@ -16,8 +15,8 @@
 
 	<div class="box box-block bg-white">
 		<h5>Sửa Người Dùng</h5>
-		<span>trước ${user.lastName } sau</span>
-		<form:form action="../admin/updateuser" method="post"
+		
+		<form:form action="${contextPath }/admin/users" method="patch"
 			enctype="multipart/form-data" modelAttribute="user">
 			<form:hidden path="userId" />
 			<div class="form-group row">
@@ -26,7 +25,7 @@
 				<div class="col-sm-10">
 					<div class="form-group form-md-line-input form-md-floating-label">
 						<input readonly name="userName"  type="text" class="form-control" value="${user.userName }"
-							id="form_control_1" />
+							id="userName" />
 						<label for="form_control_1">User Name</label> <span
 							class="help-block">Nhập User Name</span>
 					</div>
@@ -36,10 +35,10 @@
 				<label style="padding-top: 2rem;" id="mat-label" for="inputEmail3"
 					class="col-sm-2 col-form-label">Email</label>
 				<div class="col-sm-10">
-					<div class="form-group form-md-line-input form-md-floating-label">
+					<div id="divEmail" class="form-group form-md-line-input form-md-floating-label">
 						<input type="text" class="form-control"value="${user.email }" name="email"
-							id="form_control_1" />
-						<label for="form_control_1">Email</label> <span class="help-block">Nhập
+						id="email"	/>
+						<label for="form_control_1">Email</label> <span id="spanEmail" class="help-block">Nhập
 							Email</span>
 					</div>
 				</div>
@@ -49,8 +48,8 @@
 					class="col-sm-2 col-form-label">First Name</label>
 				<div class="col-sm-10">
 					<div class="form-group form-md-line-input form-md-floating-label">
-						<input " type="text" class="form-control" value="${user.firstName }" name=firstName
-							id="form_control_1" />
+						<input " type="text" class="form-control" value="${user.firstName }" name="firstName"
+							id="firstName" />
 						<label for="form_control_1">First Name</label> <span
 							class="help-block">Nhập First Name</span>
 					</div>
@@ -63,7 +62,7 @@
 					<div class="form-group form-md-line-input form-md-floating-label">
 						
 						<input type="text" class="form-control" value="${user.lastName }" name="lastName"
-							id="form_control_1" /> <label for="form_control_1">Last
+							id="lastName" /> <label for="form_control_1">Last
 							Name</label> <span class="help-block">Nhập Last Name</span>
 					</div>
 				</div>
@@ -74,7 +73,7 @@
 				<div class="col-sm-10">
 					<div class="form-group form-md-line-input form-md-floating-label">
 						<input type="text" class="form-control" value="${user.phoneNumber }" name="phoneNumber"
-							id="form_control_1" />
+							id="phoneNumber" />
 						<label for="form_control_1">Số Điện Thoại</label> <span
 							class="help-block">Nhập Số Điện Thoại</span>
 					</div>
@@ -85,7 +84,7 @@
 					Tạo</label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" readonly name="createdDate"
-						value="${user.createdDate}" id="form_control_1"
+						value="${user.createdDate}" id="createdDate"
 						placeholder="Placeholder..." />
 					<div class="form-control-focus"></div>
 				</div>
@@ -96,7 +95,7 @@
 				<div class="col-md-10">
 					<input type="text" class="form-control" readonly
 						name="loggedInDate" value="${user.loggedInDate}"
-						id="form_control_1" placeholder="Placeholder..." />
+						id="loggedInDate" placeholder="Placeholder..." />
 					<div class="form-control-focus"></div>
 				</div>
 			</div>
@@ -105,7 +104,7 @@
 					Chỉ Đăng Nhập</label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" readonly name="ip"
-						value="${user.ip}" id="form_control_1"
+						value="${user.ip}" id="ip"
 						placeholder="Placeholder..." />
 					<div class="form-control-focus"></div>
 				</div>
@@ -258,7 +257,10 @@
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">
 				<div class="offset-sm-2 col-sm-10">
 					<button type="button" class="btn default">Làm Mới</button>
-					<form:button class="btn blue" id="btn-update">Xác Nhận</form:button>
+					<button type="submit" class="btn blue" id="btn-update">Xác Nhận</button>
+					
+		<input hidden="" id="msg" value="${msg }"></input>
+		
 					<button type="submit" class="btn btn-danger pull-right">Hủy
 						Bỏ</button>
 				</div>
@@ -268,37 +270,3 @@
 
 	</div>
 </div>
-<script>
-  jQuery(document).ready(
-	function($) {
-
-		$("#btn-update").click(function(event) {
-
-			var data = {}
-			data["userName"] = $(".userName").val();
-			data["email"] = $(".email").val();
-			alert(data);
-			$("#btn-update").prop("disabled", true);
-
-			$.ajax({
-		             type: "POST",
-		             contentType: "application/json",
-		             url: "${pageContext.request.contextPath}/admin/validator-user",
-		             data: JSON.stringify(data),
-		             dataType: 'json',
-		             timeout: 600000,
-		             success: function (data) {
-		                 $("#btn-update").prop("disabled", false);
-		                 alert(data);
-		             },
-		             error: function (e) {
-		                 $("#btn-update").prop("disabled", false);
-		                 //...
-		             }
-			});
-
-
-		});
-
-	});
-</script>

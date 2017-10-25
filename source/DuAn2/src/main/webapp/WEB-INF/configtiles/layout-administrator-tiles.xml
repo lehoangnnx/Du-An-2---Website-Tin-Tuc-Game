@@ -49,7 +49,7 @@
 
 <!-- Trang Sửa Người Dùng -->
 	<definition name="updateusers" extends="adminlayout">
-		<put-attribute name="title" value="Thêm Người Dùng" />
+		<put-attribute name="title" value="Sửa Người Dùng" />
 		<put-attribute name="headtag"
 			value="/WEB-INF/views/administrator/headtag/users/updateusers-headtag.jsp" />
 		<put-attribute name="footertag"

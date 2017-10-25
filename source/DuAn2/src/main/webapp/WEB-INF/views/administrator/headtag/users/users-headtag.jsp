@@ -24,6 +24,10 @@
 .add, .updateAndDelete {
 	text-align: center;
 }
+.cbDeleteAll{
+text-align: center;
+width: 20%;
+}
 /* Style the tab */
 div.tab {
 	overflow: hidden;
