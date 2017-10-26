@@ -16,15 +16,15 @@
 		</ol>
 		<div class="tab">
 			<button class="tablinks active"
-				onclick="openTab(event, 'showAllUsers')">All</button>
+				onclick="openTab(event, 'showAll')">All</button>
 			<button id="abold" class="tablinks"
-				onclick="openTab(event, 'showUsersInactive')">Inactive</button>
+				onclick="openTab(event, 'showInactive')">Inactive</button>
 
 		</div>
 
 		<div id="showAllUsers" class="tabcontent" style="display: block;">
 			<div class="box box-block bg-white">
-				<h5 class="mb-1">Danh Sách Người Dùng</h5>
+				<h5 class="mb-1">Danh Sách Bài Viết</h5>
 
 				<div class="overflow-x-auto">
 					
@@ -38,20 +38,22 @@
 										
 										</th>
 
-									<th >User Name</th>
+									<th >Title</th>
 
-									<th >Quyền</th>
-									<th class="add"><a href="${contextPath}/admin/addusers"><i
+									<th >Slug</th>
+									<th>Danh Mục Bài Viết</th>
+									<th class="add"><a href="${contextPath}/admin/addarticles"><i
 											style="color: green;" class="fa fa-plus fa-2x" title="Thêm"></i></a></th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="lu" items="${usersList}">
+								<c:forEach var="al" items="${articleList}">
 									<tr>
-										<td class="cbDeleteAll"><input  type="checkbox" value="${lu.userId}" name="cb" /></td>
-										<td>${lu.userName}</td>
-										<td><c:forEach var="lr" items="${lu.roleses}">
-										${lr.name },
+										<td class="cbDeleteAll"><input  type="checkbox" value="${al.articleId}" name="cb" /></td>
+										<td>${al.title}</td>
+										<td>${al.slug}</td>
+										<td><c:forEach var="acl" items="${al.articleCategories}">
+										${acl.name },
 									</c:forEach></td>
 
 										<td class="updateAndDelete"><a
@@ -70,9 +72,10 @@
 							<tfoot>
 								<tr>
 									<td><div style="text-align: center;"><button onclick="deleteAllUser();" data-toggle="modal" data-target="#myModal"  class="btn btn-danger">Xóa Nhiều</button></div></td>
-									<th>User Name</th>
+									<th >Title</th>
 
-									<th>Quyền</th>
+									<th >Slug</th>
+									<th>Danh Mục Bài Viết</th>
 									<td></td>
 								</tr>
 							</tfoot>

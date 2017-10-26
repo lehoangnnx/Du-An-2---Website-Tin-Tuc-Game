@@ -26,7 +26,8 @@
 		
 		<script type="text/javascript" src="${contextPath}/js/js/app.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/js/demo.js"></script>
- 	
+ 		<script src="${contextPath}/js/js/app.min.js" type="text/javascript"></script>
+
 
 		
 		
@@ -63,20 +64,12 @@
 			           //  alert(result);
 		                 if(result == 'erroremail'){
 		                	 $("#btn-update").prop("disabled", true);
-		                	 $("#divEmail").removeClass("has-success");
-			                 $("#divEmail").addClass("has-danger");
-			                 $("#email").removeClass("form-control-success");
-			                 $("#email").addClass("form-control-danger");
+			                 $("#divEmail").addClass("has-error");
 			                 $("#spanEmail").text("Email Đã Tồn Tại - Vui Lòng Nhập Email Khác");
 			             }
 		                 if(result == 'successemail'){
 		                	 $("#btn-update").prop("disabled", false);
-		                	 
-			                 $("#divEmail").removeClass("has-danger");
-			                 $("#divEmail").addClass("has-success");
-
-			                 $("#email").removeClass("form-control-danger");
-			                 $("#email").addClass("form-control-success");
+			                 $("#divEmail").removeClass("has-error");
 			                 $("#spanEmail").text("Nhập Email");
 			             }
 			             
@@ -101,7 +94,7 @@ $(document).ready(function() {
 	if(msg != "" ){
 		alert(msg);
 	}
-	
+
 	
 });
 </script>

@@ -23,14 +23,12 @@
 			<li class="with-sub"><a href="#"
 				class="waves-effect  waves-light"> <span class="s-caret"><i
 						class="fa fa-angle-down"></i></span> <span class="s-icon"><i
-						class="ti-menu-alt"></i></span> <span class="s-text">Tables</span>
+						class="ti-menu-alt"></i></span> <span class="s-text">Bài Viết</span>
 			</a>
 				<ul>
-					<li><a href="tables-basic.html">Basic Tables</a></li>
-					<li><a href="tables-datatable.html">Data Tables</a></li>
-					<li><a href="tables-editable.html">Editable Tables</a></li>
-					<li><a href="tables-jsgrid.html">jsGrid Tables</a></li>
-					<li><a href="tables-responsive.html">Responsive Tables</a></li>
+					<li><a href="${contextPath }/admin/articles">Quản Lý Bài Viết</a></li>
+					<li><a href="${contextPath }/admin/articles/category">Quản Lý Danh Mục Bài Viết</a></li>
+					
 				</ul></li>
 
 

@@ -3,6 +3,10 @@ package com.javaweb.configuration;
 import java.util.Date;
 import java.util.HashSet;
 
+import com.javaweb.model.Article;
+import com.javaweb.model.ArticleCategory;
+import com.javaweb.repository.ArticleCategoryRepository;
+import com.javaweb.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -21,10 +25,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	
 	@Autowired
 	private UsersRepository usersRepository;
-	
+	@Autowired
+	ArticleRepository articleRepository;
 	@Autowired
 	private RolesRepository rolesRepository;
-	
+	@Autowired
+	ArticleCategoryRepository  articleCategoryRepository;
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
 	
@@ -72,20 +78,23 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			user.setRoleses(roles);
 			usersRepository.save(user);
 		}*/
-		/*for (int i = 0; i < 500; i++) {
-			Users user = new Users();
-			user.setUserName("nguoidung"+i+"");
-			user.setEmail("nguoidung"+i+"@gmail.com");
-			user.setPasword(passwordEncoder.encode("123456"));
-			user.setStatus("active");
-			user.setCreatedDate(new Date());
-			user.setLoggedInDate(new Date());
-			user.setIsOnline((byte) 1);
-			HashSet<Roles> roles = new HashSet<>();
+		/*for (int i = 0; i < 100; i++) {
+			Article article= new Article();
+			article.setTitle("Title Article " +i);
+			article.setSlug("title-article-"+i);
+			article.setSubContent("Sub Content :" +i);
+			article.setMainContent("Main ConTent :" +i);
+			article.setAuthor("Author :" +i);
+			article.setStatus("active");
+			article.setViews(2);
+			article.setCreatedDate(new Date());
+			article.setUsers(usersRepository.findByUserId(3));
+			HashSet<ArticleCategory> articleCategory = new HashSet<>();
+			articleCategory.add(articleCategoryRepository.findByArticleCategoryId(1));
+			article.setArticleCategories(articleCategory);
 			
-			roles.add(rolesRepository.findByName("ROLE_MEMBER"));
-			user.setRoleses(roles);
-			usersRepository.save(user);
+			articleRepository.save(article);
+
 		}*/
 	}
 

@@ -36,7 +36,7 @@
 			value="/WEB-INF/views/administrator/users/users.jsp" />
 	</definition>
 
-<!-- Trang Thêm Người Dùng -->
+<!--BEGIN Trang Thêm Người Dùng -->
 	<definition name="addusers" extends="adminlayout">
 		<put-attribute name="title" value="Thêm Người Dùng" />
 		<put-attribute name="headtag"
@@ -46,8 +46,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/administrator/users/addusers.jsp" />
 	</definition>
+	<!--END Trang Thêm Người Dùng -->
 
-<!-- Trang Sửa Người Dùng -->
+<!--BEGIN Trang Sửa Người Dùng -->
 	<definition name="updateusers" extends="adminlayout">
 		<put-attribute name="title" value="Sửa Người Dùng" />
 		<put-attribute name="headtag"
@@ -57,6 +58,36 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/administrator/users/updateusers.jsp" />
 	</definition>
+	<!--END Trang Sửa Người Dùng -->
+
+
+<!--BEGIN Trang Bài Viết -->
+	<definition name="articles" extends="adminlayout">
+		<put-attribute name="title" value="Trang Quản Trị Bài Viết" />
+		<put-attribute name="headtag"
+			value="/WEB-INF/views/administrator/headtag/articles/articles-headtag.jsp" />
+		<put-attribute name="footertag"
+			value="/WEB-INF/views/administrator/footertag/articles/articles-footertag.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/administrator/articles/articles.jsp" />
+	</definition>
+<!--END Trang Bài Viết-->
+
+	<!--BEGIN Trang Thêm Bài Viết-->
+	<definition name="addarticles" extends="adminlayout">
+		<put-attribute name="title" value="Thêm Bài Viết" />
+		<put-attribute name="headtag"
+					   value="/WEB-INF/views/administrator/headtag/articles/addarticles-headtag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/administrator/footertag/articles/addarticles-footertag.jsp" />
+		<put-attribute name="body"
+					   value="/WEB-INF/views/administrator/articles/addarticles.jsp" />
+	</definition>
+	<!--END Trang Thêm Bài Viết -->
+
+
+
+
 
 
 	<definition name="login" extends="adminlayout">
@@ -69,4 +100,5 @@
 		<put-attribute name="noidung"
 			value="/WEB-INF/views/administrator/403.jsp" />
 	</definition>
+	
 </tiles-definitions>

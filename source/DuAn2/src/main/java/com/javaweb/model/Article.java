@@ -41,7 +41,7 @@ public class Article implements java.io.Serializable {
 	private String video;
 	private String status;
 	private long views;
-	private String createdDate;
+	private Date createdDate;
 	private Date modifiedDate;
 	private Integer modifiedUserId;
 	private Date activateDate;
@@ -59,7 +59,7 @@ public class Article implements java.io.Serializable {
 	}
 
 	public Article(Users users, String title, String slug, String subContent, String mainContent, String author,
-			String status, long views, String createdDate) {
+			String status, long views, Date createdDate) {
 		this.users = users;
 		this.title = title;
 		this.slug = slug;
@@ -73,7 +73,7 @@ public class Article implements java.io.Serializable {
 
 	public Article(Users users, Integer gameId, String title, String slug, String subContent, String mainContent,
 			String author, String imagesThumbnail, String imagesList, String video, String status, long views,
-			String createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
+				   Date createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
 			Date showDate, String allowComment, Byte isHot, String linkSource, Set<ArticleCategory> articleCategories,
 			Set<Tags> tagses, Set<ArticleLike> articleLikes, Set<Comment> comments) {
 		this.users = users;
@@ -224,12 +224,13 @@ public class Article implements java.io.Serializable {
 		this.views = views;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date", nullable = false, length = 45)
-	public String getCreatedDate() {
+	public Date getCreatedDate() {
 		return this.createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 

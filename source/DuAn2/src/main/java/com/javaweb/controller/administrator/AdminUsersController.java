@@ -65,17 +65,17 @@ public class AdminUsersController {
 	// Lấy tất cả người dùng - trả về trang users
 	@GetMapping("/users")
 	public String getAllUsers(Model model) {
-		List<Users> listUsers = usersService.findAll();
+
 
 		// Sort with Lambda
 		// listUsers.sort(( u1, u2) -> u1.getUserName().compareTo(u2.getUserName()));
 
-		List<Users> newlistUsers = listUsers.stream()
+		List<Users> usersList = usersService.findAll().stream()
 				.filter(x -> !x.getStatus().equals("deleted"))
 				.collect(Collectors.toList());
 		//newlistUsers.forEach(u -> System.out.println(u.getEmail() +"-" + u.getStatus()));
 		//System.out.println(newlistUsers);
-		model.addAttribute("listUsers", newlistUsers);
+		model.addAttribute("usersList", usersList);
 		return "users";
 	}
 
@@ -91,15 +91,15 @@ public class AdminUsersController {
 		System.out.println("Id Users :" + userId);
 		Users user = usersService.findByUserId(userId);
 
-		List<Roles> listRoles = rolesService.findAll();
+		List<Roles> rolesList = rolesService.findAll();
 		List<String> listRolesOfUser = new ArrayList<String>();
 		/*
 		 * for (Roles r : user.getRoleses()) { listRolesOfUser.add(r.getName()); }
 		 */
-		user.getRoleses().forEach(x -> listRolesOfUser.add(x.getName()));
+		//user.getRoleses().forEach(x -> listRolesOfUser.add(x.getName()));
 		model.addAttribute("user", user);
-		model.addAttribute("listRoles", listRoles);
-		model.addAttribute("listRolesOfUser", listRolesOfUser);
+		model.addAttribute("rolesList", rolesList);
+		//model.addAttribute("listRolesOfUser", listRolesOfUser);
 
 		return "updateusers";
 	}
