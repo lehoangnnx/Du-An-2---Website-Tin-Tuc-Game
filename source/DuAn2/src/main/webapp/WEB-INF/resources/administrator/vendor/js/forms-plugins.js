@@ -74,11 +74,11 @@ $(document).ready(function(){
 		limitReachedClass: "tag tag-danger",
 	});
 
-	$('input#placement').maxlength({
+	$('input.maxlength').maxlength({
         alwaysShow: true,
         placement: 'top-left',
 		warningClass: "tag tag-success",
 		limitReachedClass: "tag tag-danger",
     });
-
+ 
 });

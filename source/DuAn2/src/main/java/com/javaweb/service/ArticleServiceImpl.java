@@ -15,4 +15,10 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findAll() {
         return articleRepository.findAll();
     }
+
+	
+	@Override
+	public void saveorupdate(Article article) {
+		articleRepository.save(article);
+	}
 }

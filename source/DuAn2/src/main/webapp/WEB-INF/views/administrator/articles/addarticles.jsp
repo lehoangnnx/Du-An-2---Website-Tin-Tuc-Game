@@ -13,34 +13,131 @@
 	</ol>
 
 	<div class="box box-block bg-white">
-		<h5>Thêm Người Dùng</h5>
+		<h5>Thêm Bài Viết</h5>
 
-		<form>
+		<form:form action="${contextPath }/admin/articles" method="post"
+         enctype="multipart/form-data">
 
 
 			<div class="form-group has-success row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Input
-					with success</label>
+				<label class="col-md-2 col-form-label" for="inputSuccess1">Tiêu
+					Đề</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control form-control-success"
-						id="inputSuccess1">
-					<div class="form-control-feedback">Success! You've done it.</div>
+					<input maxlength="100" type="text" class="maxlength form-control form-control-success" 
+					id="title" name="title"
+					onkeyup="ChangeToSlug();"
+					
+					 >
+					<div class="form-control-feedback">Nhập Tiêu Đề</div>
 
 				</div>
 			</div>
 
+			<div class="form-group has-success row">
+				<label class="col-md-2 col-form-label" for="inputSuccess1">Đường
+					Dẫn</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control form-control-success" id="slug" name="slug">
+					<div class="form-control-feedback">Nhập Đường Dẫn</div>
+
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<label class="col-md-2 col-form-label">Danh Mục</label>
+				<div class="col-md-10">
+					<div class="md-checkbox-inline">
+					
+					<c:forEach var="acl" items="${articleCategoryList}">
+						<div class="md-checkbox">
+							<input name="articleCategories" type="checkbox" 
+							value="${acl.articleCategoryId }" id="${acl.articleCategoryId }" class="md-check"> <label
+								for="${acl.articleCategoryId }"> <span></span> <span class="check"></span>
+								<span class="box"></span> ${acl.name }
+							</label>
+						</div>
+					</c:forEach>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<label class="col-md-2 col-form-label">Trạng Thái</label>
+				<div class="col-md-10">
+					<div class="md-radio-inline">
+						<div class="md-radio">
+							<input type="radio" id="radio54" name="status" value="active"
+								 class="md-radiobtn">
+							<label for="radio54"> <span></span> <span class="check"></span>
+								<span class="box"></span>Kích Hoạt
+							</label>
+						</div>
+						<div class="md-radio has-info">
+							<input type="radio" id="radio55" name="status" value="inactive"
+								checked="checked"
+								class="md-radiobtn"> <label for="radio55"> <span
+								class="inc"></span> <span class="check"></span> <span
+								class="box"></span> Chưa Kích Hoạt
+							</label>
+						</div>
+						<div class="md-radio has-warning">
+							<input type="radio" id="radio56" name="status" value="draft"
+								 class="md-radiobtn">
+							<label for="radio56"> <span class="inc"></span> <span
+								class="check"></span> <span class="box"></span> Chờ Kích Hoạt
+							</label>
+						</div>
+						<div class="md-radio has-error">
+							<input type="radio" id="radio57" name="status" value="deleted"
+								
+								class="md-radiobtn"> <label for="radio57"> <span></span>
+								<span class="check"></span> <span class="box"></span> Xóa
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-md-2 col-form-label">Tin Nổi Bật</label>
+				<div class="col-md-10">
+					<div class="md-radio-inline">
+						<div class="md-radio">
+							<input type="radio" id="radio53" name="isHot" value="1"
+								 class="md-radiobtn">
+							<label for="radio53"> <span></span> <span class="check"></span>
+								<span class="box"></span>Có
+							</label>
+						</div>
+
+
+						<div class="md-radio has-error">
+							<input type="radio" id="radio52" name="isHot" value="0"
+								checked="checked"
+								class="md-radiobtn"> <label for="radio52"> <span></span>
+								<span class="check"></span> <span class="box"></span> Không
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			<!--
 			<div class="form-group has-danger row">
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Input
 					with success</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control form-control-success"
-						id="inputSuccess1">
+					<input type="text" class="form-control form-control-danger"
+						id="">
 					<div class="form-control-feedback">Success! You've done it.</div>
 
 				</div>
 			</div>
 
-			<!-- <div class="form-group row">
+			 <div class="form-group row">
 				<label style="padding-top: 2rem; " id="mat-label" for="inputEmail3"
 					class="col-md-2 col-form-label">Primary</label>
 				<div class="col-md-10">
@@ -53,27 +150,51 @@
 			</div> -->
 
 			<div class="form-group row">
-				<label for="select2-demo-1" class="col-md-2 form-control-label">Single
-					select box</label>
+				<label for="select2-demo-1" class="col-md-2 form-control-label">Game</label>
 				<div class="col-md-10">
-					<select id="select2-demo-1" class="form-control"
+					<select id="select2-demo-1" class="form-control" name="gameId"
 						data-plugin="select2">
-						<option value="option1">HTML</option>
-						<option value="option2">CSS</option>
-						<option value="option3">Javascript</option>
-						<option value="option4">PHP</option>
-						<option value="option5">Bootstrap</option>
+						<c:forEach var="gl" items="${gameList }">
+							<option value="${gl.gameId }">${gl.name }</option>
+						</c:forEach>
+						
+						
 					</select>
 				</div>
 			</div>
 
+<div class="form-group row">
+				<label for="select2-demo-4" class="col-md-2 form-control-label">Thẻ</label>
+				<div class="col-md-10">
+					<select id="select2-demo-4" class="form-control" name="tags" required="required"
+						data-plugin="select2" multiple="multiple"
+						data-options="{ tags: true }">
+						<c:forEach var="tl" items="${tagsList }">
+							<option value="${tl.tagsId }">${tl.name }</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+			 <div class="form-group row">
+            <label for="example-datetime-local-input"
+               class="col-md-2 col-form-label">Ngày Hiển Thị</label>
+            <div class="col-md-10">
+               <input class="form-control" type="datetime-local"
+                name="showDate"
+               value=""
+               id="showDate">
+            </div>
+         </div>
+
+
+
 			<div class=" form-group row">
 
 
-				<label for="select2-demo-1" class="col-md-2 form-control-label">Sub
-					Contetn</label>
+				<label for="select2-demo-1" class="col-md-2 form-control-label">Tóm
+					Tắt</label>
 				<div class="col-md-10">
-					<textarea id="textarea" class="form-control" maxlength="225"
+					<textarea id="textarea" class="form-control" maxlength="225" name="subContent"
 						rows="5" placeholder="This textarea has a limit of 225 chars."></textarea>
 				</div>
 
@@ -81,63 +202,44 @@
 			</div>
 
 
-
-
-
-
 			<div class="form-group row">
 				<label class="col-md-2 col-form-label">Nội Dung</label>
 				<div class="col-md-10">
-					<div id="summernote"></div>
+					<textarea name="mainContent"  id="summernote"></textarea>
+					
+				</div>
+			</div>
+
+<div class="form-group has-success row">
+				<label class="col-md-2 col-form-label" for="inputSuccess1">Tác Giả/Nguồn</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control form-control-success" id="author" name="author">
+					<div class="form-control-feedback">Nhập Tác Giả/Nguồn</div>
+
 				</div>
 			</div>
 
 
-			<div class="form-group form-md-checkboxes">
-				<label>Inline Checkboxes</label>
-				<div class="md-checkbox-inline">
-					<div class="md-checkbox">
-						<input type="checkbox" id="checkbox6" class="md-check"> <label
-							for="checkbox6"> <span></span> <span class="check"></span>
-							<span class="box"></span> Option 1
-						</label>
-					</div>
-					<div class="md-checkbox">
-						<input type="checkbox" id="checkbox7" class="md-check" checked="">
-						<label for="checkbox7"> <span></span> <span class="check"></span>
-							<span class="box"></span> Option 2
-						</label>
-					</div>
-					<div class="md-checkbox">
-						<input type="checkbox" id="checkbox8" class="md-check"> <label
-							for="checkbox8"> <span></span> <span class="check"></span>
-							<span class="box"></span> Option 3
-						</label>
-					</div>
-				</div>
-			</div>
 			<div class="form-group row">
 				<label class="col-md-2 control-label" for="form_control_1">Ảnh
-					Đại Diện</label>
+					Thumbnail</label>
 				<div class="col-md-10">
-					<input name="avatar" type="file" id="input-file-max-fs"
+					<input name="imagesThumbnail" type="file" id="input-file-max-fs"
 						value="${user.avatar}" class="dropify" data-max-file-size="15M"
 						data-default-file="${contextPath}/images/avatar/${user.avatar}">
 
 
 				</div>
 			</div>
-			
+
 			<div class="form-group has-success row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Input
-					with success</label>
+				<label class="col-md-2 col-form-label" for="inputSuccess1">Video
+					Thumbnail</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control form-control-success"
+					<input type="text" class="form-control form-control-success" name="video"
 						id="inputframeVideo">
-					<div class="form-control-feedback">Success! You've done it.</div>
-						<div id="iframeVideo" class="">
-						
-					</div>
+
+					<div id="iframeVideo" class=""></div>
 				</div>
 			</div>
 
@@ -147,13 +249,13 @@
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">
 				<div class="offset-sm-2 col-md-10">
 					<button type="button" class="btn default">Làm Mới</button>
-					<button type="button" class="btn blue">Xác Nhận</button>
-					<button type="submit" class="btn btn-danger pull-right">Hủy
+					<button type="submit" class=" btn btn-primary">Xác Nhận</button>
+					<button type="button" class="btn btn-danger pull-right">Hủy
 						Bỏ</button>
 				</div>
 			</div>
 
-		</form>
+		</form:form>
 
 	</div>
 </div>
