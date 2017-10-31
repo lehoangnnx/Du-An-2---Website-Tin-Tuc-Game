@@ -21,4 +21,18 @@ public class ArticleServiceImpl implements ArticleService {
 	public void saveorupdate(Article article) {
 		articleRepository.save(article);
 	}
+
+
+	@Override
+	public Article findByTitle(String title) {
+		
+		return articleRepository.findByTitle(title);
+	}
+
+
+	@Override
+	public Article findBySlug(String slug) {
+		
+		return articleRepository.findBySlug(slug);
+	}
 }

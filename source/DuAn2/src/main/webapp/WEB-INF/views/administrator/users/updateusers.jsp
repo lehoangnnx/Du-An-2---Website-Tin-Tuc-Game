@@ -13,7 +13,7 @@
    </ol>
    <div class="box box-block bg-white">
       <h5>Sửa Người Dùng</h5>
-      <form:form action="${contextPath }/admin/users" method="patch"
+      <form:form  action="${contextPath }/admin/users" method="patch"
          enctype="multipart/form-data" modelAttribute="user">
          <form:hidden path="userId" />
          <div class="form-group row">

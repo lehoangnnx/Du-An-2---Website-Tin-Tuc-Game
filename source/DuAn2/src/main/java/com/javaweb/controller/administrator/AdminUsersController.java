@@ -53,7 +53,7 @@ public class AdminUsersController {
 	RolesService rolesService;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-
+	
 	@Autowired
 	ImagesManager imagesManager;
 
@@ -62,49 +62,71 @@ public class AdminUsersController {
 	@Autowired
 	HttpServletRequest request;
 
-	// Lấy tất cả người dùng - trả về trang users
+	/*Phương thức Get hiển thi trang users
+	* Đường đẫn : /admin/users
+	* Trả Về : Tên users trong file layout-administrator-tiles.xml cấu hình Apache Tiles
+	*/
 	@GetMapping("/users")
 	public String getAllUsers(Model model) {
 
 
-		// Sort with Lambda
-		// listUsers.sort(( u1, u2) -> u1.getUserName().compareTo(u2.getUserName()));
-
+			// Sort with Lambda
+			// listUsers.sort(( u1, u2) -> u1.getUserName().compareTo(u2.getUserName()));
+		/* Lấy tất cả đối tượng user trong cơ sở dữ liệu
+		* Lọc kết quả trae về theo điều kiện Status của user không bằng deleted
+		*/
 		List<Users> usersList = usersService.findAll().stream()
 				.filter(x -> !x.getStatus().equals("deleted"))
 				.collect(Collectors.toList());
 		//newlistUsers.forEach(u -> System.out.println(u.getEmail() +"-" + u.getStatus()));
 		//System.out.println(newlistUsers);
+		
+		// Lưu danh sách usersList vào Model
 		model.addAttribute("usersList", usersList);
 		return "users";
 	}
 
+	
+	/*Phương thức Get hiển thi trang addusers
+	* Đường đẫn : /admin/addusers
+	* Trả Về : Tên addusers trong file layout-administrator-tiles.xml cấu hình Apache Tiles
+	*/
 	@GetMapping("/addusers")
 	public String addusers(Model model) {
 
 		return "addusers";
 	}
 
-	// Phương Thức Get Người dùng theo ID
+	/*Phương thức Get hiển thi trang user theo Id user
+	* Đường đẫn : /admin/userId}
+	* Trả Về : Tên updateusers trong file layout-administrator-tiles.xml cấu hình Apache Tiles
+	*/
 	@GetMapping("/users/{userId}")
 	public String getUserByUserId(Model model, @PathVariable("userId") int userId) {
 		System.out.println("Id Users :" + userId);
+		// Lấy User theo Id
 		Users user = usersService.findByUserId(userId);
-
+		//Lấy tất cả quyên
 		List<Roles> rolesList = rolesService.findAll();
-		List<String> listRolesOfUser = new ArrayList<String>();
+		
 		/*
 		 * for (Roles r : user.getRoleses()) { listRolesOfUser.add(r.getName()); }
 		 */
 		//user.getRoleses().forEach(x -> listRolesOfUser.add(x.getName()));
+		
+		// Lưu danh sách user vào Model
 		model.addAttribute("user", user);
+		// Lưu danh sách rolesList vào Model
 		model.addAttribute("rolesList", rolesList);
-		//model.addAttribute("listRolesOfUser", listRolesOfUser);
+		
 
 		return "updateusers";
 	}
 
-	// Phương thức Post - Update Người Dùng
+	/*Phương thức Post lưu thông tin article vào cơ sở dữ liệu
+	* Đường đẫn : /admin/articles
+	* Trả Về : Redirect về trang admin/addarticles
+	*/
 	@PatchMapping("/users")
 	public String updateUsers(Model model, @RequestParam("roleses") List<String> roleses,
 			@RequestParam("userId") int userId, @RequestParam("userName") String userName,

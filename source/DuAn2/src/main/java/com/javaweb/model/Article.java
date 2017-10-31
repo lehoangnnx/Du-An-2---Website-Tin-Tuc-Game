@@ -28,6 +28,10 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "slug"), @UniqueConstraint(columnNames = "title") })
 public class Article implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -575992071968201914L;
 	private Integer articleId;
 	private Users users;
 	private Integer gameId;

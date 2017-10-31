@@ -8,4 +8,6 @@ import java.util.List;
 public interface ArticleService {
     List<Article> findAll();
     void saveorupdate(Article article);
+    Article findByTitle(String title);
+	Article findBySlug(String slug);
 }

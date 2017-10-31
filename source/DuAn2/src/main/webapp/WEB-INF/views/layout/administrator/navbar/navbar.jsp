@@ -1,4 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <nav class="navbar navbar-light">
     <div class="navbar-left">
         <a class="navbar-brand" href="index.html">
@@ -128,7 +131,13 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><i class="ti-help mr-0-5"></i> Help</a>
-                    <a class="dropdown-item" href="#"><i class="ti-power-off mr-0-5"></i> Sign out</a>
+                     <c:if test="${pageContext.request.userPrincipal.name != null}">
+		                    <form:form id="logoutForm" method="POST" action="${contextPath}/logout">
+		            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		            <button type="submit" class="dropdown-item"><i class="ti-power-off mr-0-5"></i>Sign out</button>
+		        </form:form>
+		        </c:if>
+                    
                 </div>
             </li>
         </ul>

@@ -9,5 +9,6 @@ public interface UsersService {
 	void saveorupdate(Users user);
 	void delete(Integer userId);
 	Users findByUserId(Integer userId);
+	Users findByUserName(String userName);
 	Users findByEmail(String email);
 }

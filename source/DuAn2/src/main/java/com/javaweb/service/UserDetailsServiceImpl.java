@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.security.auth.login.AccountLockedException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaweb.model.Roles;
 import com.javaweb.model.Users;
@@ -33,12 +35,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Users user = usersRepository.findByUserName(userName);
 		System.out.println("123" + user);
 		if (user == null) {
+			
 			System.out.println("-------------------------------------------------------------------");
             throw new UsernameNotFoundException("User not found");
+            
         }
 		boolean status = false;
 		if(user.getStatus().equals("active")) {
+			
 			status=true;
+			
 		}
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		Set<Roles> roles = user.getRoleses();

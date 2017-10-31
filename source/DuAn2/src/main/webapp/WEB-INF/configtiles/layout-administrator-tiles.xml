@@ -90,11 +90,7 @@
 
 
 
-	<definition name="login" extends="adminlayout">
-		<put-attribute name="title" value="Trang Login Amdin" />
-		<put-attribute name="noidung"
-			value="/WEB-INF/views/administrator/login.jsp" />
-	</definition>
+	
 	<definition name="403" extends="adminlayout">
 		<put-attribute name="title" value="Trag Loi" />
 		<put-attribute name="noidung"

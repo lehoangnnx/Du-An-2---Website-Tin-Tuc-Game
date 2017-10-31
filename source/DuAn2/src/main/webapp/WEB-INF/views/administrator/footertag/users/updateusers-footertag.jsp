@@ -62,6 +62,7 @@
 		             success: function (result) {
 			           //  alert(result);
 		                 if(result == 'erroremail'){
+			                 $("#user").removeAttr( "action" );
 		                	 $("#btn-update").prop("disabled", true);
 		                	 $("#divEmail").removeClass("has-success");
 			                 $("#divEmail").addClass("has-danger");
@@ -70,6 +71,7 @@
 			                 $("#spanEmail").text("Email Đã Tồn Tại - Vui Lòng Nhập Email Khác");
 			             }
 		                 if(result == 'successemail'){
+		                	 $("#user").attr( "action", "${pageContext.request.contextPath}/admin/users" );
 		                	 $("#btn-update").prop("disabled", false);
 		                	 
 			                 $("#divEmail").removeClass("has-danger");

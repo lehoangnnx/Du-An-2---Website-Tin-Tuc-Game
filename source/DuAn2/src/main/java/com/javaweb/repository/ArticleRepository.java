@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
-	
+	Article findByTitle(String title);
+	Article findBySlug(String slug);
 }
