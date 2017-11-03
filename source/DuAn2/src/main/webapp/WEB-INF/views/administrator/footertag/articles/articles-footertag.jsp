@@ -74,16 +74,12 @@
 				}
 		});
 	
-		$("#arrayUserId").val(result);
+		$("#arrayArticleId").val(result);
 	
 	});
 </script>
 <script>
-$("#ab").click(function(){
-    $.get("${pageContext.request.contextPath}/admin/users1", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-});
+
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -97,14 +93,48 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+
+function showactive(){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(header, token);
+	});	
+	$.ajax({
+
+		type : "GET",
+		contentType : "application/json",
+		url : "${pageContext.request.contextPath}/admin/getarticlesactive",
+		//data : JSON.stringify(article),
+		//dataType: 'json',
+		// timeout: 600000,
+		success : function(result) {
+			alert(result);
+			
+
+		},
+		error : function(e) {
+			alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
+		}
+	}); 
+	
+}
+$(document).ready(function(){
+	$("#ida").click(function(){
+		showactive();
+
+		})
+	
+});
 </script>
 <script>
-	function deleteUser(userId){
-			$("#arrayUserId").val(userId);
-			$("#command").attr("action", "${pageContext.request.contextPath}/admin/users");
+	function deleteArticle(articleId){
+			$("#arrayArticleId").val(articleId);
+			$("#command").attr("action", "${pageContext.request.contextPath}/admin/articles");
 		}
 	function deleteAllUser(){
-			$("#command").attr("action", "${pageContext.request.contextPath}/admin/users");
+			$("#command").attr("action", "${pageContext.request.contextPath}/admin/articles");
 	}
 </script>
 <script>
@@ -114,6 +144,65 @@ $(document).ready(function() {
 		alert(msg);
 	}
 	
-	
 });
 </script>
+<script>
+		
+ 
+		var timeout = null;
+		function updateStatus(id) {
+			//var id = $(this).val();
+			clearTimeout(timeout);
+			timeout = setTimeout(function ()
+			{
+				var article = {};
+				var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
+				$(document).ajaxSend(function(e, xhr, options) {
+					xhr.setRequestHeader(header, token);
+				});							
+				if ($("#idArticleCheckbox"+id).is(':checked')) {
+					
+					article["status"] = 'active' ;
+					article["articleId"] = id ;
+		           
+		        }else{
+		        	
+		        	article["status"] = 'inactive' ;
+					article["articleId"] = id ;
+			    }
+
+
+			 $.ajax({
+
+					type : "POST",
+					contentType : "application/json",
+					url : "${pageContext.request.contextPath}/admin/updateStatusArticles",
+					data : JSON.stringify(article),
+					//dataType: 'json',
+					// timeout: 600000,
+					success : function(result) {
+						//alert(result);
+						if(result == 'success'){
+								alert("Sửa Trạng Thái Bài Viết Thành Công");
+						}
+						if(result == 'error'){
+							alert("Sửa Trạng Thái Bài Viết Thất Bại");
+					}
+					
+
+					},
+					error : function(e) {
+						alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
+					}
+				}); 
+			}, 1000);
+			
+		};
+
+		
+
+
+	
+</script>
+

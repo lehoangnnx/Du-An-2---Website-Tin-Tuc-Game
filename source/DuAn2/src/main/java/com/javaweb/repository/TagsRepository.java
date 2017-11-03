@@ -7,4 +7,6 @@ import com.javaweb.model.Tags;
 @Repository
 public interface TagsRepository extends JpaRepository<Tags, Integer> {
 	Tags findByTagsId(Integer tagsId);
+	Tags findByName(String name);
+	Tags findBySlug(String slug);
 }

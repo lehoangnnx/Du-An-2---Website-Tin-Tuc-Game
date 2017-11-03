@@ -86,7 +86,55 @@
 	<!--END Trang Thêm Bài Viết -->
 
 
+<!--BEGIN Trang Sửa Bài Viết-->
+	<definition name="updatearticles" extends="adminlayout">
+		<put-attribute name="title" value="Sửa Bài Viết" />
+		<put-attribute name="headtag"
+					   value="/WEB-INF/views/administrator/headtag/articles/updatearticles-headtag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/administrator/footertag/articles/updatearticles-footertag.jsp" />
+		<put-attribute name="body"
+					   value="/WEB-INF/views/administrator/articles/updatearticles.jsp" />
+	</definition>
+	<!--END Trang Sửa Bài Viết -->
 
+
+<!--BEGIN Trang Danh Mục Bài Viết -->
+	<definition name="articlescategory" extends="adminlayout">
+		<put-attribute name="title" value="Trang Quản Trị Bài Viết" />
+		<put-attribute name="headtag"
+			value="/WEB-INF/views/administrator/headtag/articlescategory/articlescategory-headtag.jsp" />
+		<put-attribute name="footertag"
+			value="/WEB-INF/views/administrator/footertag/articlescategory/articlescategory-footertag.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/administrator/articlescategory/articlescategory.jsp" />
+	</definition>
+<!--END Trang Danh Mục Bài Viết-->
+
+	<!--BEGIN Trang Thêm Danh Mục Bài Viết-->
+	<definition name="addarticlescategory" extends="adminlayout">
+		<put-attribute name="title" value="Thêm Bài Viết" />
+		<put-attribute name="headtag"
+					   value="/WEB-INF/views/administrator/headtag/articlescategory/addarticlescategory-headtag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/administrator/footertag/articlescategory/addarticlescategory-footertag.jsp" />
+		<put-attribute name="body"
+					   value="/WEB-INF/views/administrator/articlescategory/addarticlescategory.jsp" />
+	</definition>
+	<!--END Trang Thêm Danh Mục Bài Viết -->
+
+
+<!--BEGIN Trang Sửa Danh Mục Bài Viết-->
+	<definition name="updatearticlescategory" extends="adminlayout">
+		<put-attribute name="title" value="Sửa Bài Viết" />
+		<put-attribute name="headtag"
+					   value="/WEB-INF/views/administrator/headtag/articlescategory/updatearticlescategory-headtag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/administrator/footertag/articlescategory/updatearticlescategory-footertag.jsp" />
+		<put-attribute name="body"
+					   value="/WEB-INF/views/administrator/articlescategory/updatearticlescategory.jsp" />
+	</definition>
+	<!--END Trang Sửa Danh Mục Bài Viết -->
 
 
 

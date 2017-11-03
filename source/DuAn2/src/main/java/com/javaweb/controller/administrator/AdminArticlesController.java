@@ -1,6 +1,7 @@
 package com.javaweb.controller.administrator;
 
 import com.javaweb.controller.ImagesManager;
+import com.javaweb.controller.Slugify;
 import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
 import com.javaweb.model.Games;
@@ -15,7 +16,10 @@ import com.javaweb.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +60,8 @@ public class AdminArticlesController {
 	ServletContext context;
 	@Autowired
 	UsersService usersService;
+	@Autowired
+	Slugify slugify;
 
 	/*
 	 * Phương thức Get hiển thi trang articles Đường đẫn : /admin/article Trả Về :
@@ -69,9 +75,7 @@ public class AdminArticlesController {
 		// articleList.sort(( a1, a2) ->
 		// a1.getCreatedDate().compareTo(a2.getCreatedDate()));
 
-		for (int i = 0; i < articleList.size(); i++) {
-			System.out.println(i + "-" + articleList.get(i).getTitle());
-		}
+		
 		// Lưu danh sách articleList vào Model
 		model.addAttribute("articleList", articleList);
 		return "articles";
@@ -109,16 +113,17 @@ public class AdminArticlesController {
 			@RequestParam("articleCategories") List<Integer> articleCategoriesList,
 			@RequestParam("status") String status, @RequestParam("isHot") int isHot,
 			@RequestParam("subContent") String subContent, @RequestParam("mainContent")  String mainContent,
-			@RequestParam("author") String author, @RequestParam("gameId") Integer gameId,
-			@RequestParam("tags") List<Integer> tagsList, @RequestParam("showDate") String showDate, Principal princial,
+			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment, 
+			@RequestParam( "gameId") Integer gameId,
+			@RequestParam("tags") List<String> tagsList, @RequestParam("showDate") String showDate, Principal principal,
 			@RequestParam("video") String video, @RequestParam("imagesThumbnail") MultipartFile imagesThumbnail,
 			RedirectAttributes redirectAttributes, Model model
 
 	) {
-
-		System.out.println("NAME :" + princial.getName());
-		Users u = usersService.findByUserName(princial.getName());
-		System.out.println("ID" + u.getUserId() + u.getEmail());
+		
+	
+		
+		
 		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
 		String monthAndYear = imagesManager.getMonthAndYearNow();
 		// Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
@@ -131,18 +136,16 @@ public class AdminArticlesController {
 		HashSet<Tags> tagses = new HashSet<>();
 		// Định dạng ngày có dạng yyyy-MM-dd'T'HH:mm
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-		Article findByTitle = null;
-		Article findBySlug = null;
+		
 		try {
 			// Set dữ liệu vào đối tượng tên article
 
-			findByTitle = articleService.findByTitle(title);
-			findBySlug = articleService.findBySlug(slug);
-			if (!title.equals("") && findByTitle == null) {
+		
+			if (!title.equals("") && articleService.findByTitle(title) == null) {
 				System.out.println(title);
 				article.setTitle(HtmlUtils.htmlEscape(title));
 			}
-			if (!slug.equals("") && findBySlug == null) {
+			if (!slug.equals("") && articleService.findBySlug(slug) == null) {
 				System.out.println(slug);
 				article.setSlug(HtmlUtils.htmlEscape(slug));
 			}
@@ -164,22 +167,57 @@ public class AdminArticlesController {
 				Date date = df.parse(showDate);
 				article.setShowDate(date);
 
+			}else {
+				article.setShowDate(new Date());
+			}
+			System.out.println(gameId);
+			if(gameId !=  0 ) {
+				article.setGameId(gameId);
+			}
+			if(!video.equals("")) {
+				article.setVideo(video);
 			}
 			article.setViews(0);
 			article.setCreatedDate(new Date());
 			article.setIsHot((byte) isHot);
-			article.setVideo(video);
-			article.setGameId(gameId);
+			article.setAllowComment(allowComment);
+			
 			// Vòng lặp dang sách articleCategoriesList và thêm một đối tượng
 			// ArticleCategories vào HashSet articleCategories
 			articleCategoriesList
 					.forEach(x -> articleCategories.add(articleCategoryService.findByArticleCategoryId(x)));
+			
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
-			tagsList.forEach(x -> tagses.add(tagsService.findTagsId(x)));
+			
+			
+				
+			
+			tagsList.forEach(x-> {
+				System.out.println("NAME : " + x +"-"+tagsService.findByName(x));
+				//System.out.println("LẤY : "+x+"--" + tagsService.findByName(x).getName());
+				System.out.println("SLUG : " +x+"-"+tagsService.findBySlug(slugify.slugify(x)));
+				if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
+					Tags tagss = new Tags();
+					tagss.setName(x);
+					tagss.setSlug(slugify.slugify(x));
+					System.out.println(x.getBytes());
+					tagsService.saveorupdate(tagss);
+				}else if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
+					
+					Tags tagss = new Tags();
+					tagss.setName(x);
+					tagss.setSlug(slugify.slugify(x) +"-"+ tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					System.out.println("LLL" +slugify.slugify(x)+"-"+tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					tagsService.saveorupdate(tagss);
+				}
+				
+			});
+			
+			tagsList.forEach(x -> tagses.add(tagsService.findByName(x)));
 
 			article.setArticleCategories(articleCategories);
 			article.setTagses(tagses);
-			article.setUsers(usersService.findByUserName(princial.getName()));
+			article.setUsers(usersService.findByUserName(principal.getName()));
 			// Kiểm tra nếu imagesThumbnail khác rỗng
 			if (!imagesThumbnail.isEmpty()) {
 				// Kiểm tra và tạo thư mục trong đường dẫn /WEB-INF/files/images/articles/" +
@@ -210,6 +248,188 @@ public class AdminArticlesController {
 			return "redirect:/admin/addarticles";
 		}
 
+		return "redirect:/admin/articles";
+		
+	}
+	
+	@GetMapping("/articles/{articleId}")
+	public String updateArticles(Model model,@PathVariable("articleId") Integer articleId
+			
+			
+			) {
+		
+
+		Article article = articleService.findByArticleId(articleId);
+		List<Games> gameList = gamesService.findAll();
+			
+		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll();
+		
+		Games game = gamesService.getOne(article.getGameId());
+	
+		model.addAttribute("articleCategoryList", articleCategoryList);
+		model.addAttribute("article", article);
+		model.addAttribute("gameList", gameList);
+		model.addAttribute("game" , game);
+		return "updatearticles";
+	}
+	
+	@PatchMapping("/articles")
+	public String updateArticle(
+			@RequestParam("articleId") Integer articleId,
+			@RequestParam("title") String title, @RequestParam("slug") String slug,
+			@RequestParam("articleCategories") List<Integer> articleCategoriesList,
+			@RequestParam("status") String status, @RequestParam("isHot") int isHot,
+			@RequestParam("subContent") String subContent, @RequestParam("mainContent")  String mainContent,
+			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment, 
+			@RequestParam( "gameId") Integer gameId,
+			@RequestParam("tags") List<String> tagsList, @RequestParam("showDate") String showDate, Principal princial,
+			@RequestParam("video") String video, @RequestParam("imagesThumbnail") MultipartFile imagesThumbnail,
+			RedirectAttributes redirectAttributes, Model model) {
+		
+		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
+		String monthAndYear = imagesManager.getMonthAndYearNow();
+		// Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
+		String photoPath = context.getRealPath("/WEB-INF/files/images/articles/" + monthAndYear);
+	
+		Article article = articleService.findByArticleId(articleId);
+		// Tạo mới HashSet có tên articleCategories
+		HashSet<ArticleCategory> articleCategories = new HashSet<>();
+		// Tạo mới HashSet có tên tagses
+		HashSet<Tags> tagses = new HashSet<>();
+		// Định dạng ngày có dạng yyyy-MM-dd'T'HH:mm
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		
+		try {
+			// Set dữ liệu vào đối tượng tên article
+
+			if (!title.equals("") && articleService.findByTitle(title) == null) {
+				System.out.println(title);
+				article.setTitle(HtmlUtils.htmlEscape(title));
+			}
+			if (!slug.equals("") && articleService.findBySlug(slug) == null) {
+				System.out.println(slug);
+				article.setSlug(HtmlUtils.htmlEscape(slug));
+			}
+			if (!subContent.equals("")) {
+				article.setSubContent(HtmlUtils.htmlEscape(subContent));
+			}
+			if (!mainContent.equals("")) {
+				article.setMainContent(HtmlUtils.htmlEscape(mainContent));
+			}
+			if (!author.equals("")) {
+				System.out.println(author);
+				article.setAuthor(HtmlUtils.htmlEscape(author));
+
+			}
+			if (!status.equals("")) {
+				article.setStatus(status);
+			}
+			if (!showDate.equals("")) {
+				Date date = df.parse(showDate);
+				article.setShowDate(date);
+
+			}else {
+				article.setShowDate(new Date());
+			}
+			System.out.println(gameId);
+			if(gameId !=  0 ) {
+				article.setGameId(gameId);
+			}else {
+				
+				article.setGameId(0);
+			}
+			if(!video.equals("")) {
+				article.setVideo(video);
+			}
+			article.setViews(0);
+			article.setCreatedDate(new Date());
+			article.setIsHot((byte) isHot);
+			article.setAllowComment(allowComment);
+			
+			// Vòng lặp dang sách articleCategoriesList và thêm một đối tượng
+			// ArticleCategories vào HashSet articleCategories
+			articleCategoriesList
+					.forEach(x -> articleCategories.add(articleCategoryService.findByArticleCategoryId(x)));
+			
+			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
+			
+			
+				
+			
+			tagsList.forEach(x-> {
+				if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
+					Tags tagss = new Tags();
+					tagss.setName(x);
+					tagss.setSlug(slugify.slugify(x));
+					
+					tagsService.saveorupdate(tagss);
+				}else if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
+					
+					Tags tagss = new Tags();
+					tagss.setName(x);
+					tagss.setSlug(slugify.slugify(x) +"-"+ tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					tagsService.saveorupdate(tagss);
+				}
+				
+			});
+			
+			tagsList.forEach(x -> tagses.add(tagsService.findByName(x)));
+
+			article.setArticleCategories(articleCategories);
+			article.setTagses(tagses);
+			article.setModifiedUserId(usersService.findByUserName(princial.getName()).getUserId());
+			article.setModifiedDate(new Date());
+			// Kiểm tra nếu imagesThumbnail khác rỗng
+			if (!imagesThumbnail.isEmpty() && !imagesThumbnail.getOriginalFilename().equals(article.getImagesThumbnail())) {
+				// Kiểm tra và tạo thư mục trong đường dẫn /WEB-INF/files/images/articles/" +
+				// monthAndYear nêu chưa có
+				boolean checkFolderExists = imagesManager.checkFolderExists(photoPath);
+				if (checkFolderExists) {
+					// Đổi tên File hiện tại
+					String newNameFile = imagesManager.renameFile(imagesThumbnail.getOriginalFilename());
+					// Lưu File vào đường dẫn
+					byte[] bytes = imagesThumbnail.getBytes();
+					Path path = Paths.get(photoPath + newNameFile);
+					Files.write(path, bytes);
+
+					article.setImagesThumbnail(monthAndYear + newNameFile);
+
+				}
+
+			}
+			// Lưu đối tượng article vào cơ sở dữ liệu
+			articleService.saveorupdate(article);
+
+			redirectAttributes.addFlashAttribute("msg", "Sửa Bài Viết Thành Công");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("msg", "Sửa Bài Viết Thất Bại");
+			redirectAttributes.addFlashAttribute("article", article);
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+			return "redirect:/admin/updatearticles/"+articleId;
+		}
+
+		return "redirect:/admin/articles";
+	}
+	@DeleteMapping("/articles")
+	public String deleteAllUser(@RequestParam("arrayArticleId") List<Integer> arrayArticleId ,RedirectAttributes redirectAttributes) {
+		
+		System.out.println(arrayArticleId);
+		try {
+			arrayArticleId.forEach(x -> {
+				
+				Article article = articleService.findByArticleId(x);
+				article.setStatus("deleted");
+				articleService.saveorupdate(article);;
+			});
+			
+			
+			redirectAttributes.addFlashAttribute("msg", "Xóa Bài Viết Thành Công");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			redirectAttributes.addFlashAttribute("msg", "Xóa Bài Viết Thất Bại");
+		}
+		
 		return "redirect:/admin/articles";
 	}
 }

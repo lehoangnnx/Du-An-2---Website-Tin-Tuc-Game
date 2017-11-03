@@ -18,4 +18,9 @@ public class GamesServiceImpl implements GamesService {
 		return gamesRepository.findAll();
 	}
 
+	@Override
+	public Games getOne(Integer id) {
+		return gamesRepository.getOne(id);
+	}
+
 }

@@ -6,4 +6,5 @@ import com.javaweb.model.Games;
 
 public interface GamesService {
 	List<Games> findAll();
+	Games getOne(Integer id);
 }

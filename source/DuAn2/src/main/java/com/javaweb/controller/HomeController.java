@@ -7,6 +7,7 @@ import java.util.List;
 import com.javaweb.service.PagesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,10 @@ public class HomeController {
 	PagesService pagesService;
 	
 	@RequestMapping(value = {"/", "/home"})
-	public String index( ) {
-		
+	public String index(Principal p , Authentication authentication) {
+		System.out.println(p.getName());
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		System.out.println("User has authorities: " + userDetails.getAuthorities());
 		
 		return "home";
 	}

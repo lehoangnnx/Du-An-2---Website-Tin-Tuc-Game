@@ -8,4 +8,6 @@ import com.javaweb.model.ArticleCategory;
 @Repository
 public interface ArticleCategoryRepository extends JpaRepository<ArticleCategory, Integer> {
 	ArticleCategory findByArticleCategoryId(Integer articleCategoryId);
+	ArticleCategory findByName(String name);
+	ArticleCategory findBySlug(String slug);
 }

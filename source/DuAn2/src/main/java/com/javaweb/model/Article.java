@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,13 +25,9 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "article", catalog = "duan2_webapplication_tintucgame", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "slug"), @UniqueConstraint(columnNames = "title") })
+		@UniqueConstraint(columnNames = "title"), @UniqueConstraint(columnNames = "slug") })
 public class Article implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -575992071968201914L;
 	private Integer articleId;
 	private Users users;
 	private Integer gameId;
@@ -56,8 +52,12 @@ public class Article implements java.io.Serializable {
 	private String linkSource;
 	private Set<ArticleCategory> articleCategories = new HashSet<ArticleCategory>(0);
 	private Set<Tags> tagses = new HashSet<Tags>(0);
-	private Set<ArticleLike> articleLikes = new HashSet<ArticleLike>(0);
 	private Set<Comment> comments = new HashSet<Comment>(0);
+	private Set<Tags> tagses_1 = new HashSet<Tags>(0);
+	private Set<ArticleCategory> articleCategories_1 = new HashSet<ArticleCategory>(0);
+	private Set<ArticleLike> articleLikes = new HashSet<ArticleLike>(0);
+	private Set<ArticleLike> articleLikes_1 = new HashSet<ArticleLike>(0);
+	private Set<Comment> comments_1 = new HashSet<Comment>(0);
 
 	public Article() {
 	}
@@ -77,9 +77,10 @@ public class Article implements java.io.Serializable {
 
 	public Article(Users users, Integer gameId, String title, String slug, String subContent, String mainContent,
 			String author, String imagesThumbnail, String imagesList, String video, String status, long views,
-				   Date createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
+			Date createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
 			Date showDate, String allowComment, Byte isHot, String linkSource, Set<ArticleCategory> articleCategories,
-			Set<Tags> tagses, Set<ArticleLike> articleLikes, Set<Comment> comments) {
+			Set<Tags> tagses, Set<Comment> comments, Set<Tags> tagses_1, Set<ArticleCategory> articleCategories_1,
+			Set<ArticleLike> articleLikes, Set<ArticleLike> articleLikes_1, Set<Comment> comments_1) {
 		this.users = users;
 		this.gameId = gameId;
 		this.title = title;
@@ -103,8 +104,12 @@ public class Article implements java.io.Serializable {
 		this.linkSource = linkSource;
 		this.articleCategories = articleCategories;
 		this.tagses = tagses;
-		this.articleLikes = articleLikes;
 		this.comments = comments;
+		this.tagses_1 = tagses_1;
+		this.articleCategories_1 = articleCategories_1;
+		this.articleLikes = articleLikes;
+		this.articleLikes_1 = articleLikes_1;
+		this.comments_1 = comments_1;
 	}
 
 	@Id
@@ -229,7 +234,7 @@ public class Article implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_date", nullable = false, length = 45)
+	@Column(name = "created_date", nullable = false, length = 19)
 	public Date getCreatedDate() {
 		return this.createdDate;
 	}
@@ -338,6 +343,39 @@ public class Article implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+	public Set<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "article_tag", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "article_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "tag_id", nullable = false, updatable = false) })
+	public Set<Tags> getTagses_1() {
+		return this.tagses_1;
+	}
+
+	public void setTagses_1(Set<Tags> tagses_1) {
+		this.tagses_1 = tagses_1;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "article_article_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "article_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "article_category_id", nullable = false, updatable = false) })
+	public Set<ArticleCategory> getArticleCategories_1() {
+		return this.articleCategories_1;
+	}
+
+	public void setArticleCategories_1(Set<ArticleCategory> articleCategories_1) {
+		this.articleCategories_1 = articleCategories_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	public Set<ArticleLike> getArticleLikes() {
 		return this.articleLikes;
 	}
@@ -347,12 +385,21 @@ public class Article implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
-	public Set<Comment> getComments() {
-		return this.comments;
+	public Set<ArticleLike> getArticleLikes_1() {
+		return this.articleLikes_1;
 	}
 
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
+	public void setArticleLikes_1(Set<ArticleLike> articleLikes_1) {
+		this.articleLikes_1 = articleLikes_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+	public Set<Comment> getComments_1() {
+		return this.comments_1;
+	}
+
+	public void setComments_1(Set<Comment> comments_1) {
+		this.comments_1 = comments_1;
 	}
 
 }

@@ -24,4 +24,22 @@ public class ArticleCategoryServcieImpl implements ArticleCategoryService {
 		
 		return articleCategoryRepository.findByArticleCategoryId(articleCategoryId);
 	}
+
+	@Override
+	public void saveorupdate(ArticleCategory articleCategory) {
+		articleCategoryRepository.save(articleCategory);
+		
+	}
+
+	@Override
+	public ArticleCategory findByName(String name) {
+		
+		return articleCategoryRepository.findByName(name);
+	}
+
+	@Override
+	public ArticleCategory findBySlug(String slug) {
+	
+		return articleCategoryRepository.findBySlug(slug);
+	}
 }

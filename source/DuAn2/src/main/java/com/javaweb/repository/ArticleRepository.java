@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	Article findByTitle(String title);
 	Article findBySlug(String slug);
+	Article findByArticleId(Integer articleId);
 }

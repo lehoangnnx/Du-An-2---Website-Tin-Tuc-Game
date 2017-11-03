@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -35,6 +35,7 @@ public class CommentForum implements java.io.Serializable {
 	private String ip;
 	private String description;
 	private Set<CommentLikeForum> commentLikeForums = new HashSet<CommentLikeForum>(0);
+	private Set<CommentLikeForum> commentLikeForums_1 = new HashSet<CommentLikeForum>(0);
 
 	public CommentForum() {
 	}
@@ -49,7 +50,7 @@ public class CommentForum implements java.io.Serializable {
 
 	public CommentForum(ArticleForum articleForum, Users users, Integer subCommentForumId, String content,
 			Date createdDate, Date modifiedDate, String status, String ip, String description,
-			Set<CommentLikeForum> commentLikeForums) {
+			Set<CommentLikeForum> commentLikeForums, Set<CommentLikeForum> commentLikeForums_1) {
 		this.articleForum = articleForum;
 		this.users = users;
 		this.subCommentForumId = subCommentForumId;
@@ -60,6 +61,7 @@ public class CommentForum implements java.io.Serializable {
 		this.ip = ip;
 		this.description = description;
 		this.commentLikeForums = commentLikeForums;
+		this.commentLikeForums_1 = commentLikeForums_1;
 	}
 
 	@Id
@@ -166,6 +168,15 @@ public class CommentForum implements java.io.Serializable {
 
 	public void setCommentLikeForums(Set<CommentLikeForum> commentLikeForums) {
 		this.commentLikeForums = commentLikeForums;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commentForum")
+	public Set<CommentLikeForum> getCommentLikeForums_1() {
+		return this.commentLikeForums_1;
+	}
+
+	public void setCommentLikeForums_1(Set<CommentLikeForum> commentLikeForums_1) {
+		this.commentLikeForums_1 = commentLikeForums_1;
 	}
 
 }

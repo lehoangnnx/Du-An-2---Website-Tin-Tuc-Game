@@ -27,7 +27,7 @@
 			</a>
 				<ul>
 					<li><a href="${contextPath }/admin/articles">Quản Lý Bài Viết</a></li>
-					<li><a href="${contextPath }/admin/articles/category">Quản Lý Danh Mục Bài Viết</a></li>
+					<li><a href="${contextPath }/admin/categorys/articles">Quản Lý Danh Mục Bài Viết</a></li>
 					
 				</ul></li>
 

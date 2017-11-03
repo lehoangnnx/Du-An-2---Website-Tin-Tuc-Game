@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -44,9 +44,12 @@ public class ArticleForum implements java.io.Serializable {
 	private String allowComment;
 	private Byte isHot;
 	private String linkSource;
-	private Set<ArticleLikeForum> articleLikeForums = new HashSet<ArticleLikeForum>(0);
 	private Set<ArticleCategoryForum> articleCategoryForums = new HashSet<ArticleCategoryForum>(0);
+	private Set<ArticleLikeForum> articleLikeForums = new HashSet<ArticleLikeForum>(0);
+	private Set<ArticleCategoryForum> articleCategoryForums_1 = new HashSet<ArticleCategoryForum>(0);
+	private Set<ArticleLikeForum> articleLikeForums_1 = new HashSet<ArticleLikeForum>(0);
 	private Set<CommentForum> commentForums = new HashSet<CommentForum>(0);
+	private Set<CommentForum> commentForums_1 = new HashSet<CommentForum>(0);
 
 	public ArticleForum() {
 	}
@@ -64,8 +67,10 @@ public class ArticleForum implements java.io.Serializable {
 
 	public ArticleForum(Users users, String title, String slug, String mainContent, String status, long views,
 			String createdDate, Date modifiedDate, Integer modifiedUserId, Date activateDate, Integer activateUserId,
-			Date showDate, String allowComment, Byte isHot, String linkSource, Set<ArticleLikeForum> articleLikeForums,
-			Set<ArticleCategoryForum> articleCategoryForums, Set<CommentForum> commentForums) {
+			Date showDate, String allowComment, Byte isHot, String linkSource,
+			Set<ArticleCategoryForum> articleCategoryForums, Set<ArticleLikeForum> articleLikeForums,
+			Set<ArticleCategoryForum> articleCategoryForums_1, Set<ArticleLikeForum> articleLikeForums_1,
+			Set<CommentForum> commentForums, Set<CommentForum> commentForums_1) {
 		this.users = users;
 		this.title = title;
 		this.slug = slug;
@@ -81,9 +86,12 @@ public class ArticleForum implements java.io.Serializable {
 		this.allowComment = allowComment;
 		this.isHot = isHot;
 		this.linkSource = linkSource;
-		this.articleLikeForums = articleLikeForums;
 		this.articleCategoryForums = articleCategoryForums;
+		this.articleLikeForums = articleLikeForums;
+		this.articleCategoryForums_1 = articleCategoryForums_1;
+		this.articleLikeForums_1 = articleLikeForums_1;
 		this.commentForums = commentForums;
+		this.commentForums_1 = commentForums_1;
 	}
 
 	@Id
@@ -237,15 +245,6 @@ public class ArticleForum implements java.io.Serializable {
 		this.linkSource = linkSource;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleForum")
-	public Set<ArticleLikeForum> getArticleLikeForums() {
-		return this.articleLikeForums;
-	}
-
-	public void setArticleLikeForums(Set<ArticleLikeForum> articleLikeForums) {
-		this.articleLikeForums = articleLikeForums;
-	}
-
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "article_forum_article_category_forum", catalog = "duan2_webapplication_tintucgame", joinColumns = {
 			@JoinColumn(name = "article_forum_id", nullable = false, updatable = false) }, inverseJoinColumns = {
@@ -259,12 +258,51 @@ public class ArticleForum implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleForum")
+	public Set<ArticleLikeForum> getArticleLikeForums() {
+		return this.articleLikeForums;
+	}
+
+	public void setArticleLikeForums(Set<ArticleLikeForum> articleLikeForums) {
+		this.articleLikeForums = articleLikeForums;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "article_forum_article_category_forum", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "article_forum_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "article_category_forum_id", nullable = false, updatable = false) })
+	public Set<ArticleCategoryForum> getArticleCategoryForums_1() {
+		return this.articleCategoryForums_1;
+	}
+
+	public void setArticleCategoryForums_1(Set<ArticleCategoryForum> articleCategoryForums_1) {
+		this.articleCategoryForums_1 = articleCategoryForums_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleForum")
+	public Set<ArticleLikeForum> getArticleLikeForums_1() {
+		return this.articleLikeForums_1;
+	}
+
+	public void setArticleLikeForums_1(Set<ArticleLikeForum> articleLikeForums_1) {
+		this.articleLikeForums_1 = articleLikeForums_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleForum")
 	public Set<CommentForum> getCommentForums() {
 		return this.commentForums;
 	}
 
 	public void setCommentForums(Set<CommentForum> commentForums) {
 		this.commentForums = commentForums;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articleForum")
+	public Set<CommentForum> getCommentForums_1() {
+		return this.commentForums_1;
+	}
+
+	public void setCommentForums_1(Set<CommentForum> commentForums_1) {
+		this.commentForums_1 = commentForums_1;
 	}
 
 }

@@ -7,4 +7,5 @@ import com.javaweb.model.Games;
 @Repository
 public interface GamesRepository extends JpaRepository<Games, Integer> {
 
+   
 }

@@ -16,6 +16,9 @@
     This text is only visible to an admin
     <br />
 	</security:authorize>
+	<security:authorize access="hasRole('ROLE_ADMIN')" >
+	This text is only visible to an admin
+	</security:authorize>
 	<h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
 </body>
 </html>

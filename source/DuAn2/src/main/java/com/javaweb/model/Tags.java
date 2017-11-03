@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "tags", catalog = "duan2_webapplication_tintucgame", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "slug") })
+		@UniqueConstraint(columnNames = "slug"), @UniqueConstraint(columnNames = "name") })
 public class Tags implements java.io.Serializable {
 
 	private Integer tagsId;
@@ -26,6 +26,7 @@ public class Tags implements java.io.Serializable {
 	private String slug;
 	private String description;
 	private Set<Article> articles = new HashSet<Article>(0);
+	private Set<Article> articles_1 = new HashSet<Article>(0);
 
 	public Tags() {
 	}
@@ -35,11 +36,12 @@ public class Tags implements java.io.Serializable {
 		this.slug = slug;
 	}
 
-	public Tags(String name, String slug, String description, Set<Article> articles) {
+	public Tags(String name, String slug, String description, Set<Article> articles, Set<Article> articles_1) {
 		this.name = name;
 		this.slug = slug;
 		this.description = description;
 		this.articles = articles;
+		this.articles_1 = articles_1;
 	}
 
 	@Id
@@ -88,6 +90,15 @@ public class Tags implements java.io.Serializable {
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tagses")
+	public Set<Article> getArticles_1() {
+		return this.articles_1;
+	}
+
+	public void setArticles_1(Set<Article> articles_1) {
+		this.articles_1 = articles_1;
 	}
 
 }

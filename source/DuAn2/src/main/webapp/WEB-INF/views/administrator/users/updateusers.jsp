@@ -3,7 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<style></style>
+<style>
+.error {
+	color: red;
+}
+</style>
 <div class="container-fluid">
    <h4>Người Dùng</h4>
    <ol class="breadcrumb no-bg mb-1">
@@ -13,7 +17,7 @@
    </ol>
    <div class="box box-block bg-white">
       <h5>Sửa Người Dùng</h5>
-      <form:form  action="${contextPath }/admin/users" method="patch"
+      <form:form  action="${contextPath }/admin/users" method="patch" id="formUser"
          enctype="multipart/form-data" modelAttribute="user">
          <form:hidden path="userId" />
          <div class="form-group row">
@@ -36,44 +40,37 @@
             	</div>
             </div>
             </div> --%>
-         <div id="divEmail" class="form-group has-success row">
+         <div id="divEmail" class="form-group row">
             <label class="col-md-2 col-form-label" for="email">Email</label>
             <div class="col-md-10">
-               <input type="email" class="form-control form-control-success"
+               <input type="email" class="form-control "
                   value="${user.email }" name="email" id="email">
-               <div id="spanEmail" class="form-control-feedback">Nhập Email</div>
+               <label id="email-error" class="error" for="email"></label>
             </div>
          </div>
-         <div class="form-group has-success row">
-            <label class="col-md-2 col-form-label" for="email">First
-            Name</label>
+         <div class="form-group  row">
+            <label class="col-md-2 col-form-label" for="email">Họ</label>
             <div class="col-md-10">
-               <input type="text" class="form-control form-control-success"
+               <input type="text" class="form-control "
                   value="${user.firstName }" name="firstName" id="firstName">
-               <div id="spanEmail" class="form-control-feedback">Nhập First
-                  Name
-               </div>
+                <label id="firstName-error" class="error" for="firstName"></label>
             </div>
          </div>
-         <div class="form-group has-success row">
-            <label class="col-md-2 col-form-label" for="email">Last Name</label>
+         <div class="form-group  row">
+            <label class="col-md-2 col-form-label" for="email">Tên</label>
             <div class="col-md-10">
-               <input type="text" class="form-control form-control-success"
+               <input type="text" class="form-control "
                   value="${user.lastName }" name="lastName" id="lastName">
-               <div id="spanEmail" class="form-control-feedback">Nhập Last
-                  Name
-               </div>
+                   <label id="lastName-error" class="error" for="lastName"></label>
             </div>
          </div>
-         <div class="form-group has-success row">
+         <div class="form-group  row">
             <label class="col-md-2 col-form-label" for="email">Số Điện
             Thoại</label>
             <div class="col-md-10">
-               <input type="text" class="form-control form-control-success"
+               <input type="text" class="form-control "
                   value="${user.phoneNumber }" name="phoneNumber" id="phoneNumber">
-               <div id="spanEmail" class="form-control-feedback">Nhập Số
-                  Điện Thoại
-               </div>
+                <label id="phoneNumber-error" class="error" for="phoneNumber"></label>
             </div>
          </div>
          <div class="form-group row">
@@ -81,10 +78,9 @@
                class="col-md-2 col-form-label">Ngày Tạo</label>
             <div class="col-md-10">
                <input class="form-control" type="datetime-local"
-               disabled="disabled" name="createdDate"
-               value="
-               <fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${user.createdDate}"/>
-               "
+                readonly="readonly"
+               name="createdDate"
+               value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${user.createdDate}"/>"
                id="createdDate">
             </div>
          </div>
@@ -93,10 +89,8 @@
                class="col-md-2 col-form-label">Ngày Đăng Nhập</label>
             <div class="col-md-10">
                <input class="form-control" type="datetime-local"
-               disabled="disabled" name="loggedInDate"
-               value="
-               <fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${user.loggedInDate}"/>
-               "
+               readonly="readonly" name="loggedInDate"
+               value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${user.loggedInDate}"/>"
                id="loggedInDate">
             </div>
          </div>
@@ -113,14 +107,14 @@
             <div class="col-md-10">
                <div class="md-radio-inline">
                   <div class="md-radio">
-                     <input disabled type="radio" id="radio53" name="isOnline"
+                     <input disabled="disabled" type="radio" id="radio53" name="isOnline"
                      value="1" ${user.isOnline == 1 ? 'checked' : '' }
                      class="md-radiobtn"> <label for="radio53"> <span></span>
                      <span class="check"></span> <span class="box"></span>Đang Online
                      </label>
                   </div>
                   <div class="md-radio has-error">
-                     <input disabled type="radio" id="radio54" name="isOnline"
+                     <input disabled="disabled"  type="radio" id="radio54" name="isOnline"
                      value="0" ${user.isOnline == 0 ? 'checked' : '' }
                      class="md-radiobtn"> <label for="radio54"> <span></span>
                      <span class="check"></span> <span class="box"></span> Không

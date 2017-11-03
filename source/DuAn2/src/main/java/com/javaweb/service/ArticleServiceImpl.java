@@ -35,4 +35,11 @@ public class ArticleServiceImpl implements ArticleService {
 		
 		return articleRepository.findBySlug(slug);
 	}
+
+
+	@Override
+	public Article findByArticleId(Integer articleId) {
+		
+		return articleRepository.findByArticleId( articleId);
+	}
 }

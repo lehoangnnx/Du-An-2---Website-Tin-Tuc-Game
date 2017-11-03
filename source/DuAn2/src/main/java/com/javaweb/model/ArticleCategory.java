@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "article_category", catalog = "duan2_webapplication_tintucgame", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "slug") })
+		@UniqueConstraint(columnNames = "slug"), @UniqueConstraint(columnNames = "name") })
 public class ArticleCategory implements java.io.Serializable {
 
 	private Integer articleCategoryId;
@@ -29,6 +29,7 @@ public class ArticleCategory implements java.io.Serializable {
 	private byte sortOrder;
 	private String description;
 	private Set<Article> articles = new HashSet<Article>(0);
+	private Set<Article> articles_1 = new HashSet<Article>(0);
 
 	public ArticleCategory() {
 	}
@@ -41,7 +42,7 @@ public class ArticleCategory implements java.io.Serializable {
 	}
 
 	public ArticleCategory(Integer subArticleCategoryId, String name, String slug, String status, byte sortOrder,
-			String description, Set<Article> articles) {
+			String description, Set<Article> articles, Set<Article> articles_1) {
 		this.subArticleCategoryId = subArticleCategoryId;
 		this.name = name;
 		this.slug = slug;
@@ -49,6 +50,7 @@ public class ArticleCategory implements java.io.Serializable {
 		this.sortOrder = sortOrder;
 		this.description = description;
 		this.articles = articles;
+		this.articles_1 = articles_1;
 	}
 
 	@Id
@@ -124,6 +126,15 @@ public class ArticleCategory implements java.io.Serializable {
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "articleCategories")
+	public Set<Article> getArticles_1() {
+		return this.articles_1;
+	}
+
+	public void setArticles_1(Set<Article> articles_1) {
+		this.articles_1 = articles_1;
 	}
 
 }

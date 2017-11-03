@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -85,7 +87,13 @@ public class AdminUsersController {
 		model.addAttribute("usersList", usersList);
 		return "users";
 	}
-
+	@ModelAttribute("user")
+	public Users user(Principal principal) {
+		Users user = usersService.findByUserName(principal.getName());
+		return user;
+		
+		
+	}
 	
 	/*Phương thức Get hiển thi trang addusers
 	* Đường đẫn : /admin/addusers
@@ -129,6 +137,7 @@ public class AdminUsersController {
 	*/
 	@PatchMapping("/users")
 	public String updateUsers(Model model, @RequestParam("roleses") List<String> roleses,
+			@RequestParam("email") String email, @RequestParam("phoneNumber") String phoneNumber, 
 			@RequestParam("userId") int userId, @RequestParam("userName") String userName,
 			@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
 			@RequestParam("status") String status, @RequestParam("avatar") MultipartFile avatar,
@@ -140,17 +149,22 @@ public class AdminUsersController {
 		Users user = usersService.findByUserId(userId);
 		HashSet<Roles> roles = new HashSet<>();
 		String photoPath = context.getRealPath("/WEB-INF/files/images/avatar/" + monthAndYear);
-
+			
 		try {
+			
+			if(email != "" && usersService.findByEmail(user.getEmail()) == null) {
+				user.setEmail(HtmlUtils.htmlEscape(email));
+			}
 			user.setFirstName(HtmlUtils.htmlEscape(firstName));
 			user.setLastName(HtmlUtils.htmlEscape(lastName));
+			user.setPhoneNumber(HtmlUtils.htmlEscape(phoneNumber));
 			user.setStatus(status);
 			for (String r : roleses) {
 				roles.add(rolesService.findByName(r));
 			}
 			user.setRoleses(roles);
 
-			if (!avatar.isEmpty()) {
+			if (!avatar.isEmpty() && !avatar.getOriginalFilename().equals(user.getAvatar())) {
 				boolean checkFolderExists = imagesManager.checkFolderExists(photoPath);
 				if (checkFolderExists) {
 					String newNameFile = imagesManager.renameFile(avatar.getOriginalFilename());

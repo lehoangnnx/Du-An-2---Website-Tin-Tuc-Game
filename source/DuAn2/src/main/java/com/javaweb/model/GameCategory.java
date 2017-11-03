@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +27,7 @@ public class GameCategory implements java.io.Serializable {
 	private byte sortOrder;
 	private String description;
 	private Set<Games> gameses = new HashSet<Games>(0);
+	private Set<Games> gameses_1 = new HashSet<Games>(0);
 
 	public GameCategory() {
 	}
@@ -39,7 +40,7 @@ public class GameCategory implements java.io.Serializable {
 	}
 
 	public GameCategory(Integer subGameCategoryId, String name, String slug, String status, byte sortOrder,
-			String description, Set<Games> gameses) {
+			String description, Set<Games> gameses, Set<Games> gameses_1) {
 		this.subGameCategoryId = subGameCategoryId;
 		this.name = name;
 		this.slug = slug;
@@ -47,6 +48,7 @@ public class GameCategory implements java.io.Serializable {
 		this.sortOrder = sortOrder;
 		this.description = description;
 		this.gameses = gameses;
+		this.gameses_1 = gameses_1;
 	}
 
 	@Id
@@ -122,6 +124,15 @@ public class GameCategory implements java.io.Serializable {
 
 	public void setGameses(Set<Games> gameses) {
 		this.gameses = gameses;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "gameCategories")
+	public Set<Games> getGameses_1() {
+		return this.gameses_1;
+	}
+
+	public void setGameses_1(Set<Games> gameses_1) {
+		this.gameses_1 = gameses_1;
 	}
 
 }

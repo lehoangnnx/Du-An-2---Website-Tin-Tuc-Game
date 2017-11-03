@@ -116,7 +116,7 @@
             <li class="nav-item dropdown hidden-sm-down">
                 <a href="#" data-toggle="dropdown" aria-expanded="false">
 									<span class="avatar box-32">
-										<img src="${contextPath}/img/img/avatars/1.jpg" alt="">
+										<img src="${contextPath}/images/avatar/${user.avatar}" alt="">
 									</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right animated fadeInUp">

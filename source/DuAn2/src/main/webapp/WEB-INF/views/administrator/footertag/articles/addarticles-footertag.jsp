@@ -66,24 +66,17 @@
 	src="${contextPath}/js/js/forms-plugins.js"></script>
 
 
-
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+		
+		
+	$('#inputframeVideo').on('keyup keypress keydown', function() {
+		 	var link=	$("#inputframeVideo").val();
+		 	
+			$("#ifVideo").attr("src", link);
 
-						$('#inputframeVideo')
-								.change(
-										function() {
-											$("#iframeVideo")
-													.addClass(
-															'embed-responsive embed-responsive-16by9');
-											$("#iframeVideo")
-													.html(
-															'<iframe width="560" height="315" src="https://www.youtube.com/embed/5hcqd_w3k8s" frameborder="0" allowfullscreen></iframe>');
-
-										});
-					});
+				});
+	});
 
 	function ChangeToSlug() {
 		var title, slug;
@@ -189,66 +182,53 @@
 				}, 1000);
 	}
 	function errorBtn() {
-		$("#command").removeAttr("action");
+		
 		$("#btnAddArticle").prop("disabled", true);
 	}
 	function successBtn() {
-		$("#user").attr("action",
-				"${pageContext.request.contextPath}/admin/articles");
+		
 		$("#btnAddArticle").prop("disabled", false);
 	}
 	function errortitle() {
-		$("#divTitle").removeClass("has-success");
-		//$("#divTitle").addClass("has-danger");
-		$("#title").removeClass("form-control-success");
-		//$("#title").addClass("form-control-danger");
+		
 		$("#spanTitle").text("Tiêu Đề Đã Tồn Tại - Vui Lòng Nhập Tiêu Đề Khác");
 	}
-	function warningtitle() {
-		$("#divTitle").removeClass("has-success");
-		$("#divTitle").addClass("has-warning");
-		$("#title").removeClass("form-control-success");
-		$("#title").addClass("form-control-warning");
-		$("#spanTitle").text("Nhập Tiêu Đề");
-	}
+	
 	function successtitle() {
-		$("#divTitle").removeClass("has-danger has-warning");
-		//$("#divTitle").addClass("has-success ");
-
-		$("#title").removeClass("form-control-danger form-control-warning ");
-		//$("#title").addClass("form-control-success");
+		
 		$("#spanTitle").text("");
 	}
 	function errorslug() {
-		$("#divSlug").removeClass("has-success");
-		//$("#divSlug").addClass("has-danger");
-		$("#slug").removeClass("form-control-success");
-		//$("#slug").addClass("form-control-danger");
+		
 		$("#spanSlug").text(
 				"Đường Dẫn Đã Tồn Tại - Vui Lòng Nhập Đường Dẫn Khác");
 	}
 	function successslug() {
-		$("#divSlug").removeClass("has-danger");
-		//$("#divSlug").addClass("has-success");
-
-		$("#slug").removeClass("form-control-danger");
-		//$("#slug").addClass("form-control-success");
+		
 		$("#spanSlug").text("");
 	}
 
 	$(document).ready(function($) {
-		$("#command").removeAttr("action");
+		
 		$("#btnAddArticle").prop("disabled", true);
 
 		$("#slug").on('keyup keypress keydown', function(event) {
-			if($("#title").val() != '' && $("#slug").val() != ''){validatorArticle();}
-			else{$("#spanTitle").text("");$("#spanSlug").text("");}
-			
+			if ($("#title").val() != '' && $("#slug").val() != '') {
+				validatorArticle();
+			} else {
+				$("#spanTitle").text("");
+				$("#spanSlug").text("");
+			}
+
 		});
 
 		$("#title").on('keyup keypress keydown', function(event) {
-			if($("#title").val() != '' && $("#slug").val() != ''){validatorArticle();}
-			else{$("#spanTitle").text("");$("#spanSlug").text("");}
+			if ($("#title").val() != '' && $("#slug").val() != '') {
+				validatorArticle();
+			} else {
+				$("#spanTitle").text("");
+				$("#spanSlug").text("");
+			}
 
 		});
 
@@ -256,9 +236,19 @@
 </script>
 <script>
 	$(document).ready(function() {
-
+		$('#formArticle').on('submit', function(e) {
+			  
+			  if($('#summernote').summernote('isEmpty')) {
+			    console.log('contents is empty, fill it!');
+			    $("#mainContent-error").text("Vui Lòng Nhập Nội Dung");
+			    // cancel submit
+			    e.preventDefault();
+			  }
+			  
+			})
 		//Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
 		$("#formArticle").validate({
+
 			rules : {
 				title : {
 					required : true,
@@ -277,14 +267,17 @@
 				subContent : {
 					required : true
 				},
-				mainContent : {
+				
+				author : {
 					required : true
 				},
-				author: {
+				imagesThumbnail : {
 					required : true
 				},
-				imagesThumbnail: {
-					required : true
+				video : {
+					required: true,
+					url: true
+
 				}
 			},
 			messages : {
@@ -305,14 +298,16 @@
 				subContent : {
 					required : "Vui Lòng Nhập Tóm Tắt"
 				},
-				mainContent : {
-					required : "Vui Lòng Nhập Nội Dung"
-				},
-				author: {
+				
+				author : {
 					required : "Vui Lòng Nhập Tác Giả/Nguồn"
 				},
-				imagesThumbnail: {
+				imagesThumbnail : {
 					required : "Vui Lòng Chọn Ảnh"
+				},
+				video : {
+					required : "Vui Lòng Nhập URL",
+					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "
 				}
 
 			}

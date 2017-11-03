@@ -1,6 +1,7 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -33,17 +36,19 @@ public class Games implements java.io.Serializable {
 	private String composers;
 	private String engine;
 	private String platforms;
-	private String release;
+	private Date release;
 	private String info;
 	private String status;
 	private String description;
 	private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
+	private Set<GameReviews> gameReviewses_1 = new HashSet<GameReviews>(0);
 	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
+	private Set<GameCategory> gameCategories_1 = new HashSet<GameCategory>(0);
 
 	public Games() {
 	}
 
-	public Games(String name, String slug, String publishers, String release, String status) {
+	public Games(String name, String slug, String publishers, Date release, String status) {
 		this.name = name;
 		this.slug = slug;
 		this.publishers = publishers;
@@ -52,8 +57,9 @@ public class Games implements java.io.Serializable {
 	}
 
 	public Games(String name, String slug, String developers, String publishers, String writers, String composers,
-			String engine, String platforms, String release, String info, String status, String description,
-			Set<GameReviews> gameReviewses, Set<GameCategory> gameCategories) {
+			String engine, String platforms, Date release, String info, String status, String description,
+			Set<GameReviews> gameReviewses, Set<GameReviews> gameReviewses_1, Set<GameCategory> gameCategories,
+			Set<GameCategory> gameCategories_1) {
 		this.name = name;
 		this.slug = slug;
 		this.developers = developers;
@@ -67,7 +73,9 @@ public class Games implements java.io.Serializable {
 		this.status = status;
 		this.description = description;
 		this.gameReviewses = gameReviewses;
+		this.gameReviewses_1 = gameReviewses_1;
 		this.gameCategories = gameCategories;
+		this.gameCategories_1 = gameCategories_1;
 	}
 
 	@Id
@@ -154,12 +162,13 @@ public class Games implements java.io.Serializable {
 		this.platforms = platforms;
 	}
 
-	@Column(name = "release", nullable = false, length = 1000)
-	public String getRelease() {
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "release", nullable = false, length = 19)
+	public Date getRelease() {
 		return this.release;
 	}
 
-	public void setRelease(String release) {
+	public void setRelease(Date release) {
 		this.release = release;
 	}
 
@@ -199,6 +208,15 @@ public class Games implements java.io.Serializable {
 		this.gameReviewses = gameReviewses;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
+	public Set<GameReviews> getGameReviewses_1() {
+		return this.gameReviewses_1;
+	}
+
+	public void setGameReviewses_1(Set<GameReviews> gameReviewses_1) {
+		this.gameReviewses_1 = gameReviewses_1;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "games_games_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
 			@JoinColumn(name = "game_id", nullable = false, updatable = false) }, inverseJoinColumns = {
@@ -209,6 +227,18 @@ public class Games implements java.io.Serializable {
 
 	public void setGameCategories(Set<GameCategory> gameCategories) {
 		this.gameCategories = gameCategories;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "games_games_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
+			@JoinColumn(name = "game_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "game_category_id", nullable = false, updatable = false) })
+	public Set<GameCategory> getGameCategories_1() {
+		return this.gameCategories_1;
+	}
+
+	public void setGameCategories_1(Set<GameCategory> gameCategories_1) {
+		this.gameCategories_1 = gameCategories_1;
 	}
 
 }

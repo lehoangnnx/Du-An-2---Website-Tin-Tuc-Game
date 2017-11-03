@@ -10,4 +10,5 @@ public interface ArticleService {
     void saveorupdate(Article article);
     Article findByTitle(String title);
 	Article findBySlug(String slug);
+	Article findByArticleId(Integer articleId);
 }

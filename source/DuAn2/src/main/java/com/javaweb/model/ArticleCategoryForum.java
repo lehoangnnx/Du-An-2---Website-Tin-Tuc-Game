@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +27,7 @@ public class ArticleCategoryForum implements java.io.Serializable {
 	private byte sortOrder;
 	private String description;
 	private Set<ArticleForum> articleForums = new HashSet<ArticleForum>(0);
+	private Set<ArticleForum> articleForums_1 = new HashSet<ArticleForum>(0);
 
 	public ArticleCategoryForum() {
 	}
@@ -39,7 +40,7 @@ public class ArticleCategoryForum implements java.io.Serializable {
 	}
 
 	public ArticleCategoryForum(Integer subArticleCategoryForumId, String name, String slug, String status,
-			byte sortOrder, String description, Set<ArticleForum> articleForums) {
+			byte sortOrder, String description, Set<ArticleForum> articleForums, Set<ArticleForum> articleForums_1) {
 		this.subArticleCategoryForumId = subArticleCategoryForumId;
 		this.name = name;
 		this.slug = slug;
@@ -47,6 +48,7 @@ public class ArticleCategoryForum implements java.io.Serializable {
 		this.sortOrder = sortOrder;
 		this.description = description;
 		this.articleForums = articleForums;
+		this.articleForums_1 = articleForums_1;
 	}
 
 	@Id
@@ -122,6 +124,15 @@ public class ArticleCategoryForum implements java.io.Serializable {
 
 	public void setArticleForums(Set<ArticleForum> articleForums) {
 		this.articleForums = articleForums;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "articleCategoryForums")
+	public Set<ArticleForum> getArticleForums_1() {
+		return this.articleForums_1;
+	}
+
+	public void setArticleForums_1(Set<ArticleForum> articleForums_1) {
+		this.articleForums_1 = articleForums_1;
 	}
 
 }

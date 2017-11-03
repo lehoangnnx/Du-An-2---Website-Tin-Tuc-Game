@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Oct 18, 2017 12:22:20 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -35,6 +35,7 @@ public class Comment implements java.io.Serializable {
 	private String ip;
 	private String description;
 	private Set<CommentLike> commentLikes = new HashSet<CommentLike>(0);
+	private Set<CommentLike> commentLikes_1 = new HashSet<CommentLike>(0);
 
 	public Comment() {
 	}
@@ -48,7 +49,8 @@ public class Comment implements java.io.Serializable {
 	}
 
 	public Comment(Article article, Users users, Integer subCommentId, String content, Date createdDate,
-			Date modifiedDate, String status, String ip, String description, Set<CommentLike> commentLikes) {
+			Date modifiedDate, String status, String ip, String description, Set<CommentLike> commentLikes,
+			Set<CommentLike> commentLikes_1) {
 		this.article = article;
 		this.users = users;
 		this.subCommentId = subCommentId;
@@ -59,6 +61,7 @@ public class Comment implements java.io.Serializable {
 		this.ip = ip;
 		this.description = description;
 		this.commentLikes = commentLikes;
+		this.commentLikes_1 = commentLikes_1;
 	}
 
 	@Id
@@ -165,6 +168,15 @@ public class Comment implements java.io.Serializable {
 
 	public void setCommentLikes(Set<CommentLike> commentLikes) {
 		this.commentLikes = commentLikes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comment")
+	public Set<CommentLike> getCommentLikes_1() {
+		return this.commentLikes_1;
+	}
+
+	public void setCommentLikes_1(Set<CommentLike> commentLikes_1) {
+		this.commentLikes_1 = commentLikes_1;
 	}
 
 }

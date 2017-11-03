@@ -22,5 +22,20 @@ public class TagsServiceImpl implements TagsService {
 		
 		return tagsRepository.findByTagsId(tagsId);
 	}
+	@Override
+	public Tags findByName(String name) {
+		
+		return tagsRepository.findByName(name);
+	}
+	@Override
+	public void saveorupdate(Tags tags) {
+		tagsRepository.save(tags);
+		
+	}
+	@Override
+	public Tags findBySlug(String slug) {
+	
+		return tagsRepository.findBySlug(slug);
+	}
 
 }
