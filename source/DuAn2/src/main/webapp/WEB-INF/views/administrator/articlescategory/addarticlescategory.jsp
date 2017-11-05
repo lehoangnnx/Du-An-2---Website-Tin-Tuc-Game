@@ -18,7 +18,7 @@
 	<div class="box box-block bg-white">
 		<h5>Thêm Danh Mục Bài Viêt</h5>
 
-		<form:form id="formArticleCategory" action="${contextPath }/admin/categorys/articles"
+		<form:form id="formArticleCategory" action="${contextPath }/admin/articles/categorys"
 			method="post" enctype="multipart/form-data">
 
 			<div id="divTitle" class="form-group row">
@@ -42,7 +42,21 @@
 					<label id="slug-error" class="error" for="slug"></label>
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="select2-demo-1" class="col-md-2 form-control-label">Thuộc Danh Mục</label>
+				<div class="col-md-10">
+					<select id="select2-demo-1" class="form-control" name="subArticleCategoryId"
+						data-plugin="select2">
+						<option value="0">Chưa Chọn</option>
+						<c:forEach var="acl" items="${articleCategoryList }">
+							<option
+								value="${acl.articleCategoryId }">${acl.name }</option>
+						</c:forEach>
 
+
+					</select>
+				</div>
+			</div>
 			<div class="form-group row">
 				<label class="col-md-2 col-form-label">Trạng Thái</label>
 				<div class="col-md-10">
@@ -88,7 +102,7 @@
 				<input hidden="" id="msg" value="${msg }"></input>
 				<div class="offset-sm-2 col-md-10">
 					<button type="button" class="btn default">Làm Mới</button>
-					<button id="btnAddArticleCategory" type="submit" class=" btn btn-primary">Xác
+					<button id="btn-submit" type="submit" class=" btn btn-primary">Xác
 						Nhận</button>
 					<button type="button" class="btn btn-danger pull-right">Hủy
 						Bỏ</button>

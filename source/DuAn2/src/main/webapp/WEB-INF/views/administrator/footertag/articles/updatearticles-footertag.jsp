@@ -193,10 +193,10 @@
 	}
 	function errorBtn() {
 		
-		$("#btnAddArticle").prop("disabled", true);
+		$("#btn-submit").prop("disabled", true);
 	}
 	function successBtn() {
-		$("#btnAddArticle").prop("disabled", false);
+		$("#btn-submit").prop("disabled", false);
 	}
 	function errortitle() {
 		$("#spanTitle").text("Tiêu Đề Đã Tồn Tại - Vui Lòng Nhập Tiêu Đề Khác");
@@ -215,8 +215,10 @@
 	}
 
 	$(document).ready(function($) {
-		$("#btnAddArticle").prop("disabled", true);
-
+		$("#btn-submit").prop("disabled", true);
+		$('#formArticle').change(function(){
+			validatorArticle();
+			});
 		$("#slug").on('keyup keypress keydown', function(event) {
 			if ($("#title").val() != '' && $("#slug").val() != '') {
 				validatorArticle();
@@ -252,9 +254,7 @@
 			  
 			  
 			});
-		$('#formArticle').change(function() {
-			$("#btnAddArticle").prop("disabled", false);
-		});  
+		
 		//Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
 		$("#formArticle").validate({
 

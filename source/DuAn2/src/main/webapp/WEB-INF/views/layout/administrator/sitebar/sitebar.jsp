@@ -17,7 +17,7 @@
 						Người Dùng </span>
 			</a>
 				<ul>
-					<li><a href="${contextPath }/admin/users">Quản Lý Người Dùng</a></li>
+					<li><a href="${contextPath }/admin/users?status=active">Quản Lý Người Dùng</a></li>
 					<li><a href="${contextPath }/admin/roless">Quản Lý Quyền</a></li>
 				</ul></li>
 			<li class="with-sub"><a href="#"
@@ -26,8 +26,19 @@
 						class="ti-menu-alt"></i></span> <span class="s-text">Bài Viết</span>
 			</a>
 				<ul>
-					<li><a href="${contextPath }/admin/articles">Quản Lý Bài Viết</a></li>
-					<li><a href="${contextPath }/admin/categorys/articles">Quản Lý Danh Mục Bài Viết</a></li>
+					<li><a href="${contextPath }/admin/articles?status=active">Quản Lý Bài Viết</a></li>
+					<li><a href="${contextPath }/admin/articles/categorys?status=active">Quản Lý Danh Mục Bài Viết</a></li>
+					
+				</ul>
+			</li>
+				<li class="with-sub"><a href="#"
+				class="waves-effect  waves-light"> <span class="s-caret"><i
+						class="fa fa-angle-down"></i></span> <span class="s-icon"><i
+						class="ti-menu-alt"></i></span> <span class="s-text">Game</span>
+			</a>
+				<ul>
+					<li><a href="${contextPath }/admin/games?status=active">Quản Lý Game</a></li>
+					<li><a href="${contextPath }/admin/games/categorys?status=active">Quản Lý Danh Mục Game</a></li>
 					
 				</ul></li>
 

@@ -68,32 +68,12 @@
 
 		
 	<script>
-	$(document).ready(function() {
-
-		var timeout = null;
-		
-		$('#inputframeVideo').on('keyup keypress keydown', function() {
-
-			clearTimeout(timeout);
-			timeout = setTimeout(function ()
-			 {
-		 	var link =	$("#inputframeVideo").val();
-		 	
-		 	if(link.search("iframe") == 1){
-			 	
-				link = link.slice(link.indexOf("src")+5, link.indexOf("frameborder")-2);
-				$("#inputframeVideo").val(link);
-			}
-			$("#ifVideo").attr("src", link);
-			 }, 1500);
-			});
-	});
-
+	
 	function ChangeToSlug() {
 		var title, slug;
 
 		//Lấy text từ thẻ input title 
-		title = document.getElementById("title").value;
+		title = document.getElementById("name").value;
 
 		//Đổi chữ hoa thành chữ thường
 		slug = title.toLowerCase();
@@ -137,26 +117,27 @@
 </script>
 <script>
 	var timeout = null;
-	function validatorArticle() {
+	function validatorArticleCategory() {
 
 		clearTimeout(timeout);
 		timeout = setTimeout(
 				function() {
-					var article = {};
-					article["title"] = $("#title").val();
-					article["slug"] = $("#slug").val();
-					article["articleId"] = $("#articleId").val();
+					var articleCategory = {};
+					articleCategory["name"] = $("#name").val();
+					articleCategory["slug"] = $("#slug").val();
+					articleCategory["articleCategoryId"] = $("#articleCategoryId").val();
 					var token = $("meta[name='_csrf']").attr("content");
 					var header = $("meta[name='_csrf_header']").attr("content");
 					$(document).ajaxSend(function(e, xhr, options) {
 						xhr.setRequestHeader(header, token);
 					});
-					$.ajax({
+					$
+							.ajax({
 
 								type : "POST",
 								contentType : "application/json",
-								url : "${pageContext.request.contextPath}/admin/validator-article",
-								data : JSON.stringify(article),
+								url : "${pageContext.request.contextPath}/admin/validator-categorysarticles",
+								data : JSON.stringify(articleCategory),
 								//dataType: 'json',
 								// timeout: 600000,
 								success : function(result) {
@@ -167,7 +148,7 @@
 										errorslug();
 									}
 
-									if (result == 'errortitle') {
+									if (result == 'errorname') {
 										errorBtn();
 										errortitle();
 										successslug();
@@ -186,24 +167,27 @@
 
 								},
 								error : function(e) {
-									alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
+
 								}
 							});
 				}, 1000);
 	}
 	function errorBtn() {
 		
-		$("#btnAddArticle").prop("disabled", true);
+		$("#btn-submit").prop("disabled", true);
 	}
 	function successBtn() {
-		$("#btnAddArticle").prop("disabled", false);
+		
+		$("#btn-submit").prop("disabled", false);
 	}
 	function errortitle() {
-		$("#spanTitle").text("Tiêu Đề Đã Tồn Tại - Vui Lòng Nhập Tiêu Đề Khác");
+		
+		$("#spanName").text("Tên Đã Tồn Tại - Vui Lòng Nhập Tên Khác");
 	}
 	
 	function successtitle() {
-		$("#spanTitle").text("");
+		
+		$("#spanName").text("");
 	}
 	function errorslug() {
 		
@@ -211,27 +195,31 @@
 				"Đường Dẫn Đã Tồn Tại - Vui Lòng Nhập Đường Dẫn Khác");
 	}
 	function successslug() {
+		
 		$("#spanSlug").text("");
 	}
 
 	$(document).ready(function($) {
-		$("#btnAddArticle").prop("disabled", true);
-
+		
+		$("#btn-submit").prop("disabled", true);
+		 $("#formArticleCategory").change(function(){
+			 validatorArticleCategory();
+		}); 
 		$("#slug").on('keyup keypress keydown', function(event) {
-			if ($("#title").val() != '' && $("#slug").val() != '') {
-				validatorArticle();
+			if ($("#name").val() != '' && $("#slug").val() != '') {
+				validatorArticleCategory();
 			} else {
-				$("#spanTitle").text("");
+				$("#spanName").text("");
 				$("#spanSlug").text("");
 			}
 
 		});
 
-		$("#title").on('keyup keypress keydown', function(event) {
-			if ($("#title").val() != '' && $("#slug").val() != '') {
-				validatorArticle();
+		$("#name").on('keyup keypress keydown', function(event) {
+			if ($("#name").val() != '' && $("#slug").val() != '') {
+				validatorArticleCategory();
 			} else {
-				$("#spanTitle").text("");
+				$("#spanName").text("");
 				$("#spanSlug").text("");
 			}
 
@@ -241,79 +229,32 @@
 </script>
 <script>
 	$(document).ready(function() {
-		$('#formArticle').on('submit', function(e) {
-			
-			  if($('#summernote').summernote('isEmpty')) {
-			    console.log('contents is empty, fill it!');
-			    $("#mainContent-error").text("Vui Lòng Nhập Nội Dung");
-			    // cancel submit
-			    e.preventDefault();
-			  }
-			  
-			  
-			});
-		$('#formArticle').change(function() {
-			$("#btnAddArticle").prop("disabled", false);
-		});  
+		
 		//Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
-		$("#formArticle").validate({
+		$("#formArticleCategory").validate({
 
 			rules : {
-				title : {
+				name : {
 					required : true,
 					maxlength : 100
 				},
 				slug : {
 					required : true,
 					maxlength : 100
-				},
-				articleCategories : {
-					required : true
-				},
-				tags : {
-					required : true
-				},
-				subContent : {
-					required : true
-				},
-				
-				author : {
-					required : true
-				},
-				
-				video : {
-					required: true,
-					url: true
-
 				}
+				
 			},
 			messages : {
-				title : {
-					required : "Vui Lòng Nhập Tiêu Đề",
-					maxlength : "Tiêu Đề Không Dài Hơn 100 Ký Tự"
+				name : {
+					required : "Vui Lòng Nhập Tên ",
+					maxlength : "Name Không Dài Hơn 100 Ký Tự"
 				},
 				slug : {
 					required : "Vui Lòng Nhập Đường Dẫn",
 					maxlength : "Đường Dẫn Không Dài Hơn 100 Ký Tự"
-				},
-				articleCategories : {
-					required : "Vui Lòng Chọn Danh Mục"
-				},
-				tags : {
-					required : "Vui Lòng Chọn Thẻ"
-				},
-				subContent : {
-					required : "Vui Lòng Nhập Tóm Tắt"
-				},
-				
-				author : {
-					required : "Vui Lòng Nhập Tác Giả/Nguồn"
-				},
-				
-				video : {
-					required : "Vui Lòng Nhập URL",
-					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "
 				}
+				
+				
 
 			}
 		});

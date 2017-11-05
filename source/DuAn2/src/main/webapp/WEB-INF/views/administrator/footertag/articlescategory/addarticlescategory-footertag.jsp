@@ -173,11 +173,11 @@
 	}
 	function errorBtn() {
 		
-		$("#btnAddArticleCategory").prop("disabled", true);
+		$("#btn-submit").prop("disabled", true);
 	}
 	function successBtn() {
 		
-		$("#btnAddArticleCategory").prop("disabled", false);
+		$("#btn-submit").prop("disabled", false);
 	}
 	function errortitle() {
 		
@@ -200,7 +200,7 @@
 
 	$(document).ready(function($) {
 		
-		$("#btnAddArticleCategory").prop("disabled", true);
+		$("#btn-submit").prop("disabled", true);
 		/* $("#formArticleCategory").change(function(){
 			$("#btnAddArticleCategory").prop("disabled", false);
 		}); */

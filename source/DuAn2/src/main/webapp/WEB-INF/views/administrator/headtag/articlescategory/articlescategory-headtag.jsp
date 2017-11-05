@@ -34,7 +34,7 @@ width: 20%;
 div.tab {
 	overflow: hidden;
 	border: 1px solid #ccc;
-	background-color: #f1f1f1;
+	background-color: #fff;
 }
 
 /* Style the buttons inside the tab */

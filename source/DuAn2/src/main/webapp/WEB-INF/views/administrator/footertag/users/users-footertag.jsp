@@ -74,7 +74,7 @@
 				}
 		});
 	
-		$("#arrayUserId").val(result);
+		$("#arrayId").val(result);
 	
 	});
 </script>
@@ -99,11 +99,11 @@ function openTab(evt, tabName) {
 }
 </script>
 <script>
-	function deleteUser(userId){
-			$("#arrayUserId").val(userId);
+	function deleteOne(arrayId){
+			$("#arrayId").val(arrayId);
 			$("#command").attr("action", "${pageContext.request.contextPath}/admin/users");
 		}
-	function deleteAllUser(){
+	function deleteAll(){
 			$("#command").attr("action", "${pageContext.request.contextPath}/admin/users");
 	}
 </script>

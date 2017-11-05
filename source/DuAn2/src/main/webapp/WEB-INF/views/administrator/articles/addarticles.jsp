@@ -316,7 +316,7 @@
 				<input hidden="" id="msg" value="${msg }"></input>
 				<div class="offset-sm-2 col-md-10">
 					<button type="button" class="btn default">Làm Mới</button>
-					<button id="btnAddArticle" type="submit" class=" btn btn-primary">Xác
+					<button id="btn-submit" type="submit" class=" btn btn-primary">Xác
 						Nhận</button>
 					<button type="button" class="btn btn-danger pull-right">Hủy
 						Bỏ</button>

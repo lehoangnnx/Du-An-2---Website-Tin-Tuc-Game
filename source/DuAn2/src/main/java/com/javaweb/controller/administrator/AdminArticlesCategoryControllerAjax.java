@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
 
-import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
 import com.javaweb.service.ArticleCategoryService;
 
@@ -21,7 +21,7 @@ public class AdminArticlesCategoryControllerAjax {
 		ArticleCategory findBySlug = null;
 		
 		try {
-			findByName = articleCategoryService.findByName(articleCategory.getName());
+			findByName = articleCategoryService.findByName(HtmlUtils.htmlEscape(articleCategory.getName()));
 			findBySlug= articleCategoryService.findBySlug(articleCategory.getSlug());
 			
 			if (articleCategory.getArticleCategoryId() == null) {
@@ -37,10 +37,28 @@ public class AdminArticlesCategoryControllerAjax {
 				} else {
 					return "msgsuccess";
 				}
+			}else {
+				if (findByName != null && findBySlug != null
+						&& !findByName.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())
+						&& !findBySlug.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())) {
+					System.out.println("2");
+					return "error";
+				} else if (findByName != null 
+						&& !findByName.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())) {
+					System.out.println("3");
+					return "errorname";
+				} else if (findBySlug != null 
+						&& !findBySlug.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())) {
+					System.out.println("4");
+
+					return "errorslug";
+				} else {
+					return "msgsuccess";
+				}
 			}
 		} catch (Exception e) {
 			return "msgsuccess";
 		}
-		return "msgsuccess";
+		
 	}
 }

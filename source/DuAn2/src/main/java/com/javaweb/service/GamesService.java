@@ -6,5 +6,8 @@ import com.javaweb.model.Games;
 
 public interface GamesService {
 	List<Games> findAll();
-	Games getOne(Integer id);
+	Games findByGameId(Integer gameId);
+	Games findByName(String name);
+	Games findBySlug(String slug);
+	void saveorupdate(Games games);
 }

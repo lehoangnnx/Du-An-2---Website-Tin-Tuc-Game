@@ -74,25 +74,12 @@
 				}
 		});
 	
-		$("#arrayArticleId").val(result);
+		$("#arrayId").val(result);
 	
 	});
 </script>
 <script>
 
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 
 
 function showactive(){
@@ -120,20 +107,14 @@ function showactive(){
 	}); 
 	
 }
-$(document).ready(function(){
-	$("#ida").click(function(){
-		showactive();
 
-		})
-	
-});
 </script>
 <script>
-	function deleteArticle(articleId){
-			$("#arrayArticleId").val(articleId);
+	function deleteOne(arrayId){
+			$("#arrayId").val(arrayId);
 			$("#command").attr("action", "${pageContext.request.contextPath}/admin/articles");
 		}
-	function deleteAllUser(){
+	function deleteAll(){
 			$("#command").attr("action", "${pageContext.request.contextPath}/admin/articles");
 	}
 </script>

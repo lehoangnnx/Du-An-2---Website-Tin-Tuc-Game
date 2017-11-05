@@ -48,11 +48,12 @@ give gallery's parent container a cursor: pointer.**/
 
 </style>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="queryString" value="${pageContext.request.queryString}" />
 <input hidden="" id="msg" value="${msg }"></input>
 <div class="content-area py-1">
 	<div class="container-fluid">
-		<h4>Bảng Dữ Liệu</h4>
-
+		<h4>Bảng Dữ Liệu </h4>
+			
 		<ol class="breadcrumb no-bg mb-1">
 			<li class="breadcrumb-item"><a
 				href="${contextPath }/admin/index">Trang Chủ</a></li>
@@ -60,12 +61,15 @@ give gallery's parent container a cursor: pointer.**/
 			<li class="breadcrumb-item active">Danh Sách Bài Viết</li>
 		</ol>
 		<div class="tab">
-			<button id="ida" class="tablinks active" onclick="openTab(event, 'showAllUsers'); ">Kích Hoạt</button>
-			<button id="idi" class="tablinks"
-				onclick="openTab(event, 'showAllUsers'); ">Chưa Kích Hoạt</button>
-				<button id="" class="tablinks"
-				onclick="openTab(event, 'showUsersInactive')">Nháp</button>
-
+			
+			<a href="${contextPath }/admin/articles?status=active" ><button  class="tablinks ${param.status == 'active' ? 'active' : '' }" >
+			Đã Kích Hoạt</button></a>
+			<a href="${contextPath }/admin/articles?status=inactive" >
+			<button class="tablinks ${param.status == 'inactive' ? 'active' : '' }" >Chưa Kích Hoạt</button></a>
+			<a href="${contextPath }/admin/articles?status=draft" >
+			<button id="" class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button></a>
+			<a href="${contextPath }/admin/articles?status=deleted" >
+			<button id="" class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button></a>
 		</div>
 
 		<div id="showAllUsers" class="tabcontent" style="display: block;">
@@ -119,7 +123,7 @@ give gallery's parent container a cursor: pointer.**/
 											href="${contextPath }/admin/articles/${al.articleId}"><i
 												style="color: blue;" class="fa fa-pencil fa-lg"
 												aria-hidden="true" title="Sửa"></i></a> <a
-											onclick="deleteArticle(${al.articleId});" href="#"
+											onclick="deleteOne(${al.articleId});" href="#"
 											data-toggle="modal" data-target="#myModal"
 											style="color: red; margin-left: 10px;"> <i
 												class="fa fa-trash-o fa-lg" aria-hidden="true" title="Xóa"></i>
@@ -132,7 +136,7 @@ give gallery's parent container a cursor: pointer.**/
 							<tfoot>
 								<tr>
 									<td><div style="text-align: center;">
-											<button onclick="deleteAllUser();" data-toggle="modal"
+											<button onclick="deleteAll();" data-toggle="modal"
 												data-target="#myModal" class="btn btn-danger">Xóa
 												Nhiều</button>
 										</div></td>
@@ -152,9 +156,7 @@ give gallery's parent container a cursor: pointer.**/
 			</div>
 		</div>
 
-		<div id="showUsersInactive" class="tabcontent">
-			<h4>Hiển Thị Danh Sách Người DÙng Inactive (Bị Khóa)</h4>
-		</div>
+		
 
 
 
@@ -176,7 +178,7 @@ give gallery's parent container a cursor: pointer.**/
 				<form:form action="" method="delete">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					<input value="" id="arrayArticleId" hidden="" name="arrayArticleId" />
+					<input value="" id="arrayId" hidden="" name="arrayId" />
 					<button class="btn btn-danger" style="float: left;">Xóa</button>
 				</form:form>
 

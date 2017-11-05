@@ -18,9 +18,27 @@ public class GamesServiceImpl implements GamesService {
 		return gamesRepository.findAll();
 	}
 
+
 	@Override
-	public Games getOne(Integer id) {
-		return gamesRepository.getOne(id);
+	public Games findByGameId(Integer gameId) {
+		return gamesRepository.findByGameId(gameId);
+	}
+
+	@Override
+	public Games findByName(String name) {
+		
+		return gamesRepository.findByName(name);
+	}
+
+	@Override
+	public Games findBySlug(String slug) {
+		
+		return gamesRepository.findBySlug(slug);
+	}
+
+	@Override
+	public void saveorupdate(Games games) {
+		gamesRepository.save(games);
 	}
 
 }

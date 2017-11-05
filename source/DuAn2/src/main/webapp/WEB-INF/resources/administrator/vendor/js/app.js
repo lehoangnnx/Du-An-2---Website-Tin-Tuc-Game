@@ -77,14 +77,14 @@ $(document).ready(function(){
 		$('.site-sidebar ul > li:not(.with-sub)').removeClass('active');
 		var url = window.location;
 	    var element = $('.site-sidebar ul > li > a').filter(function () {
-	        return this.href == url || url.href.indexOf(this.href) == 0;
+	        return this.href == url /*|| url.href.indexOf(this.href) == 0*/;
 	    });
 		element.parent().addClass('active');
 
 		$('.site-sidebar li.with-sub').removeClass('active').find('>ul').hide();
 		var url = window.location;
 	    var element = $('.site-sidebar ul li ul li a').filter(function () {
-	        return this.href == url || url.href.indexOf(this.href) == 0;
+	        return this.href == url /*|| url.href.indexOf(this.href) == 0*/;
 	    });
 		element.parent().addClass('active');
 		element.parent().parent().parent().addClass('active');

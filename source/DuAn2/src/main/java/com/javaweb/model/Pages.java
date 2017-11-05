@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +16,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "pages", catalog = "duan2_webapplication_tintucgame", uniqueConstraints = @UniqueConstraint(columnNames = "slug"))
 public class Pages implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1614534883358579350L;
 	private Integer pageId;
 	private String name;
 	private String slug;

@@ -1,50 +1,34 @@
 package com.javaweb.controller.administrator;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.HtmlUtils;
+
 import com.javaweb.controller.ImagesManager;
 import com.javaweb.model.Roles;
 import com.javaweb.model.Users;
 import com.javaweb.service.RolesService;
 import com.javaweb.service.UsersService;
-
-import org.apache.jasper.tagplugins.jstl.core.Redirect;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.RedirectUrlBuilder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.util.HtmlUtils;
-
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/admin")
@@ -69,7 +53,7 @@ public class AdminUsersController {
 	* Trả Về : Tên users trong file layout-administrator-tiles.xml cấu hình Apache Tiles
 	*/
 	@GetMapping("/users")
-	public String getAllUsers(Model model) {
+	public String getAllUsers(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
 
 
 			// Sort with Lambda
@@ -77,8 +61,9 @@ public class AdminUsersController {
 		/* Lấy tất cả đối tượng user trong cơ sở dữ liệu
 		* Lọc kết quả trae về theo điều kiện Status của user không bằng deleted
 		*/
-		List<Users> usersList = usersService.findAll().stream()
-				.filter(x -> !x.getStatus().equals("deleted"))
+		List<Users> usersList = usersService.findAll()
+				.stream()
+				.filter(x -> x.getStatus().equals(status))
 				.collect(Collectors.toList());
 		//newlistUsers.forEach(u -> System.out.println(u.getEmail() +"-" + u.getStatus()));
 		//System.out.println(newlistUsers);
@@ -87,13 +72,7 @@ public class AdminUsersController {
 		model.addAttribute("usersList", usersList);
 		return "users";
 	}
-	@ModelAttribute("user")
-	public Users user(Principal principal) {
-		Users user = usersService.findByUserName(principal.getName());
-		return user;
-		
-		
-	}
+	
 	
 	/*Phương thức Get hiển thi trang addusers
 	* Đường đẫn : /admin/addusers
@@ -115,7 +94,9 @@ public class AdminUsersController {
 		// Lấy User theo Id
 		Users user = usersService.findByUserId(userId);
 		//Lấy tất cả quyên
-		List<Roles> rolesList = rolesService.findAll();
+		List<Roles> rolesList = rolesService.findAll()
+				.stream()
+				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
 		
 		/*
 		 * for (Roles r : user.getRoleses()) { listRolesOfUser.add(r.getName()); }
@@ -208,11 +189,11 @@ public class AdminUsersController {
 		return "redirect:/admin/users";
 	}*/
 	@DeleteMapping("/users")
-	public String deleteAllUser(@RequestParam("arrayUserId") List<Integer> arrayUserId ,RedirectAttributes redirectAttributes) {
+	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId ,RedirectAttributes redirectAttributes) {
 		
-		System.out.println(arrayUserId);
+		
 		try {
-			arrayUserId.forEach(x -> {
+			arrayId.forEach(x -> {
 				Users user = usersService.findByUserId(x);
 				user.setStatus("deleted");
 				usersService.saveorupdate(user);

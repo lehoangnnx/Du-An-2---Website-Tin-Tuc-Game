@@ -1,17 +1,18 @@
 package com.javaweb.controller.administrator;
 
-import com.javaweb.controller.ImagesManager;
-import com.javaweb.controller.Slugify;
-import com.javaweb.model.Article;
-import com.javaweb.model.ArticleCategory;
-import com.javaweb.model.Games;
-import com.javaweb.model.Tags;
-import com.javaweb.model.Users;
-import com.javaweb.service.ArticleCategoryService;
-import com.javaweb.service.ArticleService;
-import com.javaweb.service.GamesService;
-import com.javaweb.service.TagsService;
-import com.javaweb.service.UsersService;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,19 +30,17 @@ import org.springframework.web.util.HtmlUtils;
 /*
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;*/
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.Principal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.servlet.ServletContext;
+import com.javaweb.controller.ImagesManager;
+import com.javaweb.controller.Slugify;
+import com.javaweb.model.Article;
+import com.javaweb.model.ArticleCategory;
+import com.javaweb.model.Games;
+import com.javaweb.model.Tags;
+import com.javaweb.service.ArticleCategoryService;
+import com.javaweb.service.ArticleService;
+import com.javaweb.service.GamesService;
+import com.javaweb.service.TagsService;
+import com.javaweb.service.UsersService;
 
 @Controller
 @RequestMapping("/admin")
@@ -68,14 +67,17 @@ public class AdminArticlesController {
 	 * Tên articles trong file layout-administrator-tiles.xml cấu hình Apache Tiles
 	 */
 	@GetMapping("/articles")
-	public String getAllArticles(Model model) {
+	public String getAllArticles(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
 		// Lấy danh sách Article
-		List<Article> articleList = articleService.findAll().stream()
+
+		System.out.println("STATUS : " + status);
+		List<Article> articleList = articleService.findAll()
+				.stream()
+				.filter(x -> x.getStatus().equals(status))
 				.sorted(Comparator.comparing(Article::getCreatedDate).reversed()).collect(Collectors.toList());
 		// articleList.sort(( a1, a2) ->
 		// a1.getCreatedDate().compareTo(a2.getCreatedDate()));
 
-		
 		// Lưu danh sách articleList vào Model
 		model.addAttribute("articleList", articleList);
 		return "articles";
@@ -89,9 +91,14 @@ public class AdminArticlesController {
 	@GetMapping("/addarticles")
 	public String addarticles(Model model) {
 		// Lấy danh sách ArticleCategory
-		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll();
+		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll()
+				.stream()
+				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
 		// Lấy danh sách Games
-		List<Games> gameList = gamesService.findAll();
+		List<Games> gameList = gamesService.findAll()
+				.stream()
+				.filter(x -> !x.getStatus().equals("deleted"))
+				.collect(Collectors.toList());
 		// Lấy danh sách Tags
 		List<Tags> tagsList = tagsService.findAll();
 		// Lưu danh sách ArticleCategory vào Model
@@ -112,18 +119,15 @@ public class AdminArticlesController {
 	public String addarticles(@RequestParam("title") String title, @RequestParam("slug") String slug,
 			@RequestParam("articleCategories") List<Integer> articleCategoriesList,
 			@RequestParam("status") String status, @RequestParam("isHot") int isHot,
-			@RequestParam("subContent") String subContent, @RequestParam("mainContent")  String mainContent,
-			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment, 
-			@RequestParam( "gameId") Integer gameId,
-			@RequestParam("tags") List<String> tagsList, @RequestParam("showDate") String showDate, Principal principal,
-			@RequestParam("video") String video, @RequestParam("imagesThumbnail") MultipartFile imagesThumbnail,
-			RedirectAttributes redirectAttributes, Model model
+			@RequestParam("subContent") String subContent, @RequestParam("mainContent") String mainContent,
+			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment,
+			@RequestParam("gameId") Integer gameId, @RequestParam("tags") List<String> tagsList,
+			@RequestParam("showDate") String showDate, Principal principal, @RequestParam("video") String video,
+			@RequestParam("imagesThumbnail") MultipartFile imagesThumbnail, RedirectAttributes redirectAttributes,
+			Model model
 
 	) {
-		
-	
-		
-		
+
 		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
 		String monthAndYear = imagesManager.getMonthAndYearNow();
 		// Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
@@ -136,11 +140,10 @@ public class AdminArticlesController {
 		HashSet<Tags> tagses = new HashSet<>();
 		// Định dạng ngày có dạng yyyy-MM-dd'T'HH:mm
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-		
+
 		try {
 			// Set dữ liệu vào đối tượng tên article
 
-		
 			if (!title.equals("") && articleService.findByTitle(title) == null) {
 				System.out.println(title);
 				article.setTitle(HtmlUtils.htmlEscape(title));
@@ -167,52 +170,50 @@ public class AdminArticlesController {
 				Date date = df.parse(showDate);
 				article.setShowDate(date);
 
-			}else {
+			} else {
 				article.setShowDate(new Date());
 			}
 			System.out.println(gameId);
-			if(gameId !=  0 ) {
+			if (gameId != 0) {
 				article.setGameId(gameId);
 			}
-			if(!video.equals("")) {
+			if (!video.equals("")) {
 				article.setVideo(video);
 			}
 			article.setViews(0);
 			article.setCreatedDate(new Date());
 			article.setIsHot((byte) isHot);
 			article.setAllowComment(allowComment);
-			
+
 			// Vòng lặp dang sách articleCategoriesList và thêm một đối tượng
 			// ArticleCategories vào HashSet articleCategories
 			articleCategoriesList
 					.forEach(x -> articleCategories.add(articleCategoryService.findByArticleCategoryId(x)));
-			
+
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
-			
-			
-				
-			
-			tagsList.forEach(x-> {
-				System.out.println("NAME : " + x +"-"+tagsService.findByName(x));
-				//System.out.println("LẤY : "+x+"--" + tagsService.findByName(x).getName());
-				System.out.println("SLUG : " +x+"-"+tagsService.findBySlug(slugify.slugify(x)));
-				if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
+
+			tagsList.forEach(x -> {
+				System.out.println("NAME : " + x + "-" + tagsService.findByName(x));
+				// System.out.println("LẤY : "+x+"--" + tagsService.findByName(x).getName());
+				System.out.println("SLUG : " + x + "-" + tagsService.findBySlug(slugify.slugify(x)));
+				if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
 					Tags tagss = new Tags();
 					tagss.setName(x);
 					tagss.setSlug(slugify.slugify(x));
 					System.out.println(x.getBytes());
 					tagsService.saveorupdate(tagss);
-				}else if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
-					
+				} else if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
+
 					Tags tagss = new Tags();
 					tagss.setName(x);
-					tagss.setSlug(slugify.slugify(x) +"-"+ tagsService.findBySlug(slugify.slugify(x)).getTagsId());
-					System.out.println("LLL" +slugify.slugify(x)+"-"+tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					tagss.setSlug(slugify.slugify(x) + "-" + tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					System.out.println(
+							"LLL" + slugify.slugify(x) + "-" + tagsService.findBySlug(slugify.slugify(x)).getTagsId());
 					tagsService.saveorupdate(tagss);
 				}
-				
+
 			});
-			
+
 			tagsList.forEach(x -> tagses.add(tagsService.findByName(x)));
 
 			article.setArticleCategories(articleCategories);
@@ -249,48 +250,48 @@ public class AdminArticlesController {
 		}
 
 		return "redirect:/admin/articles";
-		
+
 	}
-	
+
 	@GetMapping("/articles/{articleId}")
-	public String updateArticles(Model model,@PathVariable("articleId") Integer articleId
-			
-			
-			) {
-		
+	public String updateArticles(Model model, @PathVariable("articleId") Integer articleId
+
+	) {
 
 		Article article = articleService.findByArticleId(articleId);
-		List<Games> gameList = gamesService.findAll();
-			
-		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll();
 		
-		Games game = gamesService.getOne(article.getGameId());
-	
+		
+		// Lấy danh sách ArticleCategory
+		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll().stream()
+				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
+		// Lấy danh sách Games
+		List<Games> gameList = gamesService.findAll().stream().filter(x -> !x.getStatus().equals("deleted"))
+				.collect(Collectors.toList());
+		Games game = gamesService.findByGameId(article.getGameId());
+
 		model.addAttribute("articleCategoryList", articleCategoryList);
 		model.addAttribute("article", article);
 		model.addAttribute("gameList", gameList);
-		model.addAttribute("game" , game);
+		model.addAttribute("game", game);
 		return "updatearticles";
 	}
-	
+
 	@PatchMapping("/articles")
-	public String updateArticle(
-			@RequestParam("articleId") Integer articleId,
-			@RequestParam("title") String title, @RequestParam("slug") String slug,
-			@RequestParam("articleCategories") List<Integer> articleCategoriesList,
+	public String updateArticle(@RequestParam("articleId") Integer articleId, @RequestParam("title") String title,
+			@RequestParam("slug") String slug, @RequestParam("articleCategories") List<Integer> articleCategoriesList,
 			@RequestParam("status") String status, @RequestParam("isHot") int isHot,
-			@RequestParam("subContent") String subContent, @RequestParam("mainContent")  String mainContent,
-			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment, 
-			@RequestParam( "gameId") Integer gameId,
-			@RequestParam("tags") List<String> tagsList, @RequestParam("showDate") String showDate, Principal princial,
-			@RequestParam("video") String video, @RequestParam("imagesThumbnail") MultipartFile imagesThumbnail,
-			RedirectAttributes redirectAttributes, Model model) {
-		
+			@RequestParam("subContent") String subContent, @RequestParam("mainContent") String mainContent,
+			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment,
+			@RequestParam("gameId") Integer gameId, @RequestParam("tags") List<String> tagsList,
+			@RequestParam("showDate") String showDate, Principal princial, @RequestParam("video") String video,
+			@RequestParam("imagesThumbnail") MultipartFile imagesThumbnail, RedirectAttributes redirectAttributes,
+			Model model) {
+
 		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
 		String monthAndYear = imagesManager.getMonthAndYearNow();
 		// Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
 		String photoPath = context.getRealPath("/WEB-INF/files/images/articles/" + monthAndYear);
-	
+
 		Article article = articleService.findByArticleId(articleId);
 		// Tạo mới HashSet có tên articleCategories
 		HashSet<ArticleCategory> articleCategories = new HashSet<>();
@@ -298,7 +299,7 @@ public class AdminArticlesController {
 		HashSet<Tags> tagses = new HashSet<>();
 		// Định dạng ngày có dạng yyyy-MM-dd'T'HH:mm
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-		
+
 		try {
 			// Set dữ liệu vào đối tượng tên article
 
@@ -328,51 +329,42 @@ public class AdminArticlesController {
 				Date date = df.parse(showDate);
 				article.setShowDate(date);
 
-			}else {
+			} else {
 				article.setShowDate(new Date());
 			}
-			System.out.println(gameId);
-			if(gameId !=  0 ) {
-				article.setGameId(gameId);
-			}else {
-				
-				article.setGameId(0);
-			}
-			if(!video.equals("")) {
+
+			if (!video.equals("")) {
 				article.setVideo(video);
 			}
 			article.setViews(0);
 			article.setCreatedDate(new Date());
 			article.setIsHot((byte) isHot);
 			article.setAllowComment(allowComment);
-			
+			article.setGameId(gameId);
 			// Vòng lặp dang sách articleCategoriesList và thêm một đối tượng
 			// ArticleCategories vào HashSet articleCategories
 			articleCategoriesList
 					.forEach(x -> articleCategories.add(articleCategoryService.findByArticleCategoryId(x)));
-			
+
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
-			
-			
-				
-			
-			tagsList.forEach(x-> {
-				if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
+
+			tagsList.forEach(x -> {
+				if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
 					Tags tagss = new Tags();
 					tagss.setName(x);
 					tagss.setSlug(slugify.slugify(x));
-					
+
 					tagsService.saveorupdate(tagss);
-				}else if(tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
-					
+				} else if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
+
 					Tags tagss = new Tags();
 					tagss.setName(x);
-					tagss.setSlug(slugify.slugify(x) +"-"+ tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					tagss.setSlug(slugify.slugify(x) + "-" + tagsService.findBySlug(slugify.slugify(x)).getTagsId());
 					tagsService.saveorupdate(tagss);
 				}
-				
+
 			});
-			
+
 			tagsList.forEach(x -> tagses.add(tagsService.findByName(x)));
 
 			article.setArticleCategories(articleCategories);
@@ -380,7 +372,8 @@ public class AdminArticlesController {
 			article.setModifiedUserId(usersService.findByUserName(princial.getName()).getUserId());
 			article.setModifiedDate(new Date());
 			// Kiểm tra nếu imagesThumbnail khác rỗng
-			if (!imagesThumbnail.isEmpty() && !imagesThumbnail.getOriginalFilename().equals(article.getImagesThumbnail())) {
+			if (!imagesThumbnail.isEmpty()
+					&& !imagesThumbnail.getOriginalFilename().equals(article.getImagesThumbnail())) {
 				// Kiểm tra và tạo thư mục trong đường dẫn /WEB-INF/files/images/articles/" +
 				// monthAndYear nêu chưa có
 				boolean checkFolderExists = imagesManager.checkFolderExists(photoPath);
@@ -406,30 +399,30 @@ public class AdminArticlesController {
 			redirectAttributes.addFlashAttribute("article", article);
 			System.out.println(e.getMessage());
 			System.out.println(e.getStackTrace());
-			return "redirect:/admin/updatearticles/"+articleId;
+			return "redirect:/admin/updatearticles/" + articleId;
 		}
 
 		return "redirect:/admin/articles";
 	}
+
 	@DeleteMapping("/articles")
-	public String deleteAllUser(@RequestParam("arrayArticleId") List<Integer> arrayArticleId ,RedirectAttributes redirectAttributes) {
-		
-		System.out.println(arrayArticleId);
+	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId, RedirectAttributes redirectAttributes) {
+
 		try {
-			arrayArticleId.forEach(x -> {
-				
+			arrayId.forEach(x -> {
+
 				Article article = articleService.findByArticleId(x);
 				article.setStatus("deleted");
-				articleService.saveorupdate(article);;
+				articleService.saveorupdate(article);
+				;
 			});
-			
-			
+
 			redirectAttributes.addFlashAttribute("msg", "Xóa Bài Viết Thành Công");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			redirectAttributes.addFlashAttribute("msg", "Xóa Bài Viết Thất Bại");
 		}
-		
+
 		return "redirect:/admin/articles";
 	}
 }

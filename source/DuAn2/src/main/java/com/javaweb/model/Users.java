@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,6 +27,10 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "user_name") })
 public class Users implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8086287136462929536L;
 	private Integer userId;
 	private String userName;
 	private String pasword;

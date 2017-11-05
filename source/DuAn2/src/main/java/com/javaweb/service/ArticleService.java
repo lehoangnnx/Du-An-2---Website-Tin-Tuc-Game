@@ -1,9 +1,8 @@
 package com.javaweb.service;
 
-import com.javaweb.model.Article;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+import com.javaweb.model.Article;
 
 public interface ArticleService {
     List<Article> findAll();

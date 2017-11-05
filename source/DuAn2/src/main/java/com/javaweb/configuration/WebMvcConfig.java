@@ -1,14 +1,9 @@
 package com.javaweb.configuration;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesView;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -32,23 +27,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 			
 		}*/
 	
-	//Cấu hình Apache Title
-	@Bean
-    public TilesConfigurer tilesConfigurer() {
-        TilesConfigurer configurer = new TilesConfigurer();
-        configurer.setDefinitions(new String[]{"WEB-INF/configtiles/layout-administrator-tiles.xml", "WEB-INF/configtiles/layout-default-tiles.xml"});
-        configurer.setCheckRefresh(true);
 
-        return configurer;
-    }
- 
-    @Bean
-    public TilesViewResolver tilesViewResolver() {
-        TilesViewResolver resolver = new TilesViewResolver();
-        resolver.setViewClass(TilesView.class);
- 
-        return resolver;
-    }
+
  // Cấu hình để sử dụng các file nguồn tĩnh (html, image, ..)
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -66,4 +46,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
+	
+	
 }

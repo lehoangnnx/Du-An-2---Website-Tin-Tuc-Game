@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 @Table(name = "comment_forum", catalog = "duan2_webapplication_tintucgame")
 public class CommentForum implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4101508132436998812L;
 	private Integer commentForumId;
 	private ArticleForum articleForum;
 	private Users users;

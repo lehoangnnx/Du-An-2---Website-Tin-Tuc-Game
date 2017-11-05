@@ -3,11 +3,9 @@ package com.javaweb.controller.administrator;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +37,12 @@ public class AdminArticlesControllerAjax {
 		System.out.println("IIIII :" + article.getArticleId());
 		Article findByTitle = null;
 		Article findBySlug = null;
-		Article getArticleById = null;
+		
 		try {
 			System.out.println("1");
 			findByTitle = articleService.findByTitle(HtmlUtils.htmlEscape(article.getTitle()));
 			findBySlug = articleService.findBySlug(article.getSlug());
-			getArticleById = articleService.findByArticleId(article.getArticleId());
+			
 			System.out.println(findByTitle + "-" + findBySlug);
 			if (article.getArticleId() == null) {
 				if (findByTitle != null && findBySlug != null) {
@@ -62,14 +60,14 @@ public class AdminArticlesControllerAjax {
 				}
 			} else {
 				if (findByTitle != null && findBySlug != null
-						&& !findByTitle.getArticleId().equals(getArticleById.getArticleId())
-						&& !findBySlug.getArticleId().equals(getArticleById.getArticleId())) {
+						&& !findByTitle.getArticleId().equals(article.getArticleId())
+						&& !findBySlug.getArticleId().equals(article.getArticleId())) {
 					System.out.println("2");
 					return "error";
-				} else if (findByTitle != null && !findByTitle.getArticleId().equals(getArticleById.getArticleId())) {
+				} else if (findByTitle != null && !findByTitle.getArticleId().equals(article.getArticleId())) {
 					System.out.println("3");
 					return "errortitle";
-				} else if (findBySlug != null && !findBySlug.getArticleId().equals(getArticleById.getArticleId())) {
+				} else if (findBySlug != null && !findBySlug.getArticleId().equals(article.getArticleId())) {
 					System.out.println("4");
 
 					return "errorslug";

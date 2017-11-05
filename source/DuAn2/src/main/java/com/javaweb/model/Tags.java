@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +21,10 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "slug"), @UniqueConstraint(columnNames = "name") })
 public class Tags implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6029457486233537998L;
 	private Integer tagsId;
 	private String name;
 	private String slug;

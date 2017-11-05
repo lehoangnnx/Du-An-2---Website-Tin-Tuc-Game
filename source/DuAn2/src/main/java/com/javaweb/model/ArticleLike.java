@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 @Table(name = "article_like", catalog = "duan2_webapplication_tintucgame")
 public class ArticleLike implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7192294153133871510L;
 	private Integer articleLikeId;
 	private Article article;
 	private Users users;

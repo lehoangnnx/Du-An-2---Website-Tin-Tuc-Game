@@ -59,7 +59,7 @@
 												style="color: blue;" class="fa fa-pencil fa-lg"
 												aria-hidden="true" title="Sửa"></i></a> 
 												
-												<a onclick="deleteUser(${lu.userId});" href="#" data-toggle="modal" data-target="#myModal" style="color: red; margin-left: 10px;"> 
+												<a onclick="deleteOne(${lu.userId});" href="#" data-toggle="modal" data-target="#myModal" style="color: red; margin-left: 10px;"> 
 												<i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Xóa"></i>
 										</a></td>
 									</tr>
@@ -69,7 +69,7 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<td><div style="text-align: center;"><button onclick="deleteAllUser();" data-toggle="modal" data-target="#myModal"  class="btn btn-danger">Xóa Nhiều</button></div></td>
+									<td><div style="text-align: center;"><button onclick="deleteAll();" data-toggle="modal" data-target="#myModal"  class="btn btn-danger">Xóa Nhiều</button></div></td>
 									<th>User Name</th>
 
 									<th>Quyền</th>
@@ -106,7 +106,7 @@
 				<form:form action="" method="delete">
 				<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-					<input value="" id="arrayUserId" hidden="" name="arrayUserId" />
+					<input value="" id="arrayId" hidden="" name="arrayId" />
 					<button class="btn btn-danger" style="float: left;">
 						Xóa
 					</button>

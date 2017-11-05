@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,6 +27,10 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "slug") })
 public class Games implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4682167895841921756L;
 	private Integer gameId;
 	private String name;
 	private String slug;
@@ -36,7 +40,7 @@ public class Games implements java.io.Serializable {
 	private String composers;
 	private String engine;
 	private String platforms;
-	private Date release;
+	private Date releases;
 	private String info;
 	private String status;
 	private String description;
@@ -48,16 +52,16 @@ public class Games implements java.io.Serializable {
 	public Games() {
 	}
 
-	public Games(String name, String slug, String publishers, Date release, String status) {
+	public Games(String name, String slug, String publishers, Date releases, String status) {
 		this.name = name;
 		this.slug = slug;
 		this.publishers = publishers;
-		this.release = release;
+		this.releases = releases;
 		this.status = status;
 	}
 
 	public Games(String name, String slug, String developers, String publishers, String writers, String composers,
-			String engine, String platforms, Date release, String info, String status, String description,
+			String engine, String platforms, Date releases, String info, String status, String description,
 			Set<GameReviews> gameReviewses, Set<GameReviews> gameReviewses_1, Set<GameCategory> gameCategories,
 			Set<GameCategory> gameCategories_1) {
 		this.name = name;
@@ -68,7 +72,7 @@ public class Games implements java.io.Serializable {
 		this.composers = composers;
 		this.engine = engine;
 		this.platforms = platforms;
-		this.release = release;
+		this.releases = releases;
 		this.info = info;
 		this.status = status;
 		this.description = description;
@@ -163,13 +167,13 @@ public class Games implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "release", nullable = false, length = 19)
-	public Date getRelease() {
-		return this.release;
+	@Column(name = "releases", nullable = false, length = 19)
+	public Date getReleases() {
+		return this.releases;
 	}
 
-	public void setRelease(Date release) {
-		this.release = release;
+	public void setReleases(Date releases) {
+		this.releases = releases;
 	}
 
 	@Column(name = "info", length = 1000)

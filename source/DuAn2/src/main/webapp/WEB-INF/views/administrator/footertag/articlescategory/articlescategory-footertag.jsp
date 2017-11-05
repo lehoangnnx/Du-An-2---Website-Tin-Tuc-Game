@@ -74,7 +74,7 @@
 				}
 		});
 	
-		$("#arrayArticleCategoryId").val(result);
+		$("#arrayId").val(result);
 	
 	});
 </script>
@@ -97,12 +97,12 @@ function openTab(evt, tabName) {
 
 </script>
 <script>
-	function deleteArticle(arrayArticleCategoryId){
-			$("#arrayArticleCategoryId").val(arrayArticleCategoryId);
-			$("#command").attr("action", "${pageContext.request.contextPath}/admin/categorys/articles");
+	function deleteOne(arrayId){
+			$("#arrayId").val(arrayId);
+			$("#command").attr("action", "${pageContext.request.contextPath}/admin/articles/categorys");
 		}
-	function deleteAllUser(){
-			$("#command").attr("action", "${pageContext.request.contextPath}/admin/categorys/articles");
+	function deleteAll(){
+			$("#command").attr("action", "${pageContext.request.contextPath}/admin/articles/categorys");
 	}
 </script>
 <script>

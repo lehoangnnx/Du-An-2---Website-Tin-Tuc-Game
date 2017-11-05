@@ -73,108 +73,63 @@
 			.ready(
 					function($) {
 						var timeout = null;
-						$("#email")
-								.on(
-										'keyup keypress keydown',
-										function(event) {
-											var email = $('#email').val();
+						$("#email").on('keyup keypress keydown',function(event) {
+							var email = $('#email').val();
 
-											var email_regex = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-											if (email.match(email_regex)
-													&& email.length != 0) {
-												console.log("sd");
-												clearTimeout(timeout);
-												timeout = setTimeout(
-														function() {
-															var users = {};
-															users["userId"] = $(
-																	"#userId")
-																	.val();
-															users["email"] = $(
-																	"#email")
-																	.val();
-															//alert(users.userId + users.email);
-															// $("#btn-update").prop("disabled", true);
-															var token = $(
-																	"meta[name='_csrf']")
-																	.attr(
-																			"content");
-															var header = $(
-																	"meta[name='_csrf_header']")
-																	.attr(
-																			"content");
-															$(document)
-																	.ajaxSend(
-																			function(
-																					e,
-																					xhr,
-																					options) {
-																				xhr
-																						.setRequestHeader(
-																								header,
-																								token);
-																			});
-
-															$
-																	.ajax({
-
-																		type : "POST",
-																		contentType : "application/json",
-																		url : "${pageContext.request.contextPath}/admin/validator-user",
-																		data : JSON
-																				.stringify(users),
-																		//dataType: 'json',
-																		// timeout: 600000,
-																		success : function(
-																				result) {
-																			//  alert(result);
-																			if (result == 'erroremail') {
-																				$(
-																						'#email-error')
-																						.text(
-																								"Email Đã Tồn Tại"); // This Segment Displays The Validation Rule For Email
-																				$(
-																						"#email")
-																						.focus();
-																				$(
-																						"#btn-update")
-																						.prop(
-																								"disabled",
-																								true);
-																				return false;
-																			}
-																			if (result == 'successemail') {
-																				$(
-																						'#email-error')
-																						.text(
-																								""); // This Segment Displays The Validation Rule For Email
-																				$(
-																						"#btn-update")
-																						.prop(
-																								"disabled",
-																								false);
-																				return true;
-																			}
-
-																		},
-																		error : function(
-																				e) {
-																			alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
-																		}
-																	});
-
-														}, 1000);
-											}
+							var email_regex = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+							if (email.match(email_regex) && email.length != 0) {
+							clearTimeout(timeout);
+							timeout = setTimeout(function() {
+								var users = {};
+								users["userId"] = $("#userId").val();
+								users["email"] = $("#email").val();
+								//alert(users.userId + users.email);
+								// $("#btn-update").prop("disabled", true);
+								var token = $("meta[name='_csrf']").attr("content");
+								var header = $("meta[name='_csrf_header']").attr("content");
+								$(document).ajaxSend(function(e,xhr,options) {
+										xhr.setRequestHeader(header,token);
 										});
+
+									$.ajax({
+											type : "POST",
+											contentType : "application/json",
+											url : "${pageContext.request.contextPath}/admin/validator-user",
+											data : JSON.stringify(users),
+												//dataType: 'json',
+												// timeout: 600000,
+											success : function(result) {
+											//  alert(result);
+											if (result == 'erroremail') {
+											$('#email-error').text("Email Đã Tồn Tại"); // This Segment Displays The Validation Rule For Email
+												$("#email").focus();
+											$("#btn-submit").prop("disabled",true);
+											return false;
+											}
+											if (result == 'successemail') {
+											$('#email-error').text(""); // This Segment Displays The Validation Rule For Email
+											$("#btn-submit").prop("disabled",false);
+												return true;
+												}
+
+											},
+											error : function(e) {
+												alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+												}
+											});
+
+								}, 1000);
+						}
+			});
 
 					});
 </script>
 
 <script>
 	$(document).ready(function() {
-		$("#btn-update").prop("disabled",true);
+		$("#btn-submit").prop("disabled",true);
 		$("#formUser").change(function(){
-			$("#btn-update").prop("disabled",false);
+			$("#btn-submit").prop("disabled",false);
 			});
 		var msg = $("#msg").val();
 		if (msg != "") {
@@ -187,7 +142,7 @@
 <script>
 	$(document).ready(function() {
 
-		$("#btn-update").click(function(e) {
+		$("#btn-submit").click(function(e) {
 			var firstName = $("#firstName").val();
 			var lastName = $("#lastName").val();
 			var email = $('#email').val();

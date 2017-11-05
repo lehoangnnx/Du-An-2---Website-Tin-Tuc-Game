@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 1, 2017 9:10:59 PM by Hibernate Tools 5.2.5.Final
+// Generated Nov 5, 2017 10:08:55 AM by Hibernate Tools 5.2.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Table(name = "menu", catalog = "duan2_webapplication_tintucgame")
 public class Menu implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8624262355592226730L;
 	private Integer menuId;
 	private String name;
 	private String content;
