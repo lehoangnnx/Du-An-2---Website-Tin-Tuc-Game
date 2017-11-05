@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="home"
-		template="/WEB-INF/views/default/index.jsp">
+	<definition name="defaultlayout"
+		template="/WEB-INF/views/layout/default/layout-default.jsp">
+		<put-attribute name="title" value="Layout Default" />
+		<put-attribute name="head"
+			value="/WEB-INF/views/layout/default/head/head.jsp" />
+		<put-attribute name="headtag"
+			value="/WEB-INF/views/layout/default/headtag/headtag.jsp" />
+		<put-attribute name="navbar"
+			value="/WEB-INF/views/layout/default/navbar/navbar.jsp" />
+		<put-attribute name="sitebar"
+			value="/WEB-INF/views/layout/default/sitebar/sitebar.jsp" />
+
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layout/default/footer/footer.jsp" />
+		<put-attribute name="footertag"
+			value="/WEB-INF/views/layout/default/footertag/footertag.jsp" />
 	</definition>
-	<definition name="login"
-		template="/WEB-INF/views/default/login.jsp">
+
+
+	<definition name="home" extends="defaultlayout">
+        <put-attribute name="title" value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/default/index.jsp"/>
+    </definition>
+
+	<definition name="chitiet" extends="defaultlayout">
+        <put-attribute name="title" value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/default/chitietbaiviet.jsp"/>
+    </definition>
+
+	<definition name="login" template="/WEB-INF/views/default/login.jsp">
 	</definition>
-	
-	</tiles-definitions>
+
+</tiles-definitions>

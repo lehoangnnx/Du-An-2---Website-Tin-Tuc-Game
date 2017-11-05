@@ -1,8 +1,9 @@
+<%@ page pageEncoding="UTF-8"%>
 <footer class="footer">
     <div class="container-fluid">
         <div class="row text-xs-center">
             <div class="col-sm-4 text-sm-left mb-0-5 mb-sm-0">
-                2017 © Four Hand Team - Website Tun Tuc Game
+                2017 Â© Four Hand Team - Website Tun Tuc Game
             </div>
             <div class="col-sm-8 text-sm-right">
                 <ul class="nav nav-inline l-h-2">

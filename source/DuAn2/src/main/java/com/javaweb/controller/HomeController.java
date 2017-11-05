@@ -24,18 +24,22 @@ public class HomeController {
 	UsersService usersService;
 	@RequestMapping(value = {"/", "/home"})
 	public String index(Principal p , Authentication authentication) {
-		System.out.println(p.getName());
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		System.out.println("User has authorities: " + userDetails.getAuthorities());
+		
+		/*UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		System.out.println("User has authorities: " + userDetails.getAuthorities());*/
 		
 		return "home";
 	}
-	@ModelAttribute("user")
+	/*@ModelAttribute("user")
 	public Users user(Principal principal) {
 		Users user = usersService.findByUserName(principal.getName());
 		return user;
 		
 		
+	}*/
+	@RequestMapping("/chitiet")
+	String chitiet() {
+		return "chitiet";
 	}
 	
 	@RequestMapping("/403")
