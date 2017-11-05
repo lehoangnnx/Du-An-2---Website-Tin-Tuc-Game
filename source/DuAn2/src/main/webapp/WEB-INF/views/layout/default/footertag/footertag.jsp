@@ -266,3 +266,44 @@
 			});
 	});
 	</script>
+	
+	
+	<!-- Controller Form Login Ajax -->
+	<script>
+	
+	var timeout = null;
+	function login() { 
+			var userName = $('#userName').val();
+			var password = $('#password').val();
+			console.log(($('#login-form').serialize()));
+		clearTimeout(timeout);
+		timeout = setTimeout(
+				function() {
+
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					$(document).ajaxSend(function(e, xhr, options) {
+						xhr.setRequestHeader(header, token);
+					});
+					$
+							.ajax({
+
+								type : "POST",
+								//contentType : "application/json",
+								url : "${pageContext.request.contextPath}/login",
+								data : $('#login-form').serialize(),
+								//dataType: 'json',
+								// timeout: 600000,
+								success : function(result) {
+									console.log(result);
+									
+								},
+								error : function(e) {
+
+								}
+							});
+				}, 1000); 
+	 };
+	
+
+	</script>

@@ -16,12 +16,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+    @Autowired
+    AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
     
+    @Autowired
+    AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -55,8 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             	.loginPage("/login")
             	.usernameParameter("userName")
             	.passwordParameter("password")
-            	.defaultSuccessUrl("/")
-            	.failureUrl("/login?error")      	
+            	.failureHandler(ajaxAuthenticationFailureHandler)
+            	.successHandler(ajaxAuthenticationSuccessHandler)
+            	//.defaultSuccessUrl("/")
+            	//.failureUrl("/login?error")      	
             	.and()
             .logout()
             .logoutSuccessUrl("/")

@@ -131,13 +131,13 @@
 
 						<!-- Username & Password Login form -->
 						<div class="user_login">
-								<form>
+								<form id="login-form">
 										<label>Email / Username</label>
-										<input type="text" />
+										<input id="userName" name="userName" type="text" />
 										<br />
 
 										<label>Password</label>
-										<input type="password" />
+										<input id="password" name="password" type="password" />
 										<br />
 
 										<div class="checkbox">
@@ -147,7 +147,7 @@
 
 										<div class="action_btns">
 												<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-												<div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+												<div class="one_half last"><a onclick="login();" id="btn-login" href="#" class="btn btn_red">Login</a></div>
 										</div>
 								</form>
 
