@@ -25,10 +25,11 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 			throws IOException, ServletException {
 		
 		// After login success
-		response.getWriter().print("/");
+		response.getWriter().print("success");
 		response.getWriter().flush();
 		
 	}
+	
 	
 	
 	/**

@@ -14,6 +14,7 @@
 	<script src="${contextPath}/js/sliderengine/initslider-1.js"></script>
 
 <script src='${contextPath}/js/js/jquery.leanModal.min_.js'></script>
+
 	<script>
 		jQuery(".widget-tabbed > h3 span", ".sidebar").on(
 				"click",
@@ -273,8 +274,7 @@
 	
 	var timeout = null;
 	function login() { 
-			var userName = $('#userName').val();
-			var password = $('#password').val();
+			
 			console.log(($('#login-form').serialize()));
 		clearTimeout(timeout);
 		timeout = setTimeout(
@@ -296,14 +296,44 @@
 								// timeout: 600000,
 								success : function(result) {
 									console.log(result);
+									if(result == 'Bad credentials'){
+										$('#msgerror').text('* Sai Tên Đăng Nhập Hoặc Mật Khẩu');
+									}else if(result == 'User account is locked'){
+										$('#msgerror').text('* Tài Khoản Đã Bị Khóa');
+									}else if(result == 'success'){
+										$('#msgerror').text('');
+										window.location.href = "${pageContext.request.contextPath}/";
+										
+									}
 									
 								},
 								error : function(e) {
-
+									alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
 								}
 							});
 				}, 1000); 
 	 };
 	
-
 	</script>
+	<script>
+			var timeoutbtnlogin = null;
+			$('#btn-login').click(function (){
+				clearTimeout(timeoutbtnlogin);
+				timeoutbtnlogin = setTimeout(function() {
+					console.log('btn login');
+					var userName = $('#userName').val();
+					var password = $('#password').val();
+					if(userName == '' && password == ''  ){
+							$('#msgerror').text('* Vui Lòng Nhập Đủ Thông Tin');
+					}else if(userName ==''){ 
+						$('#msgerror').text('* Vui Lòng Nhập UserName');
+					}else if(password ==''){
+						$('#msgerror').text('* Vui Lòng Nhập Mật Khẩu');
+					}else {
+						$('#msgerror').text('');
+						login();
+					}
+			}, 1000);
+		}); 
+	</script>
+	

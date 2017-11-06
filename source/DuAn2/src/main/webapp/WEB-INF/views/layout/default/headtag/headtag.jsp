@@ -142,7 +142,10 @@ a.scroll-up:hover i {
 }
 </style>
 <style>
-
+#msgerror{
+	color: red;
+	font-size: smaller;
+}
 
 #lean_overlay {
 		position: fixed;
