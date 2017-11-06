@@ -13,13 +13,26 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.web.ProviderSignInController;
 
+import com.javaweb.service.FacebookConnectionSignup;
+import com.javaweb.service.FacebookSignInAdapter;
+import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+	@Autowired
+    private ConnectionFactoryLocator connectionFactoryLocator;
+
+    @Autowired
+    private UsersConnectionRepository usersConnectionRepository;
+
+    @Autowired
+    private FacebookConnectionSignup facebookConnectionSignup;
     @Autowired
     AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
     
@@ -68,6 +81,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
         	.exceptionHandling()
     			.accessDeniedPage("/403");
+    }
+	
+	@Bean
+    // @Primary
+    public ProviderSignInController providerSignInController() {
+        ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
+        return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, new FacebookSignInAdapter());
     }
 	
 }

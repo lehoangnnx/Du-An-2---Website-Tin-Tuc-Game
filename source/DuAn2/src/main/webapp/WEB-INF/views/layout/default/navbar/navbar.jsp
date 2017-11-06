@@ -31,23 +31,27 @@
 					<li class="scroll"><a href="#">Liên hệ</a></li>
 
 
-					<security:authorize access="isAuthenticated()">
+					 <security:authorize access="isAuthenticated()">
 						<security:authentication var="principal" property="principal" />
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${principal.username }<span
+							data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}
+							${pageContext.request.userPrincipal.authorities}
+							<span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Thông Tin</a></li>
 								<security:authorize access="hasRole('ADMIN')">
 									<li><a href="#">Quản Trị</a></li>
 								</security:authorize>
-								
+								<security:authorize access="hasRole('FACEBOOK')">
+									<li><a href="#">Quản Trị FACE</a></li>
+								</security:authorize>
 								<li><a href="${contextPath }/logout">Đăng Xuất</a></li>
-								
-								
-								
+
+
+
 							</ul></li>
-					</security:authorize>
+					</security:authorize> 
 					<security:authorize access="!isAuthenticated()">
 						<li class="scroll"><a id="modal_trigger" href="#modal">Đăng
 								Nhập</a></li>
@@ -127,6 +131,11 @@
 		<!-- Social Login -->
 		<div class="social_login">
 			<div class="">
+				<form:form action="${contextPath }/signin/facebook" method="POST">
+					<input type="hidden" name="scope" value="public_profile" /> 
+					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<input type="submit" value="Login using Facebook" />
+				</form:form>
 				<a href="#" class="social_box fb"> <span class="icon"><i
 						class="fa fa-facebook"></i></span> <span class="icon_title">Connect
 						with Facebook</span>

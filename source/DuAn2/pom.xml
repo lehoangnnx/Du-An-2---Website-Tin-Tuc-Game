@@ -124,62 +124,9 @@
 			<version>59.1</version>
 		</dependency>
 
-		<dependency>
-           <groupId>org.springframework</groupId>
-           <artifactId>spring-jdbc</artifactId>
-       </dependency>
-		<!-- http://mvnrepository.com/artifact/org.springframework.social/spring-social-config -->
-       <dependency>
-           <groupId>org.springframework.social</groupId>
-           <artifactId>spring-social-config</artifactId>
-          
-       </dependency>
+		
  
-       <!-- http://mvnrepository.com/artifact/org.springframework.social/spring-social-core -->
-       <dependency>
-           <groupId>org.springframework.social</groupId>
-           <artifactId>spring-social-core</artifactId>
-           
-       </dependency>
- 
-       <!-- http://mvnrepository.com/artifact/org.springframework.social/spring-social-security -->
-       <dependency>
-           <groupId>org.springframework.social</groupId>
-           <artifactId>spring-social-security</artifactId>
-           
-       </dependency>
- 
-       <!-- http://mvnrepository.com/artifact/org.springframework.social/spring-social-web -->
-       <dependency>
-           <groupId>org.springframework.social</groupId>
-           <artifactId>spring-social-web</artifactId>
-          
-       </dependency>
- 
-       <!-- http://mvnrepository.com/artifact/org.springframework.social/spring-social-facebook -->
-       <dependency>
-           <groupId>org.springframework.social</groupId>
-           <artifactId>spring-social-facebook</artifactId>
-           
-           <exclusions>
-               <exclusion>
-                   <artifactId>spring-social-core</artifactId>
-                   <groupId>org.springframework.social</groupId>
-               </exclusion>
-               <exclusion>
-                   <artifactId>spring-social-config</artifactId>
-                   <groupId>org.springframework.social</groupId>
-               </exclusion>
-           </exclusions>
-       </dependency>
- 
-       <!-- http://mvnrepository.com/artifact/org.springframework.social/spring-social-google -->
-       <dependency>
-           <groupId>org.springframework.social</groupId>
-           <artifactId>spring-social-google</artifactId>
-           <version>1.0.0.RELEASE</version>
-       </dependency>
- 
+      
 
 	</dependencies>
 

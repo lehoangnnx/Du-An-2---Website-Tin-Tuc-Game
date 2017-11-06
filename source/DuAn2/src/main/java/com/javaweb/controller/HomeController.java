@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,17 +25,21 @@ public class HomeController {
 	PagesService pagesService;
 	@Autowired
 	UsersService usersService;
+	
+	
 	@RequestMapping(value = {"/", "/home"})
 	public String index(Principal p , Authentication authentication) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username= "";
 		String quyen = "";
+		
 		if (principal instanceof UserDetails) {
 		     username = ((UserDetails) principal).getUsername();
 		     quyen = ((UserDetails) principal ).getAuthorities().toString();
 		} else {
 		     username = principal.toString();}
-		  System.out.println("USER NAME NE :"+ username +"--" + "QUYEN NE : "+ quyen);
+		// authentication.getAuthorities()
+		  System.out.println("USER NAME NE :"+ username +"--" + "QUYEN NE : "+ quyen + "QUYEN 1 : ");
 		/*UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		System.out.println("User has authorities: " + userDetails.getAuthorities());*/
 		
