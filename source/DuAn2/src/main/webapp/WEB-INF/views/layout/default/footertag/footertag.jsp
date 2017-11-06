@@ -337,3 +337,32 @@
 		}); 
 	</script>
 	
+	<script type="text/javascript">
+      function onSignIn(googleUser) {
+      // window.location.href='success.jsp';
+      var profile = googleUser.getBasicProfile();
+      var imagurl=profile.getImageUrl();
+      var name=profile.getName();
+      var email=profile.getEmail();
+		console.log("progilr :"+profile +"-"+"img :"+imagurl +"-"+"name :"+name+"-"+"email :"+email);
+		console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("id_token: " + id_token);
+
+   }
+   </script>
+   
+   <script>
+      function myFunction() {
+      gapi.auth2.getAuthInstance().disconnect();
+      location.reload();
+   }
+   </script>
+	

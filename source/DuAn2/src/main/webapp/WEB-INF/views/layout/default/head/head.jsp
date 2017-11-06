@@ -7,8 +7,10 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-		<!-- Title -->
 		
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" 
+	content="957067339527-2a7jir87qgufa498et556ke87d8lv5sb.apps.googleusercontent.com">	
 		
 		
 

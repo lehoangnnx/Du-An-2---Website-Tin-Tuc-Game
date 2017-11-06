@@ -34,7 +34,7 @@
 					 <security:authorize access="isAuthenticated()">
 						<security:authentication var="principal" property="principal" />
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}
+							data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name} :
 							${pageContext.request.userPrincipal.authorities}
 							<span
 								class="caret"></span></a>
@@ -139,11 +139,12 @@
 				<a href="#" class="social_box fb"> <span class="icon"><i
 						class="fa fa-facebook"></i></span> <span class="icon_title">Connect
 						with Facebook</span>
-
+				
 				</a> <a href="#" class="social_box google"> <span class="icon"><i
 						class="fa fa-google-plus"></i></span> <span class="icon_title">Connect
 						with Google</span>
 				</a>
+				<div class="g-signin2" data-onsuccess="onSignIn"></div>
 			</div>
 
 			<div class="centeredText">

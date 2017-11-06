@@ -28,8 +28,7 @@ public class FacebookConnectionSignup implements ConnectionSignUp {
     private UsersService usersService;
     @Autowired
     RolesService rolesService;
-    @Autowired
-    private UserDetailsService userDetailsService;
+    
    
 
     @Override

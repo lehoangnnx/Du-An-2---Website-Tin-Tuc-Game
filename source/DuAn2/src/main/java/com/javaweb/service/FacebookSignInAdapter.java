@@ -21,8 +21,7 @@ import com.javaweb.model.Users;
 
 @Service
 public class FacebookSignInAdapter implements SignInAdapter {
-	   @Autowired
-	    private UsersService usersService;
+	
 	   
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
