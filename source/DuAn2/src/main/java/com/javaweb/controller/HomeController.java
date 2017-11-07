@@ -3,6 +3,8 @@ package com.javaweb.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,30 +30,17 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = {"/", "/home"})
-	public String index(Principal p , Authentication authentication) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username= "";
-		String quyen = "";
+	public String index(Principal p , Authentication authentication, HttpSession session) {
 		
-		if (principal instanceof UserDetails) {
-		     username = ((UserDetails) principal).getUsername();
-		     quyen = ((UserDetails) principal ).getAuthorities().toString();
-		} else {
-		     username = principal.toString();}
-		// authentication.getAuthorities()
-		  System.out.println("USER NAME NE :"+ username +"--" + "QUYEN NE : "+ quyen + "QUYEN 1 : ");
-		/*UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		System.out.println("User has authorities: " + userDetails.getAuthorities());*/
 		
+		if (authentication != null) {
+			session.setAttribute("user", usersService.findByUserName(authentication.getName()));
+			
+		}
+		
+		System.out.println("GET SESSION :"+session.getAttribute("user"));
 		return "home";
 	}
-	/*@ModelAttribute("user")
-	public Users user(Principal principal) {
-		Users user = usersService.findByUserName(principal.getName());
-		return user;
-		
-		
-	}*/
 	@RequestMapping("/chitiet")
 	String chitiet() {
 		return "chitiet";

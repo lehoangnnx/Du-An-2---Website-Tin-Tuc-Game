@@ -33,7 +33,6 @@
                        value="/WEB-INF/views/default/chitietbaiviet.jsp"/>
     </definition>
 
-	<definition name="login" template="/WEB-INF/views/default/login.jsp">
-	</definition>
+	
 
 </tiles-definitions>

@@ -36,22 +36,22 @@
 							<li><a href="#">Trải nghiệm</a></li>
 						</ul></li>
 					<li class="scroll"><a href="#">Liên hệ</a></li>
-
+					<!-- ${pageContext.request.userPrincipal.name}
+					//${pageContext.request.userPrincipal.authorities}   -->
 
 					<security:authorize access="isAuthenticated()">
 						<security:authentication var="principal" property="principal" />
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}
-								: ${pageContext.request.userPrincipal.authorities} <span
+							data-toggle="dropdown" href="#">${user.firstName} ${ user.lastName   } <span
 								class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Thông Tin</a></li>
+							<security:authorize access="hasRole('FACEBOOK || GOOGLE')">
+									<li><a href="#">Thông Tin</a></li>
+							</security:authorize>
+								
 								<security:authorize access="hasRole('ADMIN')">
-									<li><a href="#">Quản Trị</a></li>
-								</security:authorize>
-								<security:authorize access="hasRole('FACEBOOK')">
-									<li><a href="#">Quản Trị FACE</a></li>
+									<li><a href="${contextPath }/admin/index">Quản Trị</a></li>
 								</security:authorize>
 								<li><a href="${contextPath }/logout">Đăng Xuất</a></li>
 
@@ -142,19 +142,16 @@
 					<input type="hidden" name="scope" value="public_profile" />
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					<input type="submit" value="Login using Facebook" />
+					
+					<button type="submit" class="loginBtn loginBtn--facebook">Login with
+					Facebook</button>
 				</form:form>
-				<a href="#" class="social_box fb"> <span class="icon"><i
-						class="fa fa-facebook"></i></span> <span class="icon_title">Connect
-						with Facebook</span>
+				
 
-				</a> <a href="#" class="social_box google"> <span class="icon"><i
-						class="fa fa-google-plus"></i></span> <span class="icon_title">Connect
-						with Google</span>
-				</a>
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			
+				
 			</div>
-
+			<div class="g-signin2 " data-width="290" data-height="32" data-longtitle="true" data-onsuccess="onSignIn"></div>
 			<div class="centeredText">
 				<span>Or use your Email address</span>
 			</div>
@@ -177,7 +174,7 @@
 					id="password" name="password" type="password" /> <br /> <label
 					id="msgerror"></label> <br />
 				<div class="checkbox">
-					<input id="remember" type="checkbox" /> <label for="remember">Remember
+					<input id="remember" type="checkbox" name="remember-me" /> <label for="remember">Remember
 						me on this computer</label>
 				</div>
 

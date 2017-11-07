@@ -124,7 +124,7 @@
 			<version>59.1</version>
 		</dependency>
 
-<<<<<<< HEAD
+
 		<dependency>
      <groupId>com.google.api-client</groupId>
      <artifactId>google-api-client</artifactId>
@@ -132,8 +132,7 @@
    </dependency>
  
       
-=======
->>>>>>> 9f8d7c889e512f7eb84ae83f1877ebb4ae80588c
+
 
 	</dependencies>
 

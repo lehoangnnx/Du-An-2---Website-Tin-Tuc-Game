@@ -35,52 +35,32 @@ public class FacebookConnectionSignup implements ConnectionSignUp {
     public String execute(Connection<?> connection) {
         System.out.println("signup === FACEBOKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK ");
          Users user = null;
-        if(usersService.findByUserName(connection.getDisplayName()) == null ) {
-	        user = new Users();
-	        user.setUserName(connection.getDisplayName());
-	        user.setPasword(randomAlphabetic(8));
-	        user.setEmail(connection.getDisplayName()+"@gmail.com");
-	        user.setStatus("active");
-	        user.setCreatedDate(new Date());
-	        user.setLoggedInDate(new Date());
-	        user.setIsOnline((byte) 1);
-	        HashSet<Roles> roleses = new  HashSet<>();
-	        roleses.add(rolesService.findByName("ROLE_FACEBOOK"));
-	        user.setRoleses(roleses);
-	        usersService.saveorupdate(user);
-        }else {
-        	user = usersService.findByUserName(connection.getDisplayName());
-        	
-        }
-       
-        
-       Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		Set<Roles> roles = user.getRoleses();
-		for (Roles role : roles) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+         try {
+			user = usersService.findByUserName(connection.getKey().toString());
+			if(user == null ) {
+		        user = new Users();
+		        user.setUserName(connection.getKey().toString());
+		        user.setPasword(randomAlphabetic(8));
+		        user.setEmail(connection.getKey()+"@gmail.com");
+		        user.setFirstName(connection.getDisplayName());
+		        user.setAvatar(connection.getImageUrl());
+		        user.setStatus("active");
+		        user.setCreatedDate(new Date());
+		        user.setLoggedInDate(new Date());
+		        user.setIsOnline((byte) 1);
+		        HashSet<Roles> roleses = new  HashSet<>();
+		        roleses.add(rolesService.findByName("ROLE_FACEBOOK"));
+		        user.setRoleses(roleses);
+		        usersService.saveorupdate(user);
+	        }
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
-		
-		 new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPasword(), true, 
-				true, true, true, grantedAuthorities);
-		
-				
-		
         
+       
         return user.getUserName();
     }
-   /* public void autologin(String username, String password) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            //logger.debug(String.format("Auto login %s successfully!", username));
-        }
-    } */
-
-
+ 
 	
 	
 

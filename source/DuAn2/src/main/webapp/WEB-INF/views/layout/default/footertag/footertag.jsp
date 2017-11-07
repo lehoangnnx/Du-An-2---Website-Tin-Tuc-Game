@@ -14,7 +14,7 @@
 	<script src="${contextPath}/js/sliderengine/initslider-1.js"></script>
 
 <script src='${contextPath}/js/js/jquery.leanModal.min_.js'></script>
-
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script>
 		jQuery(".widget-tabbed > h3 span", ".sidebar").on(
 				"click",
@@ -365,6 +365,7 @@
            // document.location.href = '${pageContext.request.contextPath}/'; 
         
    }
+      
    </script>
    
    <script>
@@ -373,4 +374,3 @@
       location.reload();
    }
    </script>
-	

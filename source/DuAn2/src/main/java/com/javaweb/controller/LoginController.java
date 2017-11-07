@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
@@ -36,14 +37,11 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	String login(Model model, String error) {
-		System.out.println("Loiiiiiiiiiiiiiiiiiiiiii : " +error);
-		
-		
 		if (error != null) {
             model.addAttribute("error", "Tài Khoản Hoặc Mật Khẩu Không Đúng");
 		}
 		
-		return "login";
+		return "adminlogin";
 	}
 	  private static final HttpTransport TRANSPORT = new NetHttpTransport();
 	    private static final JsonFactory JSON_FACTORY = new JacksonFactory();
@@ -59,11 +57,6 @@ public class LoginController {
 			    // Or, if multiple clients access the backend:
 			    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
 			    .build();
-		/*	GoogleIdTokenVerifier verifierForNewAndroidClients = new GoogleIdTokenVerifier.Builder(UrlFetchTransport.getDefaultInstance(), jacksonFactory)
-	            .setAudience(Arrays.asList(CRLConstants.IOS_CLIENT_ID, CRLConstants.ANDROID_CLIENT_ID_RELEASE, CRLConstants.ANDROID_CLIENT_ID_DEBUG))
-	            .setIssuer("https://accounts.google.com")
-	            .build();*/
-			// (Receive idTokenString by HTTPS POST)
 
 			GoogleIdToken idToken;
 			try {
@@ -110,5 +103,6 @@ public class LoginController {
 	    }
 	    return "redirect:/";
 	}
+	
 	
 }
