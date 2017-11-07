@@ -21,7 +21,8 @@ import com.javaweb.model.Users;
 
 @Service
 public class FacebookSignInAdapter implements SignInAdapter {
-	
+	@Autowired
+	UsersService usersService; 
 	   
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
@@ -30,6 +31,11 @@ public class FacebookSignInAdapter implements SignInAdapter {
 		System.out.println("THU FACEBOOK 1 :" + connection.getImageUrl());
 		System.out.println("THU FACEBOOK 2 :" + connection.getProfileUrl());
 		System.out.println("THU FACEBOOK 3 :" + connection.getKey());
+		try {
+			System.out.println(usersService.findByUserName(connection.getDisplayName()).getEmail());
+		} catch (Exception e) {
+			System.out.println(e.getMessage() + "Lỗi FAAAAAAAAAAAAAAAAAAAAA");
+		}
 		SecurityContextHolder.getContext()
 		.setAuthentication(new UsernamePasswordAuthenticationToken(connection.getDisplayName(), 
 				null, Arrays.asList(new SimpleGrantedAuthority("ROLE_FACEBOOK"))));

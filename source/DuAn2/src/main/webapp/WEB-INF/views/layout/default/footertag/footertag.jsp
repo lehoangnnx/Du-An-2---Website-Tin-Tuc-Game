@@ -285,8 +285,7 @@
 					$(document).ajaxSend(function(e, xhr, options) {
 						xhr.setRequestHeader(header, token);
 					});
-					$
-							.ajax({
+					$.ajax({
 
 								type : "POST",
 								//contentType : "application/json",
@@ -355,7 +354,16 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("id_token: " + id_token);
-
+       
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '${pageContext.request.contextPath}/signin-google?idtoken='+id_token,true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  console.log('Signed in as: ' + xhr.responseText);
+		};
+		xhr.send("idtoken="+ id_token);
+           // document.location.href = '${pageContext.request.contextPath}/'; 
+        
    }
    </script>
    
