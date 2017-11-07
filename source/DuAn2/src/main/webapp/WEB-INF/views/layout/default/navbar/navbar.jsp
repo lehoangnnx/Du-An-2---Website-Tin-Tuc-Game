@@ -42,18 +42,23 @@
 					<security:authorize access="isAuthenticated()">
 						<security:authentication var="principal" property="principal" />
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${user.firstName} ${ user.lastName   } <span
-								class="caret"></span>
+							data-toggle="dropdown" href="#">${user.firstName} ${ user.lastName   }
+								<span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
-							<security:authorize access="hasRole('FACEBOOK || GOOGLE')">
+								<security:authorize access="hasRole('MEMBER')">
 									<li><a href="#">Thông Tin</a></li>
-							</security:authorize>
-								
+									
+								</security:authorize>
+								<security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
+									<li><a href="#">Trang Cá Nhân</a></li>
+								</security:authorize>
+
 								<security:authorize access="hasRole('ADMIN')">
 									<li><a href="${contextPath }/admin/index">Quản Trị</a></li>
 								</security:authorize>
-								<li><a href="${contextPath }/logout">Đăng Xuất</a></li>
+								<li><a onclick="signOut();" href="${contextPath }/logout">Đăng Xuất</a></li>
+								
 
 
 
@@ -142,16 +147,15 @@
 					<input type="hidden" name="scope" value="public_profile" />
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					
-					<button type="submit" class="loginBtn loginBtn--facebook">Login with
-					Facebook</button>
-				</form:form>
-				
 
-			
-				
+					<button type="submit" class="loginBtn loginBtn--facebook">Login
+						with Facebook</button>
+				</form:form>
+
+
 			</div>
-			<div class="g-signin2 " data-width="290" data-height="32" data-longtitle="true" data-onsuccess="onSignIn"></div>
+			<div id="btn-google" class="g-signin2 " data-width="290"
+				data-height="32" data-longtitle="true" data-onsuccess="onSignIn"></div>
 			<div class="centeredText">
 				<span>Or use your Email address</span>
 			</div>
@@ -174,8 +178,8 @@
 					id="password" name="password" type="password" /> <br /> <label
 					id="msgerror"></label> <br />
 				<div class="checkbox">
-					<input id="remember" type="checkbox" name="remember-me" /> <label for="remember">Remember
-						me on this computer</label>
+					<input id="remember" type="checkbox" name="remember-me" /> <label
+						for="remember">Remember me on this computer</label>
 				</div>
 
 				<div class="action_btns">

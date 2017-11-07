@@ -25,7 +25,7 @@ import com.javaweb.model.Users;
 public class FacebookConnectionSignup implements ConnectionSignUp {
 
     @Autowired
-    private UsersService usersService;
+     UsersService usersService;
     @Autowired
     RolesService rolesService;
     

@@ -34,6 +34,7 @@ public class HomeController {
 		
 		
 		if (authentication != null) {
+			System.out.println("VAO DAY");
 			session.setAttribute("user", usersService.findByUserName(authentication.getName()));
 			
 		}

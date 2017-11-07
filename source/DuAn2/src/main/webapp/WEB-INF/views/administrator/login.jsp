@@ -39,24 +39,38 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<style>
-/* Paste this css to your style sheet file or under head tag */
-/* This only works with JavaScript, 
-if it's not present, don't show loader */
-.no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(../files/images/Preloader_3.gif) center no-repeat #fff;
+
+#LoadingImage {
+   bottom: 0;
+    right: 0;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.9;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+ 
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    overflow: auto;
+}
+
+#LoadingImage img {
+ position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
 }
 </style>
 </head>
 <body class="auth-bg">
-<div class="se-pre-con"></div>
+	
 	<div class="auth">
 		<div class="auth-header">
 			<div class="mb-2">
@@ -103,7 +117,9 @@ if it's not present, don't show loader */
 			</div>
 		</div>
 	</div>
-	
+	<div id="LoadingImage" style="display: none">
+  <img src="${contextPath }/images/Preloader_3.gif" />
+</div>
 	<!-- Vendor JS -->
 	<script type="text/javascript"
 		src="${contextPath }/js/jquery/jquery-1.12.3.min.js"></script>
@@ -111,13 +127,29 @@ if it's not present, don't show loader */
 		src="${contextPath }/js/tether/js/tether.min.js"></script>
 	<script type="text/javascript"
 		src="${contextPath }/js/bootstrap4/js/bootstrap.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#LoadingImage").show();
+		}); 
+	$(window).load(function() {
+		// Animate loader off screen
+		$("#LoadingImage").hide();
+	});
+	</script>
 		<script>
-	
+		/* $(document).ajaxStart(function () {
+			console.log("BAT DAU");
+			$("#LoadingImage").show();
+        });
+
+        $(document).ajaxStop(function () {
+        	console.log("STOP");
+        	$("#LoadingImage").hide();
+        }); */
 	var timeout = null;
 	function login() { 
 			
-			console.log(($('#login-form').serialize()));
+			
 		clearTimeout(timeout);
 		timeout = setTimeout(
 				function() {
@@ -136,13 +168,15 @@ if it's not present, don't show loader */
 								//dataType: 'json',
 								// timeout: 600000,
 								success : function(result) {
-									console.log(result);
+									$("#LoadingImage").hide();
+							
 									if(result == 'Bad credentials'){
 										$('#msgerror').text('* Sai Tên Đăng Nhập Hoặc Mật Khẩu');
 									}else if(result == 'User account is locked'){
 										$('#msgerror').text('* Tài Khoản Đã Bị Khóa');
 									}else if(result == 'success'){
 										$('#msgerror').text('');
+										
 										window.location.href = "${pageContext.request.contextPath}/";
 										
 									}
@@ -157,12 +191,9 @@ if it's not present, don't show loader */
 	
 	</script>
 	<script>
-			var timeoutbtnlogin = null;
+			
 			$('#btn-login').click(function (){
-				$(".se-pre-con").fadeOut("slow");
-				clearTimeout(timeoutbtnlogin);
-				timeoutbtnlogin = setTimeout(function() {
-					console.log('btn login');
+				
 					var userName = $('#userName').val();
 					var password = $('#password').val();
 					if(userName == '' && password == ''  ){
@@ -172,20 +203,13 @@ if it's not present, don't show loader */
 					}else if(password ==''){
 						$('#msgerror').text('* Vui Lòng Nhập Mật Khẩu');
 					}else {
+						$("#LoadingImage").show();
 						$('#msgerror').text('');
+						
 						login();
 					}
-			}, 1000);
 		}); 
 	</script>
-	<script>
-	//paste this code under head tag or in a seperate js file.
-	// Wait for window load
-	$(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut("slow");
-	});
 	
-</script>
 </body>
 </html>
