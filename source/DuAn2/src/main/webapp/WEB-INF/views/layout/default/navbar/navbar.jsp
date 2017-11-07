@@ -14,7 +14,8 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<div class="text-center">
-					<a class="navbar-brand " href="index.html"><h1>
+					<a class="navbar-brand " href="index.html"
+						style="margin-top: 11px;"><h1>
 							<img class=" " src="images/logo2.png" alt="logo">
 						</h1></a>
 				</div>
@@ -25,19 +26,25 @@
 					<li class="scroll"><a href="#">Review</a></li>
 					<li class="scroll"><a href="#">Video</a></li>
 					<li class="scroll"><a href="#">Khám phá</a></li>
-					<li class="scroll"><a href="#">Trải nghiệm</a></li>
-					<li class="scroll"><a href="#">Forum</a></li>
-					<li class="scroll"><a href="#">Tải game</a></li>
+					<li class="dropdown head-dpdn"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown"><i
+							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Tải game</a></li>
+							<li><a href="#">Forum</a></li>
+							<li><a href="#">Trải nghiệm</a></li>
+						</ul></li>
 					<li class="scroll"><a href="#">Liên hệ</a></li>
 
 
-					 <security:authorize access="isAuthenticated()">
+					<security:authorize access="isAuthenticated()">
 						<security:authentication var="principal" property="principal" />
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name} :
-							${pageContext.request.userPrincipal.authorities}
-							<span
-								class="caret"></span></a>
+							data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}
+								: ${pageContext.request.userPrincipal.authorities} <span
+								class="caret"></span>
+						</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Thông Tin</a></li>
 								<security:authorize access="hasRole('ADMIN')">
@@ -51,7 +58,7 @@
 
 
 							</ul></li>
-					</security:authorize> 
+					</security:authorize>
 					<security:authorize access="!isAuthenticated()">
 						<li class="scroll"><a id="modal_trigger" href="#modal">Đăng
 								Nhập</a></li>
@@ -132,14 +139,15 @@
 		<div class="social_login">
 			<div class="">
 				<form:form action="${contextPath }/signin/facebook" method="POST">
-					<input type="hidden" name="scope" value="public_profile" /> 
-					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<input type="hidden" name="scope" value="public_profile" />
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 					<input type="submit" value="Login using Facebook" />
 				</form:form>
 				<a href="#" class="social_box fb"> <span class="icon"><i
 						class="fa fa-facebook"></i></span> <span class="icon_title">Connect
 						with Facebook</span>
-				
+
 				</a> <a href="#" class="social_box google"> <span class="icon"><i
 						class="fa fa-google-plus"></i></span> <span class="icon_title">Connect
 						with Google</span>
