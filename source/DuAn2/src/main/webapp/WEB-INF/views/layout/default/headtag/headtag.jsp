@@ -7,6 +7,9 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/bootstrap1.min.css" />
 
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/vote.css" />
+
+
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/font-awesome.min.css" />
 
 <link href="${contextPath}/css/css/main.css" rel="stylesheet">

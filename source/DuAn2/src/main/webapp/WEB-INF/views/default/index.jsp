@@ -103,7 +103,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- BEGIN .content-panel -->
+	<!-- Tin mới -->
 	<div class="content-panel">
 		<div class="content-panel-title">
 
@@ -270,12 +270,12 @@
 				class="page-numbers" href="#">5</a> <a class="next page-numbers"
 				href="#">Tiếp theo<i class="fa fa-angle-right"></i></a>
 		</div>
-		<!-- END .content-panel -->
+		<!-- End tin mới -->
 	</div>
 
-	<!-- BEGIN .content-panel -->
+
 	<div class="container hidden-xs hidden-sm"></div>
-	<!-- BEGIN .content-panel -->
+
 
 	<div class="content-panel">
 		<div class="content-panel-title">
@@ -396,7 +396,7 @@
 			</div>
 
 		</div>
-		<!-- END .content-panel -->
+		<!-- Danh sách game -->
 	</div>
 	<div class="content-panel">
 		<div class="content-panel-title">
@@ -565,7 +565,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- END .content-panel -->
+		<!-- End danh sách game -->
 	</div>
 
 	<div class="content-panel">
@@ -637,7 +637,7 @@
 			</div>
 
 		</div>
-		<!-- END .content-panel -->
+		<!-- END -->
 	</div>
 
 

@@ -6563,5 +6563,9 @@ div.bbp-breadcrumb {
 }
 
 /*======================================================*/
-
-
+.xemthem {
+	padding: 10px 1px;
+    text-align: center;
+    background: #f7f7f7;
+    margin-bottom: 20px;
+}
