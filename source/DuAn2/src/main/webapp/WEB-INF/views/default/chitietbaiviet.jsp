@@ -383,24 +383,8 @@
 		</div>
 		<!-- Danh sách game -->
 	</div>
-	<div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:700px;margin:0px auto 0px;">
-        <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
-            <ul class="amazingslider-slides" style="display:none;">
-                <li><img src="images/slider/1.jpg" alt="LMHT: Riot thưởng cho bậc Thách Đấu phần thưởng độc đáo trong game, chỉ mùa 7 này mới có"  title="LMHT: Riot thưởng cho bậc Thách Đấu phần thưởng độc đáo trong game, chỉ mùa 7 này mới có" />
-                </li>
-                <li><img src="images/slider/2.jpg" alt="Superman và 4 siêu anh hùng có &quot;sở thích đặc biệt&quot; với áo choàng đỏ"  title="Superman và 4 siêu anh hùng có &quot;sở thích đặc biệt&quot; với áo choàng đỏ" />
-                </li>
-                <li><img src="images/slider/3.jpg" alt="LMHT: Tìm hiểu ngọc Quyền Năng Bất Diệt, farm máu vĩnh viễn như Sion"  title="LMHT: Tìm hiểu ngọc Quyền Năng Bất Diệt, farm máu vĩnh viễn như Sion" />
-                </li>
-                <li><img src="images/slider/4.jpg" alt="Những thông tin bên lề thú vị về bộ phim S.M.A.R.T. Chase mới của nam tài tử Cướp biển Caribbean"  title="Những thông tin bên lề thú vị về bộ phim S.M.A.R.T. Chase mới của nam tài tử Cướp biển Caribbean" />
-                </li>
-                <li><img src="images/slider/5.jpg" alt="FIFA Online 3 - Quá khó để lắc hông như Ronaldinho Ultimate Legend?"  title="FIFA Online 3 - Quá khó để lắc hông như Ronaldinho Ultimate Legend?" />
-                </li>
-                <li><img src="images/slider/6.jpg" alt="One Piece: Giật mình với con số truy nã 500.000.000 Belli của Luffy Mũ Rơm"  title="One Piece: Giật mình với con số truy nã 500.000.000 Belli của Luffy Mũ Rơm" />
-                </li>
-            </ul>
-        </div>
-    </div><br>
+
+	<br>
 	<div class="content-panel">
 		<div class="content-panel-title">
 
