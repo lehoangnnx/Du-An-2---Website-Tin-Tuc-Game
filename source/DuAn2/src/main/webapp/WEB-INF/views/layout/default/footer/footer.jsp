@@ -38,3 +38,6 @@
 			class="fa fa-angle-up"></i></a>
 
 	</footer>
+	<div id="LoadingImage" style="display: none">
+  <img src="${contextPath }/images/Preloader_3.gif" />
+</div>

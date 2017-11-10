@@ -168,7 +168,7 @@ public class AdminUsersController {
 			return "redirect:/admin/users/" + userId;
 
 		}
-		return "redirect:/admin/users/" + userId;
+		return "redirect:/admin/users?status="+status;
 		// return new ModelAndView(new RedirectView("/admin/users/"+userId),"message",
 		// "abc");
 		// return new ModelAndView("users","message", "abc" );

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.javaweb.model.Roles;
 import com.javaweb.model.Users;
 import com.javaweb.repository.UsersRepository;
+import org.springframework.web.util.HtmlUtils;
 
 
 @Service
@@ -27,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Transactional
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		System.out.println("UserName la gì" + userName);
-		Users user = usersRepository.findByUserName(userName);
+		Users user = usersRepository.findByUserName(HtmlUtils.htmlEscape(userName));
 		System.out.println("123" + user);
 		if (user == null) {
 			
@@ -47,7 +48,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 		System.out.println("Status :"+status);
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPasword(), true, 
+		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), true,
 				true, true, status, grantedAuthorities);
 	}
 

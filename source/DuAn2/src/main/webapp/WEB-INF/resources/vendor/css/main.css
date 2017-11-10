@@ -292,14 +292,14 @@ iframe {
 .w3ls-cart i.fa {
 	margin-right: 6px;
 }
-/*--Đómg video moi--*/
+/*--Ä�Ã³mg video moi--*/
 
-/*--Tin mới liên quan--*/
+/*--Tin má»›i liÃªn quan--*/
 .item-header img {
 	height: 50px;
 	width: 50px;
 }
-/*--Đóng tin mới liên quan--*/
+/*--Ä�Ã³ng tin má»›i liÃªn quan--*/
 
 /*! CSS Used from: http://gamekcdn.com/web_css/main-20170921v2.min.css */
 * {
@@ -1970,3 +1970,9 @@ input[type=text], select, textarea {
     resize: vertical;
 }
 /*=========================================================*/
+.xemthem {
+	padding: 10px 1px;
+    text-align: center;
+    background: #f7f7f7;
+    margin-bottom: 20px;
+}

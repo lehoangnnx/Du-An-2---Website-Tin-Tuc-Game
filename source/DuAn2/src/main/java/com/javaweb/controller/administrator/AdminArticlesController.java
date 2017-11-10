@@ -249,7 +249,7 @@ public class AdminArticlesController {
 			return "redirect:/admin/addarticles";
 		}
 
-		return "redirect:/admin/articles";
+		return "redirect:/admin/articles?status="+status;
 
 	}
 
@@ -402,7 +402,7 @@ public class AdminArticlesController {
 			return "redirect:/admin/updatearticles/" + articleId;
 		}
 
-		return "redirect:/admin/articles";
+		return "redirect:/admin/articles?status="+status;
 	}
 
 	@DeleteMapping("/articles")

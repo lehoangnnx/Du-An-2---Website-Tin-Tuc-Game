@@ -21,6 +21,18 @@
 		<form:form id="formGames" action="${contextPath }/admin/games"
 			method="post" enctype="multipart/form-data">
 
+			<div class="form-group row">
+				<label class="col-md-2 control-label" for="form_control_1">Ảnh Game</label>
+				<div class="col-md-10">
+					<input name="images" type="file" id="input-file-max-fs"
+						   required="required" value="${games.images}" class="dropify"
+						   data-max-file-size="15M"
+						   data-default-file="${contextPath}/images/games/${games.images}">
+
+					<label id="input-file-max-fs-error" class="error" for="input-file-max-fs"></label>
+				</div>
+			</div>
+
 			<div id="divTitle" class="form-group row">
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Tên
 					Game</label>

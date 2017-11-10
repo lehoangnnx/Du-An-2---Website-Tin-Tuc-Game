@@ -22,17 +22,24 @@
 
 
 	<definition name="home" extends="defaultlayout">
-        <put-attribute name="title" value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/default/index.jsp"/>
-    </definition>
+		<put-attribute name="title"
+			value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game" />
+		<put-attribute name="body" value="/WEB-INF/views/default/index.jsp" />
+	</definition>
 
 	<definition name="chitiet" extends="defaultlayout">
-        <put-attribute name="title" value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/default/chitietbaiviet.jsp"/>
-    </definition>
+		<put-attribute name="title"
+			value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/default/chitietbaiviet.jsp" />
+	</definition>
 
-	
+	<definition name="403" extends="defaultlayout">
+		<put-attribute name="title" value="Trag Loi" />
+		<put-attribute name="body" value="/WEB-INF/views/default/403.jsp" />
+		<put-attribute name="sitebar" value="" />
+	</definition>
+
+
 
 </tiles-definitions>

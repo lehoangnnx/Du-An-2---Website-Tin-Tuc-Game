@@ -67,7 +67,7 @@ public class AdminArticlesCategoryController {
 			return "redirect:/admin/articles/categorys/addcategorys";
 		}
 		
-		return "redirect:/admin/articles/categorys";
+		return "redirect:/admin/articles/categorys?status="+status;
 	}
 	
 	@GetMapping("/articles/categorys/{articleCategoryId}")
@@ -106,7 +106,7 @@ public class AdminArticlesCategoryController {
 		}
 		
 		
-		return"redirect:/admin/articles/categorys";
+		return"redirect:/admin/articles/categorys?status="+status;
 	}
 	
 	@DeleteMapping("/articles/categorys")

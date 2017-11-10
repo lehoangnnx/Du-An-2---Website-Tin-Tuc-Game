@@ -6,8 +6,7 @@
 	<groupId>com.javaweb</groupId>
 	<artifactId>DuAn2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
+	<packaging>war</packaging>
 	<name>DuAn2</name>
 	<description>Du An 2</description>
 
@@ -61,6 +60,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>compile</scope>
 			<!--<scope>provided</scope> -->
 		</dependency>
 		<!-- JSTL -->
@@ -77,7 +77,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 		<!-- Apache Tiles -->
 		<dependency>
@@ -93,11 +93,8 @@
 
 			<scope>compile</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.googlecode.json-simple</groupId> <artifactId>json-simple</artifactId> 
+			<version>1.1.1</version> </dependency> -->
 		<!-- Spring Dev Tool -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -110,11 +107,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			
+
 
 		</dependency>
 
@@ -134,6 +131,7 @@
 
 
 		<dependency>
+<<<<<<< HEAD
      <groupId>com.google.api-client</groupId>
      <artifactId>google-api-client</artifactId>
      <version>1.23.0</version>
@@ -145,6 +143,27 @@
             <version>1.23.0</version>
         </dependency>
  
+=======
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- Spring Boot Starter Mail dependency -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+>>>>>>> d5e98ee65ca87b4c56aacc66c2e8e104b7355f9a
 
 
 	</dependencies>
@@ -154,9 +173,25 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<url>http://repo.spring.io/snapshot</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<url>http://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>

@@ -73,7 +73,7 @@ public class AdminGamesCategoryController {
 			return "redirect:/admin/games/categorys/addcategorys";
 		}
 		
-		return "redirect:/admin/games/categorys";
+		return "redirect:/admin/games/categorys?status="+status;
 	}
 	
 	@GetMapping("/games/categorys/{gameCategoryId}")
@@ -113,7 +113,7 @@ public class AdminGamesCategoryController {
 		}
 		
 		
-		return"redirect:/admin/games/categorys";
+		return"redirect:/admin/games/categorys?status="+status;
 	}
 	
 	@DeleteMapping("/games/categorys")
