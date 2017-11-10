@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,7 @@ public class ForgotPasswordAjax {
 	public String forgotPassword(@RequestBody String userName, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		Users users = null;
 		try {
+
 			users = usersService.findByUserName(userName);
 			if (users == null) {
 				return "error";
@@ -44,6 +47,9 @@ public class ForgotPasswordAjax {
 			             request.getContextPath() + "/forgotpassword/" + random;
 				emailService.sendSimpleMessage("nhungngaycobongem@gmail.com", "WebsiteGame24h.com - Password Reset",
 						url);
+				emailService.sendSimpleMessageUsingTemplate("nhungngaycobongem@gmail.com","WebsiteGame24h.com - Password Reset",
+				templateSimpleMessage(),templateSimpleMessage().getText()
+				);
 				users.setForgotpassword(random);
 				usersService.saveorupdate(users);
 				String getEmail = users.getEmail();
@@ -63,5 +69,12 @@ public class ForgotPasswordAjax {
 		for (int i = 0; i < len; i++)
 			sb.append(AB.charAt(rnd.nextInt(AB.length())));
 		return sb.toString();
+	}
+	@Bean
+	public SimpleMailMessage templateSimpleMessage() {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setText(
+				"<button>ABC</button>");
+		return message;
 	}
 }

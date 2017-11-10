@@ -33,9 +33,10 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	ArticleCategoryRepository  articleCategoryRepository;
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
+
 		/*// Roles
 		if (rolesRepository.findByName("ROLE_ADMIN") == null) {
 			rolesRepository.save(new Roles("ROLE_ADMIN", "active"));

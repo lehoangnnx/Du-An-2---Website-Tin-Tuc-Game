@@ -1,23 +1,22 @@
 package com.javaweb.controller;
 
-import java.security.Principal;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import com.javaweb.model.Article;
+import com.javaweb.model.ArticleCategory;
+import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.support.RequestHandledEvent;
 
-import com.javaweb.model.Users;
-import com.javaweb.service.PagesService;
-import com.javaweb.service.RolesService;
-import com.javaweb.service.UsersService;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -31,10 +30,12 @@ public class DefaultController {
 	PagesService pagesService;
 	@Autowired
 	UsersService usersService;
-	
-	
+	@Autowired
+	ArticleCategoryService articleCategoryService;
+	@Autowired
+	ArticleService articleService;
 	@RequestMapping(value = {"/", "/home"})
-	public String index(Principal p , Authentication authentication, HttpSession session) {
+	public String index(Principal p , Authentication authentication, HttpSession session,Model model) {
 		
 		
 		if (authentication != null) {
@@ -44,9 +45,36 @@ public class DefaultController {
 			
 		}
 		
-		System.out.println("GET SESSION :"+session.getAttribute("user"));
+		ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+		List<Article> getArticleCategoryTopVideoList = articleService.findByArticleCategoriesAndIsHot(getArticleCategoryVideo, (byte) 1)
+				.stream().sorted(Comparator.comparing(Article::getViews).reversed()).limit(5)
+				.collect(Collectors.toList());
+		List<Article> getArticleCategoryNewVideoList = articleService.findByArticleCategories(getArticleCategoryVideo)
+				.stream().sorted(Comparator.comparing(Article::getCreatedDate).reversed()).limit(10)
+				.collect(Collectors.toList());
+		model.addAttribute("getArticleCategoryVideo",getArticleCategoryVideo);
+		model.addAttribute("getArticleCategoryTopVideoList",getArticleCategoryTopVideoList);
+		model.addAttribute("getArticleCategoryNewVideoList",getArticleCategoryNewVideoList);
+
+
+
+
+
 		return "home";
 	}
+
+
+
+	@ModelAttribute("articleCategoryList")
+	public List<ArticleCategory> getCategory(){
+		List<ArticleCategory>  articleCategoryList = articleCategoryService.findAll()
+				.stream().filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+
+		return  articleCategoryList;
+
+	}
+
+
 	@RequestMapping("/chitiet")
 	String chitiet() {
 		return "chitiet";
