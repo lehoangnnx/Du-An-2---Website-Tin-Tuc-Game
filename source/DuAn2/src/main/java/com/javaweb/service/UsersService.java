@@ -11,5 +11,5 @@ public interface UsersService {
 	Users findByUserId(Integer userId);
 	Users findByUserName(String userName);
 	Users findByEmail(String email);
-	Users findByForgotPassword(String forgotpassword);
+	Users findByForgotpassword(String forgotpassword);
 }

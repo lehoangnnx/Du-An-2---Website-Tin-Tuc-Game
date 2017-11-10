@@ -1,5 +1,6 @@
 package com.javaweb.controller;
 
+import com.javaweb.model.Users;
 import com.javaweb.service.UsersService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ public class ForgotPassword {
     UsersService  usersService;
     @GetMapping("/forgotpassword/{key}")
     public String forgotPassword(@PathVariable("key") String key){
-        User user = null;
+        Users user = null;
         try {
-            users = usersService.findByForgotPassword(key);
+            user = usersService.findByForgotpassword(key);
             if (user == null){
                 return "redirect:/403";
             }
@@ -27,5 +28,5 @@ public class ForgotPassword {
         return "forgotpassword";
     }
 
-    @PostMapping
+   
 }

@@ -37,8 +37,8 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public Users findByForgotPassword(String forgotpassword) {
-		return usersRepository.findByForgotPassword(forgotpassword);
+	public Users findByForgotpassword(String forgotpassword) {
+		return usersRepository.findByForgotpassword(forgotpassword);
 	}
 
 	@Override
