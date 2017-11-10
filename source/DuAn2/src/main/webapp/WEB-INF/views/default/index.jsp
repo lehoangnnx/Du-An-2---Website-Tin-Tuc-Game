@@ -4,6 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <div class="content-block-single">
 
@@ -11,10 +13,11 @@
 		<div class="content-panel-title">
 			<div class="feed-widget-header">
 				<h2 class="widget-title feed-widget-title">
-					<a href="#">VIDEO</a>
+					<a href="${contextPath}/${getArticleCategoryVideo.slug}">VIDEO MỚI</a>
 				</h2>
+
 				<div class="feed-widget-viewall">
-					<a href="#"><span>XEM THÊM</span> <i
+					<a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=news"><span>XEM THÊM</span> <i
 						class="fa fa-chevron-right"></i></a>
 				</div>
 				<div class="clear"></div>
@@ -30,68 +33,23 @@
 							<div id="amazingslider-1"
 								style="display: block; position: relative; margin: 0 auto;">
 								<ul class="amazingslider-slides" style="display: none;">
-									<li><img src="images/slider/1.jpg"
-										alt="Optimus Stream | Giáo Sư Cường 10 Tỉ"
-										title="Optimus Stream | Giáo Sư Cường 10 Tỉ"
-										data-description="1.658.932 lượt xem" /> <video
+									<c:forEach var="gacnvl" items="${getArticleCategoryNewVideoList}">
+									<li><img src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
+										alt="${fn:substring(gacnvl.title, 0, 50)} ..."
+										title="${fn:substring(gacnvl.title, 0, 50)} ..."
+										data-description="${gacnvl.views} lượt xem" /> <video
 											preload="none"
-											src="<iframe width=" 560" height="315"
-																src="https://www.youtube.com/embed/VLD4czIWqC0"
-																frameborder="0" allowfullscreen>
-																</iframe>
-																">
-										</video></li>
+											src="${gacnvl.video}">
+									</video></li>
+									</c:forEach>
 
-									<li><img src="images/slider/2.jpg"
-										alt="BLV Hoàng Luân - Optimus về đội Minas - Lý do QTV"
-										title="BLV Hoàng Luân - Optimus về đội Minas - Lý do QTV"
-										data-description="12.638.000 lượt xem" /> <video
-											preload="none"
-											src="https://www.youtube.com/embed/NdwayoAXmfI"></video></li>
-									<li><img src="images/slider/3.jpg"
-										alt="EVOS Trở Thành “Super Team” KT Rolster Của Việt Nam"
-										title="EVOS Trở Thành “Super Team” KT Rolster Của Việt Nam"
-										data-description="1.638.550 lượt xem" /> <video
-											preload="none"
-											src="https://www.youtube.com/embed/y8chU0BB40w"></video></li>
-									<li><img src="images/slider/3.jpg"
-										alt="ASSASSIN&apos;S CREED ORIGINS #1: SÁT THỦ TRỞ VỀ AI CẬP CỔ ĐẠI"
-										title="ASSASSIN&apos;S CREED ORIGINS #1: SÁT THỦ TRỞ VỀ AI CẬP CỔ ĐẠI"
-										data-description="1.338.550 lượt xem" /> <video
-											preload="none"
-											src="https://www.youtube.com/embed/xXW3DHAKOpc"></video></li>
-									<li><img src="images/slider/5.jpg"
-										alt="[ Bình Luận CF ] Snake DBR - Tiền Zombie v4"
-										title="[ Bình Luận CF ] Snake DBR - Tiền Zombie v4"
-										data-description="1.338.550 lượt xem" /> <video
-											preload="none"
-											src="https://www.youtube.com/embed/j45B481Uahs"></video></li>
-									<li><img src="images/slider/6.jpg"
-										alt="Những lựa chọn &quot;Độc Nhất Vô Nhị&quot; trong sự nghiệp thi đấu của FAKER"
-										title="Những lựa chọn &quot;Độc Nhất Vô Nhị&quot; trong sự nghiệp thi đấu của FAKER"
-										data-description="66.338.550 lượt xem" /> <video
-											preload="none"
-											src="https://www.youtube.com/embed/4kGcWI-agqU"></video></li>
 								</ul>
 								<ul class="amazingslider-thumbnails" style="display: none;">
-									<li><img src="images/slider/1-tn.jpg"
-										alt="Optimus Stream | Giáo Sư Cường 10 Tỉ"
-										title="Optimus Stream | Giáo Sư Cường 10 Tỉ" /></li>
-									<li><img src="images/slider/2-tn.jpg"
-										alt="BLV Hoàng Luân - Optimus về đội Minas - Lý do QTV"
-										title="BLV Hoàng Luân - Optimus về đội Minas - Lý do QTV" /></li>
-									<li><img src="images/slider/3-tn.jpg"
-										alt="EVOS Trở Thành “Super Team” KT Rolster Của Việt Nam"
-										title="EVOS Trở Thành “Super Team” KT Rolster Của Việt Nam" /></li>
-									<li><img src="images/slider/4-tn.jpg"
-										alt="ASSASSIN&apos;S CREED ORIGINS #1: SÁT THỦ TRỞ VỀ AI CẬP CỔ ĐẠI"
-										title="ASSASSIN&apos;S CREED ORIGINS #1: SÁT THỦ TRỞ VỀ AI CẬP CỔ ĐẠI" /></li>
-									<li><img src="images/slider/5-tn.jpg"
-										alt="[ Bình Luận CF ] Snake DBR - Tiền Zombie v4"
-										title="[ Bình Luận CF ] Snake DBR - Tiền Zombie v4" /></li>
-									<li><img src="images/slider/6-tn.jpg"
-										alt="Những lựa chọn &quot;Độc Nhất Vô Nhị&quot; trong sự nghiệp thi đấu của FAKER"
-										title="Những lựa chọn &quot;Độc Nhất Vô Nhị&quot; trong sự nghiệp thi đấu của FAKER" /></li>
+									<c:forEach var="gacnvl" items="${getArticleCategoryNewVideoList}">
+									<li><img src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
+										alt="${gacnvl.title}"
+										title="${gacnvl.title}" /></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -103,6 +61,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- Tin mới -->
 	<div class="content-panel">
 		<div class="content-panel-title">
@@ -121,12 +80,12 @@
 		</div>
 		<div class="content-panel-body article-list">
 			<div class="item">
-				<div class="item-header">
-					<a href="#"> <span class="comment-tag"><i
+				<div class="item-header hover14 column">
+					<a href=""> <span class="comment-tag"><i
 							class="fa fa-comment-o"></i>290<i></i></span> <span
 						class="read-more-wrapper"><span class="read-more">Xem
 								chi tiết<i></i>
-						</span></span> <img src="images/anh/1.jpg" alt="" />
+					</span></span> <figure><img src="images/anh/1.jpg" alt="" /></figure>
 					</a>
 				</div>
 				<div class="item-content">

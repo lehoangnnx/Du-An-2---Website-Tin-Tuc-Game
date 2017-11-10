@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <section class="content">
 
@@ -29,8 +31,8 @@
 
                         <div id="respond" class="comment-respond">
 
-                            <form action="#" class="comment-form">
-
+                            <form:form action="${contextPath}/forgotpassword" method="post" class="comment-form">
+                                <input hidden value="${key}" name="key" />
                                 <div class="alert-message alert-green text-center">
                                     <strong>Nhập Mật Khẩu Mới Cho Tài Khoản Của Bạn</strong>
                                 </div>
@@ -45,21 +47,24 @@
                                     <p class="contact-form-user">
                                         <label class="label-input">
                                             <span>Mật Khẩu Mới<i class="required">*</i></span>
-                                            <input type="password" placeholder="Mật Khẩu Mới" name="newpassword" value="">
+                                            <input type="password" placeholder="Mật Khẩu Mới" id="passwordfg" name="passwordfg" />
                                         </label>
                                     </p>
                                     <p class="contact-form-email">
                                         <label class="label-input">
                                             <span>Nhập Lại Mật Khẩu Mới<i class="required">*</i></span>
-                                            <input type="password" placeholder="Nhập Lại Mật Khẩu Mới" name="rpnewpassword" value="">
+                                            <input type="password" placeholder="Nhập Lại Mật Khẩu Mới" name="rppasswordfg"
+                                                   id="rppasswordfg" />
                                         </label>
                                     </p>
+                                    <label id="msgerror-fp" class="msgerror"></label> <br/>
                                     <p class="form-submit">
-                                        <input name="submit" type="submit" id="submit" class="submit button pull-right" value="Thay Đổi">
+                                        <button  name="submit" type="button" id="btn-forgotpassword" class="submit button pull-right">Thay Đổi</button>
+
                                     </p>
                                 </div>
                                 </div>
-                            </form>
+                            </form:form>
 
                         </div>
 
@@ -76,9 +81,4 @@
 
         </div>
 
-
-        <!-- END .wrapper -->
-
-
-    <!-- BEGIN .content -->
 </section>

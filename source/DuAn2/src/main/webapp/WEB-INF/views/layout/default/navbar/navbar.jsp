@@ -14,22 +14,24 @@
                     <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
                 <div class="text-center">
-                    <a class="navbar-brand " href="index.html"
+                    <a class="navbar-brand " href="${contextPath}/"
                        style="margin-top: 11px;"><h1>
-                        <img class=" " src="images/logo2.png" alt="logo">
+                        <img class=" " src="${contextPath}/images/logo2.png" alt="logo">
                     </h1></a>
                 </div>
             </div>
             <div class="collapse navbar-collapse ">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="scroll active"><a href="#navigation">Trang chủ</a></li>
-                    <li class="scroll"><a href="#">Review</a></li>
-                    <li class="scroll"><a href="#">Video</a></li>
-                    <li class="scroll"><a href="#">Khám phá</a></li>
-                    <li class="dropdown head-dpdn"><a href="#"
-                                                      class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
-                            class="caret"></span></a>
+                    <c:forEach var="atl" items="${articleCategoryList}">
+                        <c:if test="${atl.subArticleCategoryId == 0}">
+                            <li class="scroll"><a href="${atl.slug}">${atl.name}</a></li>
+
+                        </c:if>
+                    </c:forEach>
+
+                    <li class="dropdown head-dpdn"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-percent" aria-hidden="true"></i>Giải trí<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Tải game</a></li>
                             <li><a href="#">Forum</a></li>
@@ -38,7 +40,6 @@
                     </li>
                     <li class="scroll"><a href="#">Liên hệ</a></li>
 
-                    <li class="scroll"><a href="#" onclick="lay();">THU AJAX</a></li>
 
                     <!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->
