@@ -145,7 +145,7 @@ a.scroll-up:hover i {
 }
 </style>
 <style>
-#msgerror{
+.msgerror {
 	color: red;
 	font-size: smaller;
 }

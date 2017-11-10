@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
+import com.javaweb.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,9 +39,16 @@ public class LoginControllerAjax {
 	UsersService usersService;
 	@Autowired
 	RolesService rolesService;
+
 	private static final HttpTransport TRANSPORT = new NetHttpTransport();
 	private static final JsonFactory JSON_FACTORY = new JacksonFactory();
-
+	
+	@GetMapping("/lay")
+	public List<Users> l (){
+		List<Users> u = usersService.findAll();
+		return u;
+	}
+	
 	@PostMapping("/signin-google")
 	public String String(@RequestBody String idtoken
 
@@ -77,7 +86,7 @@ public class LoginControllerAjax {
 				if (user == null) {
 					user = new Users();
 					user.setUserName(userId);
-					user.setPasword(randomAlphabetic(8));
+					user.setPassword(randomAlphabetic(8));
 					user.setEmail(email);
 					user.setFirstName(name);
 					user.setAvatar(pictureUrl);

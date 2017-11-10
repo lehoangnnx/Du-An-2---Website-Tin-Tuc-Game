@@ -219,12 +219,7 @@
 	<definition name="adminlogin" template="/WEB-INF/views/administrator/login.jsp">
 	</definition>
 
-    <definition name="403" extends="adminlayout">
-        <put-attribute name="title" value="Trag Loi"/>
-        <put-attribute name="noidung"
-                       value="/WEB-INF/views/administrator/403.jsp"/>
-    </definition>
-
+    
 
 
     

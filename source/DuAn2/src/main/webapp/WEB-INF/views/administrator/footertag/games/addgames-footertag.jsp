@@ -253,6 +253,9 @@
                 },
                 releases : {
                     required : true
+                },
+                images : {
+                    required : true
                 }
 
             },
@@ -273,6 +276,9 @@
                 },
                 releases:{
                     required : "Vui Lòng Chọn Ngày Phát Hành"
+                },
+                images : {
+                    required : "Vui Lòng Chọn Ảnh"
                 }
 
 

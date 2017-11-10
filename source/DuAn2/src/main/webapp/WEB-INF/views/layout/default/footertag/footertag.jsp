@@ -228,12 +228,17 @@
 		top : 100,
 		overlay : 0.6,
 		closeButton : ".modal_close"
-	});
 
+	});
+    $("#modal_trigger").click(function (){
+        $(".user_forgot").hide();
+        $(".social_login").show();
+	});
 	$(function() {
 		// Calling Login Form
 		$("#login_form").click(function() {
 			$(".social_login").hide();
+
 			$(".user_login").show();
 			return false;
 		});
@@ -245,11 +250,20 @@
 			$(".header_title").text('Register');
 			return false;
 		});
-
+        // Calling Forgot Password Form
+        $("#forgot_password").click(function() {
+            $(".social_login").hide();
+            $(".user_login").hide();
+            $(".user_register").hide();
+            $(".user_forgot").show();
+            $(".header_title").text('Lấy Lại Mật Khẩu');
+            return false;
+        });
 		// Going back to Social Forms
 		$(".back_btn").click(function() {
 			$(".user_login").hide();
 			$(".user_register").hide();
+			$(".user_forgot").hide();
 			$(".social_login").show();
 			$(".header_title").text('Login');
 			return false;
@@ -305,6 +319,88 @@
 							});
 				}, 1000);
 	};
+	function register() {
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+
+					var users = {};
+					users["userName"] = $("#userNamer").val();
+					users["email"] = $("#emailr").val();
+					users["password"] = $("#rppasswordr").val();
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					$(document).ajaxSend(function(e, xhr, options) {
+						xhr.setRequestHeader(header, token);
+					});
+					$
+							.ajax({
+
+								type : "POST",
+								contentType : "application/json",
+								url : "${pageContext.request.contextPath}/register",
+								data : JSON.stringify(users),
+								//dataType: 'json',
+								// timeout: 600000,
+								success : function(result) {
+									$("#LoadingImage").hide();
+									console.log(result);
+									if(result == 'errorUserNameAndEmail'){
+                                        $("#userNamer").focus();
+                                        $('#msgerror-r').text('* Tên Đăng Nhập Và Email Đã Tồn Tại');
+									} else  if (result == 'errorUserName'){
+
+                                        $("#userNamer").focus();
+                                        $('#msgerror-r').text('* Tên Đăng Nhập Đã Tồn Tại');
+									} else  if (result == 'errorEmail'){
+
+                                        $("#emailr").focus();
+                                        $('#msgerror-r').text('* Email Đã Tồn Tại');
+                                    } else  if (result =='error'){
+                                        $('#msgerror-r').text('* Đăng Ký Thất Bại');
+									} else {
+                                        window.location.href = "${pageContext.request.contextPath}/";
+									}
+
+								},
+								error : function(e) {
+									alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+								}
+							});
+				}, 1000);
+	};
+    function forgotpassword() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+
+            var userName = $('#userNamef').val();
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(header, token);
+            });
+            $
+                .ajax({
+                    type : "POST",
+                    contentType : "application/json",
+                    url : "${pageContext.request.contextPath}/user/forgotpassword",
+                    data :  userName ,
+                    //dataType: 'json',
+                    // timeout: 600000,
+                    success : function(result) {
+                        $("#LoadingImage").hide();
+                        console.log(result);
+                        if(result == 'error'){
+                            $('#msgerror-f').text("* Tài Khoản Không Tồn Tại");
+						}
+
+
+                    },
+                    error : function(e) {
+                        alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+                    }
+                });
+        }, 1000);
+    };
 </script>
 <script>
 	$('#btn-login').click(function() {
@@ -321,6 +417,47 @@
 			$("#LoadingImage").show();
 			$('#msgerror').text('');
 			login();
+		}
+	});
+	$('#btn-register').click(function(){
+        $("#LoadingImage").show();
+			register();
+		});
+    $('#btn-forgot').click(function(){
+		var userNamef = $('#userNamef').val();
+		if (userNamef == ''){
+		    $('#msgerror-f').text("* Vui Lòng Nhập Tên Tài Khoản");
+		}else{
+            $("#LoadingImage").show();
+            forgotpassword();
+		}
+
+    });
+	$('#register-form').on('keyup keydown', function() {
+		$('#btn-register').prop("disabled",true);
+		var userName = $('#userNamer').val();
+		var email = $('#emailr').val();
+		var password = $('#passwordr').val();
+		var rppassword = $('#rppasswordr').val();
+		var email_regex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
+		console.log(email);
+		 if (userName == '') {
+			$('#msgerror-r').text('* Vui Lòng Nhập UserName');
+		}else if(email == ''){
+			$('#msgerror-r').text('* Vui Lòng Nhập Email');
+		} else if(!email.match(email_regex)){
+			$('#msgerror-r').text('* Vui Lòng Nhập Đúng Email');
+		} else if (password == '') {
+			$('#msgerror-r').text('* Vui Lòng Nhập Mật Khẩu');
+		}else if (rppassword == '') {
+			$('#msgerror-r').text('* Vui Lòng Nhập Nhập Lại Mật Khẩu');
+		}else if (rppassword != password) {
+			$('#msgerror-r').text('* Nhập Lại Mật Khẩu Không Khớp');
+		} else {
+			$('#btn-register').prop("disabled",false);
+			//$("#LoadingImage").show();
+			$('#msgerror-r').text('');
+			
 		}
 	});
 </script>
@@ -377,4 +514,31 @@
 		// Animate loader off screen
 		$("#LoadingImage").hide();
 	});
+</script>
+
+<script>
+
+function lay() {
+
+	
+	$
+			.ajax({
+
+				type : "GET",
+				contentType : "application/json",
+				url : "${pageContext.request.contextPath}/lay",
+				
+				//dataType: 'json',
+				// timeout: 600000,
+				success : function(result) {
+					alert(result);
+
+				},
+				error : function(e) {
+					alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+				}
+			});
+}
+
+
 </script>

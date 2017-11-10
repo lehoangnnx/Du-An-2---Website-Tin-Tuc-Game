@@ -25,6 +25,10 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 			throws IOException, ServletException {
 		
 		// After login success
+		String contentType= "text/html;charset=UTF-8";
+	    response.setContentType(contentType);
+	    response.setCharacterEncoding("utf-8");     
+
 		response.getWriter().print("success");
 		response.getWriter().flush();
 		

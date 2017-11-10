@@ -46,6 +46,14 @@ public class LoginController {
 		
 		return "adminlogin";
 	}
+	@GetMapping("/admin/login")
+	String loginadmin(Model model, String error) {
+		if (error != null) {
+            model.addAttribute("error", "Tài Khoản Hoặc Mật Khẩu Không Đúng");
+		}
+		
+		return "adminlogin";
+	}
 	  
 	
 	@GetMapping(value="/logout")

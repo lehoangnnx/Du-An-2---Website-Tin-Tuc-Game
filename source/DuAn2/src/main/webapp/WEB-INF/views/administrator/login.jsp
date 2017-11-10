@@ -169,7 +169,7 @@
 								// timeout: 600000,
 								success : function(result) {
 									$("#LoadingImage").hide();
-							
+									alert(result);
 									if(result == 'Bad credentials'){
 										$('#msgerror').text('* Sai Tên Đăng Nhập Hoặc Mật Khẩu');
 									}else if(result == 'User account is locked'){

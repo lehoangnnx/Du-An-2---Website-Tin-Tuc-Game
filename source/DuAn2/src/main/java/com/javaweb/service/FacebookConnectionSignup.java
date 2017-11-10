@@ -40,7 +40,7 @@ public class FacebookConnectionSignup implements ConnectionSignUp {
 			if(user == null ) {
 		        user = new Users();
 		        user.setUserName(connection.getKey().toString());
-		        user.setPasword(randomAlphabetic(8));
+		        user.setPassword(randomAlphabetic(8));
 		        user.setEmail(connection.getKey()+"@gmail.com");
 		        user.setFirstName(connection.getDisplayName());
 		        user.setAvatar(connection.getImageUrl());
