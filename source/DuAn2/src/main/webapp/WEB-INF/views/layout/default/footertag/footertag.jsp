@@ -391,6 +391,8 @@
                         console.log(result);
                         if(result == 'error'){
                             $('#msgerror-f').text("* Tài Khoản Không Tồn Tại");
+						}else {
+                            $('#msgerror-f').text(result);
 						}
 
 

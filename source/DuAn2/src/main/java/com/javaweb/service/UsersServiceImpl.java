@@ -35,6 +35,12 @@ public class UsersServiceImpl implements UsersService {
 		
 		return usersRepository.findByEmail(email);
 	}
+
+	@Override
+	public Users findByForgotPassword(String forgotpassword) {
+		return usersRepository.findByForgotPassword(forgotpassword);
+	}
+
 	@Override
 	public Users findByUserName(String userName) {
 		

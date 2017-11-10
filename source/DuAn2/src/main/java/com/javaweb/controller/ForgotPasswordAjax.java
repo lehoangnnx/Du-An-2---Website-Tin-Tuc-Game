@@ -4,12 +4,16 @@ import com.javaweb.model.Users;
 import com.javaweb.service.EmailService;
 import com.javaweb.service.UsersService;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +27,11 @@ public class ForgotPasswordAjax {
 	@Autowired
 	EmailService emailService;
 
-	public HashMap<Object, Object> saveSendMail = new HashMap<>();
+
 
 	@PostMapping("/user/forgotpassword")
 
-	public String forgotPassword(@RequestBody String userName, HttpServletRequest request ) {
+	public String forgotPassword(@RequestBody String userName, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		Users users = null;
 		try {
 			users = usersService.findByUserName(userName);
@@ -40,11 +44,11 @@ public class ForgotPasswordAjax {
 			             request.getContextPath() + "/forgotpassword/" + random;
 				emailService.sendSimpleMessage("nhungngaycobongem@gmail.com", "WebsiteGame24h.com - Password Reset",
 						url);
-				saveSendMail.put(random, userName);
-				System.out.println(saveSendMail);
-				System.out.println(saveSendMail.get(userName));
-				System.out.println(url);
-				return "success";
+				users.setForgotpassword(random);
+				usersService.saveorupdate(users);
+				String getEmail = users.getEmail();
+				getEmail = getEmail.replace(getEmail.substring(3,10), "*******");
+				return "* Vui Lòng Kiểm Tra Email " + getEmail;
 			}
 		} catch (Exception e) {
 			return "error";

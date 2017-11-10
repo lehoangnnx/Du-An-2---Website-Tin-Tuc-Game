@@ -40,6 +40,11 @@
 		<put-attribute name="sitebar" value="" />
 	</definition>
 
+	<definition name="forgotpassword" extends="defaultlayout">
+		<put-attribute name="title" value="Lấy Lại Mật Khẩu" />
+		<put-attribute name="body" value="/WEB-INF/views/default/forgotpassword.jsp" />
+		<put-attribute name="sitebar" value="" />
+	</definition>
 
 
 </tiles-definitions>

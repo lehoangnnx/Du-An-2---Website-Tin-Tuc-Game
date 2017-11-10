@@ -19,8 +19,12 @@ import com.javaweb.service.PagesService;
 import com.javaweb.service.RolesService;
 import com.javaweb.service.UsersService;
 
+/**
+ *
+ */
 @Controller
-public class HomeController {
+public class DefaultController {
+
 	@Autowired
 	RolesService rolesService;
 	@Autowired
