@@ -543,9 +543,4 @@
     });
 </script>
 
-<script>
 
-
-
-
-</script>

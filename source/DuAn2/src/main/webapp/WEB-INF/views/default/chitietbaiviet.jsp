@@ -128,6 +128,36 @@
 			</div>
 			<!-- End Game vote -->
 			<br>
+
+			<div class="content-panel">
+				<div class="content-panel-body article-main-next-prev">
+					<div class="paragraph-row">
+						<div class="column6">
+							<a href="#" class="article-nav-previous">
+								<i class="fa fa-chevron-left"></i>
+								<span>Previous article</span>
+								<strong>Has ut quando laoreet et lucilius menandri usu duo ea errem urbanitas</strong>
+							</a>
+						</div>
+						<div class="column6">
+							<a href="#" class="article-nav-next">
+								<i class="fa fa-chevron-right"></i>
+								<span>Next article</span>
+								<strong>Amet iudico tincidunt at sea ut euismod antiopam interesset eos</strong>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- END .content-panel -->
+			</div>
+
+
+
+
+
+
+
+
 			<!-- Bình luận -->
 			<div class="content-panel">
 				<div class="content-panel-title">

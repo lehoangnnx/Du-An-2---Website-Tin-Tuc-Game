@@ -296,8 +296,9 @@ iframe {
 
 /*--Tin má»›i liÃªn quan--*/
 .item-header img {
-	height: 50px;
-	width: 50px;
+
+	height: auto;
+	width: 20%;
 }
 /*--Ä�Ã³ng tin má»›i liÃªn quan--*/
 

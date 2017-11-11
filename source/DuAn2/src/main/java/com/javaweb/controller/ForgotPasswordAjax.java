@@ -45,7 +45,7 @@ public class ForgotPasswordAjax {
 				String url = request.getScheme() + "://" +
 			             request.getServerName() + ":" + request.getServerPort() +
 			             request.getContextPath() + "/forgotpassword/" + random;
-				emailService.sendSimpleMessage("nhungngaycobongem@gmail.com", "WebsiteGame24h.com - Password Reset",
+				emailService.sendSimpleMessage(users.getEmail(), "WebsiteGame24h.com - Password Reset",
 						url);
 				emailService.sendSimpleMessageUsingTemplate("nhungngaycobongem@gmail.com","WebsiteGame24h.com - Password Reset",
 				templateSimpleMessage(),templateSimpleMessage().getText()
