@@ -33,7 +33,7 @@
 							<div id="amazingslider-1"
 								style="display: block; position: relative; margin: 0 auto;">
 								<ul class="amazingslider-slides" style="display: none;">
-									<c:forEach var="gacnvl" items="${getArticleCategoryNewVideoList}">
+									<c:forEach var="gacnvl" items="${getTop10ArticleCategoryNewVideoList}">
 									<li><img src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
 										alt="${fn:substring(gacnvl.title, 0, 50)} ..."
 										title="${fn:substring(gacnvl.title, 0, 50)} ..."
@@ -45,7 +45,7 @@
 
 								</ul>
 								<ul class="amazingslider-thumbnails" style="display: none;">
-									<c:forEach var="gacnvl" items="${getArticleCategoryNewVideoList}">
+									<c:forEach var="gacnvl" items="${getTop10ArticleCategoryNewVideoList}">
 									<li><img src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
 										alt="${gacnvl.title}"
 										title="${gacnvl.title}" /></li>

@@ -45,12 +45,12 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findByArticleCategoriesAndIsHot(ArticleCategory articleCategory, byte isHot) {
-		return articleRepository.findByArticleCategoriesAndIsHot(articleCategory,isHot);
+	public List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, byte isHot,String status) {
+		return articleRepository.findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(articleCategory,isHot,status);
 	}
 
 	@Override
-	public List<Article> findByArticleCategories(ArticleCategory articleCategory) {
-		return articleRepository.findByArticleCategories(articleCategory);
+	public List<Article> findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(ArticleCategory articleCategory,String status) {
+		return articleRepository.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(articleCategory,status);
 	}
 }

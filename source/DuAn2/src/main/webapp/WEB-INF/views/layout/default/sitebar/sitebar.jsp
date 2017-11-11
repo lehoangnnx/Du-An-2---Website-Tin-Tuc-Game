@@ -9,7 +9,7 @@
     <div class="widget">
         <h3>Video Nỏi Bật</h3>
         <div class="widget-article-list">
-            <c:forEach var="gactvl" items="${getArticleCategoryTopVideoList}">
+            <c:forEach var="gactvl" items="${getTop5ArticleCategoryHotVideoList}">
                 <div class="item">
                     <div class="item-header">
                         <a href="${contextPath}/${gactvl.slug}"><img src="${contextPath}/images/articles/${gactvl.imagesThumbnail}"

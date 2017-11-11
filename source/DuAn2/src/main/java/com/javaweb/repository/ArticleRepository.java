@@ -13,7 +13,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	Article findByTitle(String title);
 	Article findBySlug(String slug);
 	Article findByArticleId(Integer articleId);
-	List<Article> findByArticleCategoriesAndIsHot(ArticleCategory articleCategory, byte isHot);
-	List<Article> findByArticleCategories(ArticleCategory articleCategory);
+	List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, byte isHot, String status);
+	List<Article> findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(ArticleCategory articleCategory, String status);
 
 }

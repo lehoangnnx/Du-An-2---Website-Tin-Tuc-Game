@@ -38,10 +38,8 @@ public class ForgotPassword {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @GetMapping("/forgotpassword/{key}")
-
-    public String forgotPassword(@PathVariable("key") String key){
-
     public String forgotPassword(@PathVariable("key") String key, Model model){
 
         Users user = null;
@@ -93,5 +91,5 @@ public class ForgotPassword {
 
         return "redirect:/";
     }
->>>>>>> 9a1d6d12e7be131e23450e93a8bdef65d7575f91
+
 }
