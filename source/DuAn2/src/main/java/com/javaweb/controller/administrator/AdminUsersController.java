@@ -206,6 +206,6 @@ public class AdminUsersController {
 			redirectAttributes.addFlashAttribute("msg", "Xóa Người Dùng Thất Bại");
 		}
 		
-		return "redirect:/admin/users";
+		return "redirect:/admin/users?status=active";
 	}
 }

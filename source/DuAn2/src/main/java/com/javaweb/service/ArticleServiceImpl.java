@@ -53,4 +53,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(ArticleCategory articleCategory,String status) {
 		return articleRepository.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(articleCategory,status);
 	}
+
+	@Override
+	public List<Article> findTop10ByStatusOrderByShowDateDesc(String status) {
+		return articleRepository.findTop10ByStatusOrderByShowDateDesc(status);
+	}
 }

@@ -262,6 +262,6 @@ public class AdminGamesController {
             redirectAttributes.addFlashAttribute("msg", "Xóa Game Thất Bại");
         }
 
-        return "redirect:/admin/games";
+        return "redirect:/admin/games?status=active";
     }
 }

@@ -136,6 +136,6 @@ public class AdminGamesCategoryController {
 			redirectAttributes.addFlashAttribute("msg", "Xóa Danh Mục Game Thất Bại");
 		} 
 		
-		return "redirect:/admin/games/categorys";
+		return "redirect:/admin/games/categorys?status=active";
 	}
 }

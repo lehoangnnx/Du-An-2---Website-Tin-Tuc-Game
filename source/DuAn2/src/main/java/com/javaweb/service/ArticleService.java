@@ -14,5 +14,5 @@ public interface ArticleService {
     List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, byte isHot, String status);
     List<Article> findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(ArticleCategory articleCategory, String status);
 
-  
+    List<Article> findTop10ByStatusOrderByShowDateDesc(String status);
 }

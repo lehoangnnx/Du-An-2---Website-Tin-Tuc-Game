@@ -46,14 +46,17 @@ public class DefaultController {
 		}
 		
 		ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+		model.addAttribute("getArticleCategoryVideo",getArticleCategoryVideo);
 		List<Article> getTop5ArticleCategoryHotVideoList = articleService
 				.findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getArticleCategoryVideo, (byte) 1,"active");
+		model.addAttribute("getTop5ArticleCategoryHotVideoList",getTop5ArticleCategoryHotVideoList);
 
 		List<Article> getTop10ArticleCategoryNewVideoList = articleService
 				.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo,"active");
+		model.addAttribute("getTop10ArticleCategoryNewVideoList",getTop10ArticleCategoryNewVideoList);
 
-		model.addAttribute("getArticleCategoryVideo",getArticleCategoryVideo);
-		model.addAttribute("getTop5ArticleCategoryHotVideoList",getTop5ArticleCategoryHotVideoList);
+		List<Article> findTop10Article = articleService
+				.findTop10ByStatusOrderByShowDateDesc("active");
 		model.addAttribute("getTop10ArticleCategoryNewVideoList",getTop10ArticleCategoryNewVideoList);
 
 

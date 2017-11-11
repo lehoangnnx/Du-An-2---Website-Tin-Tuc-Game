@@ -423,6 +423,6 @@ public class AdminArticlesController {
 			redirectAttributes.addFlashAttribute("msg", "Xóa Bài Viết Thất Bại");
 		}
 
-		return "redirect:/admin/articles";
+		return "redirect:/admin/articles?status=active";
 	}
 }
