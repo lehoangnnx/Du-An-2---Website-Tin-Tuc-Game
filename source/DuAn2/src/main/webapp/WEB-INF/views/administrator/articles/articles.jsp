@@ -84,7 +84,7 @@ give gallery's parent container a cursor: pointer.**/
 							<thead>
 								<tr>
 									<th id="thcb" class="cbDeleteAll"><input type="checkbox"
-										id="allcb" name="allcb" /></th>
+										id="allcb" name="cb" /></th>
 									<th>Hình</th>
 									<th>Title</th>
 									<th>Slug</th>
@@ -97,8 +97,8 @@ give gallery's parent container a cursor: pointer.**/
 							<tbody>
 								<c:forEach var="al" items="${articleList}">
 									<tr>
-										<td class="cbDeleteAll"><input type="checkbox"
-											value="${al.articleId}" name="cb" /></td>
+
+										<td class="cbDeleteAll"><input type="checkbox" value="${al.articleId}" name="cb" /></td>
 										<td style="text-align: center;"><img style="width: 50px; height: auto;" class="thumbnail zoom" src="${contextPath}/images/articles/${al.imagesThumbnail }"></td>
 										<td>${fn:substring(al.title, 0, 20)} ... </td>
 										<td> ${fn:substring(al.slug, 0, 20)} ... </td>

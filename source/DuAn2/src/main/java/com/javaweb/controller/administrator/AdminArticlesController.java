@@ -410,11 +410,11 @@ public class AdminArticlesController {
 
 		try {
 			arrayId.forEach(x -> {
-
+				System.out.println("ID XOA :" + x);
 				Article article = articleService.findByArticleId(x);
 				article.setStatus("deleted");
 				articleService.saveorupdate(article);
-				;
+
 			});
 
 			redirectAttributes.addFlashAttribute("msg", "Xóa Bài Viết Thành Công");

@@ -55,9 +55,10 @@ public class DefaultController {
 				.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo,"active");
 		model.addAttribute("getTop10ArticleCategoryNewVideoList",getTop10ArticleCategoryNewVideoList);
 
-		List<Article> findTop10Article = articleService
+		List<Article> getTop10ArticleList = articleService
 				.findTop10ByStatusOrderByShowDateDesc("active");
-		model.addAttribute("getTop10ArticleCategoryNewVideoList",getTop10ArticleCategoryNewVideoList);
+
+		model.addAttribute("getTop10ArticleList",getTop10ArticleList);
 
 
 

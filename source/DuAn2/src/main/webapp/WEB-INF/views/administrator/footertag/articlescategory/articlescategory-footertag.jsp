@@ -57,26 +57,27 @@
 
 <!-- Check All Checkbox Table Users -->
 <script type="text/javascript">
-	$('#allcb').change(
-			function() {
-				$('tbody tr td input[type="checkbox"]').prop('checked',
-						$(this).prop('checked'));
-			});
+    $('#allcb').change(function() {
+        $("input[type='checkbox'][name='cb']").prop('checked', $(this).prop('checked'));
 
-	var tableControl = document.getElementById('table-3');
-	$("input[type='checkbox']").change(function() {
-		var result = []
-		
-		$('input:checkbox:checked', tableControl).each(function() {
-				result.push($(this).val());
-				if(result.indexOf('on') == 0){
-					result.splice(result.indexOf('on'), 1 );
-				}
-		});
-	
-		$("#arrayId").val(result);
-	
-	});
+    });
+
+    var tableControl = document.getElementById('table-3');
+    $("input[name='cb']").change(function() {
+        console.log($('[name="cb"]'));
+        var result = []
+
+        $('input[name=cb]:checked', tableControl).each(function() {
+            console.log($(this).val()+"i")
+            result.push($(this).val());
+            if(result.indexOf('on') == 0){
+                result.splice(result.indexOf('on'), 1 );
+            }
+        });
+
+        $("#arrayId").val(result);
+        console.log("ID :" + result);
+    });
 </script>
 <script>
 

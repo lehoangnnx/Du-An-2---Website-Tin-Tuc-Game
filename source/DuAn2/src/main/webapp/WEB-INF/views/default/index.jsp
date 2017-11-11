@@ -80,6 +80,7 @@
 		</div>
 		<div class="content-panel-body article-list">
 			<div class="item">
+				<c:forEach var="gal" items="${getTop10ArticleList}"></c:forEach>
 				<div class="item-header hover14 column">
 					<a href=""> <span class="comment-tag"><i
 							class="fa fa-comment-o"></i>290<i></i></span> <span

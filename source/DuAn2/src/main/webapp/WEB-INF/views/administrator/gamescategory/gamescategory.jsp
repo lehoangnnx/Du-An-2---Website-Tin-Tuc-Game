@@ -83,7 +83,7 @@ give gallery's parent container a cursor: pointer.**/
 							<thead>
 								<tr>
 									<th id="thcb" class="cbDeleteAll"><input type="checkbox"
-										id="allcb" name="allcb" /></th>
+										id="allcb" name="cb" /></th>
 									<th>Tên</th>
 									<th>Đường Dẫn</th>
 									<th>Trạng Thái</th>
