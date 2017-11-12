@@ -6,6 +6,7 @@ import com.javaweb.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -45,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, byte isHot,String status) {
+	public List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, Byte isHot,String status) {
 		return articleRepository.findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(articleCategory,isHot,status);
 	}
 
@@ -55,7 +56,17 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findTop10ByStatusOrderByShowDateDesc(String status) {
-		return articleRepository.findTop10ByStatusOrderByShowDateDesc(status);
+	public List<Article> findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date){
+		return articleRepository.findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc( status,  date);
+	}
+
+	@Override
+	public List<Article> findTop10ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status) {
+		return articleRepository.findTop10ByIsHotAndStatusOrderByViewsDesc(isHot,status);
+	}
+
+	@Override
+	public List<Article> findByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date) {
+		return articleRepository.findByStatusAndShowDateBeforeOrderByShowDateDesc( status,  date);
 	}
 }

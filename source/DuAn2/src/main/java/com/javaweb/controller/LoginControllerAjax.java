@@ -35,87 +35,83 @@ import com.javaweb.service.UsersService;
 
 @RestController
 public class LoginControllerAjax {
-	@Autowired
-	UsersService usersService;
-	@Autowired
-	RolesService rolesService;
+    @Autowired
+    UsersService usersService;
+    @Autowired
+    RolesService rolesService;
 
-	private static final HttpTransport TRANSPORT = new NetHttpTransport();
-	private static final JsonFactory JSON_FACTORY = new JacksonFactory();
-	
-	@GetMapping("/lay")
-	public List<Users> l (){
-		List<Users> u = usersService.findAll();
-		return u;
-	}
-	
-	@PostMapping("/signin-google")
-	public String String(@RequestBody String idtoken
+    private static final HttpTransport TRANSPORT = new NetHttpTransport();
+    private static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
-	) {
-		System.out.println("idtoken :" + idtoken);
 
-		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY)
-				.setAudience(Collections
-						.singletonList("957067339527-2a7jir87qgufa498et556ke87d8lv5sb.apps.googleusercontent.com"))
-				// Or, if multiple clients access the backend:
-				// .setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
-				.build();
 
-		GoogleIdToken idToken;
-		Users user = null;
-		try {
-			idToken = verifier.verify(idtoken);
-			if (idToken != null) {
-				Payload payload = idToken.getPayload();
+    @PostMapping("/signin-google")
+    public String String(@RequestBody String idtoken
 
-				// Print user identifier
-				String userId = payload.getSubject();
-				System.out.println("User ID: " + userId);
+    ) {
+        System.out.println("idtoken :" + idtoken);
 
-				// Get profile information from payload
-				String email = payload.getEmail();
-				boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-				String name = (String) payload.get("name");
-				String pictureUrl = (String) payload.get("picture");
-				String locale = (String) payload.get("locale");
-				String familyName = (String) payload.get("family_name");
-				String givenName = (String) payload.get("given_name");
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY)
+                .setAudience(Collections
+                        .singletonList("957067339527-2a7jir87qgufa498et556ke87d8lv5sb.apps.googleusercontent.com"))
+                // Or, if multiple clients access the backend:
+                // .setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+                .build();
 
-				user = usersService.findByUserName(userId);
-				if (user == null) {
-					user = new Users();
-					user.setUserName(userId);
-					user.setPassword(randomAlphabetic(8));
-					user.setEmail(email);
-					user.setFirstName(name);
-					user.setAvatar(pictureUrl);
-					user.setStatus("active");
-					user.setCreatedDate(new Date());
-					user.setLoggedInDate(new Date());
-					user.setIsOnline((byte) 1);
-					HashSet<Roles> roleses = new HashSet<>();
-					roleses.add(rolesService.findByName("ROLE_GOOGLE"));
-					user.setRoleses(roleses);
-					usersService.saveorupdate(user);
-				}
+        GoogleIdToken idToken;
+        Users user = null;
+        try {
+            idToken = verifier.verify(idtoken);
+            if (idToken != null) {
+                Payload payload = idToken.getPayload();
 
-				SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userId,
-						null, Arrays.asList(new SimpleGrantedAuthority("ROLE_GOOGLE"))));
-			} else {
-				System.out.println("Invalid ID token.");
-				
-			}
-		} catch (GeneralSecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
+                // Print user identifier
+                String userId = payload.getSubject();
+                System.out.println("User ID: " + userId);
 
-		return "success";
-	}
+                // Get profile information from payload
+                String email = payload.getEmail();
+                boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+                String name = (String) payload.get("name");
+                String pictureUrl = (String) payload.get("picture");
+                String locale = (String) payload.get("locale");
+                String familyName = (String) payload.get("family_name");
+                String givenName = (String) payload.get("given_name");
+
+                user = usersService.findByUserName(userId);
+                if (user == null) {
+                    user = new Users();
+                    user.setUserName(userId);
+                    user.setPassword(randomAlphabetic(8));
+                    user.setEmail(email);
+                    user.setFirstName(name);
+                    user.setAvatar(pictureUrl);
+                    user.setStatus("active");
+                    user.setCreatedDate(new Date());
+                    user.setLoggedInDate(new Date());
+                    user.setIsOnline((byte) 1);
+                    HashSet<Roles> roleses = new HashSet<>();
+                    roleses.add(rolesService.findByName("ROLE_GOOGLE"));
+                    user.setRoleses(roleses);
+                    usersService.saveorupdate(user);
+                }
+
+                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userId,
+                        null, Arrays.asList(new SimpleGrantedAuthority("ROLE_GOOGLE"))));
+            } else {
+                System.out.println("Invalid ID token.");
+
+            }
+        } catch (GeneralSecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
+
+        return "success";
+    }
 }

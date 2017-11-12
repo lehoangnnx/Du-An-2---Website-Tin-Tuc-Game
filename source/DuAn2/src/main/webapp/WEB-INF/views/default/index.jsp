@@ -63,175 +63,7 @@
 	</div>
 
 	<!-- Tin mới -->
-	<div class="content-panel">
-		<div class="content-panel-title">
 
-			<div class="feed-widget-header">
-				<h2 class="widget-title feed-widget-title">
-					<a href="#">TIN MỚI</a>
-				</h2>
-				<div class="feed-widget-viewall">
-					<a href="#"><span>XEM THÊM</span> <i
-						class="fa fa-chevron-right"></i></a>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-		</div>
-		<div class="content-panel-body article-list">
-			<div class="item">
-				<c:forEach var="gal" items="${getTop10ArticleList}"></c:forEach>
-				<div class="item-header hover14 column">
-					<a href=""> <span class="comment-tag"><i
-							class="fa fa-comment-o"></i>290<i></i></span> <span
-						class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-					</span></span> <figure><img src="images/anh/1.jpg" alt="" /></figure>
-					</a>
-				</div>
-				<div class="item-content">
-					<strong class="category-link"><a href="#">Tin mới</a></strong>
-					<h3>
-						<a href="ctbaiviet.html">Không thèm dùng Denuvo, hậu quả
-							Wolfenstein II:</a>
-					</h3>
-					<span class="item-meta"> <a href="#"><i
-							class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-							class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-					</span>
-					<p>Wolfenstein II: The New Colossus là phần tiếp theo của
-						series game nổi tiếng được phát hành lần đầu vào năm 1981...</p>
-				</div>
-			</div>
-
-			<div class="item">
-				<div class="item-header">
-					<a href="#"> <span class="comment-tag"><i
-							class="fa fa-comment-o"></i>139<i></i></span> <span
-						class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/2.jpg" alt="" />
-					</a>
-				</div>
-				<div class="item-content">
-					<strong class="category-link"><a href="#">Tin mới</a></strong>
-					<h3>
-						<a href="#">Final Fantasy XV công bố cấu hình cho bản PC</a>
-					</h3>
-					<span class="item-meta"> <a href="#"><i
-							class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-							class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-					</span>
-					<p>Theo thông tin vừa được công bố trên Microsoft Store, nhà
-						phát hành Square Enix đã hé lộ cấu hình tiêu chuẩn cho bản PC của
-						Final Fantasy XV. ...</p>
-				</div>
-			</div>
-
-			<div class="item" data-color-top-slider="#867eef">
-				<div class="item-header">
-					<a href="#"> <span class="comment-tag"><i
-							class="fa fa-comment-o"></i>65<i></i></span> <span
-						class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/3.jpg" alt="" />
-					</a>
-				</div>
-				<div class="item-content">
-					<strong class="category-link"><a href="#">Tin mới</a></strong>
-					<h3>
-						<a href="#">Halloween Sale chính thức mở cửa</a>
-					</h3>
-					<span class="item-meta"> <a href="#"><i
-							class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-							class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-					</span>
-					<p>Đúng như dự kiến từ trước, vào đêm qua theo giờ Việt Nam,
-						Steam đã cho ra mắt sự kiện khuyến mại lớn có tên “Halloween
-						Sale”. ...</p>
-				</div>
-			</div>
-			<div class="item">
-				<div class="item-header">
-					<a href="#"> <span class="comment-tag"><i
-							class="fa fa-comment-o"></i>290<i></i></span> <span
-						class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/1.jpg" alt="" />
-					</a>
-				</div>
-				<div class="item-content">
-					<strong class="category-link"><a href="#">Tin mới</a></strong>
-					<h3>
-						<a href="#">Không thèm dùng Denuvo, hậu quả Wolfenstein II:</a>
-					</h3>
-					<span class="item-meta"> <a href="#"><i
-							class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-							class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-					</span>
-					<p>Wolfenstein II: The New Colossus là phần tiếp theo của
-						series game nổi tiếng được phát hành lần đầu vào năm 1981...</p>
-				</div>
-			</div>
-
-			<div class="item">
-				<div class="item-header">
-					<a href="#"> <span class="comment-tag"><i
-							class="fa fa-comment-o"></i>139<i></i></span> <span
-						class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/2.jpg" alt="" />
-					</a>
-				</div>
-				<div class="item-content">
-					<strong class="category-link"><a href="#">Tin mới</a></strong>
-					<h3>
-						<a href="#">Final Fantasy XV công bố cấu hình cho bản PC</a>
-					</h3>
-					<span class="item-meta"> <a href="#"><i
-							class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-							class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-					</span>
-					<p>Theo thông tin vừa được công bố trên Microsoft Store, nhà
-						phát hành Square Enix đã hé lộ cấu hình tiêu chuẩn cho bản PC của
-						Final Fantasy XV. ...</p>
-				</div>
-			</div>
-
-			<div class="item" data-color-top-slider="#867eef">
-				<div class="item-header">
-					<a href="#"> <span class="comment-tag"><i
-							class="fa fa-comment-o"></i>65<i></i></span> <span
-						class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/3.jpg" alt="" />
-					</a>
-				</div>
-				<div class="item-content">
-					<strong class="category-link"><a href="#">Tin mới</a></strong>
-					<h3>
-						<a href="#">Halloween Sale chính thức mở cửa</a>
-					</h3>
-					<span class="item-meta"> <a href="#"><i
-							class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-							class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-					</span>
-					<p>Đúng như dự kiến từ trước, vào đêm qua theo giờ Việt Nam,
-						Steam đã cho ra mắt sự kiện khuyến mại lớn có tên “Halloween
-						Sale”. ...</p>
-				</div>
-			</div>
-		</div>
-		<div class="content-panel-body pagination">
-			<a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i>Trước</a>
-			<a class="page-numbers" href="#">1</a> <span
-				class="page-numbers current">2</span> <a class="page-numbers"
-				href="#">3</a> <a class="page-numbers" href="#">4</a> <a
-				class="page-numbers" href="#">5</a> <a class="next page-numbers"
-				href="#">Tiếp theo<i class="fa fa-angle-right"></i></a>
-		</div>
-		<!-- End tin mới -->
-	</div>
 
 
 	<div class="container hidden-xs hidden-sm"></div>
@@ -600,6 +432,69 @@
 		<!-- END -->
 	</div>
 
+	<div class="content-panel">
+		<div class="content-panel-title">
+
+			<div class="feed-widget-header">
+				<h2 class="widget-title feed-widget-title">
+					<a href="#">TIN MỚI</a>
+				</h2>
+				<div class="feed-widget-viewall">
+					<a href="${contextPath}/articles?sorted=new"><span>XEM THÊM</span> <i
+							class="fa fa-chevron-right"></i></a>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+		</div>
+		<div class="content-panel-body article-list" id="posts">
+			<c:forEach var="gal" items="${getTop10ArticleList}">
+				<div class="item">
+
+					<div class="item-header hover14 column">
+						<a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
+								class="fa fa-eye"></i>${gal.views}<i></i></span> <span
+								class="read-more-wrapper"><span class="read-more">Xem chi tiết<i></i>
+					</span></span> <figure><img title="${gal.title}" src="${contextPath}/images/articles/${gal.imagesThumbnail}" alt="" /></figure>
+						</a>
+					</div>
+
+					<div class="item-content">
+
+						<strong class="category-link">
+							<c:forEach var="ac" items="${gal.articleCategories}">
+								<a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
+							</c:forEach>
+						</strong>
+
+						<h3>
+							<a title="${gal.title}" href="${contextPath}/${gal.slug}">${gal.title}</a>
+						</h3>
+						<span class="item-meta">
+						<a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i
+								class="fa fa-user"></i>${gal.users.userName}</a>
+						<a href="${contextPath}/${gal.slug}"><i
+								class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/${gal.slug}"><i
+								class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
+
+					</span>
+						<p>${gal.subContent}</p>
+					</div>
+				</div>
+			</c:forEach>
+
+		</div>
+		<div style="padding-bottom: 60px; border-bottom: 1px solid #F0F0F0" class="content-panel-body pagination " id="xemthem">
+			<%--<a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i>Trước</a>
+			<a class="page-numbers" href="#">1</a> <span
+				class="page-numbers current">2</span> <a class="page-numbers"
+														 href="#">3</a> <a class="page-numbers" href="#">4</a> <a
+				class="page-numbers" href="#">5</a> <a class="next page-numbers"
+													   href="#">Tiếp theo<i class="fa fa-angle-right"></i></a>--%>
+
+		</div>
+		<!-- End tin mới -->
+	</div>
 
 
 

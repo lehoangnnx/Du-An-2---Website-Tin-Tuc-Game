@@ -408,7 +408,6 @@ public class Users implements java.io.Serializable {
 	public void setArticleLikeForums_1(Set<ArticleLikeForum> articleLikeForums_1) {
 		this.articleLikeForums_1 = articleLikeForums_1;
 	}
-
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="users")
 	public Set<Article> getArticles_1() {
 		return this.articles_1;

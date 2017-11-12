@@ -248,6 +248,9 @@
                 },
                 releases : {
                     required : true
+                },
+                description : {
+                    required : true
                 }
 
             },
@@ -268,6 +271,9 @@
                 },
                 releases:{
                     required : "Vui Lòng Chọn Ngày Phát Hành"
+                },
+                description : {
+                    required : "Vui Lòng Nhập Mô Tả Game"
                 }
 
 

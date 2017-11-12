@@ -41,4 +41,14 @@ public class GamesServiceImpl implements GamesService {
 		gamesRepository.save(games);
 	}
 
+	@Override
+	public List<Games> findTop10ByStatusOrderByReleasesDesc(String status) {
+		return gamesRepository.findTop10ByStatusOrderByReleasesDesc(status);
+	}
+
+	@Override
+	public List<Games> findTop10ByIsHotAndStatusOrderByReleasesDesc(Byte isHot, String status) {
+		return gamesRepository.findTop10ByIsHotAndStatusOrderByReleasesDesc(isHot,status);
+	}
+
 }

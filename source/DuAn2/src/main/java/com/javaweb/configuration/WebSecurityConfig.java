@@ -63,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		}
-		
+		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.authorizeRequests().antMatchers("/home", "/").permitAll()
 					 .antMatchers("/admin/**").hasRole("ADMIN")
@@ -72,8 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.failureHandler(ajaxAuthenticationFailureHandler).successHandler(ajaxAuthenticationSuccessHandler)
 					
 					.and().logout().logoutSuccessUrl("/")
-					//.deleteCookies("JSESSIONID")
-					
+
 					.and().rememberMe().and()
 					.exceptionHandling().accessDeniedPage("/403");
 			http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);

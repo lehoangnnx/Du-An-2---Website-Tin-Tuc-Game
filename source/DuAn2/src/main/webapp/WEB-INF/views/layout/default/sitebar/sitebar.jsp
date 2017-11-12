@@ -3,11 +3,11 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<aside class="sidebar">
+<aside class="sidebar " id="sidebar">
 
 
     <div class="widget">
-        <h3>Video Nỏi Bật</h3>
+        <h3>Video Nổi Bật</h3>
         <div class="widget-article-list">
             <c:forEach var="gactvl" items="${getTop5ArticleCategoryHotVideoList}">
                 <div class="item">
@@ -22,93 +22,62 @@
                             <a title="${gactvl.title}" href="${contextPath}/${gactvl.slug}">${fn:substring(gactvl.title, 0, 80)} ...</a>
                         </h4>
                         <span class="item-meta"> <a href="#"><i
-                                class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
+                                class="fa fa-eye"></i>82 Bình luận</a> <a href="#"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gactvl.createdDate}"/></a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
 
-            <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=top" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/video?sorted=top" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
 
 
     <div class="widget">
-        <h3>Tin mới liên quan</h3>
+        <h3>Tin Nổi Bật</h3>
         <div class="widget-article-list">
+            <c:forEach var="gha" items="${getTop10HotArticle}">
             <div class="item">
                 <div class="item-header">
-                    <a href="#"><img src="images/photos/image-7.jpg" alt=""/></a>
+                    <a href="${contextPath}/images/articles/${gha.imagesThumbnail}"><img src="${contextPath}/images/articles/${gha.imagesThumbnail}" alt=""/></a>
                 </div>
                 <div class="item-content">
                     <h4>
-                        <a href="#">Gran Turismo Sport - Vũ điệu tốc độ của người
-                            Nhật Bản</a>
+                        <a href="${gha.slug}">${gha.title}</a>
                     </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
+                    <span class="item-meta"> <a href="${gha.slug}"><i
+                            class="fa fa-eye"></i>${gha.views}</a> <a href="${gha.slug}"><i
+                            class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gha.createdDate}"/></a>
 										</span>
                 </div>
             </div>
+            </c:forEach>
 
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-8.jpg" alt=""/></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Cùng soi Hàng Long Phục Hổ sau ngày mở cửa
-                            rộng rãi tại Việt Nam</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-										</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-9.jpg" alt=""/></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Ngạo Kiếm Vô Song 2 mở cửa không reset tại
-                            Việt Nam vào ngày 27/10</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-										</span>
-                </div>
-            </div>
-            <a href="#" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/articles?sorted=hot" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
     <div class="widget widget-tabbed">
         <h3>
-            <span class="active">Top game</span><span class="">Game
+            <span class="active">Game Nổi Bật</span><span class="">Game
 									Online</span><span class="">Game Offline</span>
         </h3>
         <div class="widget-comments-list active">
-
+            <c:forEach var="ghg" items="${getTop10HotGame}">
             <div class="item">
                 <div class="item-header">
-                    <img src="images/game/11.cache" alt="">
+                    <img src="${contextPath}/images/games/${ghg.images}" alt="">
                 </div>
                 <div class="item-content">
                     <h4>
-                        <a href="#">Blade &amp; Soul</a>
+                        <a href="${contextPath}/${ghg.slug}">${ghg.name}</a>
                     </h4>
-                    <p>Blade &amp; Soul - Garena hay còn được gọi B&amp;S Garena là
-                        tựa game nhập vai...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                    <p>${ghg.description}</p>
+                    <span class="item-meta"> <a href="${contextPath}/${ghg.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                 </div>
             </div>
-
+            </c:forEach>
             <div class="item">
                 <div class="item-header">
                     <img src="images/game/10.cache" alt="">

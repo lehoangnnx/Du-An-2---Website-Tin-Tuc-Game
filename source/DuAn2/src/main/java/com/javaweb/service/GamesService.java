@@ -10,4 +10,6 @@ public interface GamesService {
 	Games findByName(String name);
 	Games findBySlug(String slug);
 	void saveorupdate(Games games);
+	List<Games> findTop10ByStatusOrderByReleasesDesc(String status) ;
+	List<Games> findTop10ByIsHotAndStatusOrderByReleasesDesc(Byte isHot,String status) ;
 }

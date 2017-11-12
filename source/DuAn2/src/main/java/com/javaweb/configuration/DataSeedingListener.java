@@ -27,8 +27,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	private UsersRepository usersRepository;
 	@Autowired
 	ArticleRepository articleRepository;
-	@Autowired
-	private RolesRepository rolesRepository;
+
 	@Autowired
 	ArticleCategoryRepository  articleCategoryRepository;
 	@Autowired 
@@ -79,7 +78,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			user.setRoleses(roles);
 			usersRepository.save(user);
 		}*/
-		/*for (int i = 0; i < 100; i++) {
+		/*for (int i = 200; i < 300; i++) {
 			Article article= new Article();
 			article.setTitle("Title Article " +i);
 			article.setSlug("title-article-"+i);
@@ -89,6 +88,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			article.setStatus("active");
 			article.setViews(2);
 			article.setCreatedDate(new Date());
+			article.setShowDate(new Date());
 			article.setUsers(usersRepository.findByUserId(3));
 			HashSet<ArticleCategory> articleCategory = new HashSet<>();
 			articleCategory.add(articleCategoryRepository.findByArticleCategoryId(1));

@@ -127,7 +127,7 @@ public class AdminArticlesController {
 			Model model
 
 	) {
-
+		System.out.println(mainContent);
 		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
 		String monthAndYear = imagesManager.getMonthAndYearNow();
 		// Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear

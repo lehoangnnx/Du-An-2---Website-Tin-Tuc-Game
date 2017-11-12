@@ -256,6 +256,9 @@
                 },
                 images : {
                     required : true
+                },
+                description : {
+                    required : true
                 }
 
             },
@@ -279,6 +282,9 @@
                 },
                 images : {
                     required : "Vui Lòng Chọn Ảnh"
+                },
+                description : {
+                    required : "Vui Lòng Nhập Mô Tả Game"
                 }
 
 

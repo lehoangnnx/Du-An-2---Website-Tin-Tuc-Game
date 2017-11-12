@@ -250,7 +250,7 @@
 				<label for="select2-demo-1" class="col-md-2 form-control-label">Tóm
 					Tắt</label>
 				<div class="col-md-10">
-					<textarea id="subContent" class="form-control" maxlength="225"
+					<textarea id="subContent" class="form-control maxlength" maxlength="225"
 						name="subContent" rows="5"
 						placeholder="This textarea has a limit of 225 chars.">${article.subContent }</textarea>
 					<label id="subContent-error" class="error" for="subContent"></label>

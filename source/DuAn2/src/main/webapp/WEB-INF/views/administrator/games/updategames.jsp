@@ -60,7 +60,44 @@
 
 				</div>
 			</div>
+			<div class="form-group row">
+				<label class="col-md-2 col-form-label">Game Nổi Bật</label>
+				<div class="col-md-10">
+					<div class="md-radio-inline">
+						<div class="md-radio">
+							<input type="radio" id="radio53" name="isHot" value="1"
+								${games.isHot == 1 ? 'checked' : '' } class="md-radiobtn">
+							<label for="radio53"> <span></span> <span class="check"></span>
+								<span class="box"></span>Có
+							</label>
+						</div>
 
+
+						<div class="md-radio has-error">
+							<input type="radio" id="radio52" name="isHot" value="0"
+								${games.isHot == 0 ? 'checked' : '' }
+								   class="md-radiobtn"> <label for="radio52"> <span></span>
+							<span class="check"></span> <span class="box"></span> Không
+						</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class=" form-group row">
+
+
+				<label class="col-md-2 form-control-label">Mô Tả Game</label>
+				<div class="col-md-10">
+					<textarea id="description" class="form-control maxlength" maxlength="225"
+							  name="description" rows="5"
+							  placeholder="This textarea has a limit of 225 chars.">${games.description }</textarea>
+					<label id="subContent-error" class="error" ></label>
+				</div>
+
+
+			</div>
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Nhà
 					Phát Hành</label>

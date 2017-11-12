@@ -68,7 +68,20 @@
                                 <security:authorize access="hasRole('ADMIN')">
                                     <li><a href="${contextPath }/admin/index">Quản Trị</a></li>
                                 </security:authorize>
-                                <li><a onclick="signOut();" href="${contextPath }/logout">Đăng Xuất</a></li>
+                                <security:authorize access="hasRole('GOOGLE')">
+                                    <form:form id="logoutForm" method="POST" action="${contextPath}/logout">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <button type="submit" onclick="signOut();" class="dropdown-item">Đăng Xuất</button>
+                                    </form:form>
+
+                                </security:authorize>
+
+                                <security:authorize access="!hasRole('GOOGLE')">
+                                    <form:form id="logoutForm" method="POST" action="${contextPath}/logout">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <button type="submit" class="dropdown-item">Đăng Xuất</button>
+                                    </form:form>
+                                </security:authorize>
 
 
                             </ul>
@@ -166,7 +179,9 @@
 
             </div>
             <div id="btn-google" class="g-signin2 " data-width="290"
-                 data-height="32" data-longtitle="true" data-onsuccess="onSignIn"></div>
+                 data-height="32" data-longtitle="true" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+
             <div class="centeredText">
                 <span>Or use your Email address</span>
             </div>

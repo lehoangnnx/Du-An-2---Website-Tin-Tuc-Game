@@ -11,13 +11,14 @@
 <script type="text/javascript"
         src="${contextPath}/js/js/smoothscroll.js"></script>
 
-<!-- <script type="text/javascript" src="${contextPath}/js/js/main.js"></script>-->
 
 <script src="${contextPath}/js/sliderengine/amazingslider.js"></script>
 <script src="${contextPath}/js/sliderengine/initslider-1.js"></script>
 
 <script src='${contextPath}/js/js/jquery.leanModal.min_.js'></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+
 <script>
     jQuery(".widget-tabbed > h3 span", ".sidebar").on(
         "click",
@@ -490,8 +491,15 @@
 </script>
 
 <script type="text/javascript">
+
+    var firstLogin = 0;
+
+    $('#btn-google').click(function () {
+        firstLogin = 1;
+    });
+
     function onSignIn(googleUser) {
-        $("#LoadingImage").hide();
+
         // window.location.href='success.jsp';
 
         // The ID token you need to pass to your backend:
@@ -501,6 +509,7 @@
         var header = $("meta[name='_csrf_header']").attr("content");
         $(document).ajaxSend(function (e, xhr, options) {
             xhr.setRequestHeader(header, token);
+
         });
         $.ajax({
 
@@ -512,8 +521,11 @@
             // timeout: 600000,
             success: function (result) {
                 $("#LoadingImage").hide();
-                if (result = 'success') {
-                    //window.location.href = "${pageContext.request.contextPath}/";
+                console.log(result);
+                if (firstLogin == 1) {
+                    firstLogin = 0;
+                    console.log(firstLogin);
+                    location.reload();
                 }
 
             },
@@ -521,16 +533,23 @@
                 alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
             }
         });
-        // document.location.href = '${pageContext.request.contextPath}/';
+
 
     }
+
 </script>
 
 <script>
+
     function signOut() {
-        gapi.auth2.getAuthInstance().disconnect();
-        location.reload();
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+            firstLogin = 0;
+            location.reload();
+        });
     }
+
 </script>
 
 <script type="text/javascript">
@@ -544,3 +563,171 @@
 </script>
 
 
+<script>
+
+    /*  $(document).ready(function () {
+
+          var win = $(window);
+          var page = 2;
+          var checknull = false;
+          // Each time the user scrolls
+          win.scroll(function () {
+              // End of the document reached?
+
+              if ($(document).height() - win.height() == win.scrollTop()) {
+                  clearTimeout(timeout);
+                  timeout = setTimeout(
+                      function () {
+
+
+                          if (checknull == false) {
+                              $("#LoadingImage").show();
+                              $.ajax({
+                                  type: 'GET',
+                                  contentType: "application/json",
+                                  url: '${pageContext.request.contextPath}/getarticle?page=' + page,
+
+                                success: function (result) {
+                                    if (result != '') {
+                                        console.log(result + "Rssult");
+                                        var n = Object.keys(result).length;
+                                        var html = '';
+
+                                        for (var i = 0; i < n; i++) {
+                                            var articleCategory = "";
+                                            for (var j = 0; j < Object.keys(result[i].articleCategories).length; j++) {
+                                                articleCategory += "<a style=\"padding-right: 7px;\" href=\" ${pageContext.request.contextPath}/" + result[i].articleCategories[j].slug + " \"> " + result[i].articleCategories[j].name + " </a>";
+                                            }
+
+                                            html += "<div class=\"item\">"
+
+                                                + "<div class=\"item-header hover14 column\">\n"
+                                                + "<a href=\"${pageContext.request.contextPath}/" + result[i].slug + " \"> <span class=\"comment-tag\"><i\n "
+                                                + "class=\"fa fa-comment-o\"></i>" + result[i].views + "<i></i></span> <span\n"
+                                                + "class=\"read-more-wrapper\"><span class=\"read-more\">Xem chi tiết<i></i>\n"
+                                                + "</span></span> <figure><img title=\"" + result[i].title + "\" src=\"${pageContext.request.contextPath}/images/articles/" + result[i].imagesThumbnail + " \" alt=\"\" /></figure>\n"
+                                                + "</a></div>\n"
+                                                + "<div class=\"item-content\">\n"
+                                                + "<strong class=\"category-link\">\n"
+
+                                                + " " + articleCategory + "\n"
+                                                + "</strong>\n"
+                                                + "<h3>\n"
+                                                + "<a title=\"" + result[i].title + "\" href=\" ${pageContext.request.contextPath}/" + result[i].slug + "\">" + result[i].title + "</a>\n"
+                                                + "</h3>\n"
+                                                + "<span class=\"item-meta\">\n" +
+                                                "<a style=\"font-weight: bold;\" href=\" ${pageContext.request.contextPath}/" + result[i].slug + "\"><i\n" +
+                                                "class=\"fa fa-user\"></i>" + result[i].user + "</a>\n" +
+                                                "<a href=\"" + ${pageContext.request.contextPath} +"/" + result[i].slug + "\"><i\n" +
+                                                "class=\"fa fa-comment-o\"></i>82 Bình luận</a> <a href=\" ${pageContext.request.contextPath}/" + result[i].slug + "\"><i\n" +
+                                                "class=\"fa fa-clock-o\"></i>" + result[i].showDate + "</a>\n" +
+                                                "</span>\n" +
+                                                "<p>" + result[i].subContent + "</p>\n" +
+                                                "</div></div>"
+
+                                        }
+
+                                        $('#posts').append(html);
+                                        page = page + 1;
+                                        $("#LoadingImage").hide();
+                                    } else {
+                                        checknull = true;
+                                        var xemthem = "<a class=\"page-numbers\" href=\"${pageContext.request.contextPath}/articles?sorted=new \">Xem Thêm</a>";
+                                        $('#xemthem').html(xemthem);
+                                        $("#LoadingImage").hide();
+                                    }
+                                }
+                            });
+                        }
+                    }, 1000);
+            }
+        });
+    });*/
+</script>
+<script>
+    var timeout1 = null;
+    var page = 2;
+    var checknull = false;
+    $(window).scroll(function () {
+        var hT = $('#xemthem').offset().top,
+            hH = $('#xemthem').outerHeight(),
+            wH = $(window).height(),
+            wS = $(this).scrollTop();
+
+
+        if (wS > (hT + hH - wH) && (hT > wS) && (wS + wH > hT + hH)) {
+            {
+                clearTimeout(timeout1);
+                timeout1 = setTimeout(
+                    function () {
+
+
+                        if (checknull == false) {
+                            $("#LoadingImage").show();
+                            $.ajax({
+                                type: 'GET',
+                                contentType: "application/json",
+                                url: '${pageContext.request.contextPath}/getarticle?page=' + page,
+
+                                success: function (result) {
+                                    if (result != '') {
+                                        console.log(result + "Rssult");
+                                        var n = Object.keys(result).length;
+                                        var html = '';
+
+                                        for (var i = 0; i < n; i++) {
+                                            var articleCategory = "";
+                                            for (var j = 0; j < Object.keys(result[i].articleCategories).length; j++) {
+                                                articleCategory += "<a style=\"padding-right: 7px;\" href=\" ${pageContext.request.contextPath}/" + result[i].articleCategories[j].slug + " \"> " + result[i].articleCategories[j].name + " </a>";
+                                            }
+
+                                            html += "<div class=\"item\">"
+
+                                                + "<div class=\"item-header hover14 column\">\n"
+                                                + "<a href=\"${pageContext.request.contextPath}/" + result[i].slug + " \"> <span class=\"comment-tag\"><i\n "
+                                                + "class=\"fa fa-comment-o\"></i>" + result[i].views + "<i></i></span> <span\n"
+                                                + "class=\"read-more-wrapper\"><span class=\"read-more\">Xem chi tiết<i></i>\n"
+                                                + "</span></span> <figure><img title=\"" + result[i].title + "\" src=\"${pageContext.request.contextPath}/images/articles/" + result[i].imagesThumbnail + " \" alt=\"\" /></figure>\n"
+                                                + "</a></div>\n"
+                                                + "<div class=\"item-content\">\n"
+                                                + "<strong class=\"category-link\">\n"
+
+                                                + " " + articleCategory + "\n"
+                                                + "</strong>\n"
+                                                + "<h3>\n"
+                                                + "<a title=\"" + result[i].title + "\" href=\" ${pageContext.request.contextPath}/" + result[i].slug + "\">" + result[i].title + "</a>\n"
+                                                + "</h3>\n"
+                                                + "<span class=\"item-meta\">\n" +
+                                                "<a style=\"font-weight: bold;\" href=\" ${pageContext.request.contextPath}/" + result[i].slug + "\"><i\n" +
+                                                "class=\"fa fa-user\"></i>" + result[i].user + "</a>\n" +
+                                                "<a href=\"" + ${pageContext.request.contextPath} +"/" + result[i].slug + "\"><i\n" +
+                                                "class=\"fa fa-comment-o\"></i>82 Bình luận</a> <a href=\" ${pageContext.request.contextPath}/" + result[i].slug + "\"><i\n" +
+                                                "class=\"fa fa-clock-o\"></i>" + result[i].showDate + "</a>\n" +
+                                                "</span>\n" +
+                                                "<p>" + result[i].subContent + "</p>\n" +
+                                                "</div></div>"
+
+                                        }
+
+                                        $('#posts').append(html);
+                                        page = page + 1;
+                                        $("#LoadingImage").hide();
+                                    } else {
+                                        checknull = true;
+                                        var xemthem = "<a class=\"page-numbers col-md-12 \" href=\"${pageContext.request.contextPath}/articles?sorted=new \">Xem Thêm</a>";
+                                        $('#xemthem').html(xemthem);
+                                        $("#LoadingImage").hide();
+                                    }
+                                }
+                            });
+                        }
+                    }, 500);
+            }
+        }
+    });
+
+</script>
+
+<script>
+
+</script>

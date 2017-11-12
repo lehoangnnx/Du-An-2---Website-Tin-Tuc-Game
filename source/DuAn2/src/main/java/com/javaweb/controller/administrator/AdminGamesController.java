@@ -81,6 +81,7 @@ public class AdminGamesController {
                            @RequestParam("developers") String developers, @RequestParam("writers") String writers,
                            @RequestParam("composers") String composers, @RequestParam("engine") String engine,
                            @RequestParam("platforms") String platforms, @RequestParam("info") String info,
+                           @RequestParam("isHot") int isHot, @RequestParam("description") String description,
                            @RequestParam("images") MultipartFile images,
                            RedirectAttributes redirectAttributes) {
         System.out.println("Vao POST");
@@ -126,9 +127,11 @@ public class AdminGamesController {
                 games.setReleases(date);
 
             }
-
+            if(!description.equals("")){
+                games.setDescription(description);
+            }
             games.setStatus(status);
-
+            games.setIsHot((byte) isHot);
             gameCategories.forEach(x -> gameCategoryHashSet.add(gameCategoryService.findByGameCategoryId(x)));
             games.setGameCategories(gameCategoryHashSet);
 
@@ -165,6 +168,7 @@ public class AdminGamesController {
                               @RequestParam("developers") String developers, @RequestParam("writers") String writers,
                               @RequestParam("composers") String composers, @RequestParam("engine") String engine,
                               @RequestParam("platforms") String platforms, @RequestParam("info") String info,
+                              @RequestParam("isHot") int isHot,@RequestParam("description") String description,
                               @RequestParam("images") MultipartFile images,
                               RedirectAttributes redirectAttributes) {
         System.out.println("Vao PATCH");
@@ -211,9 +215,11 @@ public class AdminGamesController {
                 games.setReleases(date);
 
             }
-
+            if(!description.equals("")){
+                games.setDescription(description);
+            }
             games.setStatus(status);
-
+            games.setIsHot((byte) isHot);
             gameCategories.forEach(x -> gameCategoryHashSet.add(gameCategoryService.findByGameCategoryId(x)));
             games.setGameCategories(gameCategoryHashSet);
             if (!images.isEmpty()

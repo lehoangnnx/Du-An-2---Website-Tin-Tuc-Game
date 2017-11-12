@@ -5,6 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!-- Banner chi tiết bài viết -->
 <div class="content-block-single">
@@ -27,6 +28,14 @@
 			</div>
 		</div>
 		<!-- Bài viết chí tiết -->
+		<div class="content-panel-body shortcode-content">
+
+
+			<c:out value="${article.mainContent}" escapeXml="false" />
+
+
+		</div>
+
 		<h3>Điểm danh 5 vị tướng có tỷ lệ ăn Pentakill lớn nhất trong
 			LMHT, game thủ nên sử dụng ngay nếu muốn gánh team lên hạng</h3>
 		<br>
@@ -150,13 +159,6 @@
 				</div>
 				<!-- END .content-panel -->
 			</div>
-
-
-
-
-
-
-
 
 			<!-- Bình luận -->
 			<div class="content-panel">
