@@ -1,5 +1,6 @@
 package com.javaweb.repository;
 
+import com.javaweb.model.GameCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +19,6 @@ public interface GamesRepository extends JpaRepository<Games, Integer> {
 	List<Games> findTop10ByStatusOrderByReleasesDesc(String status) ;
 
 	List<Games> findTop10ByIsHotAndStatusOrderByReleasesDesc(Byte isHot,String status) ;
+
+	List<Games> findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(GameCategory gameCategory, Byte isHot, String status) ;
 }

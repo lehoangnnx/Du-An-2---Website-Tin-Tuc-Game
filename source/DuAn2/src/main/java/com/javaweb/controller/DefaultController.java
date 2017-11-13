@@ -1,8 +1,6 @@
 package com.javaweb.controller;
 
-import com.javaweb.model.Article;
-import com.javaweb.model.ArticleCategory;
-import com.javaweb.model.Games;
+import com.javaweb.model.*;
 import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -42,6 +40,11 @@ public class DefaultController {
 	ArticleService articleService;
 	@Autowired
 	GamesService gamesService;
+	@Autowired
+	GameCategoryService gameCategoryService;
+
+	@Autowired
+	TagsService tagsService;
 	@RequestMapping(value = {"/", "/home"})
 	public String index(Principal p , Authentication authentication, HttpSession session, Model model
 
@@ -107,6 +110,49 @@ public class DefaultController {
 		return getTop10HotGame;
 	}
 
+	@ModelAttribute("getTop10GameOnline")
+	public List<Games> getTop10GameOnline(){
+		GameCategory gameCategory = gameCategoryService.findByName("Game Online");
+		List<Games>  getTop10GameOnline= gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc( gameCategory,(byte) 1,"active");
+		return getTop10GameOnline;
+	}
+	@ModelAttribute("getTop10GameOffline")
+	public List<Games> getTop10GameOffline(){
+		GameCategory gameCategory = gameCategoryService.findByName("Game Offline");
+		List<Games>  getTop10GameOffline= gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc( gameCategory,(byte) 1,"active");
+		return getTop10GameOffline;
+	}
+
+	@ModelAttribute("getTop10ArticleCategoryNewReviewsList")
+	public List<Article> getTop10ArticleCategoryNewReviewsList(){
+		ArticleCategory getArticleCategoryReviews = articleCategoryService.findByName("Reviews");
+
+		List<Article> getTop10ArticleCategoryNewReviewsList = articleService
+				.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryReviews,"active");
+		return getTop10ArticleCategoryNewReviewsList;
+	}
+	@ModelAttribute("getTop10ArticleCategoryNewTienIchList")
+	public List<Article> getTop10ArticleCategoryNewTienIchList(){
+		ArticleCategory getArticleCategoryTienIch = articleCategoryService.findByName("Tiện Ích");
+
+		List<Article> getTop10ArticleCategoryNewTienIchList = articleService
+				.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryTienIch,"active");
+		return getTop10ArticleCategoryNewTienIchList;
+	}
+	@ModelAttribute("getTop10ArticleCategoryNewThuThuatList")
+	public List<Article> getTop10ArticleCategoryNewThuThuatList(){
+		ArticleCategory getArticleCategoryThuThuat = articleCategoryService.findByName("Thủ Thuật");
+
+		List<Article> getTop10ArticleCategoryNewThuThuatList = articleService
+				.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryThuThuat,"active");
+		return getTop10ArticleCategoryNewThuThuatList;
+	}
+
+	@ModelAttribute("getTop20TagsList")
+	public List<Tags> getTop20TagsList(){
+		List<Tags> getTop20TagsList = tagsService.findAll().stream().limit(20).collect(Collectors.toList());
+		return getTop20TagsList;
+	}
 	@ModelAttribute("articleCategoryList")
 	public List<ArticleCategory> getCategory(){
 		List<ArticleCategory>  articleCategoryList = articleCategoryService.findAll()

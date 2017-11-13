@@ -249,8 +249,16 @@
                 releases : {
                     required : true
                 },
-                description : {
+                info : {
                     required : true
+                },
+                homeUrl :{
+                    required: true,
+                    url: true
+                },
+                downloadUrl :{
+                    required: true,
+                    url: true
                 }
 
             },
@@ -272,8 +280,16 @@
                 releases:{
                     required : "Vui Lòng Chọn Ngày Phát Hành"
                 },
-                description : {
+                info : {
                     required : "Vui Lòng Nhập Mô Tả Game"
+                },
+                homeUrl :{
+                    required : "Vui Lòng Nhập URL",
+                    url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://lienquan.garena.vn/"
+                },
+                downloadUrl :{
+                    required : "Vui Lòng Nhập URL",
+                    url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://lienquan.garena.vn/"
                 }
 
 

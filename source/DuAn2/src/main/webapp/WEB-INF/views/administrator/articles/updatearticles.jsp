@@ -352,11 +352,10 @@
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">
 				<input hidden="" id="msg" value="${msg }"></input>
 				<div class="offset-sm-2 col-md-10">
-					<button type="button" class="btn default">Làm Mới</button>
+					<
 					<button id="btn-submit" type="submit" class=" btn btn-primary">Xác
 						Nhận</button>
-					<button type="button" class="btn btn-danger pull-right">Hủy
-						Bỏ</button>
+					<a href="${contextPath}/admin/articles?status=active" class="btn btn-danger pull-right" >Quay Lại</a>
 				</div>
 			</div>
 

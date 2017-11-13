@@ -41,8 +41,9 @@
 									<th >User Name</th>
 
 									<th >Quyền</th>
-									<th class="add"><a href="${contextPath}/admin/addusers"><i
-											style="color: green;" class="fa fa-plus fa-2x" title="Thêm"></i></a></th>
+									<%--<th class="add"><a href="${contextPath}/admin/addusers"><i
+											style="color: green;" class="fa fa-plus fa-2x" title="Thêm"></i></a></th>--%>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>

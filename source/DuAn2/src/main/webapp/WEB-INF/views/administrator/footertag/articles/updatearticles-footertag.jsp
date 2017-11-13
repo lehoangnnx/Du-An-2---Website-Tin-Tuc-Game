@@ -282,7 +282,7 @@
 				},
 				
 				video : {
-					required: true,
+
 					url: true
 
 				}
@@ -309,9 +309,9 @@
 				author : {
 					required : "Vui Lòng Nhập Tác Giả/Nguồn"
 				},
-				
+
 				video : {
-					required : "Vui Lòng Nhập URL",
+
 					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "
 				}
 

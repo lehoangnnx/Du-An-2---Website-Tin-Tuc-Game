@@ -32,12 +32,11 @@ public class Games implements java.io.Serializable {
     /**
      *
      */
-    private static final long serialVersionUID = -4682167895841921756L;
     private Integer gameId;
     private String name;
     private String slug;
     private String images;
-    private Byte isHot;
+    private byte isHot;
     private String developers;
     private String publishers;
     private String writers;
@@ -48,6 +47,8 @@ public class Games implements java.io.Serializable {
     private String info;
     private String status;
     private String description;
+    private String homeUrl;
+    private String downloadUrl;
     private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
     private Set<GameReviews> gameReviewses_1 = new HashSet<GameReviews>(0);
     private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
@@ -57,17 +58,19 @@ public class Games implements java.io.Serializable {
     }
 
 
-    public Games(String name, String slug, String images, Byte isHot, String publishers, Date releases, String status) {
+    public Games(String name, String slug, String images, byte isHot, String publishers, Date releases, String info, String status, String homeUrl, String downloadUrl) {
         this.name = name;
         this.slug = slug;
         this.images = images;
         this.isHot = isHot;
         this.publishers = publishers;
         this.releases = releases;
+        this.info = info;
         this.status = status;
+        this.homeUrl = homeUrl;
+        this.downloadUrl = downloadUrl;
     }
-
-    public Games(String name, String slug, String images, Byte isHot, String developers, String publishers, String writers, String composers, String engine, String platforms, Date releases, String info, String status, String description, Set<GameReviews> gameReviewses, Set<GameReviews> gameReviewses_1, Set<GameCategory> gameCategories, Set<GameCategory> gameCategories_1) {
+    public Games(String name, String slug, String images, byte isHot, String developers, String publishers, String writers, String composers, String engine, String platforms, Date releases, String info, String status, String description, String homeUrl, String downloadUrl, Set<GameReviews> gameReviewses, Set<GameReviews> gameReviewses_1, Set<GameCategory> gameCategories, Set<GameCategory> gameCategories_1) {
         this.name = name;
         this.slug = slug;
         this.images = images;
@@ -82,17 +85,18 @@ public class Games implements java.io.Serializable {
         this.info = info;
         this.status = status;
         this.description = description;
+        this.homeUrl = homeUrl;
+        this.downloadUrl = downloadUrl;
         this.gameReviewses = gameReviewses;
         this.gameReviewses_1 = gameReviewses_1;
         this.gameCategories = gameCategories;
         this.gameCategories_1 = gameCategories_1;
     }
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @Id @GeneratedValue(strategy=IDENTITY)
 
 
-    @Column(name = "game_id", unique = true, nullable = false)
+    @Column(name="game_id", unique=true, nullable=false)
     public Integer getGameId() {
         return this.gameId;
     }
@@ -102,7 +106,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name="name", unique=true, nullable=false)
     public String getName() {
         return this.name;
     }
@@ -112,7 +116,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "slug", unique = true, nullable = false)
+    @Column(name="slug", unique=true, nullable=false)
     public String getSlug() {
         return this.slug;
     }
@@ -122,7 +126,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "images", nullable = false, length = 65535)
+    @Column(name="images", nullable=false, length=65535)
     public String getImages() {
         return this.images;
     }
@@ -132,17 +136,17 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "isHot", nullable = false)
-    public Byte getIsHot() {
+    @Column(name="is_hot", nullable=false)
+    public byte getIsHot() {
         return this.isHot;
     }
 
-    public void setIsHot(Byte isHot) {
+    public void setIsHot(byte isHot) {
         this.isHot = isHot;
     }
 
 
-    @Column(name = "developers", length = 1000)
+    @Column(name="developers", length=1000)
     public String getDevelopers() {
         return this.developers;
     }
@@ -152,7 +156,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "publishers", nullable = false, length = 1000)
+    @Column(name="publishers", nullable=false, length=1000)
     public String getPublishers() {
         return this.publishers;
     }
@@ -162,7 +166,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "writers", length = 1000)
+    @Column(name="writers", length=1000)
     public String getWriters() {
         return this.writers;
     }
@@ -172,7 +176,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "composers", length = 1000)
+    @Column(name="composers", length=1000)
     public String getComposers() {
         return this.composers;
     }
@@ -182,7 +186,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "engine", length = 1000)
+    @Column(name="engine", length=1000)
     public String getEngine() {
         return this.engine;
     }
@@ -192,7 +196,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "platforms", length = 1000)
+    @Column(name="platforms", length=1000)
     public String getPlatforms() {
         return this.platforms;
     }
@@ -202,7 +206,7 @@ public class Games implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "releases", nullable = false, length = 19)
+    @Column(name="releases", nullable=false, length=19)
     public Date getReleases() {
         return this.releases;
     }
@@ -212,7 +216,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "info", length = 1000)
+    @Column(name="info", nullable=false, length=4000)
     public String getInfo() {
         return this.info;
     }
@@ -222,7 +226,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "status", nullable = false, length = 8)
+    @Column(name="status", nullable=false, length=8)
     public String getStatus() {
         return this.status;
     }
@@ -232,7 +236,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    @Column(name = "description")
+    @Column(name="description")
     public String getDescription() {
         return this.description;
     }
@@ -241,7 +245,27 @@ public class Games implements java.io.Serializable {
         this.description = description;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
+
+    @Column(name="home_url", nullable=false, length=65535)
+    public String getHomeUrl() {
+        return this.homeUrl;
+    }
+
+    public void setHomeUrl(String homeUrl) {
+        this.homeUrl = homeUrl;
+    }
+
+
+    @Column(name="download_url", nullable=false, length=65535)
+    public String getDownloadUrl() {
+        return this.downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="games")
     public Set<GameReviews> getGameReviewses() {
         return this.gameReviewses;
     }
@@ -250,7 +274,7 @@ public class Games implements java.io.Serializable {
         this.gameReviewses = gameReviewses;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="games")
     public Set<GameReviews> getGameReviewses_1() {
         return this.gameReviewses_1;
     }
@@ -259,10 +283,10 @@ public class Games implements java.io.Serializable {
         this.gameReviewses_1 = gameReviewses_1;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "games_games_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
-            @JoinColumn(name = "game_id", nullable = false, updatable = false)}, inverseJoinColumns = {
-            @JoinColumn(name = "game_category_id", nullable = false, updatable = false)})
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="games_games_category", catalog="duan2_webapplication_tintucgame", joinColumns = {
+            @JoinColumn(name="game_id", nullable=false, updatable=false) }, inverseJoinColumns = {
+            @JoinColumn(name="game_category_id", nullable=false, updatable=false) })
     public Set<GameCategory> getGameCategories() {
         return this.gameCategories;
     }
@@ -271,10 +295,10 @@ public class Games implements java.io.Serializable {
         this.gameCategories = gameCategories;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "games_games_category", catalog = "duan2_webapplication_tintucgame", joinColumns = {
-            @JoinColumn(name = "game_id", nullable = false, updatable = false)}, inverseJoinColumns = {
-            @JoinColumn(name = "game_category_id", nullable = false, updatable = false)})
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="games_games_category", catalog="duan2_webapplication_tintucgame", joinColumns = {
+            @JoinColumn(name="game_id", nullable=false, updatable=false) }, inverseJoinColumns = {
+            @JoinColumn(name="game_category_id", nullable=false, updatable=false) })
     public Set<GameCategory> getGameCategories_1() {
         return this.gameCategories_1;
     }
@@ -282,6 +306,8 @@ public class Games implements java.io.Serializable {
     public void setGameCategories_1(Set<GameCategory> gameCategories_1) {
         this.gameCategories_1 = gameCategories_1;
     }
+
+
 
 
 }

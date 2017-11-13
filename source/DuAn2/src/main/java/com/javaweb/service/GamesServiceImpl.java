@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import java.util.List;
 
+import com.javaweb.model.GameCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,11 @@ public class GamesServiceImpl implements GamesService {
 	@Override
 	public List<Games> findTop10ByIsHotAndStatusOrderByReleasesDesc(Byte isHot, String status) {
 		return gamesRepository.findTop10ByIsHotAndStatusOrderByReleasesDesc(isHot,status);
+	}
+
+	@Override
+	public List<Games> findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(GameCategory gameCategory, Byte isHot, String status) {
+		return gamesRepository.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(gameCategory,isHot,status);
 	}
 
 }

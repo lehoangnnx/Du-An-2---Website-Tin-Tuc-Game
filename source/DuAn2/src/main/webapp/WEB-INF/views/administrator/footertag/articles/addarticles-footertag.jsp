@@ -275,7 +275,7 @@
 					required : true
 				},
 				video : {
-					required: true,
+
 					url: true
 
 				}
@@ -306,7 +306,7 @@
 					required : "Vui Lòng Chọn Ảnh"
 				},
 				video : {
-					required : "Vui Lòng Nhập URL",
+
 					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "
 				}
 

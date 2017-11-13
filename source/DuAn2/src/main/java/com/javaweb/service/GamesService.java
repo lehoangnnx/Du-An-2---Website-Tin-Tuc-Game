@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import java.util.List;
 
+import com.javaweb.model.GameCategory;
 import com.javaweb.model.Games;
 
 public interface GamesService {
@@ -12,4 +13,5 @@ public interface GamesService {
 	void saveorupdate(Games games);
 	List<Games> findTop10ByStatusOrderByReleasesDesc(String status) ;
 	List<Games> findTop10ByIsHotAndStatusOrderByReleasesDesc(Byte isHot,String status) ;
+	List<Games> findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(GameCategory gameCategory, Byte isHot, String status) ;
 }

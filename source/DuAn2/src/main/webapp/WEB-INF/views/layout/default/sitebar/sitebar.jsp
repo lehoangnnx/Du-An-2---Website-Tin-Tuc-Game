@@ -40,7 +40,7 @@
             <c:forEach var="gha" items="${getTop10HotArticle}">
             <div class="item">
                 <div class="item-header">
-                    <a href="${contextPath}/images/articles/${gha.imagesThumbnail}"><img src="${contextPath}/images/articles/${gha.imagesThumbnail}" alt=""/></a>
+                    <a href="${contextPath}/${gha.slug}"><img src="${contextPath}/images/articles/${gha.imagesThumbnail}" alt=""/></a>
                 </div>
                 <div class="item-content">
                     <h4>
@@ -78,161 +78,45 @@
                 </div>
             </div>
             </c:forEach>
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/10.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Audition - VTC Game</a>
-                    </h4>
-                    <p>Audition là tựa game nhảy PC “huyền thoại” đã trải qua
-                        hơn 10 năm thăng trầm...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/12.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Võ Lâm Truyền Kỳ Web</a>
-                    </h4>
-                    <p>Webgame Võ Lâm Truyền Kỳ là game online kiếm hiệp được
-                        phát triển bởi chính KingSoft...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/13.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Cửu Âm Chân Kinh 2</a>
-                    </h4>
-                    <p>Cửu Âm Chân Kinh 1 có lối chơi do thám bằng cách đưa ra
-                        cho bạn 1 mục tiêu...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/14.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">PlayerUnknown’s Battlegrounds</a>
-                    </h4>
-                    <p>Nếu nhắc đến các tựa game hay của năm 2017, sẽ thật sai
-                        lầm nếu không nhắc đến PlayerUnknown’s Battlegrounds
-                        (PUBG)...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-
+            <a href="${contextPath}/game?sorted=hots" class="button-read-more">Hiện thị thêm</a>
         </div>
         <div class="widget-article-list">
-
+            <c:forEach var="ggo" items="${getTop10GameOnline}">
             <div class="item">
                 <div class="item-header">
-                    <img src="images/game/15.cache" alt="">
+                    <img src="${contextPath}/images/games/${ggo.images}" alt="">
                 </div>
                 <div class="item-content">
                     <h4>
-                        <a href="#">Transformers Online</a>
+                        <a href="${contextPath}/${ggo.slug}">${ggo.name}</a>
                     </h4>
-                    <p>Blade &amp; Soul - Garena hay còn được gọi B&amp;S Garena là
-                        tựa game nhập vai...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                    <p>${ggo.description}</p>
+                    <span class="item-meta"> <a href="${contextPath}/${ggo.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                 </div>
             </div>
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/16.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Xuất Kích</a>
-                    </h4>
-                    <p>Xuất Kích trở lại "mạnh mẽ" với bản BIG UPDATE ...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/17.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Biệt Kích Mobile</a>
-                    </h4>
-                    <p>Biệt Kích Mobile - Garena hay còn được gọi B&amp;S Garena là
-                        tựa game nhập vai...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-
-            <a href="#" class="button-read-more">Hiện thị thêm</a>
-
+            </c:forEach>
+            <a href="${contextPath}/game-online?sorted=hots" class="button-read-more">Hiện thị thêm</a>
         </div>
+
+
         <div class="widget-article-list">
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/18.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Dragon Blaze</a>
-                    </h4>
-                    <p>Biệt Kích Mobile - Garena hay còn được gọi B&amp;S Garena là
-                        tựa game nhập vai...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
+            <c:forEach var="ggof" items="${getTop10GameOffline}">
+                <div class="item">
+                    <div class="item-header">
+                        <img src="${contextPath}/images/games/${ggof.images}" alt="">
+                    </div>
+                    <div class="item-content">
+                        <h4>
+                            <a href="${contextPath}/${ggof.slug}">${ggof.name}</a>
+                        </h4>
+                        <p>${ggof.description}</p>
+                        <span class="item-meta"> <a href="${contextPath}/${ggof.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/19.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Minions Paradise</a>
-                    </h4>
-                    <p>Biệt Kích Mobile - Garena hay còn được gọi B&amp;S Garena là
-                        tựa game nhập vai...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/game/20.cache" alt="">
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Cửu Âm VNG</a>
-                    </h4>
-                    <p>Biệt Kích Mobile - Garena hay còn được gọi B&amp;S Garena là
-                        tựa game nhập vai...</p>
-                    <span class="item-meta"> <a href="#"><i class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-
-            <a href="#" class="button-read-more">Hiện thị thêm</a>
+            </c:forEach>
+            <a href="${contextPath}/game-offline?sorted=hots" class="button-read-more">Hiện thị thêm</a>
 
         </div>
     </div>
@@ -257,231 +141,99 @@
                 class="">Tiện ích</span>
         </h3>
         <div class="widget-comments-list active">
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/no-avatar.jpg" alt=""/>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Uncharted Waters Online</a>
-                    </h4>
-                    <p>Uncharted Waters Online dựa trên dòng game offline nổi
-                        tiếng Uncharted Waters...</p>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
+            <c:forEach var="gng" items="${getTop10NewGame}">
+                <div class="item">
+                    <div class="item-header">
+                        <img src="${contextPath}/images/games/${gng.images}" alt="">
+                    </div>
+                    <div class="item-content">
+                        <h4>
+                            <a href="${contextPath}/${gng.slug}">${gng.name}</a>
+                        </h4>
+                        <p>${gng.description}</p>
+                        <span class="item-meta"> <a href="${contextPath}/${gng.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/no-avatar.jpg" alt=""/>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Hyper Universe</a>
-                    </h4>
-                    <p>Gameplay của Hyper Universe có sự kết hợp rất tốt giữa
-                        cuộn cảnh màn ngang và MOBA...</p>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <img src="images/no-avatar.jpg" alt=""/>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Laser League</a>
-                    </h4>
-                    <p>Khi tham gia vào thế giới ảo của Laser League, gần như
-                        game thủ chỉ cần nháy mắt sai thời điểm một...</p>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
+            </c:forEach>
+            <a href="${contextPath}/game?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
         </div>
         <div class="widget-article-list">
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-7.jpg" alt=""></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Gameplay của Hyper Universe có sự kết hợp rất
-                            tốt giữa cuộn cảnh màn ngang và MOBA..</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
+            <c:forEach var="gacnrl" items="${getTop10ArticleCategoryNewReviewsList}">
+                <div class="item">
+                    <div class="item-header">
+                        <a href="${contextPath}/${gacnrl.slug}"><img src="${contextPath}/images/articles/${gacnrl.imagesThumbnail}" alt=""/></a>
+                    </div>
+                    <div class="item-content">
+                        <h4>
+                            <a href="${contextPath}/${gacnrl.slug}">${gacnrl.title}</a>
+                        </h4>
+                        <span class="item-meta"> <a href="${contextPath}/${gacnrl.slug}"><i
+                                class="fa fa-eye"></i>${gacnrl.views}</a> <a href="${contextPath}/${gacnrl.slug}"><i
+                                class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gacnrl.createdDate}"/></a>
 										</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-8.jpg" alt=""></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Gameplay của Hyper Universe có sự kết hợp rất
-                            tốt giữa cuộn cảnh màn ngang và MOBA..</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-										</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-9.jpg" alt=""></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Gameplay của Hyper Universe có sự kết hợp rất
-                            tốt giữa cuộn cảnh màn ngang và MOBA..</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-										</span>
-                </div>
-            </div>
-
-            <a href="#" class="button-read-more">Hiện thị thêm</a>
+            </c:forEach>
+            <a href="${contextPath}/reviews?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
         </div>
         <div class="widget-article-list">
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-9.jpg" alt=""></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Gameplay của Hyper Universe có sự kết hợp rất
-                            tốt giữa cuộn cảnh màn ngang và MOBA..</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
+            <c:forEach var="gacntcl" items="${getTop10ArticleCategoryNewTienIchList}">
+                <div class="item">
+                    <div class="item-header">
+                        <a href="${contextPath}/${gacntcl.slug}"><img src="${contextPath}/images/articles/${gacntcl.imagesThumbnail}" alt=""/></a>
+                    </div>
+                    <div class="item-content">
+                        <h4>
+                            <a href="${contextPath}/${gacntcl.slug}">${gacntcl.title}</a>
+                        </h4>
+                        <span class="item-meta"> <a href="${contextPath}/${gacntcl.slug}"><i
+                                class="fa fa-eye"></i>${gacntcl.views}</a> <a href="${contextPath}/${gacntcl.slug}"><i
+                                class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gacntcl.createdDate}"/></a>
 										</span>
+                    </div>
                 </div>
-            </div>
+            </c:forEach>
+            <a href="${contextPath}/tien-ich?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-7.jpg" alt=""></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Gameplay của Hyper Universe có sự kết hợp rất
-                            tốt giữa cuộn cảnh màn ngang và MOBA..</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-										</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"><img src="images/photos/image-8.jpg" alt=""></a>
-                </div>
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Gameplay của Hyper Universe có sự kết hợp rất
-                            tốt giữa cuộn cảnh màn ngang và MOBA..</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-										</span>
-                </div>
-            </div>
-
-            <a href="#" class="button-read-more">Hiện thị thêm</a>
 
         </div>
     </div>
 
     <div class="widget">
-        <h3>Thủ thuật game cập nhật</h3>
+        <h3>Thủ Thuật Game</h3>
         <div class="widget-photo-gallery">
+            <c:forEach var="gacnttl" items="${getTop10ArticleCategoryNewThuThuatList}">
+                <div class="item">
+                    <div class="item-content">
+                        <h4>
+                            <a href="${contextPath}/${gacnttl.slug}">${gacnttl.title}</a>
+                        </h4>
+                        <span class="item-meta"> <a href="${contextPath}/${gacnttl.slug}"><i
+                                class="fa fa-camera"></i>${gacnttl.views} lượt xem</a> <a href="${contextPath}/${gacnttl.slug}"><i
+                                class="fa fa-reply"></i>Xem chi tiết</a>
+										</span>
+                    </div>
+                </div>
+            </c:forEach>
+            <a href="${contextPath}/tien-ich?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
-            <div class="item">
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Liên Quân Mobile: Điểm qua 4 vị tướng mà
-                            người chơi chưa thể và cũng khó có thể biết mặt</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-camera"></i>16 lượt xem</a> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
 
-            <div class="item">
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Đập hộp chiếc VGA GTX 1070 Ti đầu tiên xuất
-                            hiện tại Việt Nam</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-camera"></i>16 lượt xem</a> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Liên Quân Mobile: Điểm qua 4 vị tướng mà
-                            người chơi chưa thể và cũng khó có thể biết mặt</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-camera"></i>16 lượt xem</a> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
 
-            <div class="item">
-                <div class="item-content">
-                    <h4>
-                        <a href="#">Đập hộp chiếc VGA GTX 1070 Ti đầu tiên xuất
-                            hiện tại Việt Nam</a>
-                    </h4>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-camera"></i>16 lượt xem</a> <a href="#"><i
-                            class="fa fa-reply"></i>Xem chi tiết</a>
-										</span>
-                </div>
-            </div>
-            <a href="#" class="button-read-more">Hiện thị nhiều hơn</a>
+
+
+
 
         </div>
     </div>
     <div class="widget">
         <h3>Xem thêm</h3>
         <div class="tagcloud">
-            <a href="#">#GameOnline</a> <a href="#">#Game</a> <a href="#">#Game</a>
-            <a href="#">#Game thể thao</a> <a href="#">Game sinh tồn</a> <a
-                href="#">#Tin tức mới</a> <a href="#">Video nổi bật</a> <a
-                href="#">#Game chuyển động</a> <a href="#">Thể loại game</a> <a
-                href="#">#Download game</a> <a href="#">#Danh sách game</a> <a
-                href="#"> #Game bắn súng</a>
+            <c:forEach var="gtl" items="${getTop20TagsList}" >
+            <a href="${contextPath}/${gtl.slug}">#${gtl.name}</a>
+            </c:forEach>
         </div>
     </div>
 

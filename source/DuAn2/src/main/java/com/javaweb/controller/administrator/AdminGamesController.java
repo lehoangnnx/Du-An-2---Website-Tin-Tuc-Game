@@ -81,7 +81,9 @@ public class AdminGamesController {
                            @RequestParam("developers") String developers, @RequestParam("writers") String writers,
                            @RequestParam("composers") String composers, @RequestParam("engine") String engine,
                            @RequestParam("platforms") String platforms, @RequestParam("info") String info,
-                           @RequestParam("isHot") int isHot, @RequestParam("description") String description,
+                           @RequestParam("isHot") int isHot,
+                           @RequestParam("homeUrl") String homeUrl,
+                           @RequestParam("downloadUrl") String downloadUrl,
                            @RequestParam("images") MultipartFile images,
                            RedirectAttributes redirectAttributes) {
         System.out.println("Vao POST");
@@ -127,9 +129,16 @@ public class AdminGamesController {
                 games.setReleases(date);
 
             }
-            if(!description.equals("")){
-                games.setDescription(description);
+            if(!info.equals("")){
+                games.setInfo(info);
             }
+            if(!homeUrl.equals("")){
+                games.setHomeUrl(homeUrl);
+            }
+            if(!downloadUrl.equals("")){
+                games.setDownloadUrl(downloadUrl);
+            }
+
             games.setStatus(status);
             games.setIsHot((byte) isHot);
             gameCategories.forEach(x -> gameCategoryHashSet.add(gameCategoryService.findByGameCategoryId(x)));
@@ -168,7 +177,9 @@ public class AdminGamesController {
                               @RequestParam("developers") String developers, @RequestParam("writers") String writers,
                               @RequestParam("composers") String composers, @RequestParam("engine") String engine,
                               @RequestParam("platforms") String platforms, @RequestParam("info") String info,
-                              @RequestParam("isHot") int isHot,@RequestParam("description") String description,
+                              @RequestParam("isHot") int isHot,
+                              @RequestParam("homeUrl") String homeUrl,
+                              @RequestParam("downloadUrl") String downloadUrl,
                               @RequestParam("images") MultipartFile images,
                               RedirectAttributes redirectAttributes) {
         System.out.println("Vao PATCH");
@@ -215,8 +226,14 @@ public class AdminGamesController {
                 games.setReleases(date);
 
             }
-            if(!description.equals("")){
-                games.setDescription(description);
+            if(!info.equals("")){
+                games.setInfo(info);
+            }
+            if(!homeUrl.equals("")){
+                games.setHomeUrl(homeUrl);
+            }
+            if(!downloadUrl.equals("")){
+                games.setDownloadUrl(downloadUrl);
             }
             games.setStatus(status);
             games.setIsHot((byte) isHot);

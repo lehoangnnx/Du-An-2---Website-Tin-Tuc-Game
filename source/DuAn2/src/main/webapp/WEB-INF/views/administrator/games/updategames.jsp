@@ -90,13 +90,31 @@
 
 				<label class="col-md-2 form-control-label">Mô Tả Game</label>
 				<div class="col-md-10">
-					<textarea id="description" class="form-control maxlength" maxlength="225"
-							  name="description" rows="5"
-							  placeholder="This textarea has a limit of 225 chars.">${games.description }</textarea>
-					<label id="subContent-error" class="error" ></label>
+					<textarea id="info" class="form-control maxlength" maxlength="225"
+							  name="info" rows="5"
+							  placeholder="This textarea has a limit of 225 chars.">${games.info }</textarea>
+					<label id="info-error" class="error" ></label>
 				</div>
 
 
+			</div>
+
+			<div class="form-group  row">
+				<label class="col-md-2 col-form-label" for="inputSuccess1">Trang Chủ</label>
+				<div class="col-md-10">
+					<input type="text" value="${games.homeUrl }"
+						   class="form-control " id="homeUrl" name="homeUrl">
+					<label id="homeUrl-error" class="error" for="homeUrl"></label>
+				</div>
+			</div>
+
+			<div class="form-group  row">
+				<label class="col-md-2 col-form-label" for="inputSuccess1">Trang Tải Game</label>
+				<div class="col-md-10">
+					<input type="text" value="${games.downloadUrl }"
+						   class="form-control " id="downloadUrl" name="downloadUrl">
+					<label id="downloadUrl-error" class="error" for="homeUrl"></label>
+				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Nhà
@@ -161,14 +179,7 @@
 
 				</div>
 			</div>
-			<div class="form-group  row">
-				<label class="col-md-2 col-form-label" for="info">Mô Tả Game</label>
-				<div class="col-md-10">
-					<input type="text" value="${games.info }"
-						class="form-control " id="info" name="info">
 
-				</div>
-			</div>
 			<div class="form-group row">
 				<label class="col-md-2 col-form-label">Danh Mục Games</label>
 				<div class="col-md-10">
@@ -254,11 +265,10 @@
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">
 				<input hidden="" id="msg" value="${msg }"></input>
 				<div class="offset-sm-2 col-md-10">
-					<button type="button" class="btn default">Làm Mới</button>
+
 					<button id="btn-submit" type="submit" class=" btn btn-primary">Xác
 						Nhận</button>
-					<button type="button" class="btn btn-danger pull-right">Hủy
-						Bỏ</button>
+					<a href="${contextPath}/admin/games?status=active" class="btn btn-danger pull-right" >Quay Lại</a>
 				</div>
 			</div>
 
