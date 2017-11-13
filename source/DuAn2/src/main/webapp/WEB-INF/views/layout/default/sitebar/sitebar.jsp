@@ -237,7 +237,7 @@
         </div>
     </div>
 
-    <div class="widget">
+    <%--<div class="widget">
         <h3>Game nổi bật</h3>
         <div class="widget-article-list">
 
@@ -369,7 +369,7 @@
                 thị nhiều hơn</a>
 
         </div>
-    </div>
+    </div>--%>
 
     <!-- END .sidebar -->
 </aside>

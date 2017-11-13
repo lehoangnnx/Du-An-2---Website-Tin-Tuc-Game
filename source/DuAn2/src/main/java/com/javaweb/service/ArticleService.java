@@ -20,4 +20,6 @@ public interface ArticleService {
     List<Article> findTop10ByIsHotAndStatusOrderByViewsDesc( Byte isHot, String status);
 
     List<Article> findByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date);
+
+    Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
 }

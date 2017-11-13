@@ -140,9 +140,7 @@
                     <div class="ot-breaking-news-content">
                         <marquee behavior="scroll" direction="left" scrollamount="8"
                                  scrolldelay="20" width="90%">
-                            <FONT face="Tahoma" size="2" color="#fc7700"> Game mobile:
-                                Overhit – Game Mobile bom tấn với đồ họa cực khủng ấn định ra
-                                mắt cuối năm nay (02-11-2017 19:33)</FONT>
+                            <a href="${contextPath}/${getTop1Article.slug} " style="color:#fc7700 ">${getTop1Article.title}</a>
                         </marquee>
 
                     </div>

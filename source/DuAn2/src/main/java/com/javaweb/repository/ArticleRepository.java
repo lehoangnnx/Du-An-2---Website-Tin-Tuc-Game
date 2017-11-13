@@ -22,5 +22,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	List<Article> findByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date);
 
+	Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
+
+
 
 }

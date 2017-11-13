@@ -68,12 +68,34 @@ public class DefaultController {
 		model.addAttribute("getTop10ArticleCategoryNewVideoList",getTop10ArticleCategoryNewVideoList);
 
 
+		ArticleCategory getArticleCategorySuKien = articleCategoryService.findByName("Sự Kiện");
+		List<Article> getTop5ArticleCategoryNewSuKienList = articleService
+				.findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategorySuKien,"active")
+				.stream().limit(5).collect(Collectors.toList());
+		model.addAttribute("getTop5ArticleCategoryNewSuKienList",getTop5ArticleCategoryNewSuKienList);
 
 		List<Article> getTop10ArticleList = articleService
 				.findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
 
 		model.addAttribute("getTop10ArticleList",getTop10ArticleList);
 
+		GameCategory gameCategoryPcConsole = gameCategoryService.findByName("Game Pc-Console");
+		List<Games>  getTop3GamePcConsole= gamesService
+				.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc( gameCategoryPcConsole,(byte) 1,"active")
+				.stream().limit(3).collect(Collectors.toList());
+		model.addAttribute("getTop3GamePcConsole",getTop3GamePcConsole);
+
+		GameCategory gameCategoryEsport = gameCategoryService.findByName("Game Esport");
+		List<Games>  getTop3GameEsport= gamesService
+				.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc( gameCategoryEsport,(byte) 1,"active")
+				.stream().limit(3).collect(Collectors.toList());
+		model.addAttribute("getTop3GameEsport",getTop3GameEsport);
+
+		GameCategory gameCategoryMobile = gameCategoryService.findByName("Game Mobile");
+		List<Games>  getTop3GameMobile= gamesService
+				.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc( gameCategoryMobile,(byte) 1,"active")
+				.stream().limit(3).collect(Collectors.toList());
+		model.addAttribute("getTop3GameMobile",getTop3GameMobile);
 
 
 
@@ -121,6 +143,13 @@ public class DefaultController {
 		GameCategory gameCategory = gameCategoryService.findByName("Game Offline");
 		List<Games>  getTop10GameOffline= gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc( gameCategory,(byte) 1,"active");
 		return getTop10GameOffline;
+	}
+
+	@ModelAttribute("getTop1Article")
+	public Article getTop1Article(){
+
+		Article getTop1Article= articleService.findTop1ByIsHotAndStatusOrderByViewsDesc( (byte) 1,"active");
+		return getTop1Article;
 	}
 
 	@ModelAttribute("getTop10ArticleCategoryNewReviewsList")

@@ -130,13 +130,13 @@ public class AdminGamesController {
 
             }
             if(!info.equals("")){
-                games.setInfo(info);
+                games.setInfo(HtmlUtils.htmlEscape(info));
             }
             if(!homeUrl.equals("")){
-                games.setHomeUrl(homeUrl);
+                games.setHomeUrl(HtmlUtils.htmlEscape(homeUrl));
             }
             if(!downloadUrl.equals("")){
-                games.setDownloadUrl(downloadUrl);
+                games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl));
             }
 
             games.setStatus(status);
@@ -227,13 +227,13 @@ public class AdminGamesController {
 
             }
             if(!info.equals("")){
-                games.setInfo(info);
+                games.setInfo(HtmlUtils.htmlEscape(info));
             }
             if(!homeUrl.equals("")){
-                games.setHomeUrl(homeUrl);
+                games.setHomeUrl(HtmlUtils.htmlEscape(homeUrl));
             }
             if(!downloadUrl.equals("")){
-                games.setDownloadUrl(downloadUrl);
+                games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl));
             }
             games.setStatus(status);
             games.setIsHot((byte) isHot);
