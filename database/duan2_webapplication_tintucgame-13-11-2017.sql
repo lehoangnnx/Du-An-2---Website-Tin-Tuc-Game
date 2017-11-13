@@ -126,7 +126,7 @@ CREATE TABLE `article_category` (
 
 LOCK TABLES `article_category` WRITE;
 /*!40000 ALTER TABLE `article_category` DISABLE KEYS */;
-INSERT INTO `article_category` VALUES (1,0,'Game Online','game-online','active',1,NULL),(2,0,'Khám Phá','kham-pha','active',2,NULL),(3,0,'sdsd','áds','deleted',1,NULL),(4,0,'23232','a','deleted',1,NULL),(5,0,'game ngước ngoài','game-nguoc-ngoai','inactive',1,NULL),(6,0,'a','as','inactive',1,NULL),(7,1,'Game Mỹ','game-my','deleted',1,NULL),(8,0,'Game Online1','game-online1','deleted',1,NULL),(9,0,'game24 ','game24','deleted',1,NULL),(10,0,'nnnnnn','nnnnnn','deleted',1,NULL),(11,0,'PC-CONSOLE','pc-console','active',1,NULL),(12,0,'ESport','esport','active',1,NULL),(13,0,'Mobile','mobile','active',1,NULL),(14,0,'Game Việt','game-viet','active',1,NULL),(15,0,'Trải Nghiệm','trai-nghiem','active',1,NULL),(16,15,'Trong Nước','trong-nuoc','active',1,NULL),(17,15,'Nước Ngoài','nuoc-ngoai','active',1,NULL),(18,0,'Gaming Gear','gaming-gear','active',1,NULL),(19,0,'Manga/Film','manga-film','active',1,NULL),(20,0,'Video','video','active',1,NULL),(21,0,'Reviews','reviews','active',1,NULL),(22,0,'Tiện Ích','tien-ich','active',1,NULL),(23,0,'Thủ Thuật','thu-thuat','active',1,NULL),(24,0,'Sự Kiện','su-kien','active',1,NULL);
+INSERT INTO `article_category` VALUES (1,0,'Game Online','game-online','active',1,NULL),(2,0,'Khám Phá','kham-pha','active',2,NULL),(5,0,'game ngước ngoài','game-nguoc-ngoai','inactive',1,NULL),(11,0,'PC-CONSOLE','pc-console','active',1,NULL),(12,0,'ESport','esport','active',1,NULL),(13,0,'Mobile','mobile','active',1,NULL),(14,0,'Game Việt','game-viet','active',1,NULL),(15,0,'Trải Nghiệm','trai-nghiem','active',1,NULL),(16,15,'Trong Nước','trong-nuoc','active',1,NULL),(17,15,'Nước Ngoài','nuoc-ngoai','active',1,NULL),(18,0,'Gaming Gear','gaming-gear','active',1,NULL),(19,0,'Manga/Film','manga-film','active',1,NULL),(20,0,'Video','video','active',1,NULL),(21,0,'Reviews','reviews','active',1,NULL),(22,0,'Tiện Ích','tien-ich','active',1,NULL),(23,0,'Thủ Thuật','thu-thuat','active',1,NULL),(24,0,'Sự Kiện','su-kien','active',1,NULL);
 /*!40000 ALTER TABLE `article_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -814,4 +814,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-13 11:29:21
+-- Dump completed on 2017-11-13 13:28:47
