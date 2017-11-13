@@ -214,6 +214,11 @@ public class DefaultController {
 	String error() {
 		return "403";
 	}
+
+	@RequestMapping("/tonghop")
+	String tonghop() {
+		return "tonghop";
+	}
 	
 	
 }

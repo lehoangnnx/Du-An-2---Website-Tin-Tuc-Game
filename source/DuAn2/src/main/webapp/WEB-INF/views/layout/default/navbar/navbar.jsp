@@ -22,7 +22,7 @@
             </div>
             <div class="collapse navbar-collapse ">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="scroll active"><a href="#navigation">Trang chủ</a></li>
+                    <li class="scroll active"><a href="${contextPath}/">Trang chủ</a></li>
                     <c:forEach var="atl" items="${articleCategoryList}">
                         <c:if test="${atl.subArticleCategoryId == 0}">
                             <li class="scroll"><a href="${atl.slug}">${atl.name}</a></li>

@@ -173,13 +173,13 @@ public class AdminArticlesController {
 			} else {
 				article.setShowDate(new Date());
 			}
-			System.out.println(gameId);
-			if (gameId != 0) {
-				article.setGameId(gameId);
-			}
+
+
+
 			if (!video.equals("")) {
 				article.setVideo(video);
 			}
+			article.setGameId(gameId);
 			article.setViews(0);
 			article.setCreatedDate(new Date());
 			article.setIsHot((byte) isHot);

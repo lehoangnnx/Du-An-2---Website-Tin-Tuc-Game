@@ -117,12 +117,13 @@
             <div class="split-article-slide-right">
                 <c:forEach var="gacnskl" items="${getTop5ArticleCategoryNewSuKienList}" begin="0" end="1" step="2">
                     <div class="item">
-                        <div class="item-header">
+                        <div class="item-header hover14 column">
                             <a href="${contextPath}/${gacnskl.slug}"> <span class="comment-tag"><i
                                     class="fa fa-comment-o"></i>${gacnskl.views}<i></i></span> <span
                                     class="read-more-wrapper"><span class="read-more">Xem
 									chi tiết<i></i>
-							</span></span> <img src="${contextPath}/images/articles/${gacnskl.imagesThumbnail}" alt="${gacnskl.title}"/>
+							</span></span>
+                                <figure><img src="${contextPath}/images/articles/${gacnskl.imagesThumbnail}" alt="${gacnskl.title}"/></figure>
                             </a>
                         </div>
                         <div class="item-content">
@@ -131,7 +132,7 @@
                             </h3>
                             <span class="item-meta"> <a href="${contextPath}/${gacnskl.slug}"><i
                                     class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/${gacnskl.slug}"><i
-                                    class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
+                                    class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gacnskl.showDate}"/></a>
 						</span>
                             <p>${gacnskl.subContent}</p>
                             <a href="${contextPath}/${gacnskl.slug}" class="read-more-button">Xem chi tiết<i
@@ -265,7 +266,7 @@
         <!-- End danh sách game -->
     </div>
 
-    <div class="content-panel">
+    <%--<div class="content-panel">
         <div class="content-panel-title">
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
@@ -335,7 +336,7 @@
 
         </div>
         <!-- END -->
-    </div>
+    </div>--%>
 
     <div class="content-panel">
         <div class="content-panel-title">
