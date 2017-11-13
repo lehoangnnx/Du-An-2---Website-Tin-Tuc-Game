@@ -30,6 +30,7 @@
 	<definition name="chitiet" extends="defaultlayout">
 		<put-attribute name="title"
 			value="Game24h - Tin tức công nghê mới, CHUYÊN SÂU về game" />
+		<put-attribute name="footertag" value="/WEB-INF/views/default/footertag/chitiet-footertag.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/default/chitietbaiviet.jsp" />
 	</definition>

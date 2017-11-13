@@ -51,12 +51,13 @@ public class Users implements java.io.Serializable {
 	private Set<ArticleLikeForum> articleLikeForums = new HashSet<ArticleLikeForum>(0);
 	private Set<Article> articles = new HashSet<Article>(0);
 	private Set<ArticleLike> articleLikes = new HashSet<ArticleLike>(0);
-	private Set<Comment> comments = new HashSet<Comment>(0);
+	private Set<Comment> commentsForUserId = new HashSet<Comment>(0);
 	private Set<CommentLikeForum> commentLikeForums = new HashSet<CommentLikeForum>(0);
 	private Set<CommentForum> commentForums = new HashSet<CommentForum>(0);
 	private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
 	private Set<CommentLikeForum> commentLikeForums_1 = new HashSet<CommentLikeForum>(0);
 	private Set<Roles> roleses = new HashSet<Roles>(0);
+	private Set<Comment> commentsForSubUserId = new HashSet<Comment>(0);
 	private Set<ArticleForum> articleForums = new HashSet<ArticleForum>(0);
 	private Set<ArticleForum> articleForums_1 = new HashSet<ArticleForum>(0);
 	private Set<GameReviews> gameReviewses_1 = new HashSet<GameReviews>(0);
@@ -65,7 +66,7 @@ public class Users implements java.io.Serializable {
 	private Set<ArticleLikeForum> articleLikeForums_1 = new HashSet<ArticleLikeForum>(0);
 	private Set<Article> articles_1 = new HashSet<Article>(0);
 	private Set<ArticleLike> articleLikes_1 = new HashSet<ArticleLike>(0);
-	private Set<Comment> comments_1 = new HashSet<Comment>(0);
+	private Set<Comment> commentsForUserId_1 = new HashSet<Comment>(0);
 	private Set<Roles> roleses_1 = new HashSet<Roles>(0);
 	private Set<CommentLike> commentLikes_1 = new HashSet<CommentLike>(0);
 
@@ -82,7 +83,7 @@ public class Users implements java.io.Serializable {
 		this.isOnline = isOnline;
 		this.loggedInDate = loggedInDate;
 	}
-	public Users(String userName, String password, String email, String firstName, String lastName, String status, Date createdDate, String phoneNumber, byte isOnline, String ip, Date loggedInDate, String avatar, String description, String forgotpassword, Set<ArticleLikeForum> articleLikeForums, Set<Article> articles, Set<ArticleLike> articleLikes, Set<Comment> comments, Set<CommentLikeForum> commentLikeForums, Set<CommentForum> commentForums, Set<GameReviews> gameReviewses, Set<CommentLikeForum> commentLikeForums_1, Set<Roles> roleses, Set<ArticleForum> articleForums, Set<ArticleForum> articleForums_1, Set<GameReviews> gameReviewses_1, Set<CommentForum> commentForums_1, Set<CommentLike> commentLikes, Set<ArticleLikeForum> articleLikeForums_1, Set<Article> articles_1, Set<ArticleLike> articleLikes_1, Set<Comment> comments_1, Set<Roles> roleses_1, Set<CommentLike> commentLikes_1) {
+	public Users(String userName, String password, String email, String firstName, String lastName, String status, Date createdDate, String phoneNumber, byte isOnline, String ip, Date loggedInDate, String avatar, String description, String forgotpassword, Set<ArticleLikeForum> articleLikeForums, Set<Article> articles, Set<ArticleLike> articleLikes, Set<Comment> commentsForUserId, Set<CommentLikeForum> commentLikeForums, Set<CommentForum> commentForums, Set<GameReviews> gameReviewses, Set<CommentLikeForum> commentLikeForums_1, Set<Roles> roleses, Set<Comment> commentsForSubUserId, Set<ArticleForum> articleForums, Set<ArticleForum> articleForums_1, Set<GameReviews> gameReviewses_1, Set<CommentForum> commentForums_1, Set<CommentLike> commentLikes, Set<ArticleLikeForum> articleLikeForums_1, Set<Article> articles_1, Set<ArticleLike> articleLikes_1, Set<Comment> commentsForUserId_1, Set<Roles> roleses_1, Set<CommentLike> commentLikes_1) {
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
@@ -100,12 +101,13 @@ public class Users implements java.io.Serializable {
 		this.articleLikeForums = articleLikeForums;
 		this.articles = articles;
 		this.articleLikes = articleLikes;
-		this.comments = comments;
+		this.commentsForUserId = commentsForUserId;
 		this.commentLikeForums = commentLikeForums;
 		this.commentForums = commentForums;
 		this.gameReviewses = gameReviewses;
 		this.commentLikeForums_1 = commentLikeForums_1;
 		this.roleses = roleses;
+		this.commentsForSubUserId = commentsForSubUserId;
 		this.articleForums = articleForums;
 		this.articleForums_1 = articleForums_1;
 		this.gameReviewses_1 = gameReviewses_1;
@@ -114,7 +116,7 @@ public class Users implements java.io.Serializable {
 		this.articleLikeForums_1 = articleLikeForums_1;
 		this.articles_1 = articles_1;
 		this.articleLikes_1 = articleLikes_1;
-		this.comments_1 = comments_1;
+		this.commentsForUserId_1 = commentsForUserId_1;
 		this.roleses_1 = roleses_1;
 		this.commentLikes_1 = commentLikes_1;
 	}
@@ -298,13 +300,13 @@ public class Users implements java.io.Serializable {
 		this.articleLikes = articleLikes;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="users")
-	public Set<Comment> getComments() {
-		return this.comments;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="usersByUserId")
+	public Set<Comment> getCommentsForUserId() {
+		return this.commentsForUserId;
 	}
 
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
+	public void setCommentsForUserId(Set<Comment> commentsForUserId) {
+		this.commentsForUserId = commentsForUserId;
 	}
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="users")
@@ -353,6 +355,15 @@ public class Users implements java.io.Serializable {
 
 	public void setRoleses(Set<Roles> roleses) {
 		this.roleses = roleses;
+	}
+
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="usersBySubUserId")
+	public Set<Comment> getCommentsForSubUserId() {
+		return this.commentsForSubUserId;
+	}
+
+	public void setCommentsForSubUserId(Set<Comment> commentsForSubUserId) {
+		this.commentsForSubUserId = commentsForSubUserId;
 	}
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="users")
@@ -408,6 +419,7 @@ public class Users implements java.io.Serializable {
 	public void setArticleLikeForums_1(Set<ArticleLikeForum> articleLikeForums_1) {
 		this.articleLikeForums_1 = articleLikeForums_1;
 	}
+
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="users")
 	public Set<Article> getArticles_1() {
 		return this.articles_1;
@@ -426,13 +438,13 @@ public class Users implements java.io.Serializable {
 		this.articleLikes_1 = articleLikes_1;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="users")
-	public Set<Comment> getComments_1() {
-		return this.comments_1;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="usersByUserId")
+	public Set<Comment> getCommentsForUserId_1() {
+		return this.commentsForUserId_1;
 	}
 
-	public void setComments_1(Set<Comment> comments_1) {
-		this.comments_1 = comments_1;
+	public void setCommentsForUserId_1(Set<Comment> commentsForUserId_1) {
+		this.commentsForUserId_1 = commentsForUserId_1;
 	}
 
 	@ManyToMany(fetch=FetchType.LAZY)

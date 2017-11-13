@@ -56,11 +56,17 @@ public class LoginController {
 	@PostMapping(value="/logout")
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String uri = request.getScheme() + "://" +
+				request.getServerName() +
+				("http".equals(request.getScheme()) && request.getServerPort() == 80 || "https".equals(request.getScheme()) && request.getServerPort() == 443 ? "" : ":" + request.getServerPort() ) +
+				request.getRequestURI() +
+				(request.getQueryString() != null ? "?" + request.getQueryString() : "");
 	    if (auth != null){
 			System.out.println("AAAAAAAAAAAAAAAAAAAAAA"+auth.getName() + auth.getAuthorities());
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return "redirect:/";
+		System.out.println("HTYPPPPPPPPPPPPPPPPPPP"+uri);
+		return "redirect:/";
 	}
 
 	

@@ -30,7 +30,8 @@ public class Comment implements java.io.Serializable {
 	private static final long serialVersionUID = 4916865523802512011L;
 	private Integer commentId;
 	private Article article;
-	private Users users;
+	private Users usersByUserId;
+	private Users usersBySubUserId;
 	private Integer subCommentId;
 	private String content;
 	private Date createdDate;
@@ -44,19 +45,19 @@ public class Comment implements java.io.Serializable {
 	public Comment() {
 	}
 
-	public Comment(Article article, Users users, String content, Date createdDate, String status) {
+
+	public Comment(Article article, Users usersByUserId, Users usersBySubUserId, String content, Date createdDate, String status) {
 		this.article = article;
-		this.users = users;
+		this.usersByUserId = usersByUserId;
+		this.usersBySubUserId = usersBySubUserId;
 		this.content = content;
 		this.createdDate = createdDate;
 		this.status = status;
 	}
-
-	public Comment(Article article, Users users, Integer subCommentId, String content, Date createdDate,
-			Date modifiedDate, String status, String ip, String description, Set<CommentLike> commentLikes,
-			Set<CommentLike> commentLikes_1) {
+	public Comment(Article article, Users usersByUserId, Users usersBySubUserId, Integer subCommentId, String content, Date createdDate, Date modifiedDate, String status, String ip, String description, Set<CommentLike> commentLikes, Set<CommentLike> commentLikes_1) {
 		this.article = article;
-		this.users = users;
+		this.usersByUserId = usersByUserId;
+		this.usersBySubUserId = usersBySubUserId;
 		this.subCommentId = subCommentId;
 		this.content = content;
 		this.createdDate = createdDate;
@@ -68,10 +69,10 @@ public class Comment implements java.io.Serializable {
 		this.commentLikes_1 = commentLikes_1;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id @GeneratedValue(strategy=IDENTITY)
 
-	@Column(name = "comment_id", unique = true, nullable = false)
+
+	@Column(name="comment_id", unique=true, nullable=false)
 	public Integer getCommentId() {
 		return this.commentId;
 	}
@@ -80,8 +81,8 @@ public class Comment implements java.io.Serializable {
 		this.commentId = commentId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "article_id", nullable = false)
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="article_id", nullable=false)
 	public Article getArticle() {
 		return this.article;
 	}
@@ -90,17 +91,28 @@ public class Comment implements java.io.Serializable {
 		this.article = article;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	public Users getUsers() {
-		return this.users;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id", nullable=false)
+	public Users getUsersByUserId() {
+		return this.usersByUserId;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setUsersByUserId(Users usersByUserId) {
+		this.usersByUserId = usersByUserId;
 	}
 
-	@Column(name = "sub_comment_id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="sub_user_id", nullable=false)
+	public Users getUsersBySubUserId() {
+		return this.usersBySubUserId;
+	}
+
+	public void setUsersBySubUserId(Users usersBySubUserId) {
+		this.usersBySubUserId = usersBySubUserId;
+	}
+
+
+	@Column(name="sub_comment_id")
 	public Integer getSubCommentId() {
 		return this.subCommentId;
 	}
@@ -109,7 +121,8 @@ public class Comment implements java.io.Serializable {
 		this.subCommentId = subCommentId;
 	}
 
-	@Column(name = "content", nullable = false, length = 65535)
+
+	@Column(name="content", nullable=false, length=65535)
 	public String getContent() {
 		return this.content;
 	}
@@ -119,7 +132,7 @@ public class Comment implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_date", nullable = false, length = 19)
+	@Column(name="created_date", nullable=false, length=19)
 	public Date getCreatedDate() {
 		return this.createdDate;
 	}
@@ -129,7 +142,7 @@ public class Comment implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "modified_date", length = 19)
+	@Column(name="modified_date", length=19)
 	public Date getModifiedDate() {
 		return this.modifiedDate;
 	}
@@ -138,7 +151,8 @@ public class Comment implements java.io.Serializable {
 		this.modifiedDate = modifiedDate;
 	}
 
-	@Column(name = "status", nullable = false, length = 8)
+
+	@Column(name="status", nullable=false, length=8)
 	public String getStatus() {
 		return this.status;
 	}
@@ -147,7 +161,8 @@ public class Comment implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "ip", length = 50)
+
+	@Column(name="ip", length=50)
 	public String getIp() {
 		return this.ip;
 	}
@@ -156,7 +171,8 @@ public class Comment implements java.io.Serializable {
 		this.ip = ip;
 	}
 
-	@Column(name = "description")
+
+	@Column(name="description")
 	public String getDescription() {
 		return this.description;
 	}
@@ -165,7 +181,7 @@ public class Comment implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comment")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="comment")
 	public Set<CommentLike> getCommentLikes() {
 		return this.commentLikes;
 	}
@@ -174,7 +190,7 @@ public class Comment implements java.io.Serializable {
 		this.commentLikes = commentLikes;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comment")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="comment")
 	public Set<CommentLike> getCommentLikes_1() {
 		return this.commentLikes_1;
 	}
@@ -182,5 +198,6 @@ public class Comment implements java.io.Serializable {
 	public void setCommentLikes_1(Set<CommentLike> commentLikes_1) {
 		this.commentLikes_1 = commentLikes_1;
 	}
+
 
 }

@@ -1,4 +1,118 @@
 <%@ page pageEncoding="UTF-8"%>
+
+<!-- Login Form -->
+<div id="modal" class="popupContainer" style="display: none;">
+	<header class="popupHeader">
+		<span class="header_title">Login</span> <span class="modal_close"><i
+			class="fa fa-times"></i></span>
+	</header>
+
+	<section class="popupBody">
+		<!-- Social Login -->
+		<div class="social_login">
+			<div class="">
+				<form:form action="${contextPath }/signin/facebook" method="POST">
+					<input type="hidden" name="scope" value="public_profile"/>
+					<input type="hidden" name="${_csrf.parameterName}"
+						   value="${_csrf.token}"/>
+
+					<button type="submit" class="loginBtn loginBtn--facebook">Login
+						with Facebook
+					</button>
+				</form:form>
+
+
+			</div>
+			<div id="btn-google" class="g-signin2 " data-width="290"
+				 data-height="32" data-longtitle="true" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+
+			<div class="centeredText">
+				<span>Or use your Email address</span>
+			</div>
+
+			<div class="action_btns">
+				<div class="one_half">
+					<a href="#" id="login_form" class="btn">Login</a>
+				</div>
+				<div class="one_half last">
+					<a href="#" id="register_form" class="btn">Sign up</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Username & Password Login form -->
+		<div class="user_login">
+			<form id="login-form">
+				<label>Email / Username</label> <input id="userName" name="userName"
+													   type="text"/> <br/> <label>Password</label> <input
+					id="password" name="password" type="password"/> <br/> <label
+					id="msgerror" class="msgerror"></label> <br/>
+				<div class="checkbox">
+					<input id="remember" type="checkbox" name="remember-me"/> <label
+						for="remember">Remember me on this computer</label>
+				</div>
+
+				<div class="action_btns">
+					<div class="one_half">
+						<a href="#" class="btn back_btn"><i
+								class="fa fa-angle-double-left"></i> Back</a>
+					</div>
+
+					<button type="button" id="btn-login"
+							class="one_half last btn btn_red">Login
+					</button>
+				</div>
+			</form>
+
+			<a href="#" id="forgot_password" class="forgot_password">Forgot password?</a>
+		</div>
+
+		<!-- Register Form -->
+		<div class="user_register">
+			<form id="register-form">
+				<label>Tên Đăng Nhập</label> <input id="userNamer" type="text"/> <br/>
+
+				<label>Email</label> <input id="emailr" type="email"/> <br/>
+
+				<label>Mật Khẩu</label> <input id="passwordr"
+											   type="password"/> <br/>
+				<label>Nhập Lại Mật Khẩu</label> <input id="rppasswordr"
+														type="password"/> <br/>
+				<label id="msgerror-r" class="msgerror"></label> <br/>
+				<div class="action_btns">
+					<div class="one_half">
+						<a href="#" class="btn back_btn"><i
+								class="fa fa-angle-double-left"></i> Back</a>
+					</div>
+					<button type="button" id="btn-register"
+							class="one_half last btn btn_red">Đăng Ký
+					</button>
+
+				</div>
+			</form>
+		</div>
+
+		<!-- Fogit Password Form -->
+		<div class="user_forgot">
+			<form id="forgot-form">
+				<label>Tên Đăng Nhập</label> <input id="userNamef" type="text"/> <br/>
+
+				<label id="msgerror-f" class="msgerror"></label> <br/>
+				<div class="action_btns">
+					<div class="one_half">
+						<a href="#" class="btn back_btn"><i
+								class="fa fa-angle-double-left"></i> Back</a>
+					</div>
+					<button type="button" id="btn-forgot"
+							class="one_half last btn btn_red">Gửi
+					</button>
+
+				</div>
+			</form>
+		</div>
+	</section>
+</div>
 <footer class="footer">
 		<div class="container">
 			<div class="text-center">

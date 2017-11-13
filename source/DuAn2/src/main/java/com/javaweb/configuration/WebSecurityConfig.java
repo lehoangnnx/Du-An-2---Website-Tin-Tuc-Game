@@ -26,6 +26,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -55,6 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		private  FacebookConnectionSignup facebookConnectionSignup;
 		@Autowired
 		private UserDetailsService userDetailsService;
+
+
 		@Bean
 		public PasswordEncoder passwordEncoder() {
 			return new BCryptPasswordEncoder();
@@ -63,8 +67,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		}
+
+
+
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
+
+
+
 			http.authorizeRequests().antMatchers("/home", "/").permitAll()
 					 .antMatchers("/admin/**").hasRole("ADMIN")
 
