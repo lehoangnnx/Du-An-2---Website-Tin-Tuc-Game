@@ -13,7 +13,7 @@ import com.javaweb.service.UsersService;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminUsersControllerAjax {
+public class AdminUsersRestController {
 	@Autowired
 	UsersService usersService;
 	@Autowired

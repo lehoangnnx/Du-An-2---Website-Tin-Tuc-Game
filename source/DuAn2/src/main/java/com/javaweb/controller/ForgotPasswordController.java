@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Arrays;
 
 @Controller
-public class ForgotPassword {
+public class ForgotPasswordController {
     @Autowired
     UsersService  usersService;
     @Autowired

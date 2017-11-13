@@ -12,7 +12,7 @@ import com.javaweb.service.ArticleCategoryService;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminArticlesCategoryControllerAjax {
+public class AdminArticlesCategoryRestController {
 	@Autowired
 	ArticleCategoryService articleCategoryService;
 	@PostMapping("/validator-categorysarticles")

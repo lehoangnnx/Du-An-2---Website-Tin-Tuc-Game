@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.HashSet;
 
 @RestController
-public class RegisterControllerAjax {
+public class RegisterRestController {
     @Autowired
     UsersService usersService;
     @Autowired

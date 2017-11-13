@@ -93,11 +93,11 @@ public class AdminArticlesController {
 		// Lấy danh sách ArticleCategory
 		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll()
 				.stream()
-				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
+				.filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
 		// Lấy danh sách Games
 		List<Games> gameList = gamesService.findAll()
 				.stream()
-				.filter(x -> !x.getStatus().equals("deleted"))
+				.filter(x -> x.getStatus().equals("active"))
 				.collect(Collectors.toList());
 		// Lấy danh sách Tags
 		List<Tags> tagsList = tagsService.findAll();
@@ -263,9 +263,9 @@ public class AdminArticlesController {
 		
 		// Lấy danh sách ArticleCategory
 		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll().stream()
-				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
+				.filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
 		// Lấy danh sách Games
-		List<Games> gameList = gamesService.findAll().stream().filter(x -> !x.getStatus().equals("deleted"))
+		List<Games> gameList = gamesService.findAll().stream().filter(x -> x.getStatus().equals("active"))
 				.collect(Collectors.toList());
 		Games game = gamesService.findByGameId(article.getGameId());
 

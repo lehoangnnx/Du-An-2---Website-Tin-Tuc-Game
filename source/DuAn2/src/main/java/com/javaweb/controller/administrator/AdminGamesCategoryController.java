@@ -41,7 +41,7 @@ public class AdminGamesCategoryController {
 	public String addGamesCategorys(Model model) {
 		List<GameCategory> gameCategoryList = gameCategoryService.findAll()
 				.stream()
-				.filter(x -> !x.getStatus().equals("deleted"))
+				.filter(x -> x.getStatus().equals("active"))
 				.collect(Collectors.toList());
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		return "addgamescategory"; 
@@ -81,7 +81,7 @@ public class AdminGamesCategoryController {
 		GameCategory gameCategory= gameCategoryService.findByGameCategoryId(gameCategoryId);
 		List<GameCategory> gameCategoryList = gameCategoryService.findAll()
 				.stream()
-				.filter(x -> !x.getStatus().equals("deleted"))
+				.filter(x -> x.getStatus().equals("active"))
 				.collect(Collectors.toList());
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		model.addAttribute("gameCategory", gameCategory);

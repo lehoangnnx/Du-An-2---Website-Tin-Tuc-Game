@@ -34,7 +34,7 @@ import com.javaweb.service.RolesService;
 import com.javaweb.service.UsersService;
 
 @RestController
-public class LoginControllerAjax {
+public class LoginRestController {
     @Autowired
     UsersService usersService;
     @Autowired

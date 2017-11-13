@@ -7,25 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
-import com.javaweb.model.Games;
-import com.javaweb.service.GamesService;
+import com.javaweb.model.GameCategory;
+import com.javaweb.service.GameCategoryService;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminGamesControllerAjax {
-    @Autowired
-    GamesService gamesService;
-
-    @PostMapping("/validator-games")
-	public String validatorCategorysArticles(@RequestBody Games games) {
-    	Games findByName = null;
-    	Games findBySlug = null;
+public class AdminGamesCategoryRestController {
+	@Autowired
+	GameCategoryService gameCategoryService;
+	@PostMapping("/validator-gamescategory")
+	public String validatorCategorysArticles(@RequestBody GameCategory gameCategory) {
+		GameCategory findByName = null;
+		GameCategory findBySlug = null;
 		
 		try {
-			findByName = gamesService.findByName(HtmlUtils.htmlEscape(games.getName()));
-			findBySlug= gamesService.findBySlug(games.getSlug());
+			findByName = gameCategoryService.findByName(HtmlUtils.htmlEscape(gameCategory.getName()));
+			findBySlug= gameCategoryService.findBySlug(gameCategory.getSlug());
 			
-			if (games.getGameId() == null) {
+			if (gameCategory.getGameCategoryId() == null) {
 				if (findByName != null && findBySlug != null) {
 					
 					return "error";
@@ -40,16 +39,16 @@ public class AdminGamesControllerAjax {
 				}
 			}else {
 				if (findByName != null && findBySlug != null
-						&& !findByName.getGameId().equals(games.getGameId())
-						&& !findBySlug.getGameId().equals(games.getGameId())) {
+						&& !findByName.getGameCategoryId().equals(gameCategory.getGameCategoryId())
+						&& !findBySlug.getGameCategoryId().equals(gameCategory.getGameCategoryId())) {
 					System.out.println("2");
 					return "error";
 				} else if (findByName != null 
-						&& !findByName.getGameId().equals(games.getGameId())) {
+						&& !findByName.getGameCategoryId().equals(gameCategory.getGameCategoryId())) {
 					System.out.println("3");
 					return "errorname";
 				} else if (findBySlug != null 
-						&& !findBySlug.getGameId().equals(games.getGameId())) {
+						&& !findBySlug.getGameCategoryId().equals(gameCategory.getGameCategoryId())) {
 					System.out.println("4");
 
 					return "errorslug";
@@ -63,5 +62,3 @@ public class AdminGamesControllerAjax {
 		
 	}
 }
-    
-

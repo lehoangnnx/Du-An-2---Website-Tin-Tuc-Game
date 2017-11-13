@@ -22,7 +22,7 @@ import com.javaweb.service.UsersService;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminArticlesControllerAjax {
+public class AdminArticlesRestController {
 	@Autowired
 	ArticleService articleService;
 	@Autowired

@@ -96,7 +96,7 @@ public class AdminUsersController {
 		//Lấy tất cả quyên
 		List<Roles> rolesList = rolesService.findAll()
 				.stream()
-				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
+				.filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
 		
 		/*
 		 * for (Roles r : user.getRoleses()) { listRolesOfUser.add(r.getName()); }
