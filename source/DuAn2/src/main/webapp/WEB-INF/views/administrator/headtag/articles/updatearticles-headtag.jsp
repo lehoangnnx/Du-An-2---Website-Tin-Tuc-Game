@@ -17,13 +17,13 @@
 <link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
 <link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
 <link rel="stylesheet" href="${contextPath}/css/summernote/summernote.css">
-<link rel="stylesheet" href="${contextPath}/css/dropify/dist/css/dropify.min.css">
+<link rel="stylesheet" href="${contextPath}/css/dropify/css/dropify.min.css">
 
 
-<link rel="stylesheet" href="${contextPath}/css/select2/dist/css/select2.min.css">
-<link rel="stylesheet" href="${contextPath}/css/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="${contextPath}/css/select2/css/select2.min.css">
+<link rel="stylesheet" href="${contextPath}/css/bootstrap-tagsinput/bootstrap-tagsinput.css">
 <link rel="stylesheet" href="${contextPath}/css/multi-select/css/multi-select.css">
-<link rel="stylesheet" href="${contextPath}/css/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
+<link rel="stylesheet" href="${contextPath}/css/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css">
 
 
 <!-- Neptune CSS -->

@@ -4,8 +4,6 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<script type="text/javascript"
-	src="${contextPath}/js/jquery/jquery-1.12.3.min.js"></script>
 
 <script type="text/javascript"
 	src="${contextPath}/js/js/jquery-3.2.1.min.js"></script>
@@ -37,20 +35,20 @@
 <script type="text/javascript"
 	src="${contextPath}/js/summernote/summernote.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/dropify/dist/js/dropify.min.js"></script>
+	src="${contextPath}/js/dropify/js/dropify.min.js"></script>
 
 <script type="text/javascript"
 	src="${contextPath}/js/js/forms-upload.js"></script>
 
 
 <script type="text/javascript"
-	src="${contextPath}/js/select2/dist/js/select2.min.js"></script>
+	src="${contextPath}/js/select2/js/select2.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+	src="${contextPath}/js/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+	src="${contextPath}/js/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/bootstrap-maxlength/src/bootstrap-maxlength.js"></script>
 <!-- Neptune JS -->

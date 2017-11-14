@@ -7,20 +7,20 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <!-- Vendor CSS -->
-		<link rel="stylesheet" href="${contextPath}/css/bootstrap4/css/bootstrap.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/themify-icons/themify-icons.css">
-		<link rel="stylesheet" href="${contextPath}/css/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/animate.css/animate.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/jscrollpane/jquery.jscrollpane.css">
-		<link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/css/dataTables.bootstrap4.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/Responsive/css/responsive.bootstrap4.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/Buttons/css/buttons.dataTables.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/Buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="${contextPath}/css/bootstrap4/css/bootstrap.min.css">
+<link rel="stylesheet" href="${contextPath}/css/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="${contextPath}/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="${contextPath}/css/animate.css/animate.min.css">
+<link rel="stylesheet" href="${contextPath}/css/jscrollpane/jquery.jscrollpane.css">
+<link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
+<link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
+<link rel="stylesheet" href="${contextPath}/css/DataTables/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="${contextPath}/css/DataTables/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="${contextPath}/css/DataTables/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="${contextPath}/css/DataTables/css/buttons.bootstrap4.min.css">
 
-		<!-- Neptune CSS -->
-		<link rel="stylesheet" href="${contextPath}/css/css/core.css">
+<!-- Neptune CSS -->
+<link rel="stylesheet" href="${contextPath}/css/css/core.css">
 		
 		<style>
 .add, .updateAndDelete {

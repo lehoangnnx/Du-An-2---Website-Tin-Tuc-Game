@@ -15,9 +15,9 @@
 		<link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/DataTables/css/dataTables.bootstrap4.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/Responsive/css/responsive.bootstrap4.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/Buttons/css/buttons.dataTables.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/DataTables/Buttons/css/buttons.bootstrap4.min.css">
+		<link rel="stylesheet" href="${contextPath}/css/DataTables/css/responsive.bootstrap4.min.css">
+		<link rel="stylesheet" href="${contextPath}/css/DataTables/css/buttons.dataTables.min.css">
+		<link rel="stylesheet" href="${contextPath}/css/DataTables/css/buttons.bootstrap4.min.css">
 
 		<!-- Neptune CSS -->
 		<link rel="stylesheet" href="${contextPath}/css/css/core.css">

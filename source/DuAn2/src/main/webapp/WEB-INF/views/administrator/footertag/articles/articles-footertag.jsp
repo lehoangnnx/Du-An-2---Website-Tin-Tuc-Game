@@ -29,25 +29,25 @@
 <script type="text/javascript"
 	src="${contextPath}/js/DataTables/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Responsive/js/dataTables.responsive.min.js"></script>
+	src="${contextPath}/js/DataTables/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Responsive/js/responsive.bootstrap4.min.js"></script>
+	src="${contextPath}/js/DataTables/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Buttons/js/dataTables.buttons.min.js"></script>
+	src="${contextPath}/js/DataTables/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Buttons/js/buttons.bootstrap4.min.js"></script>
+	src="${contextPath}/js/DataTables/js/buttons.bootstrap4.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/JSZip/jszip.min.js"></script>
+	src="${contextPath}/js/DataTables/jszip.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/pdfmake/build/pdfmake.min.js"></script>
+	src="${contextPath}/js/DataTables/js/pdfmake.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/pdfmake/build/vfs_fonts.js"></script>
+	src="${contextPath}/js/DataTables/js/vfs_fonts.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Buttons/js/buttons.html5.min.js"></script>
+	src="${contextPath}/js/DataTables/js/buttons.html5.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Buttons/js/buttons.print.min.js"></script>
+	src="${contextPath}/js/DataTables/js/buttons.print.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/DataTables/Buttons/js/buttons.colVis.min.js"></script>
+	src="${contextPath}/js/DataTables/js/buttons.colVis.min.js"></script>
 
 <!-- Neptune JS -->
 <script type="text/javascript" src="${contextPath}/js/js/app.js"></script>
