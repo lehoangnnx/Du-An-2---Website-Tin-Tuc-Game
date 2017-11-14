@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div class="content-block-single">
-
+	
     <div class="content-panel">
         <div class="content-panel-title">
             <div class="feed-widget-header">
