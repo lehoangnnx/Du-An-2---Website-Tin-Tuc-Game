@@ -203,38 +203,51 @@ public class DefaultController {
     @RequestMapping("/{slug}")
     String chitiet(@PathVariable("slug") String slug, Model model) {
         Article article = null;
+        ArticleCategory articleCategory = null;
+        Tags tags = null;
         Games games = null;
         try {
             article = articleService.findBySlug(slug);
+            articleCategory =articleCategoryService.findBySlug(slug);
+
+            tags = tagsService.findBySlug(slug);
             games = gamesService.findByGameId(article.getGameId());
             if (article != null) {
-
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
-
-
                 final Integer[] articleCaregoryId = new Integer[1];
                 article.getArticleCategories().forEach(x -> {
                             articleCaregoryId[0] = x.getArticleCategoryId();
                         }
                 );
-                ArticleCategory articleCategory = articleCategoryService.findByArticleCategoryId(articleCaregoryId[0]);
+                ArticleCategory getarticleCategory = articleCategoryService.findByArticleCategoryId(articleCaregoryId[0]);
                 List<Article> articleLienQuanList = articleService
-                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(articleCategory,(byte) 1,"active")
-                        .stream().limit(2).collect(Collectors.toList());
+                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory,(byte) 1,"active");
 
                 List<Comment> getTop10Comment = commentService.findTop10ByStatusOrderByCreatedDateDesc("active");
+                List<Article> getTop10ArticleList = articleService
+                        .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
+                model.addAttribute("getTop10ArticleList", getTop10ArticleList);
                 model.addAttribute("getTop10Comment",getTop10Comment);
                 model.addAttribute("article", article);
                 model.addAttribute("games", games);
-
+                model.addAttribute("articleCategory", getarticleCategory);
                 model.addAttribute("articleLienQuanList",articleLienQuanList);
                 return "chitiet";
+            }else  if (articleCategory != null){
+                List<Article> articleList = articleService
+                        .findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(articleCategory,"active", new Date());
+                System.out.println("DANH MUC NEKKKKKKKKKKKK: " + articleList);
+                model.addAttribute("articleList",articleList);
+                return "tonghop";
+            }else {
+                return "redirect:/403";
             }
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
+            return "redirect:/403";
         }
 
-        return "chitiet";
+
     }
 
     @RequestMapping("/403")

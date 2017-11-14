@@ -146,222 +146,19 @@
                 <div class="content-panel-title">
                     <h2>Bình luận</h2>
                 </div>
-                <security:authorize access="isAuthenticated()">
                     <div class="content-panel-body comment-list">
                         <ol id="comments">
-                            <c:forEach var="gc" items="${getTop10Comment}">
-                                <c:if test="${gc.subCommentId == 0}">
-                                    <li class="comment">
 
-                                        <div class="comment-block">
-                                            <a href="#" class="image-avatar"> <img
-                                                    src="${contextPath}/images/avatar/${gc.usersByUserId.avatar}"
-                                                    data-ot-retina="${contextPath}/images/avatar/${gc.usersByUserId.avatar}"
-                                                    alt=""
-                                                    title="">
-                                            </a>
-                                            <div class="comment-text">
-                                            <span class="time-stamp right"><fmt:formatDate
-                                                    pattern="dd-MM-yyyy" value="${gc.createdDate}"/></span> <strong
-                                                    class="user-nick"><a href="#">${gc.usersByUserId.userName}</a></strong>
-                                                <div class="shortcode-content">
-                                                    <p>${gc.content}</p>
-                                                </div>
-                                                <span class="item-meta"> <a href="#"><i
-                                                        class="fa fa-thumbs-o-up"></i> Thích</a>
-                                                    <a class="replycomment" href="#"
-                                                       onclick="replysubcomment(${gc.commentId},${gc.usersByUserId.userName});">
-                                                    <i class="fa fa-comment-o" style="margin-left: 25px;"></i> Bình
-											luận</a>
-									</span>
-                                            </div>
-
-                                        </div>
-                                        <c:forEach var="gcchild" items="${getTop10Comment}">
-                                            <c:if test="${gcchild.subCommentId != 0 && gcchild.subCommentId == gc.commentId}">
-                                                <ul class="children">
-                                                    <li class="comment">
-                                                        <div class="comment-block">
-                                                            <a href="#" class="image-avatar"> <img
-                                                                    src="${contextPath}/images/avatar/${gcchild.usersByUserId.avatar}"
-                                                                    data-ot-retina="${contextPath}/images/avatar/${gcchild.usersByUserId.avatar}"
-                                                                    alt=""
-                                                                    title="">
-                                                            </a>
-                                                            <div class="comment-text">
-                               <span class="time-stamp right"><fmt:formatDate pattern="dd-MM-yyyy"
-                                                                              value="${gcchild.createdDate}"/></span>
-                                                                <strong
-                                                                        class="user-nick"><a
-                                                                        href="#">${gcchild.usersByUserId.userName}</a><span
-                                                                        class="user-label">Admin</span></strong>
-                                                                <div class="shortcode-content">
-                                                                    <p style="color: #ABABAB">
-                                                                          <a style="color: #0c91e5;" href="">@${gcchild.usersBySubUserId.userName}</a>
-                                                                    ${gcchild.content}</p>
-                                                                </div>
-                                                                <span class="item-meta"> <a href="#"><i
-                                                                        class="fa fa-thumbs-o-up"></i> Thích</a>
-                                                                    <a class="replycomment"
-                                                                       onclick="replysubcomment(${gc.commentId},${gcchild.usersByUserId.userName} );"
-                                                                        href="#"><i
-                                                                        class="fa fa-comment-o"
-                                                                        style="margin-left: 25px;"></i>
-													Bình luận</a>
-											</span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                </ul>
-
-                                            </c:if>
-
-
-                                        </c:forEach>
-
-                                    </li>
-                                </c:if>
-                            </c:forEach>
-                            <li class="comment">
-                                <div class="comment-block">
-                                    <a href="#" class="image-avatar"> <img
-                                            src="images/photos/avatar-1.jpg"
-                                            data-ot-retina="images/photos/avatar-1@2x.jpg" alt="" title="">
-                                    </a>
-                                    <div class="comment-text">
-                                        <span class="time-stamp right">Tháng 11, 2017</span> <strong
-                                            class="user-nick"><a href="#">Nguyễn Hữu Hùng</a><span
-                                            class="user-label">Admin</span></strong>
-                                        <div class="shortcode-content">
-                                            <p>Các bạn đọc cảm nhận ra sao về sự kiện này? Để lại bình
-                                                luận cho chúng tôi trên Fanpage hoặc Group Cộng đồng Game24h
-                                                nhé. Game 24h sẽ luôn cập nhật những thông tin Đột Kích nóng
-                                                nhất từ trong nước đến quốc tế, mời các bạn đón đọc tại trang
-                                                chủ.</p>
-                                        </div>
-                                        <span class="item-meta"> <a href="#"><i
-                                                class="fa fa-thumbs-o-up"></i> Thích</a> <a href="#"><i
-                                                class="fa fa-comment-o" style="margin-left: 25px;"></i> Bình
-											luận</a>
-									</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="comment">
-                                <div class="comment-block">
-                                    <a href="#" class="image-avatar"> <img
-                                            src="images/photos/avatar-1.jpg"
-                                            data-ot-retina="images/photos/avatar-1@2x.jpg" alt="" title="">
-                                    </a>
-                                    <div class="comment-text">
-                                        <span class="time-stamp right">Tháng 11, 2017</span> <strong
-                                            class="user-nick"><a href="#">Nguyễn Hữu Hùng</a><span
-                                            class="user-label">Admin</span></strong>
-                                        <div class="shortcode-content">
-                                            <p>Các bạn đọc cảm nhận ra sao về sự kiện này? Để lại bình
-                                                luận cho chúng tôi trên Fanpage hoặc Group Cộng đồng Game24h
-                                                nhé.</p>
-                                        </div>
-                                        <span class="item-meta"> <a href="#"><i
-                                                class="fa fa-thumbs-o-up"></i> Thích</a> <a href="#"><i
-                                                class="fa fa-comment-o" style="margin-left: 25px;"></i> Bình
-											luận</a>
-									</span>
-                                    </div>
-                                </div>
-                            </li>
                         </ol>
                     </div>
-                </security:authorize>
-                <security:authorize access="!isAuthenticated()">
-                    <div class="content-panel-body comment-list">
-                        <ol id="comments">
-                            <li class="comment">
-                                <div class="comment-block">
-                                    <a href="#" class="image-avatar"> <img
-                                            src="images/no-avatar-100x100.jpg"
-                                            data-ot-retina="images/no-avatar-200x200.jpg" alt="" title="">
-                                    </a>
-                                    <div class="comment-text">
-                                        <span class="time-stamp right">Tháng 11, 2017</span> <strong
-                                            class="user-nick"><a href="#">Nguyễn Chiến</a></strong>
-                                        <div class="shortcode-content">
-                                            <p>Theo tôi thì Uzi là xạ thủ tốt nhất, sau đó tới PraY,
-                                                và vị trí thứ cuối cùng trong Top 3 là tôi!.</p>
-                                        </div>
 
-                                    </div>
 
-                                </div>
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="comment-block">
-                                            <a href="#" class="image-avatar"> <img
-                                                    src="images/photos/avatar-1.jpg"
-                                                    data-ot-retina="images/photos/avatar-1@2x.jpg" alt=""
-                                                    title="">
-                                            </a>
-                                            <div class="comment-text">
-                                                <span class="time-stamp right">Tháng 11, 2017</span> <strong
-                                                    class="user-nick"><a href="#">Đạt Nguyễn</a><span
-                                                    class="user-label">Admin</span></strong>
-                                                <div class="shortcode-content">
-                                                    <p>Bình luận một số từ</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="comment">
-                                <div class="comment-block">
-                                    <a href="#" class="image-avatar"> <img
-                                            src="images/photos/avatar-1.jpg"
-                                            data-ot-retina="images/photos/avatar-1@2x.jpg" alt="" title="">
-                                    </a>
-                                    <div class="comment-text">
-                                        <span class="time-stamp right">Tháng 11, 2017</span> <strong
-                                            class="user-nick"><a href="#">Nguyễn Hữu Hùng</a><span
-                                            class="user-label">Admin</span></strong>
-                                        <div class="shortcode-content">
-                                            <p>Các bạn đọc cảm nhận ra sao về sự kiện này? Để lại bình
-                                                luận cho chúng tôi trên Fanpage hoặc Group Cộng đồng Game24h
-                                                nhé. Game 24h sẽ luôn cập nhật những thông tin Đột Kích nóng
-                                                nhất từ trong nước đến quốc tế, mời các bạn đón đọc tại trang
-                                                chủ.</p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="comment">
-                                <div class="comment-block">
-                                    <a href="#" class="image-avatar"> <img
-                                            src="images/photos/avatar-1.jpg"
-                                            data-ot-retina="images/photos/avatar-1@2x.jpg" alt="" title="">
-                                    </a>
-                                    <div class="comment-text">
-                                        <span class="time-stamp right">Tháng 11, 2017</span> <strong
-                                            class="user-nick"><a href="#">Nguyễn Hữu Hùng</a><span
-                                            class="user-label">Admin</span></strong>
-                                        <div class="shortcode-content">
-                                            <p>Các bạn đọc cảm nhận ra sao về sự kiện này? Để lại bình
-                                                luận cho chúng tôi trên Fanpage hoặc Group Cộng đồng Game24h
-                                                nhé.</p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </security:authorize>
                 <div class="xemthem"
                      style="padding: 10px 1px; text-align: center; background: #f7f7f7; margin-bottom: 20px;">
-                    <a href="#">Xem thêm bình luận</a>
+                    <div id="LoadingGifSmall" >
+                        <img src="${contextPath }/images/36.gif" />
+                    </div>
+                    <button id="morecomment" class="">Xem thêm bình luận</button>
                 </div>
             </div>
             <!-- End Bình luận -->
@@ -378,14 +175,15 @@
                                 data-ot-retina="${contextPath}/images/avatar/${user.avatar}" alt="" title="">
                         </a>
                         <div class="comment-text">
-                            <input hidden id="articleId" value="${article.articleId}"/>
-                            <strong class="user-nick"><a href="#">${user.userName}</a></strong>
+                            <strong class="user-nick"><a href="#">${user.userName}</a> <span id="msgsubcomment"></span></strong>
                             <textarea id="content" name="content"
                                       placeholder="Viết bình luận của bạn.."
                                       style="width: 100%; height: 100px"></textarea>
                             <p class="form-submit">
                                 <input name="submit" type="submit" id="submit"
                                        class="submit button btn-postcomment" value="Gửi bình luận">
+                                <input hidden name="submit" type="submit" id="cancelsubcomment"
+                                       class="submit button pull-right" value="Hủy">
                             </p>
                         </div>
                     </div>
@@ -409,7 +207,7 @@
                     <a href="#">CÙNG CHUYÊN MỤC</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="#"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/${articleCategory.slug}"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -419,72 +217,25 @@
             <div class="split-article-slide-left">
                 <!-- BEGIN .top-slider-body -->
                 <div class="widget">
-
                     <br>
                     <div class="widget-article-list">
+                        <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="4">
                         <div class="item">
                             <div class="item-header">
-                                <a href="#"><img src="images/photos/image-7.jpg" alt=""/></a>
+                                <a href="#"><img src="${contextPath}/images/articles/${alql.imagesThumbnail}" alt=""/></a>
                             </div>
                             <div class="item-content">
                                 <h4>
-                                    <a href="#">Đột Kích: Tiến Xinh Trai cũng sờ tận tay nút
-                                        vàng của bản thân ngay sau Tiền Zombie v4.</a>
+                                    <a href="#">${alql.title}</a>
                                 </h4>
-                                <span class="item-meta"> <a href="#"><i
-                                        class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                                        class="fa fa-clock-o"></i>Tháng 10, 2017</a>
+                                <span class="item-meta"> <a href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
+                                        class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
+                                        class="fa fa-clock-o"></i><fmt:formatDate
+                                        pattern="dd-MM-yyyy" value="${alql.showDate}"/></a>
 								</span>
                             </div>
                         </div>
-
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="#"><img src="images/photos/image-8.jpg" alt=""/></a>
-                            </div>
-                            <div class="item-content">
-                                <h4>
-                                    <a href="#">PUBG ra mắt chính thức game thủ sau hơn
-                                        nửa năm phát hành BTT 20:10</a>
-                                </h4>
-                                <span class="item-meta"> <a href="#"><i
-                                        class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                                        class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-								</span>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="#"><img src="images/photos/image-9.jpg" alt=""/></a>
-                            </div>
-                            <div class="item-content">
-                                <h4>
-                                    <a href="#">Đột Kích: Chàng trai mua x7 M66-Legend để...
-                                        chắc chắn nhận được Thiết Phiến. </a>
-                                </h4>
-                                <span class="item-meta"> <a href="#"><i
-                                        class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                                        class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-								</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="#"><img src="images/photos/image-9.jpg" alt=""/></a>
-                            </div>
-                            <div class="item-content">
-                                <h4>
-                                    <a href="#">Đột Kích: Chàng trai mua x7 M66-Legend để...
-                                        chắc chắn nhận được Thiết Phiến. </a>
-                                </h4>
-                                <span class="item-meta" style="width: 100%;"> <a href="#"><i
-                                        class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                                        class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-								</span>
-                            </div>
-                        </div>
-
+                        </c:forEach>
 
                     </div>
                 </div>
@@ -494,26 +245,26 @@
 
             <div class="split-article-slide-right">
                 <div class="item">
-                    <div class="item-header">
-                        <a href="#"> <span class="comment-tag"><i
-                                class="fa fa-comment-o"></i>65<i></i></span> <span
+                    <div class="item-header hover14 column">
+                        <a href="${contextPath}/${articleLienQuanList[0].slug}"> <span class="comment-tag"><i
+                                class="fa fa-comment-o"></i>${articleLienQuanList[0].views}<i></i></span> <span
                                 class="read-more-wrapper"><span class="read-more">Xem
 									chi tiết<i></i>
-							</span></span> <img src="images/image-19.jpg" alt=""/>
+							</span></span>
+                            <figure><img src="${contextPath}/images/articles/${articleLienQuanList[0].imagesThumbnail}" alt=""/></figure>
                         </a>
                     </div>
                     <div class="item-content">
                         <h3>
-                            <a href="#">Đập hộp Fuhlen G90S RGB - Chuột chơi game vừa đẹp
-                                vừa rẻ lại cực ngon mới về Việt Nam</a>
+                            <a href="${contextPath}/${articleLienQuanList[0].slug}">${articleLienQuanList[0].title}</a>
                         </h3>
                         <span class="item-meta"> <a href="#"><i
                                 class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                                class="fa fa-clock-o"></i>Tháng 11, 2017</a>
+                                class="fa fa-clock-o"></i><fmt:formatDate
+                                pattern="dd-MM-yyyy" value="${articleLienQuanList[0].showDate}"/></a>
 						</span>
-                        <p>Fuhlen G90S RGB là chú chuột có hình thức rất bắt mắt với
-                            đèn LED RGB cùng chất lượng cực tốt trong phân......</p>
-                        <a href="#" class="read-more-button">Xem chi tiết<i
+                        <p>${articleLienQuanList[0].subContent}</p>
+                        <a href="${contextPath}/${articleLienQuanList[0].slug}" class="read-more-button">Xem chi tiết<i
                                 class="fa fa-mail-forward"></i>
                         </a>
                     </div>
@@ -533,7 +284,7 @@
                     <a href="#">TIN MỚI</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="#"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/articles?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -541,76 +292,35 @@
 
         </div>
         <div class="content-panel-body article-list">
+            <c:forEach var="gal" items="${getTop10ArticleList}">
             <div class="item">
-                <div class="item-header">
-                    <a href="#"> <span class="comment-tag"><i
+                <div class="item-header hover14 column">
+                    <a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
                             class="fa fa-comment-o"></i>290<i></i></span> <span
                             class="read-more-wrapper"><span class="read-more">Xem
 								chi tiết<i></i>
-						</span></span> <img src="images/anh/1.jpg" alt="">
+						</span></span>  <figure><img src="${contextPath}/images/articles/${gal.imagesThumbnail}"
+                                                     alt="${gal.title}"></figure>
                     </a>
                 </div>
                 <div class="item-content">
-                    <strong class="category-link"><a href="#">Tin mới</a></strong>
-                    <h3>
-                        <a href="#">Không thèm dùng Denuvo, hậu quả Wolfenstein II:</a>
-                    </h3>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-					</span>
-                    <p>Wolfenstein II: The New Colossus là phần tiếp theo của
-                        series game nổi tiếng được phát hành lần đầu vào năm 1981...</p>
-                </div>
-            </div>
+                    <strong class="category-link">
+                        <c:forEach var="ac" items="${gal.articleCategories}">
+                            <a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
+                        </c:forEach>
+                    </strong>
 
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"> <span class="comment-tag"><i
-                            class="fa fa-comment-o"></i>139<i></i></span> <span
-                            class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/2.jpg" alt="">
-                    </a>
-                </div>
-                <div class="item-content">
-                    <strong class="category-link"><a href="#">Tin mới</a></strong>
                     <h3>
-                        <a href="#">Final Fantasy XV công bố cấu hình cho bản PC</a>
+                        <a href="${contextPath}/${gal.slug}">${gal.title}</a>
                     </h3>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 11, 2017</a>
+                    <span class="item-meta"> <a href="${contextPath}/${gal.slug}"><i
+                            class="fa fa-comment-o"></i>${fn:length(gal.comments)}</a> <a href="${contextPath}/${gal.slug}"><i
+                            class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
 					</span>
-                    <p>Theo thông tin vừa được công bố trên Microsoft Store, nhà
-                        phát hành Square Enix đã hé lộ cấu hình tiêu chuẩn cho bản PC của
-                        Final Fantasy XV. ...</p>
+                    <p>${gal.subContent}</p>
                 </div>
             </div>
-
-            <div class="item" data-color-top-slider="#867eef">
-                <div class="item-header">
-                    <a href="#"> <span class="comment-tag"><i
-                            class="fa fa-comment-o"></i>65<i></i></span> <span
-                            class="read-more-wrapper"><span class="read-more">Xem
-								chi tiết<i></i>
-						</span></span> <img src="images/anh/3.jpg" alt="">
-                    </a>
-                </div>
-                <div class="item-content">
-                    <strong class="category-link"><a href="#">Tin mới</a></strong>
-                    <h3>
-                        <a href="#">Halloween Sale chính thức mở cửa</a>
-                    </h3>
-                    <span class="item-meta"> <a href="#"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 10, 2017</a>
-					</span>
-                    <p>Đúng như dự kiến từ trước, vào đêm qua theo giờ Việt Nam,
-                        Steam đã cho ra mắt sự kiện khuyến mại lớn có tên “Halloween
-                        Sale”. ...</p>
-                </div>
-            </div>
+            </c:forEach>
 
         </div>
     </div>

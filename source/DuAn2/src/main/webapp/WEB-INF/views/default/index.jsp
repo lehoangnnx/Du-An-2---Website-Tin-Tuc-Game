@@ -37,7 +37,7 @@
                                         <li><img src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
                                                  alt="${fn:substring(gacnvl.title, 0, 50)} ..."
                                                  title="${fn:substring(gacnvl.title, 0, 50)} ..."
-                                                 data-description="${gacnvl.views} lượt xem"/>
+                                                 data-description="${gacnvl.views} Lượt xem"/>
                                             <video
                                                     preload="none"
                                                     src="${gacnvl.video}">
@@ -131,7 +131,7 @@
                                 <a href="${gacnskl.slug}">${gacnskl.title}</a>
                             </h3>
                             <span class="item-meta"> <a href="${contextPath}/${gacnskl.slug}"><i
-                                    class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/${gacnskl.slug}"><i
+                                    class="fa fa-comment-o"></i>${fn:length(gacnskl.comments)} Bình luận</a> <a href="${contextPath}/${gacnskl.slug}"><i
                                     class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gacnskl.showDate}"/></a>
 						</span>
                             <p>${gacnskl.subContent}</p>
@@ -382,7 +382,7 @@
 						<a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i
                                 class="fa fa-user"></i>${gal.users.userName}</a>
 						<a href="${contextPath}/${gal.slug}"><i
-                                class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/${gal.slug}"><i
+                                class="fa fa-comment-o"></i>${fn:length(gal.comments)} Bình luận</a> <a href="${contextPath}/${gal.slug}"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
 
 					</span>
@@ -394,6 +394,9 @@
         </div>
         <div style="padding-bottom: 60px; border-bottom: 1px solid #F0F0F0" class="content-panel-body pagination "
              id="xemthem">
+            <div id="LoadingGifSmall" style="display: none;" >
+                <img src="${contextPath }/images/36.gif" />
+            </div>
             <%--<a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i>Trước</a>
             <a class="page-numbers" href="#">1</a> <span
                 class="page-numbers current">2</span> <a class="page-numbers"

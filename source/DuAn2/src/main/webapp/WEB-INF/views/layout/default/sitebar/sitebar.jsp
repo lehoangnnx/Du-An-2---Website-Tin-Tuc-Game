@@ -21,8 +21,8 @@
                         <h4>
                             <a title="${gactvl.title}" href="${contextPath}/${gactvl.slug}">${fn:substring(gactvl.title, 0, 80)} ...</a>
                         </h4>
-                        <span class="item-meta"> <a href="#"><i
-                                class="fa fa-eye"></i>82 Bình luận</a> <a href="#"><i
+                        <span class="item-meta"> <a href="${contextPath}/${gactvl.slug}"><i
+                                class="fa fa-eye"></i>${gactvl.views} Lượt Xem</a> <a href="${contextPath}/${gactvl.slug}"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gactvl.createdDate}"/></a>
 										</span>
                     </div>
@@ -44,10 +44,10 @@
                 </div>
                 <div class="item-content">
                     <h4>
-                        <a href="${gha.slug}">${gha.title}</a>
+                        <a href="${contextPath}/${gha.slug}">${gha.title}</a>
                     </h4>
-                    <span class="item-meta"> <a href="${gha.slug}"><i
-                            class="fa fa-eye"></i>${gha.views}</a> <a href="${gha.slug}"><i
+                    <span class="item-meta"> <a href="${contextPath}/${gha.slug}"><i
+                            class="fa fa-eye"></i>${gha.views} Lượt Xem</a> <a href="${contextPath}/    ${gha.slug}"><i
                             class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gha.createdDate}"/></a>
 										</span>
                 </div>
@@ -212,7 +212,7 @@
                             <a href="${contextPath}/${gacnttl.slug}">${gacnttl.title}</a>
                         </h4>
                         <span class="item-meta"> <a href="${contextPath}/${gacnttl.slug}"><i
-                                class="fa fa-camera"></i>${gacnttl.views} lượt xem</a> <a href="${contextPath}/${gacnttl.slug}"><i
+                                class="fa fa-eye"></i>${gacnttl.views} Lượt xem</a> <a href="${contextPath}/${gacnttl.slug}"><i
                                 class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
