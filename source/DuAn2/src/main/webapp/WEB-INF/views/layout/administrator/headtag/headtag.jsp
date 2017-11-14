@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="${contextPath}/css/animate.css/animate.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/jscrollpane/jquery.jscrollpane.css">
 		<link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
+		<link rel="stylesheet" href="${contextPath}/css/switchery/dists/switchery.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/morris/morris.css">
 		<link rel="stylesheet" href="${contextPath}/css/jvectormap/jquery-jvectormap-2.0.3.css">
 		

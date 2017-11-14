@@ -29,7 +29,7 @@
 <script type="text/javascript"
         src="${contextPath}/js/waves/waves.min.js"></script>
 <script type="text/javascript"
-        src="${contextPath}/js/switchery/dist/switchery.min.js"></script>
+        src="${contextPath}/js/switchery/dists/switchery.min.js"></script>
 
 
 <script type="text/javascript"
@@ -37,20 +37,20 @@
 <script type="text/javascript"
         src="${contextPath}/js/summernote/summernote.min.js"></script>
 <script type="text/javascript"
-        src="${contextPath}/js/dropify/dist/js/dropify.min.js"></script>
+        src="${contextPath}/js/dropify/dists/js/dropify.min.js"></script>
 
 <script type="text/javascript"
         src="${contextPath}/js/js/forms-upload.js"></script>
 
 
 <script type="text/javascript"
-        src="${contextPath}/js/select2/dist/js/select2.min.js"></script>
+        src="${contextPath}/js/select2/dists/js/select2.min.js"></script>
 <script type="text/javascript"
-        src="${contextPath}/js/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+        src="${contextPath}/js/bootstrap-tagsinput/dists/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript"
         src="${contextPath}/js/multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript"
-        src="${contextPath}/js/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+        src="${contextPath}/js/bootstrap-touchspin/dists/jquery.bootstrap-touchspin.min.js"></script>
 <script type="text/javascript"
         src="${contextPath}/js/bootstrap-maxlength/src/bootstrap-maxlength.js"></script>
 <!-- Neptune JS -->

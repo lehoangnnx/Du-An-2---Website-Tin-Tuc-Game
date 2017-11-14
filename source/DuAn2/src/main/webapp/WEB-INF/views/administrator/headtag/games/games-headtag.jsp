@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="${contextPath}/css/animate.css/animate.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/jscrollpane/jquery.jscrollpane.css">
 		<link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
-		<link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
+		<link rel="stylesheet" href="${contextPath}/css/switchery/dists/switchery.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/DataTables/css/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/DataTables/Responsive/css/responsive.bootstrap4.min.css">
 		<link rel="stylesheet" href="${contextPath}/css/DataTables/Buttons/css/buttons.dataTables.min.css">

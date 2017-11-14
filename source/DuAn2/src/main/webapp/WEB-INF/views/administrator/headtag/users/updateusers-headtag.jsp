@@ -20,12 +20,12 @@
 	href="${contextPath}/css/jscrollpane/jquery.jscrollpane.css">
 <link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
 <link rel="stylesheet"
-	href="${contextPath}/css/switchery/dist/switchery.min.css">
+	href="${contextPath}/css/switchery/dists/switchery.min.css">
 <link rel="stylesheet"
 	href="${contextPath}/css/summernote/summernote.css">
 
 <link rel="stylesheet"
-	href="${contextPath}/css/dropify/dist/css/dropify.min.css">
+	href="${contextPath}/css/dropify/dists/css/dropify.min.css">
 
 
 <!-- Neptune CSS -->

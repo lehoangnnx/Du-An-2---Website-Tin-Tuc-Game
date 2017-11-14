@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="${contextPath}/js/jscrollpane/jquery.jscrollpane.min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/jquery-fullscreen-plugin/jquery.fullscreen-min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/waves/waves.min.js"></script>
-		<script type="text/javascript" src="${contextPath}/js/switchery/dist/switchery.min.js"></script>
+		<script type="text/javascript" src="${contextPath}/js/switchery/dists/switchery.min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/flot/jquery.flot.min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/flot/jquery.flot.resize.min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>

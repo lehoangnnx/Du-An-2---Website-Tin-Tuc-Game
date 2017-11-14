@@ -15,15 +15,15 @@
 <link rel="stylesheet" href="${contextPath}/css/animate.css/animate.min.css">
 <link rel="stylesheet" href="${contextPath}/css/jscrollpane/jquery.jscrollpane.css">
 <link rel="stylesheet" href="${contextPath}/css/waves/waves.min.css">
-<link rel="stylesheet" href="${contextPath}/css/switchery/dist/switchery.min.css">
+<link rel="stylesheet" href="${contextPath}/css/switchery/dists/switchery.min.css">
 <link rel="stylesheet" href="${contextPath}/css/summernote/summernote.css">
-<link rel="stylesheet" href="${contextPath}/css/dropify/dist/css/dropify.min.css">
+<link rel="stylesheet" href="${contextPath}/css/dropify/dists/css/dropify.min.css">
 
 
-<link rel="stylesheet" href="${contextPath}/css/select2/dist/css/select2.min.css">
-<link rel="stylesheet" href="${contextPath}/css/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="${contextPath}/css/select2/dists/css/select2.min.css">
+<link rel="stylesheet" href="${contextPath}/css/bootstrap-tagsinput/dists/bootstrap-tagsinput.css">
 <link rel="stylesheet" href="${contextPath}/css/multi-select/css/multi-select.css">
-<link rel="stylesheet" href="${contextPath}/css/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
+<link rel="stylesheet" href="${contextPath}/css/bootstrap-touchspin/dists/jquery.bootstrap-touchspin.min.css">
 
 
 <!-- Neptune CSS -->

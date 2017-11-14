@@ -23,7 +23,7 @@
 <script type="text/javascript"
 	src="${contextPath}/js/waves/waves.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/js/switchery/dist/switchery.min.js"></script>
+	src="${contextPath}/js/switchery/dists/switchery.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/DataTables/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript"
