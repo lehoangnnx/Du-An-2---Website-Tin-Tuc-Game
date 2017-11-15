@@ -22,4 +22,6 @@ public interface ArticleService {
     List<Article> findByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date);
 
     Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
+    List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date);
+
 }

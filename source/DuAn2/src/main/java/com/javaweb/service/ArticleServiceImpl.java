@@ -74,4 +74,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status) {
 		return articleRepository.findTop1ByIsHotAndStatusOrderByViewsDesc(isHot,status);
 	}
+
+	@Override
+	public List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date) {
+		return articleRepository.findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(articleCategory,status,date);
+	}
 }
