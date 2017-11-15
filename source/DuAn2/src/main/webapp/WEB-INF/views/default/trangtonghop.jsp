@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!-- Banner chi tiết bài viết -->
 <div class="content-block-single">
@@ -14,7 +15,7 @@
 
 			<div class="feed-widget-header">
 				<h2 class="widget-title feed-widget-title">
-					<a href="#">TIN Tông Hợp</a>
+					<a href="${articleCategory.slug}">${articleCategory.name}</a>
 				</h2>
 
 				<div class="clear"></div>
@@ -22,39 +23,39 @@
 
 		</div>
 		<div class="content-panel-body article-list" id="posts">
-			<c:forEach var="gal" items="${getTop10ArticleList}">
+			<c:forEach var="al" items="${articleList}">
 				<div class="item">
 
 					<div class="item-header hover14 column">
-						<a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
-								class="fa fa-eye"></i>${gal.views}<i></i></span> <span
+						<a href="${contextPath}/${al.slug}"> <span class="comment-tag"><i
+								class="fa fa-eye"></i>${al.views}<i></i></span> <span
 								class="read-more-wrapper"><span class="read-more">Xem chi tiết<i></i>
 					</span></span>
-							<figure><img title="${gal.title}"
-										 src="${contextPath}/images/articles/${gal.imagesThumbnail}" alt=""/></figure>
+							<figure><img title="${al.title}"
+										 src="${contextPath}/images/articles/${al.imagesThumbnail}" alt=""/></figure>
 						</a>
 					</div>
 
 					<div class="item-content">
 
 						<strong class="category-link">
-							<c:forEach var="ac" items="${gal.articleCategories}">
+							<c:forEach var="ac" items="${al.articleCategories}">
 								<a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
 							</c:forEach>
 						</strong>
 
 						<h3>
-							<a title="${gal.title}" href="${contextPath}/${gal.slug}">${gal.title}</a>
+							<a title="${al.title}" href="${contextPath}/${al.slug}">${al.title}</a>
 						</h3>
 						<span class="item-meta">
-						<a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i
-								class="fa fa-user"></i>${gal.users.userName}</a>
-						<a href="${contextPath}/${gal.slug}"><i
-								class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/${gal.slug}"><i
-								class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
+						<a style="font-weight: bold;" href="${contextPath}/${al.slug}"><i
+								class="fa fa-user"></i>${al.users.userName}</a>
+						<a href="${contextPath}/${al.slug}"><i
+								class="fa fa-comment-o"></i>${fn:length(al.comments)} Bình luận</a> <a href="${contextPath}/${al.slug}"><i
+								class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${al.showDate}"/></a>
 
 					</span>
-						<p>${gal.subContent}</p>
+						<p>${al.subContent}</p>
 					</div>
 				</div>
 			</c:forEach>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
+import org.springframework.data.domain.Pageable;
 
 public interface ArticleService {
     List<Article> findAll();
@@ -23,5 +24,5 @@ public interface ArticleService {
 
     Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
     List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date);
-
+    List<Article> findAllByStatusAndShowDateBefore(String status,Date date, Pageable pageable);
 }

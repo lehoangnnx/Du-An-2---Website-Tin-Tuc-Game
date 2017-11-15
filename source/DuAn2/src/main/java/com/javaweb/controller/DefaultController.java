@@ -4,6 +4,8 @@ import com.javaweb.model.*;
 import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -203,7 +205,10 @@ public class DefaultController {
 
 
     @RequestMapping("/{slug}")
-    String chitiet(@PathVariable("slug") String slug, Model model) {
+    String chitiet(@PathVariable("slug") String slug, Model model,
+        @RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam(value = "limit", defaultValue = "10") Integer limit
+        ,@RequestParam(value = "sorted", defaultValue = "news") String sorted
+    ) {
         Article article = null;
         ArticleCategory articleCategory = null;
         Tags tags = null;
@@ -235,11 +240,21 @@ public class DefaultController {
                 model.addAttribute("games", games);
                 model.addAttribute("articleCategory", getarticleCategory);
                 model.addAttribute("articleLienQuanList",articleLienQuanList);
+                article.setViews(article.getViews()+1);
+                articleService.saveorupdate(article);
                 return "chitiet";
             }else  if (articleCategory != null){
+                if(sorted.equals("news")){
+                    sorted = "showDate";
+                }
+                if (sorted.equals("hots")){
+                    sorted = "views";
+                }
                 List<Article> articleList = articleService
-                        .findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(articleCategory,"active", new Date());
-                System.out.println("DANH MUC NEKKKKKKKKKKKK: " + articleList);
+                        .findAllByStatusAndShowDateBefore("active", new Date(),
+                                new PageRequest(page, limit, new Sort(Sort.Direction.DESC,sorted)));
+
+                model.addAttribute("articleCategory",articleCategory);
                 model.addAttribute("articleList",articleList);
                 return "tonghop";
             }else {

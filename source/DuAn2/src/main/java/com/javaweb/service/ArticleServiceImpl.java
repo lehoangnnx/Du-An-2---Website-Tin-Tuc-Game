@@ -4,6 +4,7 @@ import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
 import com.javaweb.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -78,5 +79,10 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date) {
 		return articleRepository.findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(articleCategory,status,date);
+	}
+
+	@Override
+	public List<Article> findAllByStatusAndShowDateBefore(String status,Date date ,Pageable pageable) {
+		return articleRepository.findAllByStatusAndShowDateBefore(status,date,pageable);
 	}
 }

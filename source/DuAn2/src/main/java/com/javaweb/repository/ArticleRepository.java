@@ -1,6 +1,8 @@
 package com.javaweb.repository;
 
 import com.javaweb.model.ArticleCategory;
+import com.javaweb.model.Comment;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.javaweb.model.Article;
@@ -25,6 +27,6 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
 	List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date);
 
-
+	List<Article> findAllByStatusAndShowDateBefore(String status, Date date,Pageable pageable);
 
 }
