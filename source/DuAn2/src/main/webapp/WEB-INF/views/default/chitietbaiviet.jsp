@@ -12,7 +12,7 @@
 <div class="content-block-single" style="padding-top: 10px;">
     <div class="content-panel">
         <div class="article-full-image">
-            <img src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="">
+            <img class="img-responsive" src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="">
             <div class="wrapper" style="margin-top: 31px;">
                 <div class="content-panel-body article-header">
 

@@ -701,5 +701,8 @@ body {
 </style>
 
 <style>
-
+    marquee p
+    {
+        white-space:nowrap;
+    }
 </style>

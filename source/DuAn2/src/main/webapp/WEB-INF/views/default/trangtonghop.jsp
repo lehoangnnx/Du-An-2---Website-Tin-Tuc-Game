@@ -15,7 +15,7 @@
 
 			<div class="feed-widget-header">
 				<h2 class="widget-title feed-widget-title">
-					<a href="${articleCategory.slug}">${articleCategory.name}</a>
+					<a href="${title.slug}">${title.name}</a>
 				</h2>
 
 				<div class="clear"></div>
@@ -31,8 +31,8 @@
 								class="fa fa-eye"></i>${al.views}<i></i></span> <span
 								class="read-more-wrapper"><span class="read-more">Xem chi tiết<i></i>
 					</span></span>
-							<figure><img title="${al.title}"
-										 src="${contextPath}/images/articles/${al.imagesThumbnail}" alt=""/></figure>
+							<figure><img class="img-responsive" title="${al.title}"
+										 src="${contextPath}/images/articles/${al.imagesThumbnail}" alt="${al.title}"/></figure>
 						</a>
 					</div>
 

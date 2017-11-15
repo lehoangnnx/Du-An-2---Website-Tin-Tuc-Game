@@ -181,9 +181,14 @@
 					<div class="ot-breaking-news-content">
 						<marquee behavior="scroll" direction="left" scrollamount="8"
 							scrolldelay="20" width="90%">
-							<a href="${contextPath}/${getTop1Article.slug} "
-								style="color: #fc7700">${getTop1Article.title}</a>
+							<c:forEach var="gahav" items="${getTop5ArticleHotAndViews}">
+								<a  href="${contextPath}/${gahav.slug} "
+									style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
+							</c:forEach>
+
+
 						</marquee>
+
 
 					</div>
 					<!-- END .ot-breaking-news-body -->

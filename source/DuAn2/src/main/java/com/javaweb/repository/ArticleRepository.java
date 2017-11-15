@@ -2,6 +2,7 @@ package com.javaweb.repository;
 
 import com.javaweb.model.ArticleCategory;
 import com.javaweb.model.Comment;
+import com.javaweb.model.Tags;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -24,9 +25,10 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	List<Article> findByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date);
 
-	Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
+	List<Article> findTop5ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
 	List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date);
 
-	List<Article> findAllByStatusAndShowDateBefore(String status, Date date,Pageable pageable);
+	List<Article> findAllByArticleCategoriesAndStatusAndShowDateBefore(ArticleCategory articleCategory,String status, Date date,Pageable pageable);
+	List<Article> findAllByTagsesAndStatusAndShowDateBefore(Tags tags, String status, Date date, Pageable pageable);
 
 }

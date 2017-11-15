@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
+import com.javaweb.model.Tags;
 import com.javaweb.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -72,8 +73,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article findTop1ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status) {
-		return articleRepository.findTop1ByIsHotAndStatusOrderByViewsDesc(isHot,status);
+	public List<Article> findTop5ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status) {
+		return articleRepository.findTop5ByIsHotAndStatusOrderByViewsDesc(isHot,status);
 	}
 
 	@Override
@@ -82,7 +83,12 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findAllByStatusAndShowDateBefore(String status,Date date ,Pageable pageable) {
-		return articleRepository.findAllByStatusAndShowDateBefore(status,date,pageable);
+	public List<Article> findAllByArticleCategoriesAndStatusAndShowDateBefore(ArticleCategory articleCategory,String status, Date date,Pageable pageable){
+		return articleRepository.findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory ,status,date,pageable);
+	}
+
+	@Override
+	public List<Article> findAllByTagsesAndStatusAndShowDateBefore(Tags tags, String status, Date date, Pageable pageable) {
+		return articleRepository.findAllByTagsesAndStatusAndShowDateBefore(tags,status,date,pageable);
 	}
 }

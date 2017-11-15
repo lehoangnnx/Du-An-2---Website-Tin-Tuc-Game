@@ -154,11 +154,11 @@ public class DefaultController {
         return getTop10GameOffline;
     }
 
-    @ModelAttribute("getTop1Article")
-    public Article getTop1Article() {
+    @ModelAttribute("getTop5ArticleHotAndViews")
+    public List<Article> getTop5ArticleHotAndViews() {
 
-        Article getTop1Article = articleService.findTop1ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active");
-        return getTop1Article;
+        List<Article> getTop5ArticleHotAndViews = articleService.findTop5ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active");
+        return getTop5ArticleHotAndViews;
     }
 
     @ModelAttribute("getTop10ArticleCategoryNewReviewsList")
@@ -213,12 +213,18 @@ public class DefaultController {
         ArticleCategory articleCategory = null;
         Tags tags = null;
         Games games = null;
+        if(sorted.equals("news")){
+            sorted = "showDate";
+        }
+        if (sorted.equals("hots")){
+            sorted = "views";
+        }
         try {
             article = articleService.findBySlug(slug);
             articleCategory =articleCategoryService.findBySlug(slug);
 
             tags = tagsService.findBySlug(slug);
-
+            List<Article> articleList = null;
             if (article != null) {
                 games = gamesService.findByGameId(article.getGameId());
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
@@ -244,20 +250,23 @@ public class DefaultController {
                 articleService.saveorupdate(article);
                 return "chitiet";
             }else  if (articleCategory != null){
-                if(sorted.equals("news")){
-                    sorted = "showDate";
-                }
-                if (sorted.equals("hots")){
-                    sorted = "views";
-                }
-                List<Article> articleList = articleService
-                        .findAllByStatusAndShowDateBefore("active", new Date(),
+                 articleList = articleService
+                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory,"active", new Date(),
                                 new PageRequest(page, limit, new Sort(Sort.Direction.DESC,sorted)));
 
-                model.addAttribute("articleCategory",articleCategory);
+                model.addAttribute("title",articleCategory);
                 model.addAttribute("articleList",articleList);
                 return "tonghop";
-            }else {
+            }else if(tags != null){
+               articleList = articleService
+                        .findAllByTagsesAndStatusAndShowDateBefore(tags,"active", new Date(),
+                                new PageRequest(page, limit, new Sort(Sort.Direction.DESC,sorted)));
+
+                model.addAttribute("title",tags);
+                model.addAttribute("articleList",articleList);
+                return "tonghop";
+            }
+            else {
                 return "redirect:/403";
             }
         } catch (Exception e) {
