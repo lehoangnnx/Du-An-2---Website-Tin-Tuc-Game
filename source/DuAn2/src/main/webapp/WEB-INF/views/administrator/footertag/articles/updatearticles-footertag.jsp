@@ -13,6 +13,8 @@
 <script type="text/javascript"
 	src="${contextPath}/js/js/jquery.validate.js"></script>
 <script type="text/javascript"
+		src="${contextPath}/js/js/additional-methods.min.js"></script>
+<script type="text/javascript"
 	src="${contextPath}/js/tether/js/tether.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/bootstrap4/js/bootstrap.min.js"></script>
@@ -280,7 +282,10 @@
 				author : {
 					required : true
 				},
-				
+                imagesThumbnail : {
+
+                    accept: "image/*"
+                },
 				video : {
 
 					url: true
@@ -309,7 +314,10 @@
 				author : {
 					required : "Vui Lòng Nhập Tác Giả/Nguồn"
 				},
+                imagesThumbnail : {
 
+                    accept : "Vui Lòng Chọn File Ảnh"
+                },
 				video : {
 
 					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "

@@ -38,10 +38,11 @@
         <!-- Bài viết chí tiết -->
         <div class="content-panel-body shortcode-content">
 
+            <h2 class="subcontentandauthor">${article.subContent}</h2>
 
             <c:out value="${article.mainContent}" escapeXml="false"/>
 
-
+            <h2 class="pull-right subcontentandauthor" >${article.author}</h2>
         </div>
 
 

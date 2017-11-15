@@ -705,4 +705,10 @@ body {
     {
         white-space:nowrap;
     }
+    .subcontentandauthor{
+        font-size: 15px;
+        color: #525050;
+        font-weight: bold;
+        padding-bottom: 15px;
+    }
 </style>

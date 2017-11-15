@@ -13,6 +13,8 @@
 <script type="text/javascript"
         src="${contextPath}/js/js/jquery.validate.js"></script>
 <script type="text/javascript"
+        src="${contextPath}/js/js/additional-methods.min.js"></script>
+<script type="text/javascript"
         src="${contextPath}/js/tether/js/tether.min.js"></script>
 <script type="text/javascript"
         src="${contextPath}/js/bootstrap4/js/bootstrap.min.js"></script>
@@ -255,7 +257,8 @@
                     required : true
                 },
                 images : {
-                    required : true
+                    required : true,
+                    accept: "image/*"
                 },
                 info : {
                     required : true
@@ -289,7 +292,8 @@
                     required : "Vui Lòng Chọn Ngày Phát Hành"
                 },
                 images : {
-                    required : "Vui Lòng Chọn Ảnh"
+                    required : "Vui Lòng Chọn Ảnh",
+                    accept : "Vui Lòng Chọn File Ảnh"
                 },
                 info : {
                     required : "Vui Lòng Nhập Mô Tả Game"

@@ -106,7 +106,7 @@ public class DefaultController {
                 .stream().limit(3).collect(Collectors.toList());
         model.addAttribute("getTop3GameMobile", getTop3GameMobile);
 
-
+        model.addAttribute("title", "Website Game24h");
         return "home";
     }
 
@@ -206,7 +206,7 @@ public class DefaultController {
 
     @RequestMapping("/{slug}")
     String chitiet(@PathVariable("slug") String slug, Model model,
-        @RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam(value = "limit", defaultValue = "10") Integer limit
+        @RequestParam(value = "page", defaultValue = "1") Integer page,@RequestParam(value = "limit", defaultValue = "2") Integer limit
         ,@RequestParam(value = "sorted", defaultValue = "news") String sorted
     ) {
         Article article = null;
@@ -225,18 +225,19 @@ public class DefaultController {
 
             tags = tagsService.findBySlug(slug);
             List<Article> articleList = null;
+
             if (article != null) {
                 games = gamesService.findByGameId(article.getGameId());
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
-                final Integer[] articleCaregoryId = new Integer[1];
+                final ArticleCategory[] getarticleCategory = {null};
                 article.getArticleCategories().forEach(x -> {
-                            articleCaregoryId[0] = x.getArticleCategoryId();
-                        }
+                    getarticleCategory[0] = articleCategoryService.findByArticleCategoryId(x.getArticleCategoryId());}
                 );
-                ArticleCategory getarticleCategory = articleCategoryService.findByArticleCategoryId(articleCaregoryId[0]);
-                List<Article> articleLienQuanList = articleService
-                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory,(byte) 1,"active");
 
+                List<Article> articleLienQuanList = articleService
+                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory[0],(byte) 1,"active");
+
+                articleLienQuanList.forEach(x -> System.out.println("WTFFFFFFFFFFFFFFFFFFF : "+x.getTitle() ));
                 List<Comment> getTop10Comment = commentService.findTop10ByStatusOrderByCreatedDateDesc("active");
                 List<Article> getTop10ArticleList = articleService
                         .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
@@ -244,33 +245,52 @@ public class DefaultController {
                 model.addAttribute("getTop10Comment",getTop10Comment);
                 model.addAttribute("article", article);
                 model.addAttribute("games", games);
-                model.addAttribute("articleCategory", getarticleCategory);
+                model.addAttribute("articleCategory", getarticleCategory[0]);
                 model.addAttribute("articleLienQuanList",articleLienQuanList);
+                model.addAttribute("title", article.getTitle());
                 article.setViews(article.getViews()+1);
                 articleService.saveorupdate(article);
                 return "chitiet";
             }else  if (articleCategory != null){
-                 articleList = articleService
-                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory,"active", new Date(),
-                                new PageRequest(page, limit, new Sort(Sort.Direction.DESC,sorted)));
 
-                model.addAttribute("title",articleCategory);
+                 articleList = articleService
+                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory,"active", new Date(), null);
+
+                int pageCount = (articleList.size()) / limit + ( articleList.size() % limit > 0 ? 1 : 0);
+                articleList = articleService
+                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory,"active", new Date(),
+                                new PageRequest(page -1, limit, new Sort(Sort.Direction.DESC,sorted)));
+                model.addAttribute("objectCategoryAndTag",articleCategory);
                 model.addAttribute("articleList",articleList);
+
+                model.addAttribute("currentpage", page);
+                model.addAttribute("pagecount", pageCount);
+                model.addAttribute("title", articleCategory.getName());
                 return "tonghop";
             }else if(tags != null){
+                articleList = articleService
+                        .findAllByTagsesAndStatusAndShowDateBefore(tags,"active", new Date(), null);
+                int pageCount = (articleList.size()) / limit + ( articleList.size() % limit > 0 ? 1 : 0);
                articleList = articleService
                         .findAllByTagsesAndStatusAndShowDateBefore(tags,"active", new Date(),
-                                new PageRequest(page, limit, new Sort(Sort.Direction.DESC,sorted)));
+                                new PageRequest(page -1, limit, new Sort(Sort.Direction.DESC,sorted)));
 
-                model.addAttribute("title",tags);
+                model.addAttribute("objectCategoryAndTag",tags);
                 model.addAttribute("articleList",articleList);
+
+                model.addAttribute("currentpage", page);
+                model.addAttribute("pagecount", pageCount);
+                model.addAttribute("title", tags.getName());
                 return "tonghop";
             }
             else {
+                model.addAttribute("title", "Trang Thông Báo Lỗi 404");
                 return "redirect:/403";
             }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            model.addAttribute("title", "Trang Thông Báo Lỗi 404");
             return "redirect:/403";
         }
 
@@ -278,15 +298,12 @@ public class DefaultController {
     }
 
     @RequestMapping("/403")
-    String error() {
-
+    String error(Model model) {
+        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
     }
 
-    @RequestMapping("/tonghop")
-    String tonghop() {
-        return "tonghop";
-    }
+
 
 
 }

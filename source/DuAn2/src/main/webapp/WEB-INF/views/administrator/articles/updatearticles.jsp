@@ -320,7 +320,7 @@
 				<label class="col-md-2 control-label" for="form_control_1">Ảnh
 					Thumbnail</label>
 				<div class="col-md-10">
-					<input name="imagesThumbnail" type="file" id="input-file-max-fs" accept="image/jpeg,image/png"
+					<input name="imagesThumbnail" type="file" id="input-file-max-fs" accept="image/*"
 						value="${contextPath}/images/articles/${article.imagesThumbnail}"
 						class="dropify" data-max-file-size="15M"
 						data-default-file="${contextPath}/images/articles/${article.imagesThumbnail}">
@@ -352,7 +352,7 @@
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">
 				<input hidden="" id="msg" value="${msg }"></input>
 				<div class="offset-sm-2 col-md-10">
-					<
+
 					<button id="btn-submit" type="submit" class=" btn btn-primary">Xác
 						Nhận</button>
 					<a href="${contextPath}/admin/articles?status=active" class="btn btn-danger pull-right" >Quay Lại</a>

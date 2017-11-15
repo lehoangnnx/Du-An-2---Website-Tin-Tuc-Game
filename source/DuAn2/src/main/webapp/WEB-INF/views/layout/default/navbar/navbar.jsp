@@ -7,7 +7,7 @@
 <header id="navigation">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="banner">
 		<div class="container" style="margin-top: -10px;">
-			<div class="navbar-header">
+			<div class="navbar-header col-md-4">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
 					<span class="sr-only">Navigation</span> <span class="icon-bar"></span>
@@ -20,17 +20,17 @@
 						</h1></a>
 				</div>
 			</div>
-			<div class="collapse navbar-collapse ">
+			<div class="collapse navbar-collapse col-md-8 ">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="scroll active"><a href="${contextPath}/">Trang
 							chủ</a></li>
-					<c:forEach var="atl" items="${articleCategoryList}">
+					<c:forEach var="atl" items="${articleCategoryList}" begin="0" end="1">
 						<c:if test="${atl.subArticleCategoryId == 0}">
 							<li class="scroll"><a href="${atl.slug}">${atl.name}</a></li>
 						</c:if>
 					</c:forEach> 
 					
-					<li class="dropdown head-dpdn"><a href="#"
+					<%--<li class="dropdown head-dpdn"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
 							class="caret"></span></a>
@@ -38,10 +38,44 @@
 							<li><a href="#">Tải game</a></li>
 							<li><a href="#">Forum</a></li>
 							<li><a href="#">Trải nghiệm</a></li>
-						</ul></li>				
+						</ul></li>		--%>
 
 			<li class="scroll"><a href="#">Liên hệ</a></li>
+					<div class="menu">
+						<ul>
+							<li><a href="#">ĐÙ MÁ</a>
+								<ul>
+									<li><a href="#">CÓ</a>
+										<ul>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+										</ul></li>
+									<li><a href="#">RA</a>
+										<ul>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+										</ul></li>
+									<li><a href="#">KHÔNG</a>
+										<ul>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+										</ul></li>
+									<li><a href="#">THÌ BẢO</a>
+										<ul>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+											<li><a href="#">WHAT THE FUCK</a></li>
+										</ul></li>
+								</ul></li>
 
+						</ul>
+					</div>
 
 			<!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->
@@ -98,41 +132,7 @@
 
 			</security:authorize>
 			
-			<div class="menu">
-						<ul>
-							<li><a href="#">ĐÙ MÁ</a>
-								<ul>
-									<li><a href="#">CÓ</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-									<li><a href="#">RA</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-									<li><a href="#">KHÔNG</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-									<li><a href="#">THÌ BẢO</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-								</ul></li>
 
-						</ul>
-					</div>
 
 
 			<!-- <li class="fa fa-caret-down" style="font-size: 26px">

@@ -13,6 +13,9 @@
 <script type="text/javascript"
 	src="${contextPath}/js/js/jquery.validate.js"></script>
 <script type="text/javascript"
+		src="${contextPath}/js/js/additional-methods.min.js"></script>
+
+<script type="text/javascript"
 	src="${contextPath}/js/tether/js/tether.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/bootstrap4/js/bootstrap.min.js"></script>
@@ -266,11 +269,11 @@
 			rules : {
 				title : {
 					required : true,
-					maxlength : 100
+                    maxlength : 255
 				},
 				slug : {
 					required : true,
-					maxlength : 100
+                    maxlength : 255
 				},
 				articleCategories : {
 					required : true
@@ -286,8 +289,10 @@
 					required : true
 				},
 				imagesThumbnail : {
-					required : true
+					required : true,
+                    accept: "image/*"
 				},
+
 				video : {
 
 					url: true
@@ -297,11 +302,11 @@
 			messages : {
 				title : {
 					required : "Vui Lòng Nhập Tiêu Đề",
-					maxlength : "Tiêu Đề Không Dài Hơn 100 Ký Tự"
+					maxlength : "Tiêu Đề Không Dài Hơn 255 Ký Tự"
 				},
 				slug : {
 					required : "Vui Lòng Nhập Đường Dẫn",
-					maxlength : "Đường Dẫn Không Dài Hơn 100 Ký Tự"
+					maxlength : "Đường Dẫn Không Dài Hơn 255 Ký Tự"
 				},
 				articleCategories : {
 					required : "Vui Lòng Chọn Danh Mục"
@@ -317,8 +322,10 @@
 					required : "Vui Lòng Nhập Tác Giả/Nguồn"
 				},
 				imagesThumbnail : {
-					required : "Vui Lòng Chọn Ảnh"
+					required : "Vui Lòng Chọn Ảnh",
+                    accept : "Vui Lòng Chọn File Ảnh"
 				},
+
 				video : {
 
 					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "

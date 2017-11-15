@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title><tiles:insertAttribute name="title" /></title>
+
 		<tiles:insertAttribute name="head" />
 		<tiles:insertAttribute name="headtag" />
 

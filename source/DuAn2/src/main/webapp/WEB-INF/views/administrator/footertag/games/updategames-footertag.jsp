@@ -13,6 +13,8 @@
 <script type="text/javascript"
 	src="${contextPath}/js/js/jquery.validate.js"></script>
 <script type="text/javascript"
+		src="${contextPath}/js/js/additional-methods.min.js"></script>
+<script type="text/javascript"
 	src="${contextPath}/js/tether/js/tether.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/bootstrap4/js/bootstrap.min.js"></script>
@@ -259,6 +261,10 @@
                 downloadUrl :{
                     required: true,
                     url: true
+                },
+				images : {
+
+                    accept: "image/*"
                 }
 
             },
@@ -290,6 +296,9 @@
                 downloadUrl :{
                     required : "Vui Lòng Nhập URL",
                     url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://lienquan.garena.vn/"
+                },images : {
+
+                    accept : "Vui Lòng Chọn File Ảnh"
                 }
 
 
