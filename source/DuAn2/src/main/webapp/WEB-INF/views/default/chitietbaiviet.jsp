@@ -170,12 +170,27 @@
                 <input hidden id="usersBySubUserId" value="0"/>
                 <li class="comment">
                     <div class="comment-block">
-                        <a href="#" class="image-avatar"> <img
-                                src="${contextPath}/images/avatar/${user.avatar}"
-                                data-ot-retina="${contextPath}/images/avatar/${user.avatar}" alt="" title="">
-                        </a>
+                        <security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
+                            <a href="#" class="image-avatar"> <img
+                                    src="${user.avatar}"
+                                    data-ot-retina="${user.avatar}" alt="" title="">
+                            </a>
+                        </security:authorize>
+                        <security:authorize access="!hasAnyRole('FACEBOOK', 'GOOGLE')">
+                            <a href="#" class="image-avatar"> <img
+                                    src="${contextPath}/images/avatar/${user.avatar}"
+                                    data-ot-retina="${contextPath}/images/avatar/${user.avatar}" alt="" title="">
+                            </a>
+                        </security:authorize>
+
                         <div class="comment-text">
-                            <strong class="user-nick"><a href="#">${user.userName}</a> <span id="msgsubcomment"></span></strong>
+                            <security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
+                                <strong class="user-nick"><a href="#">${user.firstName} ${user.lastName}</a> <span id="msgsubcomment"></span></strong>
+                            </security:authorize>
+                            <security:authorize access="!hasAnyRole('FACEBOOK', 'GOOGLE')">
+                                <strong class="user-nick"><a href="#">${user.userName}</a> <span id="msgsubcomment"></span></strong>
+                            </security:authorize>
+
                             <textarea id="content" name="content"
                                       placeholder="Viết bình luận của bạn.."
                                       style="width: 100%; height: 100px"></textarea>

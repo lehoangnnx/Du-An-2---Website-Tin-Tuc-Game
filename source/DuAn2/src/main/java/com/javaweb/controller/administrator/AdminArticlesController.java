@@ -220,6 +220,7 @@ public class AdminArticlesController {
 			article.setTagses(tagses);
 			article.setUsers(usersService.findByUserName(principal.getName()));
 			// Kiểm tra nếu imagesThumbnail khác rỗng
+			System.out.println("TAHNG NĂM _________________________________________------------------------------"+ monthAndYear);
 			if (!imagesThumbnail.isEmpty()) {
 				// Kiểm tra và tạo thư mục trong đường dẫn /WEB-INF/files/images/articles/" +
 				// monthAndYear nêu chưa có

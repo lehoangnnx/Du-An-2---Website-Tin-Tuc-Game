@@ -29,7 +29,7 @@
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Tiêu
 					Đề</label>
 				<div class="col-md-10">
-					<input maxlength="100" type="text" class="maxlength form-control "
+					<input maxlength="255" type="text" class="maxlength form-control "
 						value="${article.title }" id="title" name="title"
 						required="required"
 						oninvalid="this.setCustomValidity('Vui Lòng Nhập Tiêu Đề')"
@@ -44,7 +44,7 @@
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Đường
 					Dẫn</label>
 				<div class="col-md-10">
-					<input type="text" value="${article.slug }" class="form-control "
+					<input type="text" value="${article.slug }" class="form-control maxlength" maxlength="255"
 						id="slug" name="slug" required="required"
 						oninvalid="this.setCustomValidity('Vui Lòng Nhập Đường Dẫn')"
 						oninput="setCustomValidity('')">
@@ -320,7 +320,7 @@
 				<label class="col-md-2 control-label" for="form_control_1">Ảnh
 					Thumbnail</label>
 				<div class="col-md-10">
-					<input name="imagesThumbnail" type="file" id="input-file-max-fs"
+					<input name="imagesThumbnail" type="file" id="input-file-max-fs" accept="image/jpeg,image/png"
 						value="${contextPath}/images/articles/${article.imagesThumbnail}"
 						class="dropify" data-max-file-size="15M"
 						data-default-file="${contextPath}/images/articles/${article.imagesThumbnail}">

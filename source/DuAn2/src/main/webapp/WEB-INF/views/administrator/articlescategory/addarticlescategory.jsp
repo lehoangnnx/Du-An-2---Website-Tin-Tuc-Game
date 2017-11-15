@@ -37,7 +37,7 @@
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Đường
 					Dẫn</label>
 				<div class="col-md-10">
-					<input type="text" value="${articleCategory.slug }" class="form-control "
+					<input type="text" value="${articleCategory.slug }" class="form-control maxlength" maxlength="100"
 						id="slug" name="slug" >
 					<div id="spanSlug" class=" error form-control-feedback"></div>
 					<label id="slug-error" class="error" for="slug"></label>

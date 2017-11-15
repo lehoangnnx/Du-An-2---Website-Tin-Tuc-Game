@@ -29,7 +29,7 @@
 			<div class="form-group row">
 				<label class="col-md-2 control-label" for="form_control_1">Ảnh Game</label>
 				<div class="col-md-10">
-					<input name="images" type="file" id="input-file-max-fs"
+					<input name="images" type="file" id="input-file-max-fs" accept="image/jpeg,image/png"
 						    value="${games.images}" class="dropify"
 						   data-max-file-size="15M"
 						   data-default-file="${contextPath}/images/games/${games.images}">
@@ -54,7 +54,7 @@
 				<label class="col-md-2 col-form-label" for="inputSuccess1">Đường
 					Dẫn</label>
 				<div class="col-md-10">
-					<input type="text" value="${games.slug }" class="form-control "
+					<input type="text" value="${games.slug }" class="form-control maxlength" maxlength="100"
 						id="slug" name="slug">
 					<div id="spanSlug" class=" error form-control-feedback"></div>
 

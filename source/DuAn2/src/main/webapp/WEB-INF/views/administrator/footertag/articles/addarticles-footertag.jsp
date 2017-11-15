@@ -71,11 +71,25 @@
 		
 		
 	$('#inputframeVideo').on('keyup keypress keydown', function() {
-		 	var link=	$("#inputframeVideo").val();
-		 	
-			$("#ifVideo").attr("src", link);
+        var timeout = null;
 
-				});
+        $('#inputframeVideo').on('keyup keypress keydown', function() {
+
+            clearTimeout(timeout);
+            timeout = setTimeout(function ()
+            {
+                var link =	$("#inputframeVideo").val();
+
+                if(link.search("iframe") == 1){
+
+                    link = link.slice(link.indexOf("src")+5, link.indexOf("frameborder")-2);
+                    $("#inputframeVideo").val(link);
+                }
+                $("#ifVideo").attr("src", link);
+            }, 1500);
+        });
+
+	});
 	});
 
 	function ChangeToSlug() {

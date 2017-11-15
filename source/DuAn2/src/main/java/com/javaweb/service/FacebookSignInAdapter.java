@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import com.javaweb.model.Roles;
 import com.javaweb.model.Users;
 import com.javaweb.repository.UsersRepository;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Service
 public class FacebookSignInAdapter implements SignInAdapter {
@@ -37,10 +38,10 @@ public class FacebookSignInAdapter implements SignInAdapter {
 		SecurityContextHolder.getContext()
 		.setAuthentication(new UsernamePasswordAuthenticationToken(connection.getKey(), 
 				null, Arrays.asList(new SimpleGrantedAuthority("ROLE_FACEBOOK"))));
-		
+
 		return null;
 	}
-	
+
 
 
 }

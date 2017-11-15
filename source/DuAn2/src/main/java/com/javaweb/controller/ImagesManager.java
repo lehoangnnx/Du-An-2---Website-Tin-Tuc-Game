@@ -1,6 +1,8 @@
 package com.javaweb.controller;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -41,10 +43,13 @@ public class ImagesManager {
     }
 	
 	public String getMonthAndYearNow() {
-		Date date = new Date(); // your date
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		String monthAndYear = cal.get(Calendar.MONTH) +"-"+ cal.get(Calendar.YEAR) + "/";
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int year  = localDate.getYear();
+		int month = localDate.getMonthValue();
+		int day   = localDate.getDayOfMonth();
+		System.out.println(year+"-"+month+"-"+day);
+		String monthAndYear = month +"-"+ year + "/";
 		
 		return monthAndYear;
 		

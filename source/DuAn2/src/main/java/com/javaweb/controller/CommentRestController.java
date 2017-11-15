@@ -7,6 +7,7 @@ import com.javaweb.model.Users;
 import com.javaweb.repository.CommentRepository;
 import com.javaweb.service.ArticleService;
 import com.javaweb.service.CommentService;
+import com.javaweb.service.RolesService;
 import com.javaweb.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -32,12 +34,13 @@ public class CommentRestController {
     UsersService usersService;
     @Autowired
     ArticleService articleService;
-
+    @Autowired
+    RolesService rolesService;
 
     @PostMapping("/comment")
-    public String comment(@RequestParam("subCommentId") Integer subCommentId,@RequestParam("articleId") Integer articleId,
+    public Map<String, Object>  comment(@RequestParam("subCommentId") Integer subCommentId,@RequestParam("articleId") Integer articleId,
                           @RequestParam("usersBySubUserId") Integer usersBySubUserId ,
-                          @RequestParam("content") String content, Authentication authentication ){
+                          @RequestParam("content") String content, Authentication authentication ,HttpServletRequest request){
 
         try {
 
@@ -65,16 +68,22 @@ public class CommentRestController {
 
         }
 
-        return "";
+        return getAllcommentPaging(0,authentication,request);
     }
 
     @GetMapping("/getcomment")
-    public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                          Authentication authentication){
+    public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                          Authentication authentication, HttpServletRequest request){
+
+        return getAllcommentPaging(page,authentication,request);
+    }
+
+
+    public Map<String, Object> getAllcommentPaging(Integer page, Authentication authentication, HttpServletRequest request){
 
         int userIdLogin = 0;
         if (authentication != null) {
-           userIdLogin = usersService.findByUserName(authentication.getName()).getUserId();
+            userIdLogin = usersService.findByUserName(authentication.getName()).getUserId();
         }
         List<Comment> commentParentPage = commentService.findAllByStatusAndSubCommentId("active", 0,
                 new PageRequest(page, 10,new Sort( Sort.Direction.DESC,"createdDate")));
@@ -89,10 +98,29 @@ public class CommentRestController {
             commentMap.put("subCommentId",x.getSubCommentId());
             commentMap.put("articleId",x.getArticle().getArticleId());
             commentMap.put("usersByUserId",x.getUsersByUserId().getUserId());
-            commentMap.put("usersByUserUserName",x.getUsersByUserId().getUserName());
             commentMap.put("usersBySubUserId", x.getUsersBySubUserId().getUserId());
+            if(x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
+                    ||x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE")) ){
+
+                commentMap.put("usersByUserUserName", x.getUsersByUserId().getFirstName());
+                commentMap.put("usersByUserAvatar",x.getUsersByUserId().getAvatar());
+            }else {
+                commentMap.put("usersByUserUserName",x.getUsersByUserId().getUserName());
+                commentMap.put("usersByUserAvatar",request.getContextPath()+"/images/avatar/"+x.getUsersByUserId().getAvatar());
+            }
+            if(x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
+                    ||x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE")) ){
+
+                commentMap.put("usersBySubUserUserName",x.getUsersBySubUserId().getFirstName());
+
+            }else {
+
+                commentMap.put("usersBySubUserUserName",x.getUsersBySubUserId().getUserName());
+
+            }
+
             commentMap.put("usersBySubUserUserName",x.getUsersBySubUserId().getUserName());
-            commentMap.put("usersByUserAvatar",x.getUsersByUserId().getAvatar());
+
             commentMap.put("content",x.getContent());
             commentMap.put("modifiedDate",df.format(x.getModifiedDate()));
             commentParentListMap.add(commentMap);
@@ -104,10 +132,25 @@ public class CommentRestController {
             commentMap.put("subCommentId",x.getSubCommentId());
             commentMap.put("articleId",x.getArticle().getArticleId());
             commentMap.put("usersByUserId",x.getUsersByUserId().getUserId());
-            commentMap.put("usersByUserUserName",x.getUsersByUserId().getUserName());
             commentMap.put("usersBySubUserId", x.getUsersBySubUserId().getUserId());
-            commentMap.put("usersBySubUserUserName",x.getUsersBySubUserId().getUserName());
-            commentMap.put("usersByUserAvatar",x.getUsersByUserId().getAvatar());
+            if(x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
+                    || x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE")) ){
+                commentMap.put("usersByUserUserName", x.getUsersByUserId().getFirstName());
+                commentMap.put("usersByUserAvatar",x.getUsersByUserId().getAvatar());
+            }else {
+                commentMap.put("usersByUserUserName",x.getUsersByUserId().getUserName());
+                commentMap.put("usersByUserAvatar",request.getContextPath()+"/images/avatar/"+x.getUsersByUserId().getAvatar());
+            }
+            if(x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
+                    ||x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE")) ){
+
+                commentMap.put("usersBySubUserUserName",x.getUsersBySubUserId().getFirstName());
+            }else {
+
+                commentMap.put("usersBySubUserUserName",x.getUsersBySubUserId().getUserName());
+            }
+
+
             commentMap.put("content",x.getContent());
             commentMap.put("modifiedDate",df.format(x.getModifiedDate()));
             commentChildListMap.add(commentMap);

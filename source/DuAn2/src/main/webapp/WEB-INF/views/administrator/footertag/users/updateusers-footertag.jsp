@@ -189,3 +189,20 @@
 
 	});
 </script>
+<script>
+    $("#formArticle").validate({
+        rules : {
+            title: {
+                required: true,
+                maxlength: 100
+            }
+        },
+		messages : {
+            title : {
+                required : "Vui Lòng Nhập Tiêu Đề",
+                maxlength : "Tiêu Đề Không Dài Hơn 100 Ký Tự"
+            }
+        }
+	});
+
+</script>

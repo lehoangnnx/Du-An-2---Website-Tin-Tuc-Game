@@ -16,6 +16,8 @@ import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -211,8 +213,9 @@ public class DefaultController {
             articleCategory =articleCategoryService.findBySlug(slug);
 
             tags = tagsService.findBySlug(slug);
-            games = gamesService.findByGameId(article.getGameId());
+
             if (article != null) {
+                games = gamesService.findByGameId(article.getGameId());
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
                 final Integer[] articleCaregoryId = new Integer[1];
                 article.getArticleCategories().forEach(x -> {
@@ -252,6 +255,7 @@ public class DefaultController {
 
     @RequestMapping("/403")
     String error() {
+
         return "403";
     }
 
