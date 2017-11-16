@@ -7,7 +7,7 @@
 <header id="navigation">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="banner">
 		<div class="container" style="margin-top: -10px;">
-			<div class="navbar-header col-md-4">
+			<div class="navbar-header ">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
 					<span class="sr-only">Navigation</span> <span class="icon-bar"></span>
@@ -20,7 +20,7 @@
 						</h1></a>
 				</div>
 			</div>
-			<div class="collapse navbar-collapse col-md-8 ">
+			<div class="collapse navbar-collapse ">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="scroll active"><a href="${contextPath}/">Trang
 							chủ</a></li>
@@ -40,10 +40,10 @@
 							<li><a href="#">Trải nghiệm</a></li>
 						</ul></li>		--%>
 
-			<li class="scroll"><a href="#">Liên hệ</a></li>
+			<li class="scroll "><a href="#">Liên hệ</a></li>
 					<div class="menu">
 						<ul>
-							<li><a href="#">ĐÙ MÁ</a>
+							<li ><a href="#">ĐÙ MÁ</a>
 								<ul>
 									<li><a href="#">CÓ</a>
 										<ul>
