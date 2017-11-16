@@ -4,115 +4,7 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-<div class="container">
-  <nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-    	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="${contextPath}/"><img class=" " src="${contextPath}/images/logo2.png" alt="logo"></a>
-	</div>
-	
-	<div class="collapse navbar-collapse js-navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li class="dropdown mega-dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tin tổng hợp <span class="caret"></span></a>				
-				<ul class="dropdown-menu mega-dropdown-menu">
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Tin mới </li>                                                                                  
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Hãy</li>
-							<li><a href="#">Chịch</a></li>
-                            <li><a href="#">Chịch</a></li>
-                            <li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-						
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Cho tôi</li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>                            
-							<li><a href="#">Chịch</a></li>							
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Tình yêu</li>
-                            <li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>                         
-						</ul>
-					</li>
-				</ul>				
-			</li>
-            <li class="dropdown mega-dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tin tổng hợp <span class="caret"></span></a>				
-				<ul class="dropdown-menu mega-dropdown-menu">
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Tin mới </li>                                                                                  
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Hãy</li>
-							<li><a href="#">Chịch</a></li>
-                            <li><a href="#">Chịch</a></li>
-                            <li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-						
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Cho tôi</li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>                            
-							<li><a href="#">Chịch</a></li>							
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Tình yêu</li>
-                            <li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>
-							<li><a href="#">Chịch</a></li>                         
-						</ul>
-					</li>
-				</ul>				
-			</li>
-            <li><a href="#">Video</a></li>
-            <li><a href="#">Khám phá</a></li>
-		</ul>
-        <ul class="nav navbar-nav navbar-right">
-        <security:authorize access="!isAuthenticated()">
-	        <li class="dropdown">
-	          <a href="#" >Đăng nhập</a>         
-	        </li>
-        </security:authorize>
-      </ul>
-	</div><!-- /.nav-collapse -->
-  </nav>
-</div>
-
-
-
-
-<%-- <header id="navigation">
+<header id="navigation">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="banner">
 		<div class="container" style="margin-top: -10px;">
 			<div class="navbar-header ">
@@ -138,7 +30,7 @@
 						</c:if>
 					</c:forEach> 
 					
-					<li class="dropdown head-dpdn"><a href="#"
+					<%--<li class="dropdown head-dpdn"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
 							class="caret"></span></a>
@@ -146,7 +38,7 @@
 							<li><a href="#">Tải game</a></li>
 							<li><a href="#">Forum</a></li>
 							<li><a href="#">Trải nghiệm</a></li>
-						</ul></li>		
+						</ul></li>		--%>
 
 			<li class="scroll "><a href="#">Liên hệ</a></li>
 					<div class="menu">
@@ -250,7 +142,7 @@
 	</div>
 	</div>
 	<!--/navbar-->
-</header> --%>
+</header>
 <!--/Đóng header-->
 <!--/Tìm kiếm-->
 <div class="content">
@@ -261,10 +153,10 @@
 					<form class="navbar-form navbar-right" action="#" method="post">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Search">
-							<!-- <button type="submit" class="btn btn-default"
+							<button type="submit" class="btn btn-default"
 								aria-label="Left Align">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							</button> -->
+							</button>
 						</div>
 					</form>
 				</div>
@@ -290,7 +182,7 @@
 						<marquee behavior="scroll" direction="left" scrollamount="8"
 							scrolldelay="20" width="90%">
 							<c:forEach var="gahav" items="${getTop5ArticleHotAndViews}">
-								<a href="${contextPath}/${gahav.slug} "
+								<a  href="${contextPath}/${gahav.slug} "
 									style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
 							</c:forEach>
 

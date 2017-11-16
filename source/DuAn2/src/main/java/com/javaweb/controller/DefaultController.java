@@ -258,8 +258,8 @@ GameReviewsService gameReviewsService;
                 int pointGameReviewsOfUser = 0;
                 for (GameReviews g: gameReviewsList) {
                     pointGameReviews = pointGameReviews + (int) g.getReview();
-                    if(g.getUsers().getUserId() == users.getUserId()){
-                        pointGameReviewsOfUser = (int) g.getReview();
+                    if(g.getUsers() == users){
+                            pointGameReviewsOfUser = (int) g.getReview();
                     }
                     
                 }
