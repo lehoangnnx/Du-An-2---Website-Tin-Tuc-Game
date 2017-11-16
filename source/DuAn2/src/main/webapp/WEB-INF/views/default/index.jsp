@@ -14,7 +14,7 @@
             <div class="feed-widget-header" >
 
                 <h2 class="widget-title feed-widget-title" >
-                    <a href="${contextPath}/${getArticleCategoryVideo.slug}">VIDEO MỚI</a>
+                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=news">VIDEO MỚI</a>
                 </h2>
 
                 <div class="feed-widget-viewall">
@@ -80,10 +80,10 @@
         <div class="content-panel-title">
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="${contextPath}/su-kien">SỰ KIỆN</a>
+                    <a href="${contextPath}/su-kien?sorted=news">SỰ KIỆN</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/su-kien"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/su-kien?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -165,10 +165,10 @@
 
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="${contextPath}/game">GAME</a>
+                    <a href="${contextPath}/game?sorted=news">GAME</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/game"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/game?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -185,7 +185,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/pc-console">Game
+                                        <a style="color: white;" href="${contextPath}/pc-console?sorted=news">Game
                                             Pc-Console</a>
                                     </h2>
                                 </div>
@@ -211,7 +211,7 @@
                                     </c:forEach>
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/pc-console">Xem thêm</a>
+                                    <a href="${contextPath}/pc-console?sorted=news">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +219,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="#">Game mobile</a>
+                                        <a style="color: white;" href="${contextPath}/game-mobile?sorted=news">Game mobile</a>
                                     </h2>
                                 </div>
                                 <ul>
@@ -245,7 +245,7 @@
 
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/mobile">Xem thêm</a>
+                                    <a href="${contextPath}/game-mobile?sorted=news">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +253,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="#">eSport</a>
+                                        <a style="color: white;" href="${contextPath}/esport?sorted=news">eSport</a>
                                     </h2>
                                 </div>
                                 <ul>
@@ -278,7 +278,7 @@
                                     </c:forEach>
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/esport">Xem thêm</a>
+                                    <a href="${contextPath}/game-mobile?sorted=news">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -366,10 +366,10 @@
 
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="#">TIN MỚI</a>
+                    <a href="${contextPath}/articles?sorted=news">TIN MỚI</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/articles?sorted=new"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/articles?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>

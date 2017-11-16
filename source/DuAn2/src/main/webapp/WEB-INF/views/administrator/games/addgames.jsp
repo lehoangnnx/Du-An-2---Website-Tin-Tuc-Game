@@ -86,7 +86,7 @@
 
 				<label class="col-md-2 form-control-label">Mô Tả Game</label>
 				<div class="col-md-10">
-					<textarea id="info" class="form-control maxlength" maxlength="225"
+					<textarea id="info" class="form-control maxlength" maxlength="4000"
 							  name="info" rows="5"
 							  placeholder="This textarea has a limit of 225 chars.">${games.info }</textarea>
 					<label id="info-error" class="error" ></label>

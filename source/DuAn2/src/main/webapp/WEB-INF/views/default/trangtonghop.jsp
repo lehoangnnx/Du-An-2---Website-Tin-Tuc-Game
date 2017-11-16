@@ -15,7 +15,7 @@
 
 			<div class="feed-widget-header">
 				<h2 class="widget-title feed-widget-title">
-					<a href="${objectCategoryAndTag.slug}">${objectCategoryAndTag.name}</a>
+					<a href="${contextPath}/${objectCategoryAndTag.slug}?sorted=news">${objectCategoryAndTag.name}</a>
 				</h2>
 
 				<div class="clear"></div>
@@ -71,7 +71,7 @@
 			<c:if test="${currentpage > 1  }">
 
 				<a class="prev page-numbers"
-				   href="${contextPath}/${objectCategoryAndTag.slug}?page=${currentpage -1 }"><i
+				   href="${contextPath}/${objectCategoryAndTag.slug}/?${sorted}&page=${currentpage -1 }"><i
 						class="fa fa-angle-left"></i>Trước</a>
 			</c:if>
 			<c:forEach begin="${(currentpage - 3) > 0 ? currentpage - 3 : 1 }"
@@ -84,14 +84,14 @@
 					</c:when>
 					<c:otherwise>
 
-						<a class="page-numbers" href="${contextPath}/${objectCategoryAndTag.slug}?page=${status.index }">${status.index }</a>
+						<a class="page-numbers" href="${contextPath}/${objectCategoryAndTag.slug}?${sorted}&page=${status.index }">${status.index }</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${currentpage < pagecount }">
 
 				<a class="next page-numbers"
-				   href="${contextPath}/${objectCategoryAndTag.slug}?page=${currentpage +1 }">Sau<i
+				   href="${contextPath}/${objectCategoryAndTag.slug}?${sorted}&page=${currentpage +1 }">Sau<i
 						class="fa fa-angle-right"></i></a>
 			</c:if>
 

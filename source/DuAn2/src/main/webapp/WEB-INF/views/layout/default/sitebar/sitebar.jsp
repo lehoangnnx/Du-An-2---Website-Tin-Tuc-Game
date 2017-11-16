@@ -29,7 +29,7 @@
                 </div>
             </c:forEach>
 
-            <a href="${contextPath}/video?sorted=top" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/video?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
 
@@ -54,7 +54,7 @@
             </div>
             </c:forEach>
 
-            <a href="${contextPath}/articles?sorted=hot" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/articles?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
     <div class="widget widget-tabbed">

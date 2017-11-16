@@ -35,8 +35,16 @@ public class RolesServiceImpl implements RolesService {
 		
 		return rolesRepository.findByName(name);
 	}
-	 
-	
-	
-	
+
+	@Override
+	public void saveorupdate(Roles roles) {
+		rolesRepository.save(roles);
+	}
+
+	@Override
+	public Roles findByRoleId(Integer roleId) {
+		return rolesRepository.findByRoleId(roleId);
+	}
+
+
 }

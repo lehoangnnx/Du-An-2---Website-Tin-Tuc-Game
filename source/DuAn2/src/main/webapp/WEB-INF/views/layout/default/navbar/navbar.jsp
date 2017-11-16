@@ -26,7 +26,7 @@
 							chủ</a></li>
 					<c:forEach var="atl" items="${articleCategoryList}" begin="0" end="1">
 						<c:if test="${atl.subArticleCategoryId == 0}">
-							<li class="scroll"><a href="${atl.slug}">${atl.name}</a></li>
+							<li class="scroll"><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
 						</c:if>
 					</c:forEach> 
 					

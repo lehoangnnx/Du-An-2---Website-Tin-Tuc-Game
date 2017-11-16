@@ -46,7 +46,8 @@ public class DefaultController {
 
     @Autowired
     TagsService tagsService;
-
+@Autowired
+GameReviewsService gameReviewsService;
     @Autowired
     CommentService commentService;
     @ModelAttribute("user")
@@ -204,18 +205,20 @@ public class DefaultController {
     @RequestMapping("/{slug}")
     String chitiet(@PathVariable("slug") String slug, Model model,
         @RequestParam(value = "page", defaultValue = "1") Integer page,@RequestParam(value = "limit", defaultValue = "2") Integer limit
-        ,@RequestParam(value = "sorted", defaultValue = "news") String sorted
+        ,@RequestParam(value = "sorted", defaultValue = "news") String sorted, Authentication authentication
     ) {
         Article article = null;
         ArticleCategory articleCategory = null;
         Tags tags = null;
         Games games = null;
+        model.addAttribute("sorted","sorted="+sorted);
         if(sorted.equals("news")){
             sorted = "showDate";
         }
         if (sorted.equals("hots")){
             sorted = "views";
         }
+
         try {
             article = articleService.findBySlug(slug);
             articleCategory =articleCategoryService.findBySlug(slug);
@@ -226,15 +229,16 @@ public class DefaultController {
             if (article != null) {
                 games = gamesService.findByGameId(article.getGameId());
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
-                final ArticleCategory[] getarticleCategory = {null};
-                article.getArticleCategories().forEach(x -> {
-                    getarticleCategory[0] = articleCategoryService.findByArticleCategoryId(x.getArticleCategoryId());}
-                );
+                 ArticleCategory getarticleCategory = null;
 
+                for(ArticleCategory a : article.getArticleCategories()){
+                    getarticleCategory = articleCategoryService.findByArticleCategoryId(a.getArticleCategoryId());
+                    break;
+                }
                 List<Article> articleLienQuanList = articleService
-                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory[0],(byte) 1,"active");
+                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory,(byte) 1,"active");
 
-                articleLienQuanList.forEach(x -> System.out.println("WTFFFFFFFFFFFFFFFFFFF : "+x.getTitle() ));
+
                 List<Comment> getTop10Comment = commentService.findTop10ByStatusOrderByCreatedDateDesc("active");
                 List<Article> getTop10ArticleList = articleService
                         .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
@@ -242,11 +246,27 @@ public class DefaultController {
                 model.addAttribute("getTop10Comment",getTop10Comment);
                 model.addAttribute("article", article);
                 model.addAttribute("games", games);
-                model.addAttribute("articleCategory", getarticleCategory[0]);
+                model.addAttribute("articleCategory", getarticleCategory);
                 model.addAttribute("articleLienQuanList",articleLienQuanList);
                 model.addAttribute("title", article.getTitle());
                 article.setViews(article.getViews()+1);
                 articleService.saveorupdate(article);
+
+                Users users = usersService.findByUserName(authentication.getName());
+                List<GameReviews> gameReviewsList = gameReviewsService.findAllByGames(games);
+                int pointGameReviews = 0;
+                int pointGameReviewsOfUser = 0;
+                for (GameReviews g: gameReviewsList) {
+                    pointGameReviews = pointGameReviews + (int) g.getReview();
+                    if(g.getUsers().getUserId() == users.getUserId()){
+                        pointGameReviewsOfUser = (int) g.getReview();
+                    }
+                    
+                }
+
+
+                model.addAttribute("pointGameReviews",pointGameReviews/gameReviewsList.size());
+                model.addAttribute("pointGameReviewsOfUser",pointGameReviewsOfUser);
                 return "chitiet";
             }else  if (articleCategory != null){
 

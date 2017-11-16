@@ -129,6 +129,6 @@ public class AdminArticlesCategoryController {
 			redirectAttributes.addFlashAttribute("msg", "Xóa Danh Mục Bài Viết Thất Bại");
 		}
 		
-		return "redirect:/admin/articles/categorys";
+		return "redirect:/admin/articles/categorys?status=active";
 	}
 }

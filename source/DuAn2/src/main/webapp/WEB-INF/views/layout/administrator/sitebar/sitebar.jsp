@@ -19,7 +19,7 @@
 			</a>
 				<ul>
 					<li><a href="${contextPath }/admin/users?status=active">Quản Lý Người Dùng</a></li>
-					<li><a href="${contextPath }/admin/roless">Quản Lý Quyền</a></li>
+					<li><a href="${contextPath }/admin/roles?status=active">Quản Lý Quyền</a></li>
 				</ul></li>
 			<li class="with-sub"><a href="#"
 				class="waves-effect  waves-light"> <span class="s-caret"><i

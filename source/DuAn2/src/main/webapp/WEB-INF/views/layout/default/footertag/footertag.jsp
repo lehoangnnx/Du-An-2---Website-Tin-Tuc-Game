@@ -17,7 +17,7 @@
 
 <script src='${contextPath}/js/js/jquery.leanModal.min_.js'></script>
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script>
     jQuery(".widget-tabbed > h3 span", ".sidebar").on(
@@ -273,7 +273,12 @@
         });
     });
 </script>
+<script>
+    function recaptchaCallback() {
 
+        $('#btn-forgot').removeAttr('disabled');
+    };
+</script>
 
 <!-- Controller Form Login Ajax -->
 <script>
@@ -393,14 +398,21 @@
                     //dataType: 'json',
                     // timeout: 600000,
                     success: function (result) {
-                        $("#LoadingImage").hide();
+
+                        grecaptcha.reset();
+
                         console.log(result);
                         if (result == 'error') {
                             $('#msgerror-f').text("* Tài Khoản Không Tồn Tại");
                         } else {
                             $('#msgerror-f').text(result);
                         }
-
+                        var v = grecaptcha.getResponse();
+                        if(v.length == 0)
+                        {
+                            $('#btn-forgot').attr('disabled', 'disabled');
+                        }
+                        $("#LoadingImage").hide();
 
                     },
                     error: function (e) {

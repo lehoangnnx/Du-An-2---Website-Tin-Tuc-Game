@@ -33,7 +33,15 @@
                         lượt xem</a>
                     </div>
                 </div>
+
             </div>
+            <c:out value="${article.video}"/>
+            <c:if test="${article.video != null}">
+                <iframe src="${article.video}" frameborder="0" width="560" height="315"
+                        allowfullscreen>
+
+                </iframe>
+            </c:if>
         </div>
         <!-- Bài viết chí tiết -->
         <div class="content-panel-body shortcode-content">
@@ -42,7 +50,7 @@
 
             <c:out value="${article.mainContent}" escapeXml="false"/>
 
-            <h2 class="pull-right subcontentandauthor" >${article.author}</h2>
+            <h2 style="padding: 10px;  " class="pull-right subcontentandauthor" >${article.author}</h2>
         </div>
 
 
@@ -92,25 +100,26 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div class="rank-vote pull-right">9</div>
+                            <div class="rank-vote pull-right">${pointGameReviews * 2}</div>
                             <div class="pull-right text-right">
-                                Điểm đánh giá<br> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                Điểm đánh giá<br>
+                                <c:forEach begin="1" end="${pointGameReviews}" >
+                                    <i class="fa fa-star"></i>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
                     <div class="stars">
                         <form action="">
                             <h4></h4>
-                            <input class="star star-5" id="star-5" type="radio" name="star">
-                            <label class="star star-5" for="star-5"></label> <input
+                            <input ${pointGameReviewsOfUser == 5 ? 'checked' : '' } class="star star-5" id="star-5" type="radio" name="star">
+                            <label class="star star-5" for="star-5"></label> <input ${pointGameReviewsOfUser == 4 ? 'checked' : '' }
                                 class="star star-4" id="star-4" type="radio" name="star">
-                            <label class="star star-4" for="star-4"></label> <input
+                            <label class="star star-4" for="star-4"></label> <input ${pointGameReviewsOfUser == 3 ? 'checked' : '' }
                                 class="star star-3" id="star-3" type="radio" name="star">
-                            <label class="star star-3" for="star-3"></label> <input
+                            <label class="star star-3" for="star-3"></label> <input ${pointGameReviewsOfUser == 2 ? 'checked' : '' }
                                 class="star star-2" id="star-2" type="radio" name="star">
-                            <label class="star star-2" for="star-2"></label> <input
+                            <label class="star star-2" for="star-2"></label> <input ${pointGameReviewsOfUser == 1 ? 'checked' : '' }
                                 class="star star-1" id="star-1" type="radio" name="star"><label
                                 class="star star-1" for="star-1"></label>
                         </form>

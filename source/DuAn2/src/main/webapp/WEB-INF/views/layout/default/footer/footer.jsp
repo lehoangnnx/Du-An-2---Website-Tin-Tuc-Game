@@ -101,11 +101,13 @@
 
 				<label id="msgerror-f" class="msgerror"></label> <br/>
 				<div class="action_btns">
+					<div style="padding: 10px;" data-callback="recaptchaCallback" class="g-recaptcha" data-sitekey="6LfS7DgUAAAAAGOzeNHJyHgF0VxVzsfqbF7C09yb"></div>
+
 					<div class="one_half">
 						<a href="#" class="btn back_btn"><i
 								class="fa fa-angle-double-left"></i> Back</a>
 					</div>
-					<button type="button" id="btn-forgot"
+					<button disabled type="button" id="btn-forgot"
 							class="one_half last btn btn_red">Gửi
 					</button>
 

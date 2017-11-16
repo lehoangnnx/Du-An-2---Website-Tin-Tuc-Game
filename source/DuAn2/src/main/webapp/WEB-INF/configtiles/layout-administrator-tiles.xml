@@ -63,6 +63,43 @@
     </definition>
     <!--END Trang Sửa Người Dùng -->
 
+    <!--BEGIN Trang Quyền -->
+    <definition name="roles" extends="adminlayout">
+        <put-attribute name="title" value="Trang Quản Trị Quyền"/>
+        <put-attribute name="headtag"
+                       value="/WEB-INF/views/administrator/headtag/roles/roles-headtag.jsp"/>
+        <put-attribute name="footertag"
+                       value="/WEB-INF/views/administrator/footertag/roles/roles-footertag.jsp"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/administrator/roles/roles.jsp"/>
+    </definition>
+    <!--END Trang Quyền-->
+
+    <!--BEGIN Trang Thêm Quyền-->
+    <definition name="addroles" extends="adminlayout">
+        <put-attribute name="title" value="Thêm Quyền"/>
+        <put-attribute name="headtag"
+                       value="/WEB-INF/views/administrator/headtag/roles/addroles-headtag.jsp"/>
+        <put-attribute name="footertag"
+                       value="/WEB-INF/views/administrator/footertag/roles/addroles-footertag.jsp"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/administrator/roles/addroles.jsp"/>
+    </definition>
+    <!--END Trang Thêm Quyền -->
+
+
+    <!--BEGIN Trang Sửa Quyền-->
+    <definition name="updateroles" extends="adminlayout">
+        <put-attribute name="title" value="Sửa Quyền"/>
+        <put-attribute name="headtag"
+                       value="/WEB-INF/views/administrator/headtag/roles/updateroles-headtag.jsp"/>
+        <put-attribute name="footertag"
+                       value="/WEB-INF/views/administrator/footertag/roles/updateroles-footertag.jsp"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/administrator/roles/updateroles.jsp"/>
+    </definition>
+    <!--END Trang Sửa Quyền -->
+
 
     <!--BEGIN Trang Bài Viết -->
     <definition name="articles" extends="adminlayout">
