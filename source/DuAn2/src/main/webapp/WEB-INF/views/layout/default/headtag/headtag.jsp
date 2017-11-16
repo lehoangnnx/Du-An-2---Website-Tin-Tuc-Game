@@ -25,6 +25,7 @@
 
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>
+
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>
      <script src="css/css2/megamenu.js"></script>
     <script>
@@ -698,6 +699,8 @@ body {
 }  */
 /*======================================================================================*/
 
+
+/*Login screen End*/
 </style>
 
 <style>
