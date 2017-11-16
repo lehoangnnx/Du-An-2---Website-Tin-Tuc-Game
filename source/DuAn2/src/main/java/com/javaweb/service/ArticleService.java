@@ -26,5 +26,9 @@ public interface ArticleService {
     List<Article> findTop5ByIsHotAndStatusOrderByViewsDesc(Byte isHot, String status);
     List<Article> findByArticleCategoriesAndStatusAndShowDateBeforeOrderByShowDateDesc(ArticleCategory articleCategory, String status, Date date);
     List<Article> findAllByArticleCategoriesAndStatusAndShowDateBefore(ArticleCategory articleCategory,String status, Date date,Pageable pageable);
+
+
     List<Article> findAllByTagsesAndStatusAndShowDateBefore(Tags tags, String status, Date date, Pageable pageable);
+
+    List<Article> findAllByStatusAndShowDateBefore( String status, Date date, Pageable pageable);
 }

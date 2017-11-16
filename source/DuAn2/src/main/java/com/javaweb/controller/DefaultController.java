@@ -20,10 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -281,6 +278,23 @@ public class DefaultController {
                 model.addAttribute("currentpage", page);
                 model.addAttribute("pagecount", pageCount);
                 model.addAttribute("title", tags.getName());
+                return "tonghop";
+            }else if(slug.equals("articles")){
+
+                articleList = articleService.findAllByStatusAndShowDateBefore("active", new Date(), null);
+                int pageCount = (articleList.size()) / limit + ( articleList.size() % limit > 0 ? 1 : 0);
+                articleList = articleService.findAllByStatusAndShowDateBefore("active", new Date(),
+                        new PageRequest(page-1,limit,new Sort(Sort.Direction.DESC,sorted)));
+                Map<String,String> objectCategoryAndTagMap = new HashMap<>();
+                objectCategoryAndTagMap.put("name","Tin Mới");
+                objectCategoryAndTagMap.put("slug","articles");
+
+                model.addAttribute("objectCategoryAndTag",objectCategoryAndTagMap);
+                model.addAttribute("articleList",articleList);
+
+                model.addAttribute("currentpage", page);
+                model.addAttribute("pagecount", pageCount);
+                model.addAttribute("title", "Tin Mới");
                 return "tonghop";
             }
             else {

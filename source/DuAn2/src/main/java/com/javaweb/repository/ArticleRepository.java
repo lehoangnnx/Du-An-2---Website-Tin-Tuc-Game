@@ -31,4 +31,6 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	List<Article> findAllByArticleCategoriesAndStatusAndShowDateBefore(ArticleCategory articleCategory,String status, Date date,Pageable pageable);
 	List<Article> findAllByTagsesAndStatusAndShowDateBefore(Tags tags, String status, Date date, Pageable pageable);
 
+	List<Article> findAllByStatusAndShowDateBefore( String status, Date date, Pageable pageable);
+
 }

@@ -640,7 +640,7 @@
                                         $("#LoadingGifSmall").hide();
                                     } else {
                                         checknull = true;
-                                        var xemthem = "<a class=\"page-numbers col-md-12 \" href=\"${pageContext.request.contextPath}/articles?sorted=new \">Xem Thêm</a>";
+                                        var xemthem = "<a class=\"page-numbers col-md-12 \" href=\"${pageContext.request.contextPath}/articles?sorted=news \">Xem Thêm</a>";
                                         $('#xemthem').html(xemthem);
                                         $("#LoadingGifSmall").hide();
                                     }

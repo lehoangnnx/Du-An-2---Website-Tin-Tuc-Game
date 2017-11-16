@@ -91,4 +91,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> findAllByTagsesAndStatusAndShowDateBefore(Tags tags, String status, Date date, Pageable pageable) {
 		return articleRepository.findAllByTagsesAndStatusAndShowDateBefore(tags,status,date,pageable);
 	}
+
+	@Override
+	public List<Article> findAllByStatusAndShowDateBefore(String status, Date date, Pageable pageable) {
+		return articleRepository.findAllByStatusAndShowDateBefore(status,date,pageable);
+	}
 }
