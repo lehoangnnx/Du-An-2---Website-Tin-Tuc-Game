@@ -41,7 +41,7 @@
 						</ul></li>		--%>
 
 			<li class="scroll "><a href="#">Liên hệ</a></li>
-					<div class="menu">
+					<%--<div class="menu">
 						<ul>
 							<li ><a href="#">ĐÙ MÁ</a>
 								<ul>
@@ -75,7 +75,7 @@
 								</ul></li>
 
 						</ul>
-					</div>
+					</div>--%>
 
 			<!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->

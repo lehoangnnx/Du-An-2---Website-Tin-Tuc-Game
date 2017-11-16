@@ -563,7 +563,40 @@
         $("#LoadingImage").hide();
     });
 </script>
+<!-- Đánh Giá Game -->
+<script>
+    function gamereivews(starreview){
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            var gameId = $('#gameId').val();
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+            $(document).ajaxSend(function (e, xhr, options) {
+                xhr.setRequestHeader(header, token);
 
+            });
+            $.ajax({
+                type: "POST",
+                //contentType: "application/json",
+                url: "${pageContext.request.contextPath}/saveorupdategamereviews",
+                data: {
+                    gameId: gameId,
+                    starreview: starreview
+                },
+                //dataType: 'json',
+                // timeout: 600000,
+                success: function (result) {
+
+                },
+                error: function (e) {
+                    alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+                }
+            });
+        }, 1000);
+
+    }
+
+</script>
 
 <script>
 

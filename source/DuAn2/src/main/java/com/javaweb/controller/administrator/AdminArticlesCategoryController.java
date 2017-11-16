@@ -93,7 +93,7 @@ public class AdminArticlesCategoryController {
 			if (!name.equals("") && articleCategoryService.findByName(name) == null) {
 				articleCategory.setName(HtmlUtils.htmlEscape(name));
 			}
-			if (!slug.equals("") && articleCategoryService.findBySlug(slug) == null) {
+			if (!slug.equals("") && articleCategoryService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
 				articleCategory.setSlug(HtmlUtils.htmlEscape(slug));
 			}
 			articleCategory.setSubArticleCategoryId(subArticleCategoryId);

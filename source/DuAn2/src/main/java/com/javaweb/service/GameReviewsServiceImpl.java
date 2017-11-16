@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import com.javaweb.model.GameReviews;
 import com.javaweb.model.Games;
+import com.javaweb.model.Users;
 import com.javaweb.repository.GameReviewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,17 @@ public class GameReviewsServiceImpl implements GameReviewsService {
     }
 
     @Override
+    public GameReviews findByUsersAndGames(Users users, Games games) {
+        return gameReviewsRepository.findByUsersAndGames(users,games);
+    }
+
+    @Override
     public List<GameReviews> findAllByGames(Games games) {
         return gameReviewsRepository.findAllByGames(games);
+    }
+
+    @Override
+    public void saveorupdate(GameReviews gameReviews) {
+        gameReviewsRepository.save(gameReviews);
     }
 }
