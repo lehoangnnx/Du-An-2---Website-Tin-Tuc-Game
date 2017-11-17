@@ -48,8 +48,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, Byte isHot,String status) {
-		return articleRepository.findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(articleCategory,isHot,status);
+	public List<Article> findTop5ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,String status, Date date) {
+		return articleRepository.findTop5ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory,status, date);
 	}
 
 	@Override
@@ -95,5 +95,21 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<Article> findAllByStatusAndShowDateBefore(String status, Date date, Pageable pageable) {
 		return articleRepository.findAllByStatusAndShowDateBefore(status,date,pageable);
+	}
+
+	@Override
+	public List<Article> findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, Byte isHot, String status, Date date) {
+		return articleRepository.findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory,isHot,status,date);
+	}
+
+	@Override
+	public List<Article> findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, String status, Date date) {
+		return articleRepository.findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc( articleCategory,  status,  date);
+
+	}
+
+	@Override
+	public List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, Byte isHot, String status, Date date) {
+		return articleRepository.findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory,isHot,status,date);
 	}
 }

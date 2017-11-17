@@ -19,7 +19,7 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a title="${gactvl.title}" href="${contextPath}/${gactvl.slug}">${fn:substring(gactvl.title, 0, 80)} ...</a>
+                            <a title="${gactvl.title}" href="${contextPath}/${gactvl.slug}">${gactvl.title}</a>
                         </h4>
                         <span class="item-meta"> <a href="${contextPath}/${gactvl.slug}"><i
                                 class="fa fa-eye"></i>${gactvl.views} Lượt Xem</a> <a href="${contextPath}/${gactvl.slug}"><i

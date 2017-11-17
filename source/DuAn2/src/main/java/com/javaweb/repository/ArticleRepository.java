@@ -17,7 +17,10 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	Article findByTitle(String title);
 	Article findBySlug(String slug);
 	Article findByArticleId(Integer articleId);
-	List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(ArticleCategory articleCategory, Byte isHot, String status);
+	List<Article> findTop5ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,  String status, Date date);
+
+	List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,Byte isHot, String status, Date date);
+
 	List<Article> findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(ArticleCategory articleCategory, String status);
 	List<Article> findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc(String status, Date date);
 
@@ -32,5 +35,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	List<Article> findAllByTagsesAndStatusAndShowDateBefore(Tags tags, String status, Date date, Pageable pageable);
 
 	List<Article> findAllByStatusAndShowDateBefore( String status, Date date, Pageable pageable);
+	List<Article> findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,Byte isHot, String status, Date date);
+
+	List<Article> findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, String status, Date date);
 
 }

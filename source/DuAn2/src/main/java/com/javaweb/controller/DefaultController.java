@@ -50,7 +50,8 @@ public class DefaultController {
     GameReviewsService gameReviewsService;
     @Autowired
     CommentService commentService;
-
+        @Autowired
+        ArticleLikeService articleLikeService;
     @ModelAttribute("user")
     public void sessionUser(Authentication authentication, HttpSession session) {
 
@@ -72,9 +73,10 @@ public class DefaultController {
         model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
 
-        List<Article> getTop10ArticleCategoryNewVideoList = articleService
-                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo, "active");
-        model.addAttribute("getTop10ArticleCategoryNewVideoList", getTop10ArticleCategoryNewVideoList);
+        List<Article> getTop10ArticleCategoryNewAndHotVideoList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryVideo, (byte) 1, "active", new Date());
+        model.addAttribute("getTop10ArticleCategoryNewAndHotVideoList", getTop10ArticleCategoryNewAndHotVideoList);
 
 
         ArticleCategory getArticleCategorySuKien = articleCategoryService.findByName("Sự Kiện");
@@ -114,7 +116,7 @@ public class DefaultController {
     public List<Article> getTop5ArticleCategoryHotVideoList() {
         ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
         List<Article> getTop5ArticleCategoryHotVideoList = articleService
-                .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getArticleCategoryVideo, (byte) 1, "active");
+                .findTop5ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(getArticleCategoryVideo,  "active", new Date());
         getTop5ArticleCategoryHotVideoList.forEach(x -> System.out.println(x.getSlug()));
         return getTop5ArticleCategoryHotVideoList;
     }
@@ -230,6 +232,8 @@ public class DefaultController {
 
             if (article != null) {
 
+
+
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
                 ArticleCategory getarticleCategory = null;
 
@@ -240,7 +244,7 @@ public class DefaultController {
 
                 }
                 List<Article> articleLienQuanList = articleService
-                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory, (byte) 1, "active");
+                        .findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(getarticleCategory, (byte) 1, "active", new Date());
 
                 articleLienQuanList.forEach(x -> System.out.println(x.getTitle() + "-----------------------------------"));
                 List<Comment> getTop10Comment = commentService.findTop10ByStatusOrderByCreatedDateDesc("active");
@@ -281,9 +285,28 @@ public class DefaultController {
                     model.addAttribute("games", games);
                 }
 
+                List<ArticleLike> articleLikeList =  articleLikeService.findAllByArticle(article);
+                boolean userOfArticleLike = false;
+                for (ArticleLike al : articleLikeList){
+                    if (authentication != null) {
+                        if (al.getUsers() == usersService.findByUserName(authentication.getName())){
+                            userOfArticleLike = true;
+                            break;
+                        }
+                    }
 
+
+                }
+                model.addAttribute("articleLikeList", articleLikeList);
+                model.addAttribute("userOfArticleLike", userOfArticleLike);
                 return "chitiet";
             } else if (articleCategory != null) {
+                if(articleCategory.getName().equals("Video")){
+                    List<Article> getTop10ArticleCategoryNewVideoList = articleService
+                            .findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory, "active", new Date());
+
+                    model.addAttribute("getTop10ArticleCategoryNewVideoList", getTop10ArticleCategoryNewVideoList);
+                }
 
                 articleList = articleService
                         .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory, "active", new Date(), null);
@@ -350,17 +373,6 @@ public class DefaultController {
         model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
     }
-    @RequestMapping("/videoa")
-    String video(Model model) {
-        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
-        model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
-
-        List<Article> getTop10ArticleCategoryNewVideoList = articleService
-                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo, "active");
-        model.addAttribute("getTop10ArticleCategoryNewVideoList", getTop10ArticleCategoryNewVideoList);
-        model.addAttribute("title", "Trang Video");
-        return "video";
-    }
 
 }

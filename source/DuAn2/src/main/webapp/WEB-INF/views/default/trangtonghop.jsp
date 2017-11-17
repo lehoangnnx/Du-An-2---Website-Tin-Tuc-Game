@@ -11,6 +11,54 @@
 <!-- Banner chi tiết bài viết -->
 <div class="content-block-single">
 	<div class="content-panel">
+		<c:if test="${objectCategoryAndTag.name == 'Video'}">
+		<div class="content-panel-body article-list " style="padding-top: 10px;">
+			<div class="item">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+
+					<div class="rvs-container">
+
+						<div class="rvs-item-container">
+							<div class="rvs-item-stage">
+								<c:forEach var="gacnvl" items="${getTop10ArticleCategoryNewVideoList}">
+									<!-- The below is a single item, simply duplicate this layout for each item -->
+									<div class="rvs-item" style="background-image: url(images/articles/${gacnvl.imagesThumbnail})">
+										<p class="rvs-item-text">${gacnvl.title}
+											<small>${gacnvl.views} Lượt Xem</small>
+										</p>
+										<a href="${gacnvl.video}" class="rvs-play-video"></a>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+
+						<div class="rvs-nav-container">
+							<a class="rvs-nav-prev"></a>
+
+							<div class="rvs-nav-stage">
+								<c:forEach var="gacnvl" items="${getTop10ArticleCategoryNewVideoList}">
+									<!-- The below is the corresponding nav item for the single item, simply duplicate this layout for each item -->
+									<a class="rvs-nav-item">
+                                            <span class="rvs-nav-item-thumb"
+												  style="background-image: url(images/articles/${gacnvl.imagesThumbnail})"></span>
+										<h4 class="rvs-nav-item-title">${gacnvl.title}</h4>
+										<small class="rvs-nav-item-credits">${gacnvl.views} Lượt Xem</small>
+									</a>
+								</c:forEach>
+							</div>
+
+							<a class="rvs-nav-next"></a>
+						</div>
+
+					</div>
+					<!-- END REVOLUTION SLIDER -->
+
+
+					<!-- home slider -->
+				</div>
+			</div>
+		</div>
+		</c:if>
 		<div class="content-panel-title">
 
 			<div class="feed-widget-header">

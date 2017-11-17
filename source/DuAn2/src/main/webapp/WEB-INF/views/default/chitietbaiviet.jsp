@@ -11,11 +11,12 @@
 <!-- Banner chi tiết bài viết -->
 <div class="content-block-single" style="padding-top: 10px;">
     <div class="content-panel">
+
         <div class="article-full-image">
             <img class="img-responsive" src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="">
             <div class="wrapper" style="margin-top: 31px;">
                 <div class="content-panel-body article-header">
-
+                    <input hidden id="articleId" value="${article.articleId}"/>
                     <strong class="category-link">
                         <c:forEach var="ac" items="${article.articleCategories}">
                             <a href="${contextPath}/${ac.slug}">${ac.name} &emsp;</a>
@@ -50,13 +51,32 @@
 
             <c:out value="${article.mainContent}" escapeXml="false"/>
 
-            <h2 style="padding: 10px;  " class="pull-right subcontentandauthor" >${article.author}</h2>
-        </div>
-        <div class="content-panel-body article-main-tags">
-        <a href="/cong-dong-pubg-suc-soi-voi-giai-dau-tram-trieu-msi-gamek-championship-2017" class="read-more-button">Xem chi tiết<i class="fa fa-mail-forward"></i>
-        </a>
+            <h2 style="padding: 10px;  " class="pull-right subcontentandauthor">${article.author}</h2>
         </div>
 
+        <div class="content-panel">
+            <div class="content-panel-body article-main-tags">
+                <span id="msglikearticle">
+                    <c:choose>
+                        <c:when test="${userOfArticleLike == true}">
+                            <b>Bạn</b> Và <span id="numberUserArticleLike">  ${fn:length(articleLikeList) -1} </span>  người khác thích bài viết này
+                        </c:when>
+                        <c:otherwise>
+                            <b id="numberUserArticleLike"> ${fn:length(articleLikeList)} </b>  người thích bài viết này
+                        </c:otherwise>
+                    </c:choose>
+
+                </span>
+                <security:authorize access="isAuthenticated()">
+                <a  style=" float: right;"><i style="padding-right: 5px;" class="fa fa-thumbs-up"></i>
+                       <span id="likearticle" >${userOfArticleLike == true ? 'Bỏ Thích' : 'Thích'}</span> </a>
+                </security:authorize>
+                <security:authorize access="!isAuthenticated()">
+                    <a class="modal_trigger" href="#modal"  style=" float: right;"><i style="padding-right: 5px;" class="fa fa-thumbs-up"></i>Thích</a>
+                </security:authorize>
+
+            </div>
+        </div>
 
         <!-- Đóng bài viết chí tiết -->
         <br>
@@ -85,11 +105,14 @@
             <c:if test="${article.gameId != 0 }">
                 <div class="game-vote">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div style="padding-top: 10px;" class="col-md-7">
+                            <div class="col-md-4">
                             <img src="${contextPath}/images/games/${games.images}" alt="${games.name}"
-                                 class="pull-left m-r-10 hidden-xs">
+                                 class="pull-left m-r-10 hidden-xs"></div>
+                            <div class="col-md-8 ">
+                            <h2 style="color: #e54c10;" class="title-game-vote">${games.name}</h2></div>
                             <div class="pull-left">
-                                <h3 class="title-game-vote">${games.name}</h3>
+
                                 <p>
                                     Danh mục:
                                     <c:forEach items="${games.gameCategories}" var="gc">
@@ -103,46 +126,57 @@
                                         class="btn btn-success btn-sm" href="#">Bạn bình chọn</a>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" style="padding-top: 10px;">
                             <div class="rank-vote pull-right">${pointGameReviews * 2}</div>
-                            <div class="pull-right text-right">
+                            <div class="pull-right text-right" >
                                 Điểm đánh giá<br>
-                                <c:forEach begin="1" end="${pointGameReviews}" >
-                                    <i class="fa fa-star"></i>
+                                <c:forEach begin="1" end="${pointGameReviews}">
+                                    <i style="padding-top: 10px;" class="fa fa-star"></i>
                                 </c:forEach>
                             </div>
                         </div>
                     </div>
                     <div class="stars">
                         <security:authorize access="isAuthenticated()">
-                        <form action="">
-                            <h4></h4>
-                            <input hidden id="gameId" value="${article.gameId}" />
-                            <input ${pointGameReviewsOfUser == 5 ? 'checked' : '' } class="star star-5" id="star-5" type="radio" name="star">
-                            <label onclick="gamereivews(5);" class="star star-5" for="star-5"></label> <input ${pointGameReviewsOfUser == 4 ? 'checked' : '' }
-                                class="star star-4" id="star-4" type="radio" name="star">
-                            <label onclick="gamereivews(4);"class="star star-4" for="star-4"></label> <input ${pointGameReviewsOfUser == 3 ? 'checked' : '' }
-                                class="star star-3" id="star-3" type="radio" name="star">
-                            <label onclick="gamereivews(3);" class="star star-3" for="star-3"></label> <input ${pointGameReviewsOfUser == 2 ? 'checked' : '' }
-                                class="star star-2" id="star-2" type="radio" name="star">
-                            <label onclick="gamereivews(2);" class="star star-2" for="star-2"></label> <input ${pointGameReviewsOfUser == 1 ? 'checked' : '' }
-                                class="star star-1" id="star-1" type="radio" name="star"><label onclick="gamereivews(1);"
-                                class="star star-1" for="star-1"></label>
-                        </form>
+                            <form action="">
+                                <h4></h4>
+                                <input hidden id="gameId" value="${article.gameId}"/>
+                                <input ${pointGameReviewsOfUser == 5 ? 'checked' : '' } class="star star-5" id="star-5"
+                                                                                        type="radio" name="star">
+                                <label onclick="gamereivews(5);" class="star star-5" for="star-5"></label>
+                                <input ${pointGameReviewsOfUser == 4 ? 'checked' : '' }
+                                        class="star star-4" id="star-4" type="radio" name="star">
+                                <label onclick="gamereivews(4);" class="star star-4" for="star-4"></label>
+                                <input ${pointGameReviewsOfUser == 3 ? 'checked' : '' }
+                                        class="star star-3" id="star-3" type="radio" name="star">
+                                <label onclick="gamereivews(3);" class="star star-3" for="star-3"></label>
+                                <input ${pointGameReviewsOfUser == 2 ? 'checked' : '' }
+                                        class="star star-2" id="star-2" type="radio" name="star">
+                                <label onclick="gamereivews(2);" class="star star-2" for="star-2"></label>
+                                <input ${pointGameReviewsOfUser == 1 ? 'checked' : '' }
+                                        class="star star-1" id="star-1" type="radio" name="star"><label
+                                    onclick="gamereivews(1);"
+                                    class="star star-1" for="star-1"></label>
+                            </form>
                         </security:authorize>
                         <security:authorize access="!isAuthenticated()">
                             <form action="">
                                 <h4></h4>
 
                                 <input class="star star-5" id="star-5" type="radio" name="star">
-                                <a class="modal_trigger" href="#modal" > <label class="star star-5" for="star-5"></label></a> <input
-                                    class="star star-4" id="star-4" type="radio" name="star">
-                                <a class="modal_trigger" href="#modal" ><label class="star star-4" for="star-4"></label></a> <input
-                                    class="star star-3" id="star-3" type="radio" name="star">
-                                <a class="modal_trigger" href="#modal" > <label class="star star-3" for="star-3"></label></a> <input $
-                                    class="star star-2" id="star-2" type="radio" name="star">
-                                <a class="modal_trigger" href="#modal" >  <label class="star star-2" for="star-2"></label></a> <input
-                                    class="star star-1" id="star-1" type="radio" name="star"><a class="modal_trigger" href="#modal" ><label
+                                <a class="modal_trigger" href="#modal"> <label class="star star-5" for="star-5"></label></a>
+                                <input
+                                        class="star star-4" id="star-4" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal"><label class="star star-4" for="star-4"></label></a>
+                                <input
+                                        class="star star-3" id="star-3" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal"> <label class="star star-3" for="star-3"></label></a>
+                                <input $
+                                       class="star star-2" id="star-2" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal"> <label class="star star-2" for="star-2"></label></a>
+                                <input
+                                        class="star star-1" id="star-1" type="radio" name="star"><a
+                                    class="modal_trigger" href="#modal"><label
                                     class="star star-1" for="star-1"></label></a>
                             </form>
                         </security:authorize>
@@ -179,17 +213,17 @@
                 <div class="content-panel-title">
                     <h2>Bình luận</h2>
                 </div>
-                    <div class="content-panel-body comment-list">
-                        <ol id="comments">
+                <div class="content-panel-body comment-list">
+                    <ol id="comments">
 
-                        </ol>
-                    </div>
+                    </ol>
+                </div>
 
 
                 <div class="xemthem"
                      style="padding: 10px 1px; text-align: center; background: #f7f7f7; margin-bottom: 20px;">
-                    <div id="LoadingGifSmall" >
-                        <img src="${contextPath }/images/36.gif" />
+                    <div id="LoadingGifSmall">
+                        <img src="${contextPath }/images/36.gif"/>
                     </div>
                     <button id="morecomment" class="">Xem thêm bình luận</button>
                 </div>
@@ -198,7 +232,7 @@
 
             <!-- Trả lời bình luận -->
             <security:authorize access="isAuthenticated()">
-                <input hidden id="articleId" value="${article.articleId}"/>
+
                 <input hidden id="subCommentId" value="0"/>
                 <input hidden id="usersBySubUserId" value="0"/>
                 <li class="comment">
@@ -218,10 +252,12 @@
 
                         <div class="comment-text">
                             <security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
-                                <strong class="user-nick"><a href="#">${user.firstName} ${user.lastName}</a> <span id="msgsubcomment"></span></strong>
+                                <strong class="user-nick"><a href="#">${user.firstName} ${user.lastName}</a> <span
+                                        id="msgsubcomment"></span></strong>
                             </security:authorize>
                             <security:authorize access="!hasAnyRole('FACEBOOK', 'GOOGLE')">
-                                <strong class="user-nick"><a href="#">${user.userName}</a> <span id="msgsubcomment"></span></strong>
+                                <strong class="user-nick"><a href="#">${user.userName}</a> <span
+                                        id="msgsubcomment"></span></strong>
                             </security:authorize>
 
                             <textarea id="content" name="content"
@@ -268,21 +304,24 @@
                     <br>
                     <div class="widget-article-list">
                         <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="4">
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="#"><img src="${contextPath}/images/articles/${alql.imagesThumbnail}" alt=""/></a>
-                            </div>
-                            <div class="item-content">
-                                <h4>
-                                    <a href="#">${alql.title}</a>
-                                </h4>
-                                <span class="item-meta"> <a href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
-                                        class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
-                                        class="fa fa-clock-o"></i><fmt:formatDate
-                                        pattern="dd-MM-yyyy" value="${alql.showDate}"/></a>
+                            <div class="item">
+                                <div class="item-header">
+                                    <a href="#"><img src="${contextPath}/images/articles/${alql.imagesThumbnail}"
+                                                     alt=""/></a>
+                                </div>
+                                <div class="item-content">
+                                    <h4>
+                                        <a href="#">${alql.title}</a>
+                                    </h4>
+                                    <span class="item-meta"> <a
+                                            href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
+                                            class="fa fa-comment-o"></i>82 Bình luận</a> <a
+                                            href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
+                                            class="fa fa-clock-o"></i><fmt:formatDate
+                                            pattern="dd-MM-yyyy" value="${alql.showDate}"/></a>
 								</span>
+                                </div>
                             </div>
-                        </div>
                         </c:forEach>
 
                     </div>
@@ -299,7 +338,8 @@
                                 class="read-more-wrapper"><span class="read-more">Xem
 									chi tiết<i></i>
 							</span></span>
-                            <figure><img src="${contextPath}/images/articles/${articleLienQuanList[0].imagesThumbnail}" alt=""/></figure>
+                            <figure><img src="${contextPath}/images/articles/${articleLienQuanList[0].imagesThumbnail}"
+                                         alt=""/></figure>
                         </a>
                     </div>
                     <div class="item-content">
@@ -341,33 +381,35 @@
         </div>
         <div class="content-panel-body article-list">
             <c:forEach var="gal" items="${getTop10ArticleList}">
-            <div class="item">
-                <div class="item-header hover14 column">
-                    <a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
-                            class="fa fa-comment-o"></i>290<i></i></span> <span
-                            class="read-more-wrapper"><span class="read-more">Xem
+                <div class="item">
+                    <div class="item-header hover14 column">
+                        <a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
+                                class="fa fa-comment-o"></i>290<i></i></span> <span
+                                class="read-more-wrapper"><span class="read-more">Xem
 								chi tiết<i></i>
-						</span></span>  <figure><img src="${contextPath}/images/articles/${gal.imagesThumbnail}"
-                                                     alt="${gal.title}"></figure>
-                    </a>
-                </div>
-                <div class="item-content">
-                    <strong class="category-link">
-                        <c:forEach var="ac" items="${gal.articleCategories}">
-                            <a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
-                        </c:forEach>
-                    </strong>
+						</span></span>
+                            <figure><img src="${contextPath}/images/articles/${gal.imagesThumbnail}"
+                                         alt="${gal.title}"></figure>
+                        </a>
+                    </div>
+                    <div class="item-content">
+                        <strong class="category-link">
+                            <c:forEach var="ac" items="${gal.articleCategories}">
+                                <a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
+                            </c:forEach>
+                        </strong>
 
-                    <h3>
-                        <a href="${contextPath}/${gal.slug}">${gal.title}</a>
-                    </h3>
-                    <span class="item-meta"> <a href="${contextPath}/${gal.slug}"><i
-                            class="fa fa-comment-o"></i>${fn:length(gal.comments)}</a> <a href="${contextPath}/${gal.slug}"><i
-                            class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
+                        <h3>
+                            <a href="${contextPath}/${gal.slug}">${gal.title}</a>
+                        </h3>
+                        <span class="item-meta"> <a href="${contextPath}/${gal.slug}"><i
+                                class="fa fa-comment-o"></i>${fn:length(gal.comments)}</a> <a
+                                href="${contextPath}/${gal.slug}"><i
+                                class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
 					</span>
-                    <p>${gal.subContent}</p>
+                        <p>${gal.subContent}</p>
+                    </div>
                 </div>
-            </div>
             </c:forEach>
 
         </div>

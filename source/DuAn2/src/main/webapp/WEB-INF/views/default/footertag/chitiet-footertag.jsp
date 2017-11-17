@@ -553,7 +553,54 @@
     }
 
 </script>
+<!-- Thích Bài Viết -->
 
+<script>
+$('#likearticle').click(function(){
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+        var likearticle= $('#likearticle').text();
+        var numberUserArticleLike= Number($('#numberUserArticleLike').text());
+        if(likearticle == 'Thích'){
+            $('#likearticle').text('Bỏ Thích');
+
+            $('#msglikearticle').html("<b>Bạn</b> Và <span id=\"numberUserArticleLike\"> " +numberUserArticleLike + " </span> người khác thích bài viết này" );
+            fnlikearticle(true);
+        }else {
+            $('#likearticle').text('Thích');
+            $('#msglikearticle').html("<b id= \"numberUserArticleLike\" > " +numberUserArticleLike + "</b> người khác thích bài viết này" );
+
+            fnlikearticle(false);
+        }
+    }, 1000);
+    function fnlikearticle(status){
+            var articleId = $('#articleId').val();
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+            $(document).ajaxSend(function (e, xhr, options) {
+                xhr.setRequestHeader(header, token);
+            });
+            $.ajax({
+                type: "POST",
+                //contentType: "application/json",
+                url: "${pageContext.request.contextPath}/likearticles",
+                data: {
+                    articleId: articleId,
+                    status: status
+                },
+                //dataType: 'json',
+                // timeout: 600000,
+                success: function (result) {
+
+                },
+                error: function (e) {
+                    alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+                }
+            });
+    };
+})
+
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#LoadingImage").show();

@@ -711,10 +711,7 @@ height: auto;
 }  */
 /*======================================================================================*/
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
-body {
-font-family: 'Open Sans', 'sans-serif';
-}
+
 .mega-dropdown {
 position: static !important;
 }
@@ -782,3 +779,4 @@ border: 1px solid #ddd;
         padding-bottom: 15px;
     }
 </style>
+<style></style>

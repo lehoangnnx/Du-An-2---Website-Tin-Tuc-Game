@@ -14,11 +14,11 @@
             <div class="feed-widget-header" >
 
                 <h2 class="widget-title feed-widget-title" >
-                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=news">VIDEO MỚI</a>
+                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=hots">VIDEO ĐÁNG CHÚ Ý</a>
                 </h2>
 
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=news"><span>XEM THÊM</span>
+                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=host"><span>XEM THÊM</span>
                         <i
                                 class="fa fa-chevron-right"></i></a>
                 </div>
@@ -35,28 +35,28 @@
                             <div id="amazingslider-1"
                                  style="display: block; position: relative; margin: 0 auto;">
                                 <ul class="amazingslider-slides" style="display: none;">
-                                    <c:forEach var="gacnvl"
-                                               items="${getTop10ArticleCategoryNewVideoList}">
+                                    <c:forEach var="gacnhvl"
+                                               items="${getTop10ArticleCategoryNewAndHotVideoList}">
                                         <li><img
-                                                src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
-                                                alt="${fn:substring(gacnvl.title, 0, 50)} ..."
-                                                title="${fn:substring(gacnvl.title, 0, 50)} ..."
-                                                data-description="${gacnvl.views} Lượt xem"/>
+                                                src="${contextPath}/images/articles/${gacnhvl.imagesThumbnail}"
+                                                alt="${fn:substring(gacnhvl.title, 0, 50)} ..."
+                                                title="${fn:substring(gacnhvl.title, 0, 50)} ..."
+                                                data-description="${gacnhvl.views} Lượt xem"/>
                                             <video
                                                     preload="none"
-                                                    src="${gacnvl.video}">
+                                                    src="${gacnhvl.video}">
                                             </video>
                                         </li>
                                     </c:forEach>
 
                                 </ul>
                                 <ul class="amazingslider-thumbnails" style="display: none;">
-                                    <c:forEach var="gacnvl"
-                                               items="${getTop10ArticleCategoryNewVideoList}">
+                                    <c:forEach var="gacnhvl"
+                                               items="${getTop10ArticleCategoryNewAndHotVideoList}">
                                         <li><img
-                                                src="${contextPath}/images/articles/${gacnvl.imagesThumbnail}"
-                                                alt="${gacnvl.title}"
-                                                title="${gacnvl.title}"/></li>
+                                                src="${contextPath}/images/articles/${gacnhvl.imagesThumbnail}"
+                                                alt="${gacnhvl.title}"
+                                                title="${gacnhvl.title}"/></li>
                                     </c:forEach>
                                 </ul>
                             </div>
