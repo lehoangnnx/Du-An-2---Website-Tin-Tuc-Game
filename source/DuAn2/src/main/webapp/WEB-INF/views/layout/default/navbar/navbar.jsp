@@ -30,9 +30,15 @@
 							<li class="scroll"><a
 								href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
 						</c:if>
+<<<<<<< HEAD
+					</c:forEach> 
+					
+					<li class="dropdown head-dpdn"><a href="#"
+=======
 					</c:forEach>
 
 					<%--<li class="dropdown head-dpdn"><a href="#"
+>>>>>>> 9d6eabe4615809a3c334b4ec0a369d3ba72626df
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
 							class="caret"></span></a>
@@ -40,8 +46,14 @@
 							<li><a href="#">Tải game</a></li>
 							<li><a href="#">Forum</a></li>
 							<li><a href="#">Trải nghiệm</a></li>
-						</ul></li>		--%>
+						</ul></li>
 
+<<<<<<< HEAD
+			<li class="scroll" id="a1"><a href="#">Liên hệ</a></li>
+					<%--<div class="menu">
+						<ul>
+							<li ><a href="#">ĐÙ MÁ</a>
+=======
 					<li class="scroll "><a href="#">Liên hệ</a></li>
 					<li class="dropdown mega-dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown">Chuẩn men <span
@@ -109,6 +121,7 @@
 								</ul>
 							</li>
 							<li class="col-sm-3">
+>>>>>>> 9d6eabe4615809a3c334b4ec0a369d3ba72626df
 								<ul>
 									<li class="dropdown-header">Gì</li>
 									<li><a href="#">What do you mean ? </a></li>
@@ -190,6 +203,11 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+
+	</div>
+=======
+>>>>>>> 9d6eabe4615809a3c334b4ec0a369d3ba72626df
 	<!--/navbar-->
 </header>
 <!--/Đóng header-->

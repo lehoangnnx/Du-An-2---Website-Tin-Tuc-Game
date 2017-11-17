@@ -562,6 +562,7 @@
         // Animate loader off screen
         $("#LoadingImage").hide();
     });
+
 </script>
 
 

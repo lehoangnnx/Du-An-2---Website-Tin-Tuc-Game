@@ -25,7 +25,10 @@
 
 		<put-attribute name="body" value="/WEB-INF/views/default/index.jsp" />
 	</definition>
+	<definition name="video" extends="defaultlayout">
 
+		<put-attribute name="body" value="/WEB-INF/views/default/video.jsp" />
+	</definition>
 	<definition name="chitiet" extends="defaultlayout">
 
 		<put-attribute name="footertag" value="/WEB-INF/views/default/footertag/chitiet-footertag.jsp" />
