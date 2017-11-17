@@ -41,8 +41,9 @@ public class AdminArticlesRestController {
 		try {
 			System.out.println("1");
 			findByTitle = articleService.findByTitle(HtmlUtils.htmlEscape(article.getTitle()));
-			findBySlug = articleService.findBySlug(HtmlUtils.htmlEscape(article.getSlug()));
-
+			findBySlug = articleService.findBySlug(article.getSlug());
+			
+			System.out.println(findByTitle + "-" + findBySlug);
 			if (article.getArticleId() == null) {
 				if (findByTitle != null && findBySlug != null) {
 					System.out.println("2");
