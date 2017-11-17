@@ -148,7 +148,7 @@ public class AdminArticlesController {
 				System.out.println(title);
 				article.setTitle(HtmlUtils.htmlEscape(title));
 			}
-			if (!slug.equals("") && articleService.findBySlug(slug) == null) {
+			if (!slug.equals("") && articleService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
 				System.out.println(slug);
 				article.setSlug(HtmlUtils.htmlEscape(slug));
 			}
@@ -193,9 +193,7 @@ public class AdminArticlesController {
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
 
 			tagsList.forEach(x -> {
-				System.out.println("NAME : " + x + "-" + tagsService.findByName(x));
-				// System.out.println("LẤY : "+x+"--" + tagsService.findByName(x).getName());
-				System.out.println("SLUG : " + x + "-" + tagsService.findBySlug(slugify.slugify(x)));
+
 				if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
 					Tags tagss = new Tags();
 					tagss.setName(x);
@@ -308,7 +306,7 @@ public class AdminArticlesController {
 				System.out.println(title);
 				article.setTitle(HtmlUtils.htmlEscape(title));
 			}
-			if (!slug.equals("") && articleService.findBySlug(slug) == null) {
+			if (!slug.equals("") && articleService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
 				System.out.println(slug);
 				article.setSlug(HtmlUtils.htmlEscape(slug));
 			}

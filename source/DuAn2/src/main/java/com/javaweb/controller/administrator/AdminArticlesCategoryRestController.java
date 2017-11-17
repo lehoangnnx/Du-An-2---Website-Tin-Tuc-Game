@@ -22,7 +22,7 @@ public class AdminArticlesCategoryRestController {
 		
 		try {
 			findByName = articleCategoryService.findByName(HtmlUtils.htmlEscape(articleCategory.getName()));
-			findBySlug= articleCategoryService.findBySlug(articleCategory.getSlug());
+			findBySlug= articleCategoryService.findBySlug(HtmlUtils.htmlEscape(articleCategory.getSlug()));
 			
 			if (articleCategory.getArticleCategoryId() == null) {
 				if (findByName != null && findBySlug != null) {

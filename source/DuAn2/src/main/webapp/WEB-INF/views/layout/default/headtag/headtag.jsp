@@ -27,31 +27,26 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>
      <script src="css/css2/megamenu.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="css/css2/jquery-1.12.0.min.js"><\/script>')
-    </script>
-    
+<script>
+    window.jQuery || document.write('<script src="css/css2/jquery-1.12.0.min.js"><\/script>')
+</script>
 
-    <script src="css/css2/megamenu.js"></script>
-
-    <script>
+<script>
     $(document).ready(function(){
-        $(".dropdown").hover(            
+        $(".dropdown").hover(
             function() {
                 $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-                $(this).toggleClass('open');        
+                $(this).toggleClass('open');
             },
             function() {
                 $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-                $(this).toggleClass('open');       
+                $(this).toggleClass('open');
             }
         );
     });
-    </script>
-    
+</script>
 
 
-<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.min.css"/>
 <style>
     body {
         background-color: #fff;
@@ -633,143 +628,143 @@ margin-right: 0px;
 /*! CSS Used fontfaces..................................................... */
 
 /* /* /* /* /* * {
-    box-sizing: border-box;
+box-sizing: border-box;
 }
 
 body {
-    margin: 0;
+margin: 0;
 }
 
 
 .dropdown1 li{
-    float: left;
-    overflow: hidden;
+float: left;
+overflow: hidden;
 }
 
 .dropdown1 li .dropbtn {
-    font-size: 16px;    
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
+font-size: 16px;
+border: none;
+outline: none;
+color: white;
+padding: 14px 16px;
+background-color: inherit;
 }
 
 .dropdown1:hover .dropbtn {
-    background-color: red;
+background-color: red;
 }
 
 .dropdown1  .dropdown-content1 {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 100%;
-    left: 0;
-    z-index: 1;
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+width: 100%;
+left: 0;
+z-index: 1;
 }
 
 .dropdown-content1 .header {
-    background: #CCCCCC;
-    padding: 16px;
-    color: white;
+background: #CCCCCC;
+padding: 16px;
+color: white;
 }
 
 .dropdown1:hover .dropdown-content1 {
-    display: block;
+display: block;
 }
 
 /* Create three equal columns that floats next to each other */
 /* .column {
-    float: left;
-    width: 33.33%;
-    padding: 10px;
-    background-color: #ccc;
-    height: 250px;
+float: left;
+width: 33.33%;
+padding: 10px;
+background-color: #ccc;
+height: 250px;
 }
 
 .column a {
-    float: none;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+float: none;
+color: black;
+padding: 16px;
+text-decoration: none;
+display: block;
+text-align: left;
 }
 
 .column a:hover {
-    background-color: #ddd;
+background-color: #ddd;
 } */
 
 /* Clear floats after the columns */
 /* .row:after {
-    content: "";
-    display: table;
-    clear: both;
+content: "";
+display: table;
+clear: both;
 } */
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 /* @media (max-width: 600px) {
-    .column {
-        width: 100%;
-        height: auto;
-    }
+.column {
+width: 100%;
+height: auto;
+}
 }  */
 /*======================================================================================*/
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 body {
-  font-family: 'Open Sans', 'sans-serif';
+font-family: 'Open Sans', 'sans-serif';
 }
 .mega-dropdown {
-  position: static !important;
+position: static !important;
 }
 .mega-dropdown-menu {
-    padding: 20px 0px;
-    width: 100%;
-    box-shadow: none;
-    -webkit-box-shadow: none;
+padding: 20px 0px;
+width: 100%;
+box-shadow: none;
+-webkit-box-shadow: none;
 }
 .mega-dropdown-menu > li > ul {
-  padding: 0;
-  margin: 0;
+padding: 0;
+margin: 0;
 }
 .mega-dropdown-menu > li > ul > li {
-  list-style: none;
+list-style: none;
 }
 .mega-dropdown-menu > li > ul > li > a {
-  display: block;
-  color: #222;
-  padding: 3px 5px;
+display: block;
+color: #222;
+padding: 3px 5px;
 }
 .mega-dropdown-menu > li ul > li > a:hover,
 .mega-dropdown-menu > li ul > li > a:focus {
-  text-decoration: none;
+text-decoration: none;
 }
 .mega-dropdown-menu .dropdown-header {
-  font-size: 18px;
-  color: #ff3546;
-  padding: 5px 60px 5px 5px;
-  line-height: 30px;
+font-size: 18px;
+color: #ff3546;
+padding: 5px 60px 5px 5px;
+line-height: 30px;
 }
 
 .carousel-control {
-  width: 30px;
-  height: 30px;
-  top: -35px;
+width: 30px;
+height: 30px;
+top: -35px;
 
 }
 .left.carousel-control {
-  right: 30px;
-  left: inherit;
+right: 30px;
+left: inherit;
 }
-.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-left,
 .carousel-control .glyphicon-chevron-right {
-  font-size: 12px;
-  background-color: #fff;
-  line-height: 30px;
-  text-shadow: none;
-  color: #333;
-  border: 1px solid #ddd;
+font-size: 12px;
+background-color: #fff;
+line-height: 30px;
+text-shadow: none;
+color: #333;
+border: 1px solid #ddd;
 }
 
 
@@ -786,7 +781,4 @@ body {
         font-weight: bold;
         padding-bottom: 15px;
     }
-
 </style>
-
-

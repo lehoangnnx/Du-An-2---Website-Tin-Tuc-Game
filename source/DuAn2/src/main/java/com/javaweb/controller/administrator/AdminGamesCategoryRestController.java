@@ -22,7 +22,7 @@ public class AdminGamesCategoryRestController {
 		
 		try {
 			findByName = gameCategoryService.findByName(HtmlUtils.htmlEscape(gameCategory.getName()));
-			findBySlug= gameCategoryService.findBySlug(gameCategory.getSlug());
+			findBySlug= gameCategoryService.findBySlug(HtmlUtils.htmlEscape(gameCategory.getSlug()));
 			
 			if (gameCategory.getGameCategoryId() == null) {
 				if (findByName != null && findBySlug != null) {

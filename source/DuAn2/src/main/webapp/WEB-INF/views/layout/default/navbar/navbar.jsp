@@ -9,36 +9,30 @@
 		<div class="container" style="margin-top: -10px;">
 			<div class="navbar-header ">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
+						data-target=".navbar-collapse">
 					<span class="sr-only">Navigation</span> <span class="icon-bar"></span>
 					<span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<div class="text-center">
 					<a class="navbar-brand " href="${contextPath}/"
-						style="margin-top: 11px;"><h1>
-							<img class=" " src="${contextPath}/images/logo2.png" alt="logo">
-						</h1></a>
+					   style="margin-top: 11px;"><h1>
+						<img class=" " src="${contextPath}/images/logo2.png" alt="logo">
+					</h1></a>
 				</div>
 			</div>
 			<div class="collapse navbar-collapse ">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="scroll active"><a href="${contextPath}/">Trang
-							chủ</a></li>
+						chủ</a></li>
 					<c:forEach var="atl" items="${articleCategoryList}" begin="0"
-						end="1">
+							   end="1">
 						<c:if test="${atl.subArticleCategoryId == 0}">
 							<li class="scroll"><a
-								href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+									href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
 						</c:if>
-
-					</c:forEach> 
-					
-					<li class="dropdown head-dpdn"><a href="#"
-
 					</c:forEach>
 
 					<%--<li class="dropdown head-dpdn"><a href="#"
-
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
 							class="caret"></span></a>
@@ -46,44 +40,38 @@
 							<li><a href="#">Tải game</a></li>
 							<li><a href="#">Forum</a></li>
 							<li><a href="#">Trải nghiệm</a></li>
-						</ul></li>
-
-
-			<li class="scroll" id="a1"><a href="#">Liên hệ</a></li>
-					<%--<div class="menu">
-						<ul>
-							<li ><a href="#">ĐÙ MÁ</a>
+						</ul></li>		--%>
 
 					<li class="scroll "><a href="#">Liên hệ</a></li>
 					<li class="dropdown mega-dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown">Chuẩn men <span
+														  class="dropdown-toggle" data-toggle="dropdown">Chuẩn men <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu mega-dropdown-menu">
 							<li class="col-sm-3">
 								<ul>
 									<li class="dropdown-header">Men Collection</li>
 									<div id="menCollection" class="carousel slide"
-										data-ride="carousel">
+										 data-ride="carousel">
 										<div class="carousel-inner">
 											<div class="item active">
 												<a href="#"><img
-													src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection"
-													class="img-responsive" alt="product 1"></a>
+														src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection"
+														class="img-responsive" alt="product 1"></a>
 
 											</div>
 											<!-- End Item -->
 											<div class="item">
 												<a href="#"><img
-													src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection"
-													class="img-responsive" alt="product 2"></a>
+														src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection"
+														class="img-responsive" alt="product 2"></a>
 
 
 											</div>
 											<!-- End Item -->
 											<div class="item">
 												<a href="#"><img
-													src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection"
-													class="img-responsive" alt="product 3"></a>
+														src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection"
+														class="img-responsive" alt="product 3"></a>
 
 
 											</div>
@@ -92,14 +80,14 @@
 										<!-- End Carousel Inner -->
 										<!-- Controls -->
 										<a class="left carousel-control" href="#menCollection"
-											role="button" data-slide="prev"> <span
-											class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+										   role="button" data-slide="prev"> <span
+												class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 											<span class="sr-only">Previous</span>
 										</a> <a class="right carousel-control" href="#menCollection"
-											role="button" data-slide="next"> <span
+												role="button" data-slide="next"> <span
 											class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-											<span class="sr-only">Next</span>
-										</a>
+										<span class="sr-only">Next</span>
+									</a>
 									</div>
 									<!-- /.carousel -->
 									<li class="divider"></li>
@@ -121,7 +109,6 @@
 								</ul>
 							</li>
 							<li class="col-sm-3">
-
 								<ul>
 									<li class="dropdown-header">Gì</li>
 									<li><a href="#">What do you mean ? </a></li>
@@ -140,21 +127,21 @@
 								</ul>
 							</li>
 						</ul></li>
-			<li class="scroll "><a href="#">Liên hệ</a></li>
-					
+					<li class="scroll "><a href="#">Liên hệ</a></li>
+
 					<!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->
 
 					<security:authorize access="isAuthenticated()">
 						<security:authentication var="principal" property="principal" />
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"> <security:authorize
-									access="hasAnyRole('FACEBOOK', 'GOOGLE')">
-                                ${user.firstName} ${ user.lastName   }
-                            </security:authorize> <security:authorize
-									access="hasAnyRole('MEMBER', 'ADMIN')">
-                                ${user.userName}
-                            </security:authorize> <span class="caret"></span>
+												data-toggle="dropdown" href="#"> <security:authorize
+								access="hasAnyRole('FACEBOOK', 'GOOGLE')">
+							${user.firstName} ${ user.lastName   }
+						</security:authorize> <security:authorize
+								access="hasAnyRole('MEMBER', 'ADMIN')">
+							${user.userName}
+						</security:authorize> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
 								<security:authorize access="hasRole('MEMBER')">
@@ -170,20 +157,20 @@
 								</security:authorize>
 								<security:authorize access="hasRole('GOOGLE')">
 									<form:form id="logoutForm" method="POST"
-										action="${contextPath}/logout">
+											   action="${contextPath}/logout">
 										<input type="hidden" name="${_csrf.parameterName}"
-											value="${_csrf.token}" />
+											   value="${_csrf.token}" />
 										<button type="submit" onclick="signOut();"
-											class="dropdown-item">Đăng Xuất</button>
+												class="dropdown-item">Đăng Xuất</button>
 									</form:form>
 
 								</security:authorize>
 
 								<security:authorize access="!hasRole('GOOGLE')">
 									<form:form id="logoutForm" method="POST"
-										action="${contextPath}/logout">
+											   action="${contextPath}/logout">
 										<input type="hidden" name="${_csrf.parameterName}"
-											value="${_csrf.token}" />
+											   value="${_csrf.token}" />
 										<button type="submit" class="dropdown-item">Đăng Xuất</button>
 									</form:form>
 								</security:authorize>
@@ -193,7 +180,7 @@
 					</security:authorize>
 					<security:authorize access="!isAuthenticated()">
 						<li class="scroll"><a class="modal_trigger" href="#modal">Đăng
-								Nhập</a></li>
+							Nhập</a></li>
 
 					</security:authorize>
 
@@ -203,10 +190,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	</div>
-
 	<!--/navbar-->
 </header>
 <!--/Đóng header-->
@@ -220,7 +203,7 @@
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Search">
 							<button type="submit" class="btn btn-default"
-								aria-label="Left Align">
+									aria-label="Left Align">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</button>
 						</div>
@@ -239,17 +222,17 @@
 
 			<div class="col-md-12 push-right">
 				<div class="ot-breaking-news-body mouseenter"
-					data-breaking-timeout="4000" data-breaking-autostart="true">
+					 data-breaking-timeout="4000" data-breaking-autostart="true">
 					<div class="ot-breaking-news-controls">
 						<strong><i class="fa fa-bar-chart"></i>Thông tin game 24h
 							: </strong>
 					</div>
 					<div class="ot-breaking-news-content">
 						<marquee behavior="scroll" direction="left" scrollamount="8"
-							scrolldelay="20" width="90%">
+								 scrolldelay="20" width="90%">
 							<c:forEach var="gahav" items="${getTop5ArticleHotAndViews}">
 								<a href="${contextPath}/${gahav.slug} "
-									style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
+								   style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
 							</c:forEach>
 
 

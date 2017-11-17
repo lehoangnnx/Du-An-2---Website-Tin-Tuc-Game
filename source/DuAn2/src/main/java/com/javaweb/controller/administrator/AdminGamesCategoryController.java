@@ -100,7 +100,7 @@ public class AdminGamesCategoryController {
 			if (!name.equals("") && gameCategoryService.findByName(name) == null) {
 				gameCategory.setName(HtmlUtils.htmlEscape(name));
 			}
-			if (!slug.equals("") && gameCategoryService.findBySlug(slug) == null) {
+			if (!slug.equals("") && gameCategoryService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
 				gameCategory.setSlug(HtmlUtils.htmlEscape(slug));
 			}
 			gameCategory.setSubGameCategoryId(subGameCategoryId);

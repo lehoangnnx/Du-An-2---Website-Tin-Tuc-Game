@@ -46,12 +46,13 @@ public class DefaultController {
 
     @Autowired
     TagsService tagsService;
-@Autowired
-GameReviewsService gameReviewsService;
+    @Autowired
+    GameReviewsService gameReviewsService;
     @Autowired
     CommentService commentService;
+
     @ModelAttribute("user")
-    public void sessionUser(Authentication authentication,HttpSession session){
+    public void sessionUser(Authentication authentication, HttpSession session) {
 
         if (authentication != null) {
             System.out.println("VAO DAY");
@@ -60,6 +61,7 @@ GameReviewsService gameReviewsService;
 
         }
     }
+
     @RequestMapping(value = {"/", "/home"})
     public String index(Principal p, Authentication authentication, HttpSession session, Model model
 
@@ -204,126 +206,138 @@ GameReviewsService gameReviewsService;
 
     @RequestMapping("/{slug}")
     String chitiet(@PathVariable("slug") String slug, Model model,
-        @RequestParam(value = "page", defaultValue = "1") Integer page,@RequestParam(value = "limit", defaultValue = "2") Integer limit
-        ,@RequestParam(value = "sorted", defaultValue = "news") String sorted, Authentication authentication
+                   @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "2") Integer limit
+            , @RequestParam(value = "sorted", defaultValue = "news") String sorted, Authentication authentication
     ) {
         Article article = null;
         ArticleCategory articleCategory = null;
         Tags tags = null;
         Games games = null;
-        model.addAttribute("sorted","sorted="+sorted);
-        if(sorted.equals("news")){
+        model.addAttribute("sorted", "sorted=" + sorted);
+        if (sorted.equals("news")) {
             sorted = "showDate";
         }
-        if (sorted.equals("hots")){
+        if (sorted.equals("hots")) {
             sorted = "views";
         }
 
         try {
-            article = articleService.findBySlug(slug);
-            articleCategory =articleCategoryService.findBySlug(slug);
+            article = articleService.findBySlug(HtmlUtils.htmlEscape(slug));
+            articleCategory = articleCategoryService.findBySlug(HtmlUtils.htmlEscape(slug));
 
-            tags = tagsService.findBySlug(slug);
+            tags = tagsService.findBySlug(HtmlUtils.htmlEscape(slug));
             List<Article> articleList = null;
 
             if (article != null) {
-                games = gamesService.findByGameId(article.getGameId());
-                article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
-                 ArticleCategory getarticleCategory = null;
 
-                for(ArticleCategory a : article.getArticleCategories()){
+                article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
+                ArticleCategory getarticleCategory = null;
+
+
+                for (ArticleCategory a : article.getArticleCategories()) {
+
                     getarticleCategory = articleCategoryService.findByArticleCategoryId(a.getArticleCategoryId());
-                    break;
+
                 }
                 List<Article> articleLienQuanList = articleService
-                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory,(byte) 1,"active");
+                        .findTop5ByArticleCategoriesAndIsHotAndStatusOrderByViewsDesc(getarticleCategory, (byte) 1, "active");
 
-
+                articleLienQuanList.forEach(x -> System.out.println(x.getTitle() + "-----------------------------------"));
                 List<Comment> getTop10Comment = commentService.findTop10ByStatusOrderByCreatedDateDesc("active");
                 List<Article> getTop10ArticleList = articleService
                         .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
                 model.addAttribute("getTop10ArticleList", getTop10ArticleList);
-                model.addAttribute("getTop10Comment",getTop10Comment);
+                model.addAttribute("getTop10Comment", getTop10Comment);
                 model.addAttribute("article", article);
-                model.addAttribute("games", games);
+
                 model.addAttribute("articleCategory", getarticleCategory);
-                model.addAttribute("articleLienQuanList",articleLienQuanList);
+                model.addAttribute("articleLienQuanList", articleLienQuanList);
                 model.addAttribute("title", article.getTitle());
-                article.setViews(article.getViews()+1);
+                article.setViews(article.getViews() + 1);
                 articleService.saveorupdate(article);
 
-                Users users = usersService.findByUserName(authentication.getName());
-                List<GameReviews> gameReviewsList = gameReviewsService.findAllByGames(games);
+
                 int pointGameReviews = 0;
                 int pointGameReviewsOfUser = 0;
-                for (GameReviews g: gameReviewsList) {
-                    pointGameReviews = pointGameReviews + (int) g.getReview();
-                    if(g.getUsers() == users){
-                            pointGameReviewsOfUser = (int) g.getReview();
+                if (article.getGameId() != 0) {
+                    games = gamesService.findByGameId(article.getGameId());
+                    if (!gameReviewsService.findAllByGames(games).isEmpty()) {
+                        List<GameReviews> gameReviewsList = gameReviewsService.findAllByGames(games);
+                        for (GameReviews g : gameReviewsList) {
+                            pointGameReviews = pointGameReviews + (int) g.getReview();
+
+                            if (authentication != null) {
+                                Users users = usersService.findByUserName(authentication.getName());
+                                if (g.getUsers().getUserId() == users.getUserId()) {
+                                    pointGameReviewsOfUser = (int) g.getReview();
+                                }
+                            }
+
+                        }
+
+                        model.addAttribute("pointGameReviews", pointGameReviews / gameReviewsList.size());
+                        model.addAttribute("pointGameReviewsOfUser", pointGameReviewsOfUser);
                     }
-                    
+                    model.addAttribute("games", games);
                 }
 
 
-                model.addAttribute("pointGameReviews",pointGameReviews/gameReviewsList.size());
-                model.addAttribute("pointGameReviewsOfUser",pointGameReviewsOfUser);
                 return "chitiet";
-            }else  if (articleCategory != null){
+            } else if (articleCategory != null) {
 
-                 articleList = articleService
-                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory,"active", new Date(), null);
-
-                int pageCount = (articleList.size()) / limit + ( articleList.size() % limit > 0 ? 1 : 0);
                 articleList = articleService
-                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory,"active", new Date(),
-                                new PageRequest(page -1, limit, new Sort(Sort.Direction.DESC,sorted)));
-                model.addAttribute("objectCategoryAndTag",articleCategory);
-                model.addAttribute("articleList",articleList);
+                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory, "active", new Date(), null);
+
+                int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
+                articleList = articleService
+                        .findAllByArticleCategoriesAndStatusAndShowDateBefore(articleCategory, "active", new Date(),
+                                new PageRequest(page - 1, limit, new Sort(Sort.Direction.DESC, sorted)));
+                model.addAttribute("objectCategoryAndTag", articleCategory);
+                model.addAttribute("articleList", articleList);
 
                 model.addAttribute("currentpage", page);
                 model.addAttribute("pagecount", pageCount);
                 model.addAttribute("title", articleCategory.getName());
                 return "tonghop";
-            }else if(tags != null){
+            } else if (tags != null) {
                 articleList = articleService
-                        .findAllByTagsesAndStatusAndShowDateBefore(tags,"active", new Date(), null);
-                int pageCount = (articleList.size()) / limit + ( articleList.size() % limit > 0 ? 1 : 0);
-               articleList = articleService
-                        .findAllByTagsesAndStatusAndShowDateBefore(tags,"active", new Date(),
-                                new PageRequest(page -1, limit, new Sort(Sort.Direction.DESC,sorted)));
+                        .findAllByTagsesAndStatusAndShowDateBefore(tags, "active", new Date(), null);
+                int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
+                articleList = articleService
+                        .findAllByTagsesAndStatusAndShowDateBefore(tags, "active", new Date(),
+                                new PageRequest(page - 1, limit, new Sort(Sort.Direction.DESC, sorted)));
 
-                model.addAttribute("objectCategoryAndTag",tags);
-                model.addAttribute("articleList",articleList);
+                model.addAttribute("objectCategoryAndTag", tags);
+                model.addAttribute("articleList", articleList);
 
                 model.addAttribute("currentpage", page);
                 model.addAttribute("pagecount", pageCount);
                 model.addAttribute("title", tags.getName());
                 return "tonghop";
-            }else if(slug.equals("articles")){
+            } else if (slug.equals("articles")) {
 
                 articleList = articleService.findAllByStatusAndShowDateBefore("active", new Date(), null);
-                int pageCount = (articleList.size()) / limit + ( articleList.size() % limit > 0 ? 1 : 0);
+                int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
                 articleList = articleService.findAllByStatusAndShowDateBefore("active", new Date(),
-                        new PageRequest(page-1,limit,new Sort(Sort.Direction.DESC,sorted)));
-                Map<String,String> objectCategoryAndTagMap = new HashMap<>();
-                objectCategoryAndTagMap.put("name","Tin Mới");
-                objectCategoryAndTagMap.put("slug","articles");
+                        new PageRequest(page - 1, limit, new Sort(Sort.Direction.DESC, sorted)));
+                Map<String, String> objectCategoryAndTagMap = new HashMap<>();
+                objectCategoryAndTagMap.put("name", "Tin Mới");
+                objectCategoryAndTagMap.put("slug", "articles");
 
-                model.addAttribute("objectCategoryAndTag",objectCategoryAndTagMap);
-                model.addAttribute("articleList",articleList);
+                model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
+                model.addAttribute("articleList", articleList);
 
                 model.addAttribute("currentpage", page);
                 model.addAttribute("pagecount", pageCount);
                 model.addAttribute("title", "Tin Mới");
                 return "tonghop";
-            }
-            else {
+            } else {
                 model.addAttribute("title", "Trang Thông Báo Lỗi 404");
                 return "redirect:/403";
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + "LOIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
             model.addAttribute("title", "Trang Thông Báo Lỗi 404");
             return "redirect:/403";
         }
@@ -342,13 +356,11 @@ GameReviewsService gameReviewsService;
         model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
 
-
         List<Article> getTop10ArticleCategoryNewVideoList = articleService
                 .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo, "active");
         model.addAttribute("getTop10ArticleCategoryNewVideoList", getTop10ArticleCategoryNewVideoList);
         model.addAttribute("title", "Trang Video");
         return "video";
     }
-
 
 }

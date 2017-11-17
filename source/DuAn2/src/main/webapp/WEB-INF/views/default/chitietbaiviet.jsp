@@ -35,7 +35,7 @@
                 </div>
 
             </div>
-            <c:out value="${article.video}"/>
+
             <c:if test="${article.video != null}">
                 <iframe src="${article.video}" frameborder="0" width="560" height="315"
                         allowfullscreen>
@@ -51,6 +51,10 @@
             <c:out value="${article.mainContent}" escapeXml="false"/>
 
             <h2 style="padding: 10px;  " class="pull-right subcontentandauthor" >${article.author}</h2>
+        </div>
+        <div class="content-panel-body article-main-tags">
+        <a href="/cong-dong-pubg-suc-soi-voi-giai-dau-tram-trieu-msi-gamek-championship-2017" class="read-more-button">Xem chi tiết<i class="fa fa-mail-forward"></i>
+        </a>
         </div>
 
 
@@ -78,7 +82,7 @@
             <!-- END Thẻ hagtag, chi sẻ -->
 
             <!-- Game vote -->
-            <c:if test="${article.gameId != 0}">
+            <c:if test="${article.gameId != 0 }">
                 <div class="game-vote">
                     <div class="row">
                         <div class="col-md-7">
@@ -110,19 +114,38 @@
                         </div>
                     </div>
                     <div class="stars">
+                        <security:authorize access="isAuthenticated()">
                         <form action="">
                             <h4></h4>
+                            <input hidden id="gameId" value="${article.gameId}" />
                             <input ${pointGameReviewsOfUser == 5 ? 'checked' : '' } class="star star-5" id="star-5" type="radio" name="star">
-                            <label class="star star-5" for="star-5"></label> <input ${pointGameReviewsOfUser == 4 ? 'checked' : '' }
+                            <label onclick="gamereivews(5);" class="star star-5" for="star-5"></label> <input ${pointGameReviewsOfUser == 4 ? 'checked' : '' }
                                 class="star star-4" id="star-4" type="radio" name="star">
-                            <label class="star star-4" for="star-4"></label> <input ${pointGameReviewsOfUser == 3 ? 'checked' : '' }
+                            <label onclick="gamereivews(4);"class="star star-4" for="star-4"></label> <input ${pointGameReviewsOfUser == 3 ? 'checked' : '' }
                                 class="star star-3" id="star-3" type="radio" name="star">
-                            <label class="star star-3" for="star-3"></label> <input ${pointGameReviewsOfUser == 2 ? 'checked' : '' }
+                            <label onclick="gamereivews(3);" class="star star-3" for="star-3"></label> <input ${pointGameReviewsOfUser == 2 ? 'checked' : '' }
                                 class="star star-2" id="star-2" type="radio" name="star">
-                            <label class="star star-2" for="star-2"></label> <input ${pointGameReviewsOfUser == 1 ? 'checked' : '' }
-                                class="star star-1" id="star-1" type="radio" name="star"><label
+                            <label onclick="gamereivews(2);" class="star star-2" for="star-2"></label> <input ${pointGameReviewsOfUser == 1 ? 'checked' : '' }
+                                class="star star-1" id="star-1" type="radio" name="star"><label onclick="gamereivews(1);"
                                 class="star star-1" for="star-1"></label>
                         </form>
+                        </security:authorize>
+                        <security:authorize access="!isAuthenticated()">
+                            <form action="">
+                                <h4></h4>
+
+                                <input class="star star-5" id="star-5" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal" > <label class="star star-5" for="star-5"></label></a> <input
+                                    class="star star-4" id="star-4" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal" ><label class="star star-4" for="star-4"></label></a> <input
+                                    class="star star-3" id="star-3" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal" > <label class="star star-3" for="star-3"></label></a> <input $
+                                    class="star star-2" id="star-2" type="radio" name="star">
+                                <a class="modal_trigger" href="#modal" >  <label class="star star-2" for="star-2"></label></a> <input
+                                    class="star star-1" id="star-1" type="radio" name="star"><a class="modal_trigger" href="#modal" ><label
+                                    class="star star-1" for="star-1"></label></a>
+                            </form>
+                        </security:authorize>
                     </div>
                 </div>
             </c:if>
@@ -232,7 +255,7 @@
                     <a href="#">CÙNG CHUYÊN MỤC</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/${articleCategory.slug}"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/${articleCategory.slug}?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
