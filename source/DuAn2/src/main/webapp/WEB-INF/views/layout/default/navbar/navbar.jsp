@@ -42,7 +42,6 @@
 							<li><a href="#">Trải nghiệm</a></li>
 						</ul></li>		--%>
 
-
 					<li class="scroll "><a href="#">Liên hệ</a></li>
 					<li class="dropdown mega-dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown">Chuẩn men <span
@@ -128,8 +127,8 @@
 								</ul>
 							</li>
 						</ul></li>
-
-
+			<li class="scroll "><a href="#">Liên hệ</a></li>
+					
 					<!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->
 
