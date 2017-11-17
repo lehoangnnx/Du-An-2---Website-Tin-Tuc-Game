@@ -30,7 +30,7 @@
 						</c:if>
 					</c:forEach> 
 					
-					<%--<li class="dropdown head-dpdn"><a href="#"
+					<li class="dropdown head-dpdn"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
 							class="caret"></span></a>
@@ -38,9 +38,9 @@
 							<li><a href="#">Tải game</a></li>
 							<li><a href="#">Forum</a></li>
 							<li><a href="#">Trải nghiệm</a></li>
-						</ul></li>		--%>
+						</ul></li>
 
-			<li class="scroll "><a href="#">Liên hệ</a></li>
+			<li class="scroll" id="a1"><a href="#">Liên hệ</a></li>
 					<%--<div class="menu">
 						<ul>
 							<li ><a href="#">ĐÙ MÁ</a>
@@ -140,6 +140,7 @@
 			</ul>
 		</div>
 	</div>
+
 	</div>
 	<!--/navbar-->
 </header>

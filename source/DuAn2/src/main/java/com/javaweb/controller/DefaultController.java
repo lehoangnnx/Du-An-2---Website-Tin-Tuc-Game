@@ -350,6 +350,17 @@ public class DefaultController {
         model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
     }
+    @RequestMapping("/videoa")
+    String video(Model model) {
+        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+        model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
+
+        List<Article> getTop10ArticleCategoryNewVideoList = articleService
+                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo, "active");
+        model.addAttribute("getTop10ArticleCategoryNewVideoList", getTop10ArticleCategoryNewVideoList);
+        model.addAttribute("title", "Trang Video");
+        return "video";
+    }
 
 }

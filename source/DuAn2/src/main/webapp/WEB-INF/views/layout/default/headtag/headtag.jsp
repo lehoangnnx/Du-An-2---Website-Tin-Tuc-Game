@@ -32,8 +32,8 @@
     </script>
     
     <script src="css/css2/megamenu.js"></script>
-    
 
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.min.css"/>
 <style>
     body {
         background-color: #fff;
@@ -711,4 +711,5 @@ body {
         font-weight: bold;
         padding-bottom: 15px;
     }
+
 </style>
