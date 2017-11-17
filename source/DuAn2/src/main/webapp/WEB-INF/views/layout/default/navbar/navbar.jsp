@@ -24,12 +24,14 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="scroll active"><a href="${contextPath}/">Trang
 							chủ</a></li>
-					<c:forEach var="atl" items="${articleCategoryList}" begin="0" end="1">
+					<c:forEach var="atl" items="${articleCategoryList}" begin="0"
+						end="1">
 						<c:if test="${atl.subArticleCategoryId == 0}">
-							<li class="scroll"><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+							<li class="scroll"><a
+								href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
 						</c:if>
-					</c:forEach> 
-					
+					</c:forEach>
+
 					<%--<li class="dropdown head-dpdn"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-percent" aria-hidden="true"></i>Giải trí<span
@@ -40,106 +42,157 @@
 							<li><a href="#">Trải nghiệm</a></li>
 						</ul></li>		--%>
 
-			<li class="scroll "><a href="#">Liên hệ</a></li>
-					<div class="menu">
-						<ul>
-							<li ><a href="#">ĐÙ MÁ</a>
+
+					<li class="scroll "><a href="#">Liên hệ</a></li>
+					<li class="dropdown mega-dropdown"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown">Chuẩn men <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu mega-dropdown-menu">
+							<li class="col-sm-3">
 								<ul>
-									<li><a href="#">CÓ</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-									<li><a href="#">RA</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-									<li><a href="#">KHÔNG</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-									<li><a href="#">THÌ BẢO</a>
-										<ul>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-											<li><a href="#">WHAT THE FUCK</a></li>
-										</ul></li>
-								</ul></li>
+									<li class="dropdown-header">Men Collection</li>
+									<div id="menCollection" class="carousel slide"
+										data-ride="carousel">
+										<div class="carousel-inner">
+											<div class="item active">
+												<a href="#"><img
+													src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection"
+													class="img-responsive" alt="product 1"></a>
 
-						</ul>
-					</div>
+											</div>
+											<!-- End Item -->
+											<div class="item">
+												<a href="#"><img
+													src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection"
+													class="img-responsive" alt="product 2"></a>
 
-			<!-- ${pageContext.request.userPrincipal.name}
+
+											</div>
+											<!-- End Item -->
+											<div class="item">
+												<a href="#"><img
+													src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection"
+													class="img-responsive" alt="product 3"></a>
+
+
+											</div>
+											<!-- End Item -->
+										</div>
+										<!-- End Carousel Inner -->
+										<!-- Controls -->
+										<a class="left carousel-control" href="#menCollection"
+											role="button" data-slide="prev"> <span
+											class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a> <a class="right carousel-control" href="#menCollection"
+											role="button" data-slide="next"> <span
+											class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+									</div>
+									<!-- /.carousel -->
+									<li class="divider"></li>
+									<li><a href="#">Hiển thị nhiều hơn <span
+											class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li class="dropdown-header">Còn lại</li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? d</a></li>
+									<li class="divider"></li>
+									<li class="dropdown-header">Cơn mưa</li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li class="dropdown-header">Gì</li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li class="dropdown-header">Sau</li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+									<li><a href="#">What do you mean ? </a></li>
+								</ul>
+							</li>
+						</ul></li>
+
+
+					<!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->
 
-			<security:authorize access="isAuthenticated()">
-				<security:authentication var="principal" property="principal" />
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <security:authorize
-							access="hasAnyRole('FACEBOOK', 'GOOGLE')">
+					<security:authorize access="isAuthenticated()">
+						<security:authentication var="principal" property="principal" />
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#"> <security:authorize
+									access="hasAnyRole('FACEBOOK', 'GOOGLE')">
                                 ${user.firstName} ${ user.lastName   }
                             </security:authorize> <security:authorize
-							access="hasAnyRole('MEMBER', 'ADMIN')">
+									access="hasAnyRole('MEMBER', 'ADMIN')">
                                 ${user.userName}
                             </security:authorize> <span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<security:authorize access="hasRole('MEMBER')">
-							<li><a href="#">Thông Tin</a></li>
+						</a>
+							<ul class="dropdown-menu">
+								<security:authorize access="hasRole('MEMBER')">
+									<li><a href="#">Thông Tin</a></li>
 
-						</security:authorize>
-						<security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
-							<li><a href="#">Trang Cá Nhân</a></li>
-						</security:authorize>
+								</security:authorize>
+								<security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
+									<li><a href="#">Trang Cá Nhân</a></li>
+								</security:authorize>
 
-						<security:authorize access="hasRole('ADMIN')">
-							<li><a href="${contextPath }/admin/index">Quản Trị</a></li>
-						</security:authorize>
-						<security:authorize access="hasRole('GOOGLE')">
-							<form:form id="logoutForm" method="POST"
-								action="${contextPath}/logout">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" />
-								<button type="submit" onclick="signOut();" class="dropdown-item">Đăng
-									Xuất</button>
-							</form:form>
+								<security:authorize access="hasRole('ADMIN')">
+									<li><a href="${contextPath }/admin/index">Quản Trị</a></li>
+								</security:authorize>
+								<security:authorize access="hasRole('GOOGLE')">
+									<form:form id="logoutForm" method="POST"
+										action="${contextPath}/logout">
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+										<button type="submit" onclick="signOut();"
+											class="dropdown-item">Đăng Xuất</button>
+									</form:form>
 
-						</security:authorize>
+								</security:authorize>
 
-						<security:authorize access="!hasRole('GOOGLE')">
-							<form:form id="logoutForm" method="POST"
-								action="${contextPath}/logout">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" />
-								<button type="submit" class="dropdown-item">Đăng Xuất</button>
-							</form:form>
-						</security:authorize>
-
-
-					</ul></li>
-			</security:authorize>
-			<security:authorize access="!isAuthenticated()">
-				<li class="scroll"><a class="modal_trigger" href="#modal">Đăng
-						Nhập</a></li>
-
-			</security:authorize>
-			
+								<security:authorize access="!hasRole('GOOGLE')">
+									<form:form id="logoutForm" method="POST"
+										action="${contextPath}/logout">
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+										<button type="submit" class="dropdown-item">Đăng Xuất</button>
+									</form:form>
+								</security:authorize>
 
 
+							</ul></li>
+					</security:authorize>
+					<security:authorize access="!isAuthenticated()">
+						<li class="scroll"><a class="modal_trigger" href="#modal">Đăng
+								Nhập</a></li>
 
-			<!-- <li class="fa fa-caret-down" style="font-size: 26px">
+					</security:authorize>
+
+
+
+
+					<!-- <li class="fa fa-caret-down" style="font-size: 26px">
                         </li> -->
-			</ul>
+				</ul>
+			</div>
 		</div>
-	</div>
 	</div>
 	<!--/navbar-->
 </header>
@@ -182,7 +235,7 @@
 						<marquee behavior="scroll" direction="left" scrollamount="8"
 							scrolldelay="20" width="90%">
 							<c:forEach var="gahav" items="${getTop5ArticleHotAndViews}">
-								<a  href="${contextPath}/${gahav.slug} "
+								<a href="${contextPath}/${gahav.slug} "
 									style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
 							</c:forEach>
 
