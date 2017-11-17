@@ -1,5 +1,6 @@
 package com.javaweb.controller.administrator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class AdminGamesCategoryController {
 		List<GameCategory> gameCategoryList = gameCategoryService.findAll()
 				.stream()
 				.filter(x -> x.getStatus().equals(status))
-				.collect(Collectors.toList());
+				.sorted(Comparator.comparing(GameCategory::getGameCategoryId).reversed()).collect(Collectors.toList());
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		return "gamescategory";
 	}

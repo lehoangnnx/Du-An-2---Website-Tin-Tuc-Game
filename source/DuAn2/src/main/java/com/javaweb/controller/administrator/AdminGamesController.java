@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -49,8 +50,8 @@ public class AdminGamesController {
     public String getAllGames(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
         List<Games> gameList = gamesService.findAll()
                 .stream()
-                .filter(x -> x.getStatus().equals(status)).collect(Collectors.toList());
-
+                .filter(x -> x.getStatus().equals(status))
+                .sorted(Comparator.comparing(Games::getGameId).reversed()).collect(Collectors.toList());
         model.addAttribute("gameList", gameList);
         return "games";
     }

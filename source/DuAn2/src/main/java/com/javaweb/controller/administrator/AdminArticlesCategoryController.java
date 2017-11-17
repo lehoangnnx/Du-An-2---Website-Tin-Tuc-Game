@@ -1,5 +1,6 @@
 package com.javaweb.controller.administrator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,8 @@ public class AdminArticlesCategoryController {
 	public String showArticlesCategory(Model model,@RequestParam(name = "status", defaultValue = "active") String status) {
 		List<ArticleCategory> articleCategoriesList = articleCategoryService.findAll()
 				.stream().filter(x -> x.getStatus().equals(status))
-				.collect(Collectors.toList());
+				.sorted(Comparator.comparing(ArticleCategory::getArticleCategoryId).reversed()).collect(Collectors.toList());
+
 		model.addAttribute("articleCategoriesList", articleCategoriesList);
 		return "articlescategory";
 	}
