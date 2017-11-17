@@ -31,9 +31,9 @@
         window.jQuery || document.write('<script src="css/css2/jquery-1.12.0.min.js"><\/script>')
     </script>
     
-<<<<<<< HEAD
+
     <script src="css/css2/megamenu.js"></script>
-=======
+
     <script>
     $(document).ready(function(){
         $(".dropdown").hover(            
@@ -49,7 +49,7 @@
     });
     </script>
     
->>>>>>> 9d6eabe4615809a3c334b4ec0a369d3ba72626df
+
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.min.css"/>
 <style>

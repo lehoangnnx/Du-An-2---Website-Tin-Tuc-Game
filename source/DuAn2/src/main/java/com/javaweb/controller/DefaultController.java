@@ -342,15 +342,13 @@ GameReviewsService gameReviewsService;
         model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
 
-<<<<<<< HEAD
+
         List<Article> getTop10ArticleCategoryNewVideoList = articleService
                 .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryVideo, "active");
         model.addAttribute("getTop10ArticleCategoryNewVideoList", getTop10ArticleCategoryNewVideoList);
         model.addAttribute("title", "Trang Video");
         return "video";
     }
-=======
 
->>>>>>> 9d6eabe4615809a3c334b4ec0a369d3ba72626df
 
 }
