@@ -16,6 +16,8 @@
 <script src="${contextPath}/js/sliderengine/initslider-1.js"></script>
 
 <script src='${contextPath}/js/js/jquery.leanModal.min_.js'></script>
+
+<script src='${contextPath}/js/js/rvslider.min.js'></script>
 <script src='${contextPath}/js/js/rvslider.min.js'></script>
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>

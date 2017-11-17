@@ -23,7 +23,7 @@
 <link rel="stylesheet" type="text/css"
       href="${contextPath}/sliderengine/amazingslider-1.css">
 
-
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.min.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>
      <script src="css/css2/megamenu.js"></script>
