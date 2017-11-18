@@ -220,8 +220,8 @@
                 <div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn fa fa-ellipsis-h" style="color: #0b0b0b"></button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#home">Xóa</a>
-                        <a href="#about">Sửa</a>
+                        <a href="#hihi xóa nè">Xóa</a>
+                        <a href="#hihi sửa nè">Sửa</a>
                     </div>
                 </div>
                 <div class="xemthem"
