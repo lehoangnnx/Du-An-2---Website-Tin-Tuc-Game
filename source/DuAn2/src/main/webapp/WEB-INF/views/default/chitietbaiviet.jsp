@@ -406,7 +406,10 @@
                         <h3>
                             <a href="${contextPath}/${gal.slug}">${gal.title}</a>
                         </h3>
-                        <span class="item-meta"> <a href="${contextPath}/${gal.slug}"><i
+                        <span class="item-meta">
+                            <a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i
+                                    class="fa fa-user"></i>${gal.users.userName}</a>
+                            <a href="${contextPath}/${gal.slug}"><i
                                 class="fa fa-comment-o"></i>${fn:length(gal.comments)}</a> <a
                                 href="${contextPath}/${gal.slug}"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
