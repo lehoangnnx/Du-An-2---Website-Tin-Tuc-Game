@@ -23,9 +23,9 @@
 <link rel="stylesheet" type="text/css"
       href="${contextPath}/sliderengine/amazingslider-1.css">
 
-<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
-<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>
-<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>
+<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>--%>
+<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>--%>
+<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>--%>
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/component-search.css"/>
 
@@ -760,5 +760,50 @@ border: 1px solid #ddd;
         font-weight: bold;
         padding-bottom: 15px;
     }
+
+
+
+
 </style>
-<style></style>
+
+<style>
+    .dropbtn {
+        background-color: #fff;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #f9f2f2;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #F4F4F4;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {background-color: #ffff}
+
+    .show {display:block;}
+</style>
+

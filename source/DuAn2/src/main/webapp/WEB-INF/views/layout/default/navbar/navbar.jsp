@@ -7,7 +7,7 @@
 <header id="navigation">
     <div class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <div class="container" style="margin-top: -10px;">
-            <div class="navbar-header  col-md-3 ">
+            <div class="navbar-header  col-md-2 ">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
                         data-target=".navbar-collapse">
                     <span class="sr-only">Navigation</span> <span class="icon-bar"></span>
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="collapse navbar-collapse  col-md-5">
+            <div class="collapse navbar-collapse  col-md-6">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="scroll active"><a href="${contextPath}/">Trang
                         chủ</a></li>
@@ -158,23 +158,23 @@
                                     <li><a href="${contextPath }/admin/index">Quản Trị</a></li>
                                 </security:authorize>
                                 <security:authorize access="hasRole('GOOGLE')">
-                                    <form:form id="logoutForm" method="POST"
+                                    <form:form id="logoutForm" method="POST" style="margin-left: 7px;"
                                                action="${contextPath}/logout">
                                         <input type="hidden" name="${_csrf.parameterName}"
                                                value="${_csrf.token}"/>
-                                        <button type="submit" onclick="signOut();"
-                                                class="dropdown-item">Đăng Xuất
+                                        <button type="submit" onclick="signOut();"><span class="glyphicon glyphicon-log-out"></span> Logout tài khoản
                                         </button>
                                     </form:form>
 
                                 </security:authorize>
 
                                 <security:authorize access="!hasRole('GOOGLE')">
-                                    <form:form id="logoutForm" method="POST"
+                                    <form:form id="logoutForm" method="POST" style="margin-left: 7px;"
                                                action="${contextPath}/logout">
                                         <input type="hidden" name="${_csrf.parameterName}"
                                                value="${_csrf.token}"/>
-                                        <button type="submit" class="dropdown-item">Đăng Xuất</button>
+
+                                        <button  type="submit"><span class="glyphicon glyphicon-log-out"></span> Logout tài khoản</button>
                                     </form:form>
                                 </security:authorize>
 

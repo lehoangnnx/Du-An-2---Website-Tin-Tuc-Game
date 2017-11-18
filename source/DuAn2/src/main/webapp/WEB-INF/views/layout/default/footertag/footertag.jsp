@@ -5,7 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <script type="text/javascript"
         src="${contextPath}/js/js/jquery-latest.min.js"></script>
-<script type="text/javascript" src="${contextPath}/js/js/jquery.js"></script>
+<%--<script type="text/javascript" src="${contextPath}/js/js/jquery.js"></script>--%>
 <script type="text/javascript"
         src="${contextPath}/js/js/bootstrap.min.js"></script>
 <script type="text/javascript"
@@ -22,7 +22,6 @@
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-<script src="${contextPath}/js/js/megamenu.js"></script>
 <script src="${contextPath}/js/js/classie-search.js"></script>
 <script>
     $('#morphsearch').click(function () {
@@ -83,20 +82,6 @@
         /***** for demo purposes only: don't allow to submit the form *****/
         morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
     })();
-</script>
-<script>
-    $(document).ready(function(){
-        $(".dropdown").hover(
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("500");
-                $(this).toggleClass('open');
-            },
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("500");
-                $(this).toggleClass('open');
-            }
-        );
-    });
 </script>
 <script>
     jQuery(function($){
@@ -659,6 +644,27 @@
         // Animate loader off screen
         $("#LoadingImage").hide();
     });
+</script>
+<%--Xóa sửa bình luận--%>
+<script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 </script>
 
 

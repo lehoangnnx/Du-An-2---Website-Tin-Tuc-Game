@@ -215,11 +215,15 @@
                 </div>
                 <div class="content-panel-body comment-list">
                     <ol id="comments">
-
                     </ol>
                 </div>
-
-
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn fa fa-ellipsis-h" style="color: #0b0b0b"></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#home">Xóa</a>
+                        <a href="#about">Sửa</a>
+                    </div>
+                </div>
                 <div class="xemthem"
                      style="padding: 10px 1px; text-align: center; background: #f7f7f7; margin-bottom: 20px;">
                     <div id="LoadingGifSmall">
