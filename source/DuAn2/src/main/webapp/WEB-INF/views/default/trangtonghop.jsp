@@ -22,7 +22,7 @@
 							<div class="rvs-item-stage">
 								<c:forEach var="gacnvl" items="${getTop10ArticleCategoryNewVideoList}">
 									<!-- The below is a single item, simply duplicate this layout for each item -->
-									<div class="rvs-item" style="background-image: url(images/articles/${gacnvl.imagesThumbnail})">
+									<div class="rvs-item" style="background-image: url('images/articles/${gacnvl.imagesThumbnail}')">
 										<p class="rvs-item-text">${gacnvl.title}
 											<small>${gacnvl.views} Lượt Xem</small>
 										</p>
@@ -40,7 +40,7 @@
 									<!-- The below is the corresponding nav item for the single item, simply duplicate this layout for each item -->
 									<a class="rvs-nav-item">
                                             <span class="rvs-nav-item-thumb"
-												  style="background-image: url(images/articles/${gacnvl.imagesThumbnail})"></span>
+												  style="background-image: url('images/articles/${gacnvl.imagesThumbnail}')"></span>
 										<h4 class="rvs-nav-item-title">${gacnvl.title}</h4>
 										<small class="rvs-nav-item-credits">${gacnvl.views} Lượt Xem</small>
 									</a>

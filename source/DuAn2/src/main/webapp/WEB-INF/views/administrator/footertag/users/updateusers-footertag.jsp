@@ -190,19 +190,34 @@
 	});
 </script>
 <script>
-    $("#formArticle").validate({
+    $("#formUser").validate({
         rules : {
-            title: {
-                required: true,
-                maxlength: 100
+            email: {
+              required : true,
+				email : true
+			},
+            roleses: {
+                required : true
+			},
+            avatar : {
+                required : true,
+                accept: "image/*"
             }
         },
 		messages : {
-            title : {
-                required : "Vui Lòng Nhập Tiêu Đề",
-                maxlength : "Tiêu Đề Không Dài Hơn 100 Ký Tự"
+            email: {
+              required : "Vui Lòng Nhập Email",
+				email : "Vui Lòng Nhập Đúng Email"
+			},
+            roleses: {
+                required : "Vui Lòng Chọn Quyền"
+            },
+            avatar : {
+                required : "Vui Lòng Chọn Ảnh",
+                accept : "Vui Lòng Chọn File Ảnh"
             }
         }
+
 	});
 
 </script>

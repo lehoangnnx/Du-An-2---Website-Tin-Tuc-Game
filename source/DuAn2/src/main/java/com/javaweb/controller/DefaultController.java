@@ -198,8 +198,7 @@ public class DefaultController {
 
     @ModelAttribute("articleCategoryList")
     public List<ArticleCategory> getCategory() {
-        List<ArticleCategory> articleCategoryList = articleCategoryService.findAll()
-                .stream().filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+        List<ArticleCategory> articleCategoryList = articleCategoryService.findAllByStatusOrderBySortOrderAsc("active");
 
         return articleCategoryList;
 
@@ -299,6 +298,7 @@ public class DefaultController {
                 }
                 model.addAttribute("articleLikeList", articleLikeList);
                 model.addAttribute("userOfArticleLike", userOfArticleLike);
+
                 return "chitiet";
             } else if (articleCategory != null) {
                 if(articleCategory.getName().equals("Video")){
@@ -353,6 +353,7 @@ public class DefaultController {
                 model.addAttribute("currentpage", page);
                 model.addAttribute("pagecount", pageCount);
                 model.addAttribute("title", "Tin Mới");
+
                 return "tonghop";
             } else {
                 model.addAttribute("title", "Trang Thông Báo Lỗi 404");
@@ -373,6 +374,10 @@ public class DefaultController {
         model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
     }
-
+    @RequestMapping("/search")
+    String search(Model model,@RequestParam("q") String q) {
+        model.addAttribute("title", q);
+        return "tonghop";
+    }
 
 }

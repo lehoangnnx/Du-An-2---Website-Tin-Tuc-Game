@@ -204,6 +204,7 @@
                      </c:choose>
                   </c:forEach>
                </div>
+               <label id="roleses-error" class="error" for="roleses"></label>
             </div>
          </div>
          <!-- <div class="form-group row  ">
@@ -218,9 +219,10 @@
             <label class="col-md-2 control-label" for="form_control_1">Ảnh
             Đại Diện</label>
             <div class="col-md-10">
-               <input name="avatar" type="file" id="input-file-max-fs"
+               <input name="avatar" type="file" id="input-file-max-fs" accept="image/*"
                   value="${user.avatar}" class="dropify" data-max-file-size="15M"
                   data-default-file="${contextPath}/images/avatar/${user.avatar}">
+               <label id="avatar-error" class="error" for="avatar"></label>
             </div>
          </div>
          <input type="hidden" name="${_csrf.parameterName}"

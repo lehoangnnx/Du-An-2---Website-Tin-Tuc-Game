@@ -52,9 +52,10 @@
 <!-- Neptune JS -->
 <script type="text/javascript" src="${contextPath}/js/js/app.js"></script>
 <script type="text/javascript" src="${contextPath}/js/js/demo.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/js/js/tables-datatable.js"></script>
+<script type="text/javascript" src="${contextPath}/js/js/tables-datatable.js"></script>
 
+<script type="text/javascript" src="${contextPath}/js/sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript" src="${contextPath}/js/js/ui-notifications.js"></script>
 <!-- Check All Checkbox Table Users -->
 <script type="text/javascript">
     $('#allcb').change(function() {

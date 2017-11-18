@@ -70,7 +70,7 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<td><div style="text-align: center;"><button onclick="deleteAll();" data-toggle="modal" data-target="#myModal"  class="btn btn-danger">Xóa Nhiều</button></div></td>
+									<td><div style="text-align: center;"><button onclick="deleteAll();"  data-toggle="modal" data-target="#myModal"  class="btn btn-danger">Xóa Nhiều</button></div></td>
 									<th>User Name</th>
 
 									<th>Quyền</th>

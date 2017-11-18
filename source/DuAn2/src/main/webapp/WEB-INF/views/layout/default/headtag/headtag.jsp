@@ -23,29 +23,11 @@
 <link rel="stylesheet" type="text/css"
       href="${contextPath}/sliderengine/amazingslider-1.css">
 
-<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.min.css"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>
-     <script src="css/css2/megamenu.js"></script>
-<script>
-    window.jQuery || document.write('<script src="css/css2/jquery-1.12.0.min.js"><\/script>')
-</script>
 
-<script>
-    $(document).ready(function(){
-        $(".dropdown").hover(
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-                $(this).toggleClass('open');
-            },
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-                $(this).toggleClass('open');
-            }
-        );
-    });
-</script>
-
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/component-search.css"/>
 
 <style>
     body {

@@ -19,7 +19,7 @@
 
 		<!-- Neptune CSS -->
 		<link rel="stylesheet" href="${contextPath}/css/css/core.css">
-		
+<link rel="stylesheet" href="${contextPath}/css/sweetalert2/sweetalert2.min.css">
 		<style>
 .add, .updateAndDelete {
 	text-align: center;

@@ -260,6 +260,8 @@
 			    $("#mainContent-error").text("Vui Lòng Nhập Nội Dung");
 			    // cancel submit
 			    e.preventDefault();
+			  }else {
+                  $("#mainContent-error").text("");
 			  }
 			  
 			})

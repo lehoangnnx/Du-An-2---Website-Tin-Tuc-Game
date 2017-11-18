@@ -39,4 +39,5 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	List<Article> findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, String status, Date date);
 
+
 }

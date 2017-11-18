@@ -62,7 +62,7 @@
 	<tiles:insertAttribute name="footer" />
 	
 	<tiles:insertAttribute name="footertag" />
-
+	<tiles:insertAttribute name="scriptfootertag" />
 </body>
 
 </html>

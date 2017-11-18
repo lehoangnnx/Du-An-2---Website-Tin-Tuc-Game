@@ -42,4 +42,9 @@ public class ArticleCategoryServcieImpl implements ArticleCategoryService {
 	
 		return articleCategoryRepository.findBySlug(slug);
 	}
+
+	@Override
+	public List<ArticleCategory> findAllByStatusOrderBySortOrderAsc(String status) {
+		return articleCategoryRepository.findAllByStatusOrderBySortOrderAsc(status);
+	}
 }
