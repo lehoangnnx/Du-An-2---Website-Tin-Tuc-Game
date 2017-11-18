@@ -13,8 +13,8 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     List<Comment> findTop10ByStatusOrderByCreatedDateDesc(String status);
-    List<Comment> findAllByStatusAndSubCommentId(String status,Integer subCommentId ,Pageable pageable);
-    List<Comment> findAllByStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(String status,Integer subCommentId);
+    List<Comment> findAllByArticleAndStatusAndSubCommentId(Article article ,String status,Integer subCommentId,Pageable pageable);
+    List<Comment> findAllByArticleAndStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(Article article,String status ,Integer subCommentId);
     Long countByArticle(Article article);
 
 }

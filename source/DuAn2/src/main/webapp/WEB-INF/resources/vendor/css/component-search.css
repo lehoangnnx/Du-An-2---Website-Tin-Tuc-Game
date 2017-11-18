@@ -11,10 +11,12 @@ body {
 	width: 200px;
 	min-height: 40px;
 	background: #f1f1f1;
-	position: absolute;
-	z-index: 10000;
+	/*position: absolute;
+
 	top: 50px;
-	right: 50px;
+	right: 50px;*/
+	top: 20px;
+	z-index: 10000;
 	-webkit-transform-origin: 100% 0;
 	transform-origin: 100% 0;
 	-webkit-transition-property: min-height, width, top, right;
@@ -30,6 +32,8 @@ body {
 	min-height: 100%;
 	top: 0px;
 	right: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .morphsearch-form {

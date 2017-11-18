@@ -1,4 +1,4 @@
-
+<%@ page pageEncoding="UTF-8" %>
 <script>
     var timeout1 = null;
     var page = 2;

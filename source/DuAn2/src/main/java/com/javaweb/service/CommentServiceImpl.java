@@ -26,13 +26,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> findAllByStatusAndSubCommentId(String status, Integer subCommentId, Pageable pageable) {
-        return commentRepository.findAllByStatusAndSubCommentId(status,subCommentId,pageable);
+    public List<Comment> findAllByArticleAndStatusAndSubCommentId(Article article, String status, Integer subCommentId,Pageable pageable) {
+        return commentRepository.findAllByArticleAndStatusAndSubCommentId(article,status,subCommentId,pageable);
     }
 
     @Override
-    public List<Comment> findAllByStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(String status, Integer subCommentId) {
-        return commentRepository.findAllByStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(status,subCommentId);
+    public List<Comment> findAllByArticleAndStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(Article article,String status, Integer subCommentId) {
+        return commentRepository.findAllByArticleAndStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(article,status,subCommentId);
     }
 
     @Override

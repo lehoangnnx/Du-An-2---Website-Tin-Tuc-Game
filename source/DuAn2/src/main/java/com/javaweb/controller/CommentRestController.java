@@ -68,26 +68,28 @@ public class CommentRestController {
 
         }
 
-        return getAllcommentPaging(0,authentication,request);
+        return getAllcommentPaging(0,articleId,authentication,request);
     }
 
     @GetMapping("/getcomment")
-    public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "0") Integer page,
+    public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam("articleId") Integer articleId,
                                           Authentication authentication, HttpServletRequest request){
 
-        return getAllcommentPaging(page,authentication,request);
+        return getAllcommentPaging(page,articleId,authentication,request);
     }
 
 
-    public Map<String, Object> getAllcommentPaging(Integer page, Authentication authentication, HttpServletRequest request){
+    public Map<String, Object> getAllcommentPaging(Integer page, Integer articleId,
+                                                   Authentication authentication, HttpServletRequest request){
 
         int userIdLogin = 0;
         if (authentication != null) {
             userIdLogin = usersService.findByUserName(authentication.getName()).getUserId();
         }
-        List<Comment> commentParentPage = commentService.findAllByStatusAndSubCommentId("active", 0,
+        Article article = articleService.findByArticleId(articleId);
+        List<Comment> commentParentPage = commentService.findAllByArticleAndStatusAndSubCommentId(article,"active", 0,
                 new PageRequest(page, 10,new Sort( Sort.Direction.DESC,"createdDate")));
-        List<Comment> commentChild = commentService.findAllByStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc("active", 0);
+        List<Comment> commentChild = commentService.findAllByArticleAndStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(article,"active", 0);
         List<Map<String, Object>> commentParentListMap = new ArrayList<Map<String, Object>>();
         List<Map<String, Object>> commentChildListMap = new ArrayList<Map<String, Object>>();
         Map<String, Object> commentAllMap = new HashMap<String, Object>();

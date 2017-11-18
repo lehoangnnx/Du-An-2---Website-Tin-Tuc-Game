@@ -25,6 +25,9 @@
 <script src="${contextPath}/js/js/megamenu.js"></script>
 <script src="${contextPath}/js/js/classie-search.js"></script>
 <script>
+    $('#morphsearch').click(function () {
+
+    });
     (function() {
         var morphSearch = document.getElementById( 'morphsearch' ),
             input = morphSearch.querySelector( 'input.morphsearch-input' ),
@@ -32,11 +35,13 @@
             isOpen = isAnimating = false,
             // show/hide search area
             toggleSearch = function(evt) {
+
                 // return if open and the input gets focused
-                if( evt.type.toLowerCase() === 'focus' && isOpen ) return false;
+                if( evt.type.toLowerCase() === 'focus' && isOpen )  return false;
 
                 var offsets = morphsearch.getBoundingClientRect();
                 if( isOpen ) {
+                    $('#morphsearch').removeAttr("style");
                     classie.remove( morphSearch, 'open' );
 
                     // trick to hide input text once the search overlay closes
@@ -54,6 +59,7 @@
                     input.blur();
                 }
                 else {
+                    $('#morphsearch').css("position", "fixed");
                     classie.add( morphSearch, 'open' );
                 }
                 isOpen = !isOpen;
@@ -65,9 +71,11 @@
         // esc key closes search overlay
         // keyboard navigation events
         document.addEventListener( 'keydown', function( ev ) {
+
             var keyCode = ev.keyCode || ev.which;
             if( keyCode === 27 && isOpen ) {
                 toggleSearch(ev);
+
             }
         } );
 

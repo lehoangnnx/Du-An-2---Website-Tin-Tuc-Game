@@ -1,4 +1,4 @@
-
+<%@ page pageEncoding="UTF-8" %>
 <!-- Thích Bài Viết -->
 <script>
 $('#likearticle').click(function(){
@@ -247,6 +247,7 @@ $('#likearticle').click(function(){
 
         clearTimeout(timeout);
         timeout = setTimeout(function () {
+            var articleId = $('#articleId').val();
             $('#morecomment').hide();
             $("#LoadingGifSmall").show();
             $.ajax({
@@ -254,7 +255,11 @@ $('#likearticle').click(function(){
                 type: "GET",
                 //contentType: "application/json",
                 url: "${pageContext.request.contextPath}/getcomment?page=" + page,
+                data: {
 
+                    articleId: articleId
+
+                },
                 //dataType: 'json',
                 // timeout: 600000,
                 success: function (result) {
