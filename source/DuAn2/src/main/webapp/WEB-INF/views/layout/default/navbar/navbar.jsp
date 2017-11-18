@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="collapse navbar-collapse col-md-4  ">
+            <div class="collapse navbar-collapse  col-md-5">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="scroll active"><a href="${contextPath}/">Trang
                         chủ</a></li>
@@ -33,10 +33,10 @@
                     </c:forEach>
 
 
-                    <li class="dropdown mega-dropdown" ><a href="#"
+                   <%-- <li class="dropdown mega-dropdown" ><a href="#"
                                                           class="dropdown-toggle" data-toggle="dropdown">Khác<span
                             class="caret"></span></a>
-                        <ul class="dropdown-menu mega-dropdown-menu" >
+                        <ul class="dropdown-menu mega-dropdown-menu " >
                             <li class="col-sm-3">
                                 <ul>
                                     <li class="dropdown-header">Tin Nổi Bật</li>
@@ -66,9 +66,9 @@
                                     </a>
                                     </div>
                                     <!-- /.carousel -->
-                                    <%--<li class="divider"></li>
+                                    &lt;%&ndash;<li class="divider"></li>
                                     <li><a href="#">Hiển thị nhiều hơn <span
-                                            class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>--%>
+                                            class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>&ndash;%&gt;
                                 </ul>
                             </li>
                             <li class="col-sm-3" style="padding-left: 40px;">
@@ -106,8 +106,31 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li>--%>
+                    <li class="dropdown"><a class="dropdown-toggle"
+                                            data-toggle="dropdown" href="#">Game<span class="caret"></span></a>
+                        <ul class="dropdown-menu ">
+                            <c:forEach var="atl" items="${articleCategoryList}">
+                                <c:if test="${atl.sortOrder == 2}">
+                                    <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+                                </c:if>
 
+                            </c:forEach>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle"
+                                            data-toggle="dropdown" href="#">Khác<span class="caret"></span></a>
+                        <ul class="dropdown-menu ">
+                            <c:forEach var="atl" items="${articleCategoryList}">
+                                <c:if test="${atl.sortOrder > 2}">
+                                    <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+                                </c:if>
+
+                            </c:forEach>
+
+                        </ul>
+                    </li>
                     <!-- ${pageContext.request.userPrincipal.name}
 					//${pageContext.request.userPrincipal.authorities}   -->
 
@@ -186,7 +209,7 @@
                         </c:if>
                         </c:forEach>
                     </div>
-                    
+
                 </div><!-- /morphsearch-content -->
                 <span class="morphsearch-close"></span>
             </div>
