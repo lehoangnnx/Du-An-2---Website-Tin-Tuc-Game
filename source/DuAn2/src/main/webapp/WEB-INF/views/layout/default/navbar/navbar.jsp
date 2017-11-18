@@ -187,8 +187,6 @@
                             Nhập</a></li>
 
                     </security:authorize>
-
-
                 </ul>
             </div>
 
@@ -209,7 +207,6 @@
                         </c:if>
                         </c:forEach>
                     </div>
-
                 </div><!-- /morphsearch-content -->
                 <span class="morphsearch-close"></span>
             </div>
@@ -221,10 +218,6 @@
 </header>
 <!--/Đóng header-->
 <!--/Tìm kiếm-->
-
-
-
-
 
 <!--/Đóng tìm kiếm-->
 <div class="content" style="padding-top: 100px;">
@@ -245,11 +238,7 @@
                                 <a href="${contextPath}/${gahav.slug} "
                                    style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
                             </c:forEach>
-
-
                         </marquee>
-
-
                     </div>
                     <!-- END .ot-breaking-news-body -->
                 </div>
