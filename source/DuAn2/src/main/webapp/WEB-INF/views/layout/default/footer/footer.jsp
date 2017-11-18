@@ -156,5 +156,5 @@
 
 	</footer>
 	<div id="LoadingImage" style="display: none">
-  <img src="${contextPath }/images/loadingPage.gif" />
+  <img src="${contextPath }/images/loadinggg.gif" />
 </div>
