@@ -11,4 +11,5 @@ public interface GameCategoryService {
 	GameCategory findByName(String name);
 	GameCategory findBySlug(String slug);
 	void saveorupdate(GameCategory gameCategory);
+	List<GameCategory> findAllByStatusOrderBySortOrderDesc(String status);
 }

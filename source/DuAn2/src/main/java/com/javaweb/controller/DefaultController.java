@@ -203,6 +203,13 @@ public class DefaultController {
         return articleCategoryList;
 
     }
+    @ModelAttribute("gamesCategoryList")
+    public List<GameCategory> gamesCategoryList() {
+        List<GameCategory> articleCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
+
+        return articleCategoryList;
+
+    }
 
 
     @RequestMapping("/{slug}")

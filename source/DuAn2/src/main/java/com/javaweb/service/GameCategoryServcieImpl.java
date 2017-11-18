@@ -42,6 +42,9 @@ public class GameCategoryServcieImpl implements GameCategoryService{
 	public void saveorupdate(GameCategory gameCategory) {
 		gameCategoryRepository.save(gameCategory);
 	}
-	
-    
+
+	@Override
+	public List<GameCategory> findAllByStatusOrderBySortOrderDesc(String status) {
+		return gameCategoryRepository.findAllByStatusOrderBySortOrderDesc(status);
+	}
 }
