@@ -140,7 +140,10 @@
                             <h3>
                                 <a href="${gacnskl.slug}">${gacnskl.title}</a>
                             </h3>
-                            <span class="item-meta"> <a href="${contextPath}/${gacnskl.slug}"><i
+                            <span class="item-meta">
+                                <a style="font-weight: bold;" href="${contextPath}/${gacnskl.slug}"><i
+                                        class="fa fa-user"></i>${gacnskl.users.userName}</a>
+                                <a href="${contextPath}/${gacnskl.slug}"><i
                                     class="fa fa-comment-o"></i>${fn:length(gacnskl.comments)} Bình luận</a> <a
                                     href="${contextPath}/${gacnskl.slug}"><i
                                     class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
