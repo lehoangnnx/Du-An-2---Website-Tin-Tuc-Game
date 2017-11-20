@@ -105,10 +105,10 @@ $('#likearticle').click(function(){
         }
     };
     function replysubcomment(userName,avatar,commentId,subCommentId, usersBySubUserId, usersBySubUserName) {
-        $('#showreplycomment'+ commentId).html( "<a href=\"#\" class=\"image-avatar\"> <img src=\""+avatar+"\" data-ot-retina=\""+avatar+"\" alt=\"\" title=\"\">\n" +
+        $('#showreplycomment'+ commentId).html( "<a href=\"javascript:void(0)\" class=\"image-avatar\"> <img src=\""+avatar+"\" data-ot-retina=\""+avatar+"\" alt=\"\" title=\"\">\n" +
             " </a>\n" +
             " <div class=\"comment-text\" style=\"width: auto; overflow: hidden;\">\n" +
-            " <strong class=\"user-nick\"><a href=\"#\">"+userName+"</a> <span id=\"msgsubcomment"+commentId+"\"></span></strong>\n" +
+            " <strong class=\"user-nick\"><a href=\"javascript:void(0)\">"+userName+"</a> <span id=\"msgsubcomment"+commentId+"\"></span></strong>\n" +
             "<textarea onkeydown=\"checkcontent("+commentId+");\" onkeyup=\"checkcontent("+commentId+");\" onkeypress=\"checkcontent("+commentId+");\" id=\"content"+commentId+"\" name=\"content\" placeholder=\"Viết bình luận của bạn..\" style=\"width: 100%; height: 100px;\"></textarea>\n" +
             " <p class=\"form-submit\">\n" +
             " <input id=\"btn-replycomment"+commentId+"\" disabled name=\"submit\" type=\"submit\" onclick=\"postreplycomment("+commentId+","+subCommentId+","+usersBySubUserId+");\" class=\"submit button\" value=\"Trả Lời\">\n" +
@@ -130,10 +130,10 @@ $('#likearticle').click(function(){
         console.log($('#usersBySubUserId').val() + $('#subCommentId').val());*/
     };
     function showUpdateComment(userName,avatar,commentId,subCommentId, usersBySubUserId, usersBySubUserName) {
-        $('#showreplycomment'+ commentId).html( "<a href=\"#\" class=\"image-avatar\"> <img src=\""+avatar+"\" data-ot-retina=\""+avatar+"\" alt=\"\" title=\"\">\n" +
+        $('#showreplycomment'+ commentId).html( "<a href=\"javascript:void(0)\" class=\"image-avatar\"> <img src=\""+avatar+"\" data-ot-retina=\""+avatar+"\" alt=\"\" title=\"\">\n" +
             " </a>\n" +
             " <div class=\"comment-text\" style=\"width: auto; overflow: hidden;\">\n" +
-            " <strong class=\"user-nick\"><a href=\"#\">"+userName+"</a> <span id=\"msgsubcomment"+commentId+"\"></span></strong>\n" +
+            " <strong class=\"user-nick\"><a href=\"javascript:void(0)\">"+userName+"</a> <span id=\"msgsubcomment"+commentId+"\"></span></strong>\n" +
             "<textarea onkeydown=\"checkcontent("+commentId+");\" onkeyup=\"checkcontent("+commentId+");\" onkeypress=\"checkcontent("+commentId+");\" id=\"content"+commentId+"\" name=\"content\" placeholder=\"Viết bình luận của bạn..\" style=\"width: 100%; height: 100px;\"></textarea>\n" +
             " <p class=\"form-submit\">\n" +
             " <input id=\"btn-updatecomment"+commentId+"\" disabled name=\"submit\" type=\"submit\" onclick=\"postupdatecomment("+commentId+");\" class=\"submit button\" value=\"Trả Lời\">\n" +
@@ -222,7 +222,7 @@ $('#likearticle').click(function(){
                         if (result.commentchild[j].subCommentId !== 0 && result.commentchild[j].subCommentId === subCommentId){
                             var checkuserIdLoginCommentChild = '';
                             if(result.userIdLogin != result.commentchild[j].usersByUserId ){
-                                checkuserIdLoginCommentChild = " <span class=\"item-meta\"> <a href=\"#\"><i\n" +
+                                checkuserIdLoginCommentChild = " <span class=\"item-meta\"> <a href=\"javascript:void(0)\"><i\n" +
                                     "      class=\"fa fa-thumbs-o-up\"></i> Thích</a>\n" +
                                     "       <a class=\"replycomment\"\n" +
                                     "       onclick=\"replysubcomment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+subCommentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\"\n" +
@@ -237,8 +237,8 @@ $('#likearticle').click(function(){
                                 editcommentchild ="<div class=\"dropdown time-stamp pull-right right\">\n" +
                                     "   <button onclick=\"myFunction("+result.commentchild[j].commentId+")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
                                     "  <div id=\"myDropdown"+result.commentchild[j].commentId+"\" class=\"dropdown-content\">\n" +
-                                    "  <a onclick=\"showModelDeleteComment("+result.commentchild[j].commentId+");\" href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                    "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+subCommentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\" href=\"#\">Sửa</a>\n" +
+                                    "  <a onclick=\"showModelDeleteComment("+result.commentchild[j].commentId+");\" href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
+                                    "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+subCommentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\" href=\"javascript:void(0)\">Sửa</a>\n" +
                                     "   </div>\n" +
                                     "  </div>" ;
                             }
@@ -246,7 +246,7 @@ $('#likearticle').click(function(){
                             childcomment += "<ul class=\"children\">\n" +
                                 "   <li class=\"comment\">\n" +
                                 "    <div class=\"comment-block\">\n" +
-                                "    <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                 "    src=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                 "    data-ot-retina=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                 "     alt=\"\"\n" +
@@ -256,7 +256,7 @@ $('#likearticle').click(function(){
                                 "     <strong\n" +
                                 "     class=\"user-nick\">" +
                                 editcommentchild +
-                                "<a href=\"#\">"+result.commentchild[j].usersByUserUserName +"</a>\n" +
+                                "<a href=\"javascript:void(0)\">"+result.commentchild[j].usersByUserUserName +"</a>\n" +
 
                                 "<span class=\"time-stamp \">"+result.commentchild[j].modifiedDate+"</span>\n" +
                                 "</strong>\n" +
@@ -357,8 +357,8 @@ $('#likearticle').click(function(){
                                             editcommentchild ="<div class=\"dropdown time-stamp pull-right right\">\n" +
                                                 "   <button onclick=\"myFunction("+result.commentchild[j].commentId+")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
                                                 "  <div id=\"myDropdown"+result.commentchild[j].commentId+"\" class=\"dropdown-content\">\n" +
-                                                "  <a onclick=\"showModelDeleteComment("+result.commentchild[j].commentId+");\" href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                                "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+result.commentparent[i].commentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\" href=\"#\">Sửa</a>\n" +
+                                                "  <a onclick=\"showModelDeleteComment("+result.commentchild[j].commentId+");\" href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
+                                                "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+result.commentparent[i].commentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\" href=\"javascript:void(0)\">Sửa</a>\n" +
                                                 "   </div>\n" +
                                                 "  </div>" ;
                                         }
@@ -366,7 +366,7 @@ $('#likearticle').click(function(){
                                         childcomment += "<ul class=\"children\">\n" +
                                             "   <li class=\"comment\">\n" +
                                             "    <div class=\"comment-block\">\n" +
-                                            "    <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                            "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                             "    src=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                             "    data-ot-retina=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                             "     alt=\"\"\n" +
@@ -376,7 +376,7 @@ $('#likearticle').click(function(){
                                             "     <strong\n" +
                                             "     class=\"user-nick\">" +
                                             editcommentchild +
-                                            "<a href=\"#\">"+result.commentchild[j].usersByUserUserName +"</a>\n" +
+                                            "<a href=\"javascript:void(0)\">"+result.commentchild[j].usersByUserUserName +"</a>\n" +
 
                                             "<span class=\"time-stamp \">"+result.commentchild[j].modifiedDate+"</span>\n" +
                                             "</strong>\n" +
@@ -414,14 +414,14 @@ $('#likearticle').click(function(){
                                     editcommentparen ="<div class=\"dropdown time-stamp pull-right right\">\n" +
                                         "   <button onclick=\"myFunction("+result.commentparent[i].commentId+")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
                                         "  <div id=\"myDropdown"+result.commentparent[i].commentId+"\" class=\"dropdown-content\">\n" +
-                                        "  <a onclick=\"showModelDeleteComment("+result.commentparent[i].commentId+");\" href=\"#\"data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                        "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentparent[i].commentId+","+result.commentparent[i].commentId+","+result.commentparent[i].usersByUserId+",'"+result.commentparent[i].usersByUserUserName+"');\" href=\"#\">Sửa</a>\n" +
+                                        "  <a onclick=\"showModelDeleteComment("+result.commentparent[i].commentId+");\" href=\"javascript:void(0)\"data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
+                                        "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentparent[i].commentId+","+result.commentparent[i].commentId+","+result.commentparent[i].usersByUserId+",'"+result.commentparent[i].usersByUserUserName+"');\" href=\"javascript:void(0)\">Sửa</a>\n" +
                                         "   </div>\n" +
                                         "  </div>" ;
                                 }
                                 html += "  <li  class=\"comment\">\n" +
                                     " <div id=\"comment"+result.commentparent[i].commentId+"\" class=\"comment-block\">\n" +
-                                    "  <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                    "  <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                     "  src=\" " + result.commentparent[i].usersByUserAvatar + " \" \n" +
                                     "   data-ot-retina=\"" + result.commentparent[i].usersByUserAvatar + " \"\n" +
                                     "   alt=\"\"\n" +
@@ -431,7 +431,7 @@ $('#likearticle').click(function(){
                                     "    <strong\n" +
                                     "      class=\"user-nick\">" +
                                     editcommentparen+
-                                    "<a href=\"#\"> "+result.commentparent[i].usersByUserUserName +" </a>" +
+                                    "<a href=\"javascript:void(0)\"> "+result.commentparent[i].usersByUserUserName +" </a>" +
                                     "<span class=\"time-stamp \">"+result.commentparent[i].modifiedDate+"</span>" +
                                     "</strong>\n" +
                                     "       <div class=\"shortcode-content\">\n" +
@@ -510,7 +510,7 @@ $('#likearticle').click(function(){
                                     if (result.commentchild[j].subCommentId !== 0 && result.commentchild[j].subCommentId === result.commentparent[i].commentId){
                                             var checkuserIdLoginCommentChild = '';
                                             if(result.userIdLogin != result.commentchild[j].usersByUserId ){
-                                                checkuserIdLoginCommentChild = " <span class=\"item-meta\"> <a href=\"#\"><i\n" +
+                                                checkuserIdLoginCommentChild = " <span class=\"item-meta\"> <a href=\"javascript:void(0)\"><i\n" +
                                                     "      class=\"fa fa-thumbs-o-up\"></i> Thích</a>\n" +
                                                     "       <a class=\"replycomment\"\n" +
                                                     "       onclick=\"replysubcomment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+result.commentparent[i].commentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\"\n" +
@@ -525,8 +525,8 @@ $('#likearticle').click(function(){
                                             editcommentchild ="<div class=\"dropdown time-stamp pull-right right\">\n" +
                                                 "   <button onclick=\"myFunction("+result.commentchild[j].commentId+")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
                                                 "  <div id=\"myDropdown"+result.commentchild[j].commentId+"\" class=\"dropdown-content\">\n" +
-                                                "  <a onclick=\"showModelDeleteComment("+result.commentchild[j].commentId+");\" href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                                "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+result.commentparent[i].commentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\" href=\"#\">Sửa</a>\n" +
+                                                "  <a onclick=\"showModelDeleteComment("+result.commentchild[j].commentId+");\" href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
+                                                "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentchild[j].commentId+","+result.commentparent[i].commentId+","+result.commentchild[j].usersByUserId+",'"+result.commentchild[j].usersByUserUserName+"' );\" href=\"javascript:void(0)\">Sửa</a>\n" +
                                                 "   </div>\n" +
                                                 "  </div>" ;
                                         }
@@ -534,7 +534,7 @@ $('#likearticle').click(function(){
                                         childcomment += "<ul class=\"children\">\n" +
                                             "   <li class=\"comment\">\n" +
                                             "    <div class=\"comment-block\">\n" +
-                                            "    <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                            "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                             "    src=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                             "    data-ot-retina=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                             "     alt=\"\"\n" +
@@ -544,7 +544,7 @@ $('#likearticle').click(function(){
                                             "     <strong\n" +
                                             "     class=\"user-nick\">" +
                                             editcommentchild +
-                                            "<a href=\"#\">"+result.commentchild[j].usersByUserUserName +"</a>\n" +
+                                            "<a href=\"javascript:void(0)\">"+result.commentchild[j].usersByUserUserName +"</a>\n" +
 
                                             "<span class=\"time-stamp \">"+result.commentchild[j].modifiedDate+"</span>\n" +
                                             "</strong>\n" +
@@ -582,14 +582,14 @@ $('#likearticle').click(function(){
                                     editcommentparen ="<div class=\"dropdown time-stamp pull-right right\">\n" +
                                         "   <button onclick=\"myFunction("+result.commentparent[i].commentId+")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
                                         "  <div id=\"myDropdown"+result.commentparent[i].commentId+"\" class=\"dropdown-content\">\n" +
-                                        "  <a onclick=\"showModelDeleteComment("+result.commentparent[i].commentId+");\" href=\"#\"data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                        "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentparent[i].commentId+","+result.commentparent[i].commentId+","+result.commentparent[i].usersByUserId+",'"+result.commentparent[i].usersByUserUserName+"');\" href=\"#\">Sửa</a>\n" +
+                                        "  <a onclick=\"showModelDeleteComment("+result.commentparent[i].commentId+");\" href=\"javascript:void(0)\"data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
+                                        "   <a onclick=\"showUpdateComment('"+result.userName+"' ,'"+result.avatar+"' ,"+result.commentparent[i].commentId+","+result.commentparent[i].commentId+","+result.commentparent[i].usersByUserId+",'"+result.commentparent[i].usersByUserUserName+"');\" href=\"javascript:void(0)\">Sửa</a>\n" +
                                         "   </div>\n" +
                                         "  </div>" ;
                                 }
                                 html += "  <li  class=\"comment\">\n" +
                                     " <div id=\"comment"+result.commentparent[i].commentId+"\" class=\"comment-block\">\n" +
-                                    "  <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                    "  <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                     "  src=\" " + result.commentparent[i].usersByUserAvatar + " \" \n" +
                                     "   data-ot-retina=\"" + result.commentparent[i].usersByUserAvatar + " \"\n" +
                                     "   alt=\"\"\n" +
@@ -599,7 +599,7 @@ $('#likearticle').click(function(){
                                     "    <strong\n" +
                                     "      class=\"user-nick\">" +
                                     editcommentparen+
-                                    "<a href=\"#\"> "+result.commentparent[i].usersByUserUserName +" </a>" +
+                                    "<a href=\"javascript:void(0)\"> "+result.commentparent[i].usersByUserUserName +" </a>" +
                                     "<span class=\"time-stamp \">"+result.commentparent[i].modifiedDate+"</span>" +
                                     "</strong>\n" +
                                     "       <div class=\"shortcode-content\">\n" +
@@ -631,7 +631,7 @@ $('#likearticle').click(function(){
                                             childcomment += "<ul class=\"children\">\n" +
                                                 "   <li class=\"comment\">\n" +
                                                 "    <div class=\"comment-block\">\n" +
-                                                "    <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                                "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                                 "    src=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                                 "    data-ot-retina=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
                                                 "     alt=\"\"\n" +
@@ -641,7 +641,7 @@ $('#likearticle').click(function(){
                                                 "     <span class=\"time-stamp right\">"+result.commentchild[j].modifiedDate+"</span>\n" +
                                                 "     <strong\n" +
                                                 "     class=\"user-nick\"><a\n" +
-                                                "      href=\"#\">"+result.commentchild[j].usersByUserUserName +"</a><span\n" +
+                                                "      href=\"javascript:void(0)\">"+result.commentchild[j].usersByUserUserName +"</a><span\n" +
                                                 "       class=\"user-label\">Admin</span></strong>\n" +
                                                 "        <div class=\"shortcode-content\">\n" +
                                                 "         <p style=\"color: #ABABAB\">\n" +
@@ -666,7 +666,7 @@ $('#likearticle').click(function(){
                                         "   <div class=\"comment-text\">\n" +
                                         "   <span class=\"time-stamp right\">"+result.commentparent[i].modifiedDate+"</span> <strong\n" +
                                         "      class=\"user-nick\"><a\n" +
-                                        "      href=\"#\"> "+result.commentparent[i].usersByUserUserName +" </a></strong>\n" +
+                                        "      href=\"javascript:void(0)\"> "+result.commentparent[i].usersByUserUserName +" </a></strong>\n" +
                                         "       <div class=\"shortcode-content\">\n" +
                                         "      <p>"+result.commentparent[i].content +"</p>\n" +
                                         "    </div>\n" +
