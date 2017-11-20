@@ -37,27 +37,21 @@ public class CommentRestController {
     @Autowired
     RolesService rolesService;
 
-    @PostMapping("/comment")
-    public Map<String, Object>  comment(@RequestParam("subCommentId") Integer subCommentId,@RequestParam("articleId") Integer articleId,
-                          @RequestParam("usersBySubUserId") Integer usersBySubUserId ,
+
+
+    @PostMapping("/newcomment")
+    public Map<String, Object>  comment(@RequestParam("articleId") Integer articleId,
                           @RequestParam("content") String content, Authentication authentication ,HttpServletRequest request){
 
         try {
 
             Users users = usersService.findByUserName(authentication.getName());
-            Users subUsers = usersService.findByUserId(usersBySubUserId);
             Article article = articleService.findByArticleId(articleId);
             Comment comment = new Comment();
-            comment.setSubCommentId(subCommentId);
+            comment.setSubCommentId(0);
             comment.setContent(HtmlUtils.htmlEscape(content));
             comment.setUsersByUserId(users);
-            if(usersBySubUserId == 0){
-                comment.setUsersBySubUserId(users);
-            }else{
-                comment.setUsersBySubUserId(subUsers);
-            }
-
-
+            comment.setUsersBySubUserId(users);
             comment.setArticle(article);
             comment.setStatus("active");
             comment.setCreatedDate(new Date());
@@ -70,7 +64,32 @@ public class CommentRestController {
 
         return getAllcommentPaging(0,articleId,authentication,request);
     }
+    @PostMapping("/replycomment")
+    public Map<String, Object>  replycomment(@RequestParam("subCommentId") Integer subCommentId,@RequestParam("articleId") Integer articleId,
+                                        @RequestParam("usersBySubUserId") Integer usersBySubUserId ,
+                                        @RequestParam("content") String content, Authentication authentication ,HttpServletRequest request){
 
+        try {
+
+            Users users = usersService.findByUserName(authentication.getName());
+            Users subUsers = usersService.findByUserId(usersBySubUserId);
+            Article article = articleService.findByArticleId(articleId);
+            Comment comment = new Comment();
+            comment.setSubCommentId(subCommentId);
+            comment.setContent(HtmlUtils.htmlEscape(content));
+            comment.setUsersByUserId(users);
+            comment.setUsersBySubUserId(subUsers);
+            comment.setArticle(article);
+            comment.setStatus("active");
+            comment.setCreatedDate(new Date());
+            comment.setModifiedDate(new Date());
+            commentService.saveorupdate(comment);
+        }catch (Exception e){
+
+        }
+
+        return getAllcommentPaging(0,articleId,authentication,request);
+    }
     @GetMapping("/getcomment")
     public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam("articleId") Integer articleId,
                                           Authentication authentication, HttpServletRequest request){
@@ -78,14 +97,40 @@ public class CommentRestController {
         return getAllcommentPaging(page,articleId,authentication,request);
     }
 
+    @PostMapping("/deletecomment")
+    public String deletecomment(@RequestParam("commentId") Integer commentId){
+        try {
+            List<Comment> commentList = commentService.findAllByCommentIdOrSubCommentId(commentId,commentId);
+            commentList.forEach(x -> {
+                x.setStatus("deleted");
+                commentService.saveorupdate(x);
+            });
+            return "success";
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
 
+
+    }
+    @PostMapping("/updatecomment")
+    public String updatecomment(@RequestParam("commentId") Integer commentId,@RequestParam("content") String content){
+        try {
+            Comment comment = commentService.findByCommentId(commentId);
+            comment.setContent(HtmlUtils.htmlEscape(content));
+            commentService.saveorupdate(comment);
+            return "success";
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
+
+
+    }
     public Map<String, Object> getAllcommentPaging(Integer page, Integer articleId,
                                                    Authentication authentication, HttpServletRequest request){
 
-        int userIdLogin = 0;
-        if (authentication != null) {
-            userIdLogin = usersService.findByUserName(authentication.getName()).getUserId();
-        }
+
         Article article = articleService.findByArticleId(articleId);
         List<Comment> commentParentPage = commentService.findAllByArticleAndStatusAndSubCommentId(article,"active", 0,
                 new PageRequest(page, 10,new Sort( Sort.Direction.DESC,"createdDate")));
@@ -158,9 +203,33 @@ public class CommentRestController {
             commentChildListMap.add(commentMap);
 
         });
+
+        int userIdLogin = 0;
+        boolean roleEditComment = false;
+        String avatar ="";
+        String userName = "";
+        if (authentication != null) {
+            Users users = usersService.findByUserName(authentication.getName());
+            userIdLogin = users.getUserId();
+            if(request.isUserInRole("ROLE_FACEBOOK")
+                    || request.isUserInRole("ROLE_GOOGLE")){
+                userName = users.getFirstName();
+                avatar = users.getAvatar();
+            }else {
+                userName = users.getUserName();
+                avatar = request.getContextPath()+"/images/avatar/"+users.getAvatar();
+}
+            if(request.isUserInRole("ROLE_ADMIN")
+                    || article.getUsers().getUserId() == usersService.findByUserName(authentication.getName()).getUserId()){
+                roleEditComment = true;
+            }
+        }
         commentAllMap.put("commentparent",commentParentListMap);
         commentAllMap.put("commentchild",commentChildListMap);
         commentAllMap.put("userIdLogin",userIdLogin);
+        commentAllMap.put("avatar",avatar);
+        commentAllMap.put("userName",userName);
+        commentAllMap.put("roleEditComment",roleEditComment);
         return commentAllMap;
     }
 }

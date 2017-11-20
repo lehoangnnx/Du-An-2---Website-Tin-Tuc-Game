@@ -11,4 +11,5 @@ public interface ArticleCategoryService {
 	ArticleCategory findBySlug(String slug);
     void saveorupdate(ArticleCategory articleCategory);
     List<ArticleCategory> findAllByStatusOrderBySortOrderAsc(String status);
+    ArticleCategory findTop1ByNameContainingOrSlugContainingAndStatus (String name, String slug, String status);
 }

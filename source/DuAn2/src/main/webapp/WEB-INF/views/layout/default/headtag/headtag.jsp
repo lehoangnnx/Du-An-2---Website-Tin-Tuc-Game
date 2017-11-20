@@ -24,6 +24,11 @@
       href="${contextPath}/sliderengine/amazingslider-1.css">
 
 
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
+<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>--%>
+<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>--%>
+
+
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/component-search.css"/>
 
 <style>
@@ -383,7 +388,7 @@
     }
 </style>
 <style>
-    <!--
+
     .g-signin2 {
         margin: 0.2em;
     }
@@ -457,7 +462,7 @@
         background: #E74B37;
     }
 
-    -->
+
 </style>
 <style>
 
@@ -720,3 +725,13 @@ border: 1px solid #ddd;
     .show {display:block;}
 </style>
 
+
+
+<!-- Game Trên Trang Chủ -->
+
+
+
+<!-- Trang game hồ sơ -->
+<style>
+
+</style>

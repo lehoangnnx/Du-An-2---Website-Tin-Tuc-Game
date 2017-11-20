@@ -8,6 +8,7 @@
 <%--<script type="text/javascript" src="${contextPath}/js/js/jquery.js"></script>--%>
 <script type="text/javascript"
         src="${contextPath}/js/js/bootstrap.min.js"></script>
+
 <script type="text/javascript"
         src="${contextPath}/js/js/smoothscroll.js"></script>
 
@@ -24,9 +25,7 @@
 
 <script src="${contextPath}/js/js/classie-search.js"></script>
 <script>
-    $('#morphsearch').click(function () {
 
-    });
     (function() {
         var morphSearch = document.getElementById( 'morphsearch' ),
             input = morphSearch.querySelector( 'input.morphsearch-input' ),
@@ -82,6 +81,17 @@
         /***** for demo purposes only: don't allow to submit the form *****/
         morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
     })();
+
+    $('#inputsearch').keypress(function (e) {
+        if (e.which == 13) {
+            $('#formsearch').submit();
+            return false;
+        }
+    });
+    $('#btnsearch').click(function (){
+        $('#formsearch').submit();
+        return false;
+    });
 </script>
 <script>
     jQuery(function($){
@@ -647,8 +657,8 @@
 </script>
 <%--Xóa sửa bình luận--%>
 <script>
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+    function myFunction(commentId) {
+        document.getElementById("myDropdown"+commentId).classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it

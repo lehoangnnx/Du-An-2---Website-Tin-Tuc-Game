@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
+import com.javaweb.model.Comment;
 import com.javaweb.model.Tags;
 import org.springframework.data.domain.Pageable;
 
@@ -34,6 +35,8 @@ public interface ArticleService {
     List<Article> findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,Byte isHot, String status, Date date);
     List<Article> findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, String status, Date date);
     List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,Byte isHot, String status, Date date);
+    List<Article> findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+            (String title,String slug,String subContent,String mainContent,String author, ArticleCategory articleCategory, Tags tags, String status, Date date);
 
 
 }

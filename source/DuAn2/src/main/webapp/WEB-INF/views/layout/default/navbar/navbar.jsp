@@ -113,10 +113,10 @@
             </div>
 
             <div id="morphsearch" class="morphsearch col-md-4 pull-right collapse navbar-collapse ">
-                <form  class="morphsearch-form" action="" method="get" >
-                    <input class="morphsearch-input " type="search" placeholder="Tìm Kiếm ..."/>
-                    <button style="background-image: url('images/magnifier.svg')" class="morphsearch-submit" type="submit"></button>
-                </form>
+                <form:form id="formsearch"  class="morphsearch-form" action="${contextPath}/search.html" method="get" >
+                    <input class="morphsearch-input" id="inputsearch" name="q"  type="search" placeholder="Tìm Kiếm ..."/>
+                    <button id="btnsearch" style="background-image: url('images/magnifier.svg')" class="morphsearch-submit" type="submit"></button>
+                </form:form>
                 <div class="morphsearch-content">
                     <div class="dummy-column">
                         <h2>Game</h2>

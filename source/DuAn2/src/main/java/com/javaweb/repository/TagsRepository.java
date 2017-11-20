@@ -12,6 +12,6 @@ public interface TagsRepository extends JpaRepository<Tags, Integer> {
 	Tags findByTagsId(Integer tagsId);
 	Tags findByName(String name);
 	Tags findBySlug(String slug);
-
+	Tags findTop1ByNameContainingOrSlugContaining(String name, String slug);
 
 }

@@ -163,6 +163,7 @@
         <!-- Danh sách game -->
     </div>
     <div class="content-panel">
+
         <div class="content-panel-title">
 
 
@@ -178,12 +179,19 @@
             </div>
 
         </div>
+
+
+
+
+
+
         <div class="content-panel-body split-article-slide">
             <div class="thuvien m-b-40" id="div_Home_GameLibraryPartial"
                  style="margin-top: -25px;">
                 <div class="content-panel">
                     <div class="content-panel-title"></div>
                     <div class="row">
+
                         <div class="col-xs-4">
                             <div class="box">
                                 <div class="title">

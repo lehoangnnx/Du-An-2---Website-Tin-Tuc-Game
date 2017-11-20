@@ -7,13 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.javaweb.model.Article;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface ArticleRepository extends JpaRepository<Article, Integer> {
+public interface ArticleRepository extends JpaRepository<Article, Integer>,JpaSpecificationExecutor<Article> {
 	Article findByTitle(String title);
 	Article findBySlug(String slug);
 	Article findByArticleId(Integer articleId);
@@ -38,6 +40,12 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	List<Article> findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory,Byte isHot, String status, Date date);
 
 	List<Article> findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, String status, Date date);
+
+
+	List<Article> findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+			(String title,String slug,String subContent,String mainContent,String author, ArticleCategory articleCategory, Tags tags,  String status, Date date);
+
+
 
 
 }

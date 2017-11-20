@@ -1,6 +1,7 @@
 package com.javaweb.controller;
 
 import com.javaweb.model.*;
+import com.javaweb.repository.ArticleRepository;
 import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -9,10 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.support.RequestHandledEvent;
 import org.springframework.web.util.HtmlUtils;
 
@@ -381,10 +379,60 @@ public class DefaultController {
         model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
     }
-    @RequestMapping("/search")
+
+@Autowired
+ArticleRepository articleRepository;
+    @RequestMapping("/search.html")
     String search(Model model,@RequestParam("q") String q) {
-        model.addAttribute("title", q);
-        return "tonghop";
+        String keywork = HtmlUtils.htmlEscape(q);
+        System.out.println("KEY WORK : " + keywork);
+        Map<String, String> objectCategoryAndTagMap = new HashMap<>();
+        List<Article> articleList = null;
+        ArticleCategory articleCategory = null;
+        Tags tags = null;
+        Comment comment = null;
+        try {
+            articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork,keywork,"active");
+            System.out.println("ARTILR CATEOGRY NEK : " + articleCategory);
+            tags = tagsService.findTop1ByNameContainingOrSlugContaining(keywork,keywork);
+            System.out.println("TAGSSSS NEK : " + tags);
+            System.out.println("++++++++++++++++++++++++++++++++++" +articleCategory + tags + comment);
+            articleList = articleService.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date()).stream()
+                    .distinct().collect(Collectors.toList());
+
+
+            for (Article a: articleService.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date())) {
+                for (Article a1 : articleList){
+                    if (a.getArticleId() != a1.getArticleId()){
+
+                    }
+                }
+            }
+            System.out.println("KEY QUA NEK   : " + articleList);
+            if(articleList.size() != 0){
+                objectCategoryAndTagMap.put("name", "Kết Quả Tìm Kiếm : " + articleList.size() +" Kết Quả");
+                objectCategoryAndTagMap.put("slug", "search.html?q="+q);
+                model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
+                model.addAttribute("title", q);
+                model.addAttribute("articleList", articleList);
+            }else {
+                objectCategoryAndTagMap.put("name", "Không Tìm Thấy Kết Quả Nào");
+                objectCategoryAndTagMap.put("slug", "search.html?q="+q);
+                model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
+            }
+            return "tonghop";
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "redirect:/403";
+        }
+
+
     }
 
+    @GetMapping("/game/hoso.html")
+    public String hoSoGame (){
+            return "hosogame";
+    }
 }

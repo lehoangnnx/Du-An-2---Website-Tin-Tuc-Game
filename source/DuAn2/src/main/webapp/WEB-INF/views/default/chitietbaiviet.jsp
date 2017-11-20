@@ -187,6 +187,7 @@
             <br>
 
             <div class="content-panel">
+
                 <div class="content-panel-body article-main-next-prev">
                     <div class="paragraph-row">
                         <div class="column6">
@@ -212,19 +213,24 @@
             <div class="content-panel">
                 <div class="content-panel-title">
                     <h2>Bình luận</h2>
+
+                    <button class="btn btn-default" data-toggle="confirmation" data-singleton="true">Confirmation 1</button>
+                    <button class="btn btn-default" data-toggle="confirmation" data-singleton="true">Confirmation 2</button>
+
                 </div>
+
                 <div class="content-panel-body comment-list">
                     <ol id="comments">
                     </ol>
                 </div>
-                <div class="dropdown">
+                <%--<div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn fa fa-ellipsis-h" style="color: #0b0b0b"></button>
                     <div id="myDropdown" class="dropdown-content">
                         <a href="#hihi xóa nè">Xóa</a>
                         <a href="#hihi sửa nè">Sửa</a>
                     </div>
-                </div>
-                <div class="xemthem"
+                </div>--%>
+                <div class="xemthemcomment"
                      style="padding: 10px 1px; text-align: center; background: #f7f7f7; margin-bottom: 20px;">
                     <div id="LoadingGifSmall">
                         <img src="${contextPath }/images/36.gif"/>
@@ -236,7 +242,7 @@
 
             <!-- Trả lời bình luận -->
             <security:authorize access="isAuthenticated()">
-
+                <input hidden id="CommentId" value="0"/>
                 <input hidden id="subCommentId" value="0"/>
                 <input hidden id="usersBySubUserId" value="0"/>
                 <li class="comment">
@@ -268,10 +274,9 @@
                                       placeholder="Viết bình luận của bạn.."
                                       style="width: 100%; height: 100px"></textarea>
                             <p class="form-submit">
-                                <input name="submit" type="submit" id="submit"
+                                <input  name="submit" type="submit" id="btn-newcomment" disabled="disabled"
                                        class="submit button btn-postcomment" value="Gửi bình luận">
-                                <input hidden name="submit" type="submit" id="cancelsubcomment"
-                                       class="submit button pull-right" value="Hủy">
+
                             </p>
                         </div>
                     </div>
@@ -388,7 +393,7 @@
                 <div class="item">
                     <div class="item-header hover14 column">
                         <a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
-                                class="fa fa-comment-o"></i>290<i></i></span> <span
+                                class="fa fa-comment-o"></i>${gal.views}<i></i></span> <span
                                 class="read-more-wrapper"><span class="read-more">Xem
 								chi tiết<i></i>
 						</span></span>
@@ -425,4 +430,23 @@
 
     <div class="container hidden-xs hidden-sm"></div>
 
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Xóa Bình Luận</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn Muốn Xóa Bình Luận ?</p>
+            </div>
+            <div class="modal-footer">
+
+                <input id="btn-deleteComment" name="submit" type="submit" data-dismiss="modal"
+                       class="submit button" value="Xóa">
+            </div>
+        </div>
+    </div>
 </div>
