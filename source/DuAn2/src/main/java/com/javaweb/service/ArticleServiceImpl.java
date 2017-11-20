@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
+import com.javaweb.model.Comment;
 import com.javaweb.model.Tags;
 import com.javaweb.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,5 +112,12 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<Article> findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, Byte isHot, String status, Date date) {
 		return articleRepository.findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory,isHot,status,date);
+	}
+
+	@Override
+	public List<Article> findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+			(String title, String slug, String subContent, String mainContent, String author, ArticleCategory articleCategory, Tags tags, String status, Date date) {
+		return articleRepository.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+				(title,slug,subContent,mainContent,author,articleCategory,tags,status,date);
 	}
 }

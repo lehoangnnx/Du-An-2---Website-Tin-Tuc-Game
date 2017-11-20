@@ -217,14 +217,14 @@
                     <ol id="comments">
                     </ol>
                 </div>
-                <div class="dropdown">
+                <%--<div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn fa fa-ellipsis-h" style="color: #0b0b0b"></button>
                     <div id="myDropdown" class="dropdown-content">
                         <a href="#hihi xóa nè">Xóa</a>
                         <a href="#hihi sửa nè">Sửa</a>
                     </div>
-                </div>
-                <div class="xemthem"
+                </div>--%>
+                <div class="xemthemcomment"
                      style="padding: 10px 1px; text-align: center; background: #f7f7f7; margin-bottom: 20px;">
                     <div id="LoadingGifSmall">
                         <img src="${contextPath }/images/36.gif"/>
@@ -236,7 +236,7 @@
 
             <!-- Trả lời bình luận -->
             <security:authorize access="isAuthenticated()">
-
+                <input hidden id="CommentId" value="0"/>
                 <input hidden id="subCommentId" value="0"/>
                 <input hidden id="usersBySubUserId" value="0"/>
                 <li class="comment">

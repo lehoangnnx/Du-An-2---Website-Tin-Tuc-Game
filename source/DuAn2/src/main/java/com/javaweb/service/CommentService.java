@@ -12,4 +12,5 @@ public interface CommentService {
     List<Comment> findAllByArticleAndStatusAndSubCommentId(Article article ,String status,Integer subCommentId,Pageable pageable);
     List<Comment> findAllByArticleAndStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(Article article ,String status,Integer subCommentId);
     Long countByArticle(Article article);
+    Comment findAllByContentContainingAndStatus(String content,String status);
 }

@@ -17,4 +17,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
     List<Comment> findAllByArticleAndStatusAndSubCommentIdGreaterThanOrderByModifiedDateDesc(Article article,String status ,Integer subCommentId);
     Long countByArticle(Article article);
 
+    Comment findAllByContentContainingAndStatus(String content,String status);
+
 }

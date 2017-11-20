@@ -41,4 +41,8 @@ public class TagsServiceImpl implements TagsService {
 		return tagsRepository.findBySlug(slug);
 	}
 
+	@Override
+	public Tags findTop1ByNameContainingOrSlugContaining(String name, String slug) {
+		return tagsRepository.findTop1ByNameContainingOrSlugContaining(name,slug);
+	}
 }

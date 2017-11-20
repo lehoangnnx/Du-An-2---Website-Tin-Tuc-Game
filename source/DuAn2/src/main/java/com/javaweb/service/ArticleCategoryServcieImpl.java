@@ -47,4 +47,9 @@ public class ArticleCategoryServcieImpl implements ArticleCategoryService {
 	public List<ArticleCategory> findAllByStatusOrderBySortOrderAsc(String status) {
 		return articleCategoryRepository.findAllByStatusOrderBySortOrderAsc(status);
 	}
+
+	@Override
+	public ArticleCategory findTop1ByNameContainingOrSlugContainingAndStatus(String name, String slug, String status) {
+		return articleCategoryRepository.findTop1ByNameContainingOrSlugContainingAndStatus(name,slug,status);
+	}
 }

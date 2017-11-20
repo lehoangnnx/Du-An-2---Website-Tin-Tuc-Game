@@ -43,13 +43,16 @@
 					   value="/WEB-INF/views/default/trangtonghop.jsp" />
 
 	</definition>
+	<definition name="hosogame" extends="defaultlayout">
+		<put-attribute name="body"
+					   value="/WEB-INF/views/default/tranggame.jsp" />
 
+	</definition>
 	<definition name="403" extends="defaultlayout">
-		<put-attribute name="title" value="Trag Loi" />
+		<put-attribute name="title" value="Trang Loi" />
 		<put-attribute name="body" value="/WEB-INF/views/default/403.jsp" />
 		<put-attribute name="sitebar" value="" />
-		<put-attribute name="footertag"
-					   value="" />
+
 	</definition>
 
 	<definition name="forgotpassword" extends="defaultlayout">

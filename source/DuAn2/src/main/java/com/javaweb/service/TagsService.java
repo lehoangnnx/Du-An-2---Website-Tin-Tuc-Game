@@ -10,5 +10,5 @@ public interface TagsService {
 	Tags findByName(String name);
 	Tags findBySlug(String slug);
 	void saveorupdate(Tags tags);
-
+	Tags findTop1ByNameContainingOrSlugContaining(String name, String slug);
 }

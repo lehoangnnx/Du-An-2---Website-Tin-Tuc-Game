@@ -24,9 +24,7 @@
 
 <script src="${contextPath}/js/js/classie-search.js"></script>
 <script>
-    $('#morphsearch').click(function () {
 
-    });
     (function() {
         var morphSearch = document.getElementById( 'morphsearch' ),
             input = morphSearch.querySelector( 'input.morphsearch-input' ),
@@ -82,6 +80,17 @@
         /***** for demo purposes only: don't allow to submit the form *****/
         morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
     })();
+
+    $('#inputsearch').keypress(function (e) {
+        if (e.which == 13) {
+            $('#formsearch').submit();
+            return false;
+        }
+    });
+    $('#btnsearch').click(function (){
+        $('#formsearch').submit();
+        return false;
+    });
 </script>
 <script>
     jQuery(function($){
