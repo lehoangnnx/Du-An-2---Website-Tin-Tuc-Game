@@ -18,5 +18,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
     Long countByArticle(Article article);
 
     Comment findAllByContentContainingAndStatus(String content,String status);
-
+    List<Comment> findAllByCommentIdOrSubCommentId(Integer commentId, Integer subCommentId);
+    Comment findByCommentId(Integer commentId);
 }

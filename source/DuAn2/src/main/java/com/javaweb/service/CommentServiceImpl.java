@@ -44,4 +44,14 @@ public class CommentServiceImpl implements CommentService {
     public Comment findAllByContentContainingAndStatus(String content, String status) {
         return commentRepository.findAllByContentContainingAndStatus(content,status);
     }
+
+    @Override
+    public List<Comment> findAllByCommentIdOrSubCommentId(Integer commentId, Integer subCommentId) {
+        return commentRepository.findAllByCommentIdOrSubCommentId(commentId,subCommentId);
+    }
+
+    @Override
+    public Comment findByCommentId(Integer commentId) {
+        return commentRepository.findByCommentId(commentId);
+    }
 }

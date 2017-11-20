@@ -8,6 +8,7 @@
 <%--<script type="text/javascript" src="${contextPath}/js/js/jquery.js"></script>--%>
 <script type="text/javascript"
         src="${contextPath}/js/js/bootstrap.min.js"></script>
+
 <script type="text/javascript"
         src="${contextPath}/js/js/smoothscroll.js"></script>
 
@@ -656,8 +657,8 @@
 </script>
 <%--Xóa sửa bình luận--%>
 <script>
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+    function myFunction(commentId) {
+        document.getElementById("myDropdown"+commentId).classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it

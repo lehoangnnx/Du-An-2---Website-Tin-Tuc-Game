@@ -23,12 +23,11 @@
 <link rel="stylesheet" type="text/css"
       href="${contextPath}/sliderengine/amazingslider-1.css">
 
-<<<<<<< HEAD
+
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
 <%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>--%>
 <%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>--%>
-=======
->>>>>>> 6c0c539cc23c458743740e3c2dbc7c44ae4f714e
+
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/component-search.css"/>
 
@@ -389,7 +388,7 @@
     }
 </style>
 <style>
-    <!--
+
     .g-signin2 {
         margin: 0.2em;
     }
@@ -463,7 +462,7 @@
         background: #E74B37;
     }
 
-    -->
+
 </style>
 <style>
 
