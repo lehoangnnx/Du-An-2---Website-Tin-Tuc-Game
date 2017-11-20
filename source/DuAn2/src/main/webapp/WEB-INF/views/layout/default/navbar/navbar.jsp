@@ -31,82 +31,6 @@
                                     href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
                         </c:if>
                     </c:forEach>
-
-
-                   <%-- <li class="dropdown mega-dropdown" ><a href="#"
-                                                          class="dropdown-toggle" data-toggle="dropdown">Khác<span
-                            class="caret"></span></a>
-                        <ul class="dropdown-menu mega-dropdown-menu " >
-                            <li class="col-sm-3">
-                                <ul>
-                                    <li class="dropdown-header">Tin Nổi Bật</li>
-                                    <div id="menCollection" class="carousel slide"
-                                         data-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <c:forEach var="gha" items="${getTop10HotArticle}" varStatus="status">
-                                                <div class="item ${status.index == 1 ? 'active' : ''}">
-                                                    <a style="background-color: #F0F0F0;" href="${contextPath}/${gha.slug}"><img
-                                                            src="${contextPath}/images/articles/${gha.imagesThumbnail}"
-                                                            class="img-responsive" alt="product 1"></a>
-
-                                                </div>
-                                            </c:forEach>
-                                            <!-- End Item -->
-                                        </div>
-                                        <!-- End Carousel Inner -->
-                                        <!-- Controls -->
-                                        <a class="left carousel-control" href="#menCollection"
-                                           role="button" data-slide="prev"> <span
-                                                class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a> <a class="right carousel-control" href="#menCollection"
-                                                role="button" data-slide="next"> <span
-                                            class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                    </div>
-                                    <!-- /.carousel -->
-                                    &lt;%&ndash;<li class="divider"></li>
-                                    <li><a href="#">Hiển thị nhiều hơn <span
-                                            class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>&ndash;%&gt;
-                                </ul>
-                            </li>
-                            <li class="col-sm-3" style="padding-left: 40px;">
-                                <ul>
-                                    <li class="dropdown-header">Game</li>
-                                    <c:forEach var="atl" items="${articleCategoryList}">
-                                        <c:if test="${atl.sortOrder == 2}">
-                                            <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
-                                        </c:if>
-
-                                    </c:forEach>
-
-                                </ul>
-                            </li>
-                            <li class="col-sm-3" style="padding-left: 40px;">
-                                <ul>
-                                    <li class="dropdown-header">Gì</li>
-                                    <c:forEach var="atl" items="${articleCategoryList}">
-                                        <c:if test="${atl.sortOrder == 3}">
-                                            <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
-                                        </c:if>
-
-                                    </c:forEach>
-                                </ul>
-                            </li>
-                            <li class="col-sm-3" style="padding-left: 40px;">
-                                <ul>
-                                    <li class="dropdown-header">Sau</li>
-                                    <c:forEach var="atl" items="${articleCategoryList}">
-                                        <c:if test="${atl.sortOrder == 4}">
-                                            <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
-                                        </c:if>
-
-                                    </c:forEach>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>--%>
                     <li class="dropdown"><a class="dropdown-toggle"
                                             data-toggle="dropdown" href="#">Game<span class="caret"></span></a>
                         <ul class="dropdown-menu ">
@@ -177,8 +101,6 @@
                                         <button  type="submit"><span class="glyphicon glyphicon-log-out"></span> Logout tài khoản</button>
                                     </form:form>
                                 </security:authorize>
-
-
                             </ul>
                         </li>
                     </security:authorize>
