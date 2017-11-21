@@ -71,11 +71,76 @@
 </div>
 <br>
 <!-- Danh sach game -->
+<!-- Danh sach game -->
 <div class="container">
 	<h2 class="widget-title feed-widget-title">
 		<a href="/video?sorted=hots">DANH SÁCH GAME</a>
 	</h2>
-	<br><br><br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<h5>Thể loại</h5>
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<select class="form-control">
+							<option value="0" selected>Game hành động</option>
+							<option value="1">Game nhập vai</option>
+							<option value="2">Game chiến thuật</option>
+							<option value="3">Game đua xe</option>
+							<option value="4">Game thời trang</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2">
+				<h5>Tên game</h5>
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<select class="form-control">
+							<option value="0" selected>Liên minh huyền thoại</option>
+							<option value="1">Fifa 2017</option>
+							<option value="2">Ngọa long</option>
+							<option value="3">Đột kích</option>
+							<option value="4">Liên quan moblie</option>
+						</select>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-md-2">
+				<h5>Loại game</h5>
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<select class="form-control">
+							<option value="0" selected>Game online</option>
+							<option value="1">Game offline</option>
+							<option value="2">Game di động</option>
+							<option value="3">Game PC</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2">
+				<h5>Tìm nâng cao</h5>
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<select class="form-control">
+							<option value="0" selected>Game online</option>
+							<option value="1">Game offline</option>
+							<option value="2">Game di động</option>
+							<option value="3">Game PC</option>
+						</select>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-md-1">
+				<button type="button" class="btn btn-warning" style="margin-top: 23px;">Tìm kiếm</button>
+			</div>
+		</div>
+	</div>
+	<br><br>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="artist-data pull-left">
@@ -356,6 +421,12 @@
 			</div>
 		</div>
 	</div>
+	<nav>
+		<ul class="control-box pager">
+			<li><a data-slide="prev" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+			<li><a data-slide="next" href="#myCarousel" class=""><i class="glyphicon glyphicon-chevron-right"></i></li>
+		</ul>
+	</nav>
 </div>
 <!--Mở đầu tin tức nè-->
 <div class="container-fluid">
