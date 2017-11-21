@@ -28,7 +28,7 @@ public class AdminUsersRestController {
 		try {
 			Users u = usersService.findByEmail(user.getEmail());
 			
-			if(u.equals(null) || u.getUserId().equals(user.getUserId())) {
+			if(u == null || u.getUserId().equals(user.getUserId())) {
 				System.out.println("SUCCESS");
 				error = "successemail";
 				

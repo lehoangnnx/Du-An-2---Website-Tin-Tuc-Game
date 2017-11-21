@@ -71,7 +71,7 @@
                         </a>
                             <ul class="dropdown-menu ">
                                 <security:authorize access="hasRole('MEMBER')">
-                                    <li><a href="#">Thông Tin</a></li>
+                                    <li><a href="${contextPath}/profile.html">Thông Tin</a></li>
 
                                 </security:authorize>
                                 <security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">

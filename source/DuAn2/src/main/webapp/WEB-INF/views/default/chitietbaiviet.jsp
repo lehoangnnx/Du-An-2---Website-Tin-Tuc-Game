@@ -68,7 +68,7 @@
 
                 </span>
                 <security:authorize access="isAuthenticated()">
-                <a  style=" float: right;"><i style="padding-right: 5px;" class="fa fa-thumbs-up"></i>
+                <a href="javascript:void(0)"  style=" float: right;"><i style="padding-right: 5px;" class="fa fa-thumbs-up"></i>
                        <span id="likearticle" >${userOfArticleLike == true ? 'Bỏ Thích' : 'Thích'}</span> </a>
                 </security:authorize>
                 <security:authorize access="!isAuthenticated()">
@@ -214,8 +214,6 @@
                 <div class="content-panel-title">
                     <h2>Bình luận</h2>
 
-                    <button class="btn btn-default" data-toggle="confirmation" data-singleton="true">Confirmation 1</button>
-                    <button class="btn btn-default" data-toggle="confirmation" data-singleton="true">Confirmation 2</button>
 
                 </div>
 

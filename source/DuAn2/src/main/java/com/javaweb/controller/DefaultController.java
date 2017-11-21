@@ -4,6 +4,8 @@ import com.javaweb.model.*;
 import com.javaweb.repository.ArticleRepository;
 import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -11,10 +13,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.RequestHandledEvent;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -25,6 +33,8 @@ import java.util.stream.Collectors;
  *
  */
 @Controller
+@Scope(value = WebApplicationContext.SCOPE_GLOBAL_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+
 public class DefaultController {
 
     @Autowired
@@ -380,8 +390,7 @@ public class DefaultController {
         return "403";
     }
 
-@Autowired
-ArticleRepository articleRepository;
+
     @RequestMapping("/search.html")
     String search(Model model,@RequestParam("q") String q) {
         String keywork = HtmlUtils.htmlEscape(q);
@@ -430,9 +439,22 @@ ArticleRepository articleRepository;
 
 
     }
+    @GetMapping("/profile.html")
+    public String profile (Authentication authentication, Model model){
+        try {
+            if (authentication != null){
 
-    @GetMapping("/game/hoso.html")
-    public String hoSoGame (){
-            return "hosogame";
+
+                model.addAttribute("title", "Trang Cá Nhân");
+                return "canhan";
+            }else {
+                return "redirect:/403";
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return "redirect:/403";
+        }
+
     }
+
 }
