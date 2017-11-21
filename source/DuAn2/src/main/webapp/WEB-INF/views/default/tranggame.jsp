@@ -8,6 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<!-- Mở đầu cho chi tiết game -->
 <div class="container">
     <div class="row user-menu-container square">
         <div class="col-md-7 user-details">
@@ -122,10 +123,8 @@
     </div>
 </div>
 <br><br>
-
-
-
-
+<!-- Đóng -->
+<!-- Banner chi tiết bài viết -->
 <div class="container-fluid">
     <div class="container container-pad" id="property-listings">
 
@@ -385,6 +384,7 @@
         </div>
     </div>
 </div>
+<!-- Đóng chi tiết bài viết -->
 <!-- Banner chi tiết bài viết -->
 <div class="container-fluid">
     <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
@@ -797,6 +797,11 @@
                 </div>
             </div>
         </div>
+        <ul class="pager">
+            <li><a href="#">Previous</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>
+
     </div>
 </div>
 <!--Mở đầu tin tức nè-->
