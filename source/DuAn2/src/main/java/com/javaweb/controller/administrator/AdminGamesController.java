@@ -86,7 +86,9 @@ public class AdminGamesController {
                            @RequestParam("isHot") int isHot,
                            @RequestParam("homeUrl") String homeUrl,
                            @RequestParam("downloadUrl") String downloadUrl,
+                           @RequestParam("systemRequirements") String systemRequirements,
                            @RequestParam("images") MultipartFile images,
+
                            RedirectAttributes redirectAttributes) {
         System.out.println("Vao POST");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -140,7 +142,9 @@ public class AdminGamesController {
             if(!downloadUrl.equals("")){
                 games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl));
             }
-
+            if(!systemRequirements.equals("")){
+                games.setSystemRequirements(HtmlUtils.htmlEscape(systemRequirements));
+            }
             games.setStatus(status);
             games.setIsHot((byte) isHot);
             gameCategories.forEach(x -> gameCategoryHashSet.add(gameCategoryService.findByGameCategoryId(x)));
@@ -182,6 +186,7 @@ public class AdminGamesController {
                               @RequestParam("isHot") int isHot,
                               @RequestParam("homeUrl") String homeUrl,
                               @RequestParam("downloadUrl") String downloadUrl,
+                              @RequestParam("systemRequirements") String systemRequirements,
                               @RequestParam("images") MultipartFile images,
                               RedirectAttributes redirectAttributes) {
         System.out.println("Vao PATCH");
@@ -236,6 +241,9 @@ public class AdminGamesController {
             }
             if(!downloadUrl.equals("")){
                 games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl));
+            }
+            if(!systemRequirements.equals("")){
+                games.setSystemRequirements(HtmlUtils.htmlEscape(systemRequirements));
             }
             games.setStatus(status);
             games.setIsHot((byte) isHot);

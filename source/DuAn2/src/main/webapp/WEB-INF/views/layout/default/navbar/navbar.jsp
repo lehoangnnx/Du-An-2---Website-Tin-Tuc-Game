@@ -31,8 +31,9 @@
                                     href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
                         </c:if>
                     </c:forEach>
+                    <li class="scroll"><a href="${contextPath}/games/hoso.html">Game</a></li>
                     <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="#">Game <span class=" fa fa-angle-down"></span></a>
+                                            data-toggle="dropdown" href="#">Tin Game<span class=" fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder == 2}">

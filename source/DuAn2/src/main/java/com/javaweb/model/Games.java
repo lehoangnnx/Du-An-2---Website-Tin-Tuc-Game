@@ -29,9 +29,8 @@ import javax.persistence.UniqueConstraint;
         @UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "slug")})
 public class Games implements java.io.Serializable {
 
-    /**
-     *
-     */
+
+
     private Integer gameId;
     private String name;
     private String slug;
@@ -49,6 +48,8 @@ public class Games implements java.io.Serializable {
     private String description;
     private String homeUrl;
     private String downloadUrl;
+    private long views;
+    private String systemRequirements;
     private Set<GameReviews> gameReviewses = new HashSet<GameReviews>(0);
     private Set<GameReviews> gameReviewses_1 = new HashSet<GameReviews>(0);
     private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
@@ -58,7 +59,7 @@ public class Games implements java.io.Serializable {
     }
 
 
-    public Games(String name, String slug, String images, byte isHot, String publishers, Date releases, String info, String status, String homeUrl, String downloadUrl) {
+    public Games(String name, String slug, String images, byte isHot, String publishers, Date releases, String info, String status, String homeUrl, String downloadUrl, long views, String systemRequirements) {
         this.name = name;
         this.slug = slug;
         this.images = images;
@@ -69,8 +70,10 @@ public class Games implements java.io.Serializable {
         this.status = status;
         this.homeUrl = homeUrl;
         this.downloadUrl = downloadUrl;
+        this.views = views;
+        this.systemRequirements = systemRequirements;
     }
-    public Games(String name, String slug, String images, byte isHot, String developers, String publishers, String writers, String composers, String engine, String platforms, Date releases, String info, String status, String description, String homeUrl, String downloadUrl, Set<GameReviews> gameReviewses, Set<GameReviews> gameReviewses_1, Set<GameCategory> gameCategories, Set<GameCategory> gameCategories_1) {
+    public Games(String name, String slug, String images, byte isHot, String developers, String publishers, String writers, String composers, String engine, String platforms, Date releases, String info, String status, String description, String homeUrl, String downloadUrl, long views, String systemRequirements, Set<GameReviews> gameReviewses, Set<GameReviews> gameReviewses_1, Set<GameCategory> gameCategories, Set<GameCategory> gameCategories_1) {
         this.name = name;
         this.slug = slug;
         this.images = images;
@@ -87,6 +90,8 @@ public class Games implements java.io.Serializable {
         this.description = description;
         this.homeUrl = homeUrl;
         this.downloadUrl = downloadUrl;
+        this.views = views;
+        this.systemRequirements = systemRequirements;
         this.gameReviewses = gameReviewses;
         this.gameReviewses_1 = gameReviewses_1;
         this.gameCategories = gameCategories;
@@ -263,6 +268,26 @@ public class Games implements java.io.Serializable {
 
     public void setDownloadUrl(String downloadUrl) {
         this.downloadUrl = downloadUrl;
+    }
+
+
+    @Column(name="views", nullable=false)
+    public long getViews() {
+        return this.views;
+    }
+
+    public void setViews(long views) {
+        this.views = views;
+    }
+
+
+    @Column(name="system_requirements", nullable=false, length=4000)
+    public String getSystemRequirements() {
+        return this.systemRequirements;
+    }
+
+    public void setSystemRequirements(String systemRequirements) {
+        this.systemRequirements = systemRequirements;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="games")

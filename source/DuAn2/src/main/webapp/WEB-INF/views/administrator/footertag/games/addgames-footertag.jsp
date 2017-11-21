@@ -234,7 +234,18 @@
 </script>
 <script>
     $(document).ready(function () {
+        $('#formGames').on('submit', function(e) {
 
+            if($('#summernote').summernote('isEmpty')) {
+
+                $("#systemRequirements-error").text("Vui Lòng Nhập Nội Dung");
+                // cancel submit
+                e.preventDefault();
+            }else {
+                $("#systemRequirements-error").text("");
+            }
+
+        });
         //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
         $("#formGames").validate({
 

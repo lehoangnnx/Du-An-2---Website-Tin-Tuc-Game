@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -392,7 +393,9 @@ public class DefaultController {
 
 
     @RequestMapping("/search.html")
-    String search(Model model,@RequestParam("q") String q) {
+    String search(Model model,@RequestParam("q") String q,
+                  @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "2") Integer limit
+            , @RequestParam(value = "sorted", defaultValue = "hots") String sorted) {
         String keywork = HtmlUtils.htmlEscape(q);
         System.out.println("KEY WORK : " + keywork);
         Map<String, String> objectCategoryAndTagMap = new HashMap<>();
@@ -400,38 +403,38 @@ public class DefaultController {
         ArticleCategory articleCategory = null;
         Tags tags = null;
         Comment comment = null;
+        model.addAttribute("sorted", "sorted=" + sorted);
+        if (sorted.equals("news")) {
+            sorted = "showDate";
+        }
+        if (sorted.equals("hots")) {
+            sorted = "views";
+        }
         try {
             articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork,keywork,"active");
-            System.out.println("ARTILR CATEOGRY NEK : " + articleCategory);
             tags = tagsService.findTop1ByNameContainingOrSlugContaining(keywork,keywork);
-            System.out.println("TAGSSSS NEK : " + tags);
-            System.out.println("++++++++++++++++++++++++++++++++++" +articleCategory + tags + comment);
+
             articleList = articleService.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date()).stream()
+                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date(), null)
+                    .stream()
                     .distinct().collect(Collectors.toList());
-
-
-            for (Article a: articleService.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date())) {
-                for (Article a1 : articleList){
-                    if (a.getArticleId() != a1.getArticleId()){
-
-                    }
-                }
-            }
-            System.out.println("KEY QUA NEK   : " + articleList);
+            int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
+            int totalArticle = articleList.size();
+            articleList = articleList.stream().skip(limit *(page-1)).limit(limit).collect(Collectors.toList());
             if(articleList.size() != 0){
-                objectCategoryAndTagMap.put("name", "Kết Quả Tìm Kiếm : " + articleList.size() +" Kết Quả");
+                objectCategoryAndTagMap.put("name", "Kết Quả Tìm Kiếm : " + totalArticle +" Kết Quả");
                 objectCategoryAndTagMap.put("slug", "search.html?q="+q);
                 model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
                 model.addAttribute("title", q);
                 model.addAttribute("articleList", articleList);
+                model.addAttribute("currentpage", page);
+                model.addAttribute("pagecount", pageCount);
             }else {
                 objectCategoryAndTagMap.put("name", "Không Tìm Thấy Kết Quả Nào");
                 objectCategoryAndTagMap.put("slug", "search.html?q="+q);
                 model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
             }
-            return "tonghop";
+            return "search";
         }catch (Exception e) {
             System.out.println(e.getMessage());
             return "redirect:/403";
@@ -439,6 +442,8 @@ public class DefaultController {
 
 
     }
+
+
     @GetMapping("/profile.html")
     public String profile (Authentication authentication, Model model){
         try {
@@ -456,9 +461,9 @@ public class DefaultController {
         }
 
     }
-    @RequestMapping("/tranggame")
+    @RequestMapping("/games/hoso.html")
     String tranggame(Model model) {
-        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
+        model.addAttribute("title", "Hồ Sơ Game - Cổng Thông Tin Game - Game Mới Cập Nhập");
         return "game";
     }
     @RequestMapping("/chitietgame")

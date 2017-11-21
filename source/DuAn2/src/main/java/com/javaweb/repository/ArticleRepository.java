@@ -43,7 +43,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>,JpaSp
 
 
 	List<Article> findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-			(String title,String slug,String subContent,String mainContent,String author, ArticleCategory articleCategory, Tags tags,  String status, Date date);
+			(String title,String slug,String subContent,String mainContent,String author, ArticleCategory articleCategory, Tags tags,  String status, Date date, Pageable pageable);
 
 
 

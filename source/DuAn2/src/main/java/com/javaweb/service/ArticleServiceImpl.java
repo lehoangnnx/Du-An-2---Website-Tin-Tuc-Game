@@ -116,8 +116,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<Article> findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-			(String title, String slug, String subContent, String mainContent, String author, ArticleCategory articleCategory, Tags tags, String status, Date date) {
+			(String title, String slug, String subContent, String mainContent, String author, ArticleCategory articleCategory, Tags tags, String status, Date date,Pageable pageable) {
 		return articleRepository.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-				(title,slug,subContent,mainContent,author,articleCategory,tags,status,date);
+				(title,slug,subContent,mainContent,author,articleCategory,tags,status,date,pageable);
 	}
 }

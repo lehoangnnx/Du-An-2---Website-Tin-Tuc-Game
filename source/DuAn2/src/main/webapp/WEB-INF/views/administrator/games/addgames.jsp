@@ -88,7 +88,7 @@
 				<div class="col-md-10">
 					<textarea id="info" class="form-control maxlength" maxlength="4000"
 							  name="info" rows="5"
-							  placeholder="This textarea has a limit of 225 chars.">${games.info }</textarea>
+							  placeholder="This textarea has a limit of 4000 chars.">${games.info }</textarea>
 					<label id="info-error" class="error" ></label>
 				</div>
 
@@ -132,7 +132,14 @@
 				</div>
 			</div>
 
+			<div class="form-group row">
+				<label class="col-md-2 col-form-label">Cấu Hình</label>
+				<div class="col-md-10">
+					<textarea name="systemRequirements" id="summernote">${games.systemRequirements }</textarea>
 
+					<span id="systemRequirements-error"  class="error"></span>
+				</div>
+			</div>
 
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="developers">Nhà
