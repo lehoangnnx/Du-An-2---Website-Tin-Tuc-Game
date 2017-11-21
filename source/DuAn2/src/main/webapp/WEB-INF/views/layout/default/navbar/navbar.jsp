@@ -32,7 +32,7 @@
                         </c:if>
                     </c:forEach>
                     <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="#">Game<span class="caret"></span></a>
+                                            data-toggle="dropdown" href="#">Game <span class=" fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder == 2}">
@@ -44,7 +44,7 @@
                         </ul>
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="#">Khác<span class="caret"></span></a>
+                                            data-toggle="dropdown" href="#">Khác <span class="fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder > 2}">
@@ -67,7 +67,7 @@
                         </security:authorize> <security:authorize
                                 access="hasAnyRole('MEMBER', 'ADMIN')">
                             ${user.userName}
-                        </security:authorize> <span class="caret"></span>
+                        </security:authorize> <span class="fa fa-level-down"></span>
                         </a>
                             <ul class="dropdown-menu ">
                                 <security:authorize access="hasRole('MEMBER')">
