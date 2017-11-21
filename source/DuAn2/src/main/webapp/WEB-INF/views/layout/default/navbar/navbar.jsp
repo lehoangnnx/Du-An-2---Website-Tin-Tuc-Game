@@ -86,7 +86,7 @@
                                                action="${contextPath}/logout">
                                         <input type="hidden" name="${_csrf.parameterName}"
                                                value="${_csrf.token}"/>
-                                        <button type="submit" onclick="signOut();"><span class="glyphicon glyphicon-log-out"></span> Logout tài khoản
+                                        <button type="submit" onclick="signOut();"><span class="fa fa-sign-out"></span> Logout tài khoản
                                         </button>
                                     </form:form>
 
@@ -98,7 +98,7 @@
                                         <input type="hidden" name="${_csrf.parameterName}"
                                                value="${_csrf.token}"/>
 
-                                        <button  type="submit"><span class="glyphicon glyphicon-log-out"></span> Logout tài khoản</button>
+                                        <button  type="submit"><span class="fa fa-sign-out"></span> Logout tài khoản</button>
                                     </form:form>
                                 </security:authorize>
                             </ul>
