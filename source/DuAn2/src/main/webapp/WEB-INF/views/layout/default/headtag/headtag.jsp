@@ -27,10 +27,12 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
 <%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>--%>
 <%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>--%>
-
-
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/component-search.css"/>
 
+<%--Css mới--%>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css1.css"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css2.css"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css3.css"/>
 <style>
     body {
         background-color: #fff;
