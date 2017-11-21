@@ -34,7 +34,9 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css2.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css3.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css4.css"/>
-
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css5.css"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css6.css"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css7.css"/>
 <style>
     body {
         background-color: #fff;
