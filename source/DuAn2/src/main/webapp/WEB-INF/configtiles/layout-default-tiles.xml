@@ -52,11 +52,16 @@
 	<definition name="game" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/tranggame.jsp" />
+		<put-attribute name="sitebar"
+					   value="" />
 	</definition>
 
 	<definition name="chitietgame" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/trangchitietgame.jsp" />
+		<put-attribute name="sitebar"
+					   value="" />
+
 	</definition>
 	<definition name="403" extends="defaultlayout">
 		<put-attribute name="title" value="Trang Loi" />
