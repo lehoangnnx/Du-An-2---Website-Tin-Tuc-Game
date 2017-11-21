@@ -95,18 +95,18 @@
 
 														<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 														<input id="newpassword"  type="password" class="form-control"
-																name="password" placeholder="Nhập Mật Khẩu Mới">
+																name="newpassword" placeholder="Nhập Mật Khẩu Mới">
 													</div>
 													<label style="margin-bottom: 20px;">Nhập Lại Mật Khẩu Mới</label>
 													<div class="input-group" style="margin-bottom: 20px;">
 
 														<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-														<input  type="password" class="form-control"
-																name="password" placeholder="Nhập Lại Mật Khẩu Mới">
+														<input  id="rnewpassword" type="password" class="form-control"
+																name="rnewpassword" placeholder="Nhập Lại Mật Khẩu Mới">
 													</div>
 													<span style="color: red; " id="msgerrorp"></span>
 													<div style="margin-top: 20px;">
-														<input id="btn-changepassword"  name="submit" type="submit"
+														<input id="btn-changepassword"  name="submit" type="submit" disabled="disabled"
 																class="submit button " value="Thay Đổi">
 													</div>
 

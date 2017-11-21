@@ -106,9 +106,7 @@
             clearTimeout(timeout);
             timeout = setTimeout(function () {
                 var users = {};
-
                 users["email"] = $("#email").val();
-                users["userId"] = $("#userId").val();
                 //alert(users.userId + users.email);
                 // $("#btn-update").prop("disabled", true);
                 var token = $("meta[name='_csrf']").attr("content");
@@ -155,7 +153,7 @@
             timeout = setTimeout(function () {
                 var users = {};
                 users["password"] = oldpassword;
-                users["userId"] = $("#userId").val();
+
                 //alert(users.userId + users.email);
                 // $("#btn-update").prop("disabled", true);
                 var token = $("meta[name='_csrf']").attr("content");
@@ -174,7 +172,7 @@
                     success: function (result) {
                         //alert(result);
                         if (result == 'errorpassword') {
-                            $('#msgerrorp').text("* Mật Khẩu Cũ Không Trùn Khớp"); // This Segment Displays The Validation Rule For Email
+                            $('#msgerrorp').text("* Mật Khẩu Cũ Không Trùng Khớp"); // This Segment Displays The Validation Rule For Email
                             $("#oldpassword").focus();
                             $('#btn-changepassword').attr('disabled', 'disabled');
                             e.preventDefault();
@@ -182,7 +180,7 @@
                         }
                         if (result == 'successpassword') {
                             $('#msgerrorp').text(""); // This Segment Displays The Validation Rule For Email
-                            $('#btn-changepassword').removeAttr('disabled');
+
                             e.preventDefault();
                             return false;
                         }
@@ -193,44 +191,78 @@
                     }
                 });
 
-            }, 10);
+            }, 500);
         }
     });
 
     $("#newpassword").on('keyup keypress keydown', function (e) {
         var password = $('#newpassword').val();
-        var strength = 0
-        if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}/)) < 6) {
-            $('#result').removeClass()
-            $('#result').addClass('short')
-            return 'Too short'
-        }
-        if (password.length > 7) strength += 1
-// If password contains both lower and uppercase characters, increase strength value.
-        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
-// If it has numbers and characters, increase strength value.
-        if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
-// If it has one special character, increase strength value.
-        if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
-// If it has two special characters, increase strength value.
-        if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
-// Calculated strength value, we can return messages
-// If value is less than 2
-        if (strength < 2) {
-            $('#result').removeClass()
-            $('#result').addClass('weak')
-            return 'Weak'
-        } else if (strength == 2) {
-            $('#result').removeClass()
-            $('#result').addClass('good')
-            return 'Good'
-        } else {
-            $('#result').removeClass()
-            $('#result').addClass('strong')
-            return 'Strong'
-        }
-    });
+        var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if (!password.match(regularExpression)) {
+            $('#msgerrorp').text("Mật Khẩu Từ 6 -16 Ký Tự Bao Gồm Chữ, Số Và Ký Tự Đặc Biệt");
+            $('#btn-changepassword').attr('disabled', 'disabled');
+        }else {
+            $('#msgerrorp').text("");
 
+        }
+
+    });
+    $("#rnewpassword").on('keyup keypress keydown', function (e) {
+        var password = $('#newpassword').val();
+        var rpassword = $('#rnewpassword').val();
+        if (!rpassword.match(password)) {
+            $('#msgerrorp').text("Nhập Lại Mật Khẩu Không Trùng Khớp");
+            $('#btn-changepassword').attr('disabled', 'disabled');
+        }else {
+            $('#msgerrorp').text("");
+            $('#btn-changepassword').removeAttr('disabled');
+        }
+
+    });
+    $('#btn-changepassword').click(function (e){
+        var rpassword = $('#rnewpassword').val();
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            var users = {};
+            users["password"] = rpassword;
+            //alert(users.userId + users.email);
+            // $("#btn-update").prop("disabled", true);
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+            $(document).ajaxSend(function (e, xhr, options) {
+                xhr.setRequestHeader(header, token);
+            });
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "${pageContext.request.contextPath}/changepassword",
+                data: JSON.stringify(users),
+                //dataType: 'json',
+                // timeout: 600000,
+                success: function (result) {
+                    //alert(result);
+                    if (result == 'error') {
+                        $('#msgerrorp').text("* Lỗi! Vui Lòng Kiểm Tra Lại"); // This Segment Displays The Validation Rule For Email
+                        $("#oldpassword").focus();
+                        $('#btn-changepassword').attr('disabled', 'disabled');
+                        e.preventDefault();
+                        return false;
+                    }
+                    if (result == 'success') {
+                        location.reload();
+                    }
+
+                },
+                error: function (e) {
+                    alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
+                }
+            });
+
+        }, 500);
+        e.preventDefault();
+        return false;
+    });
     function updateUser() {
 
         clearTimeout(timeout);

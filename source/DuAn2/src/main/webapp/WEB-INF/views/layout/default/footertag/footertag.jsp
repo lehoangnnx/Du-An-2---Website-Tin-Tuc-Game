@@ -24,74 +24,11 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script src="${contextPath}/js/js/classie-search.js"></script>
+
+
 <script>
 
-    (function() {
-        var morphSearch = document.getElementById( 'morphsearch' ),
-            input = morphSearch.querySelector( 'input.morphsearch-input' ),
-            ctrlClose = morphSearch.querySelector( 'span.morphsearch-close' ),
-            isOpen = isAnimating = false,
-            // show/hide search area
-            toggleSearch = function(evt) {
 
-                // return if open and the input gets focused
-                if( evt.type.toLowerCase() === 'focus' && isOpen )  return false;
-
-                var offsets = morphsearch.getBoundingClientRect();
-                if( isOpen ) {
-                    $('#morphsearch').removeAttr("style");
-                    classie.remove( morphSearch, 'open' );
-
-                    // trick to hide input text once the search overlay closes
-                    // todo: hardcoded times, should be done after transition ends
-                    if( input.value !== '' ) {
-                        setTimeout(function() {
-                            classie.add( morphSearch, 'hideInput' );
-                            setTimeout(function() {
-                                classie.remove( morphSearch, 'hideInput' );
-                                input.value = '';
-                            }, 300 );
-                        }, 500);
-                    }
-
-                    input.blur();
-                }
-                else {
-                    $('#morphsearch').css("position", "fixed");
-                    classie.add( morphSearch, 'open' );
-                }
-                isOpen = !isOpen;
-            };
-
-        // events
-        input.addEventListener( 'focus', toggleSearch );
-        ctrlClose.addEventListener( 'click', toggleSearch );
-        // esc key closes search overlay
-        // keyboard navigation events
-        document.addEventListener( 'keydown', function( ev ) {
-
-            var keyCode = ev.keyCode || ev.which;
-            if( keyCode === 27 && isOpen ) {
-                toggleSearch(ev);
-
-            }
-        } );
-
-
-        /***** for demo purposes only: don't allow to submit the form *****/
-        morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
-    })();
-
-    $('#inputsearch').keypress(function (e) {
-        if (e.which == 13) {
-            $('#formsearch').submit();
-            return false;
-        }
-    });
-    $('#btnsearch').click(function (){
-        $('#formsearch').submit();
-        return false;
-    });
 </script>
 <script>
     jQuery(function($){
@@ -134,172 +71,7 @@
     }
 </script>
 <script>
-    (function ($) {
-        "use strict";
-
-        Array.prototype.forEach2 = function (a) {
-            var l = this.length;
-            for (var i = 0; i < l; i++)
-                a(this[i], i)
-        };
-
-        jQuery(document)
-            .on(
-                "ready",
-                function () {
-
-                    // Breaking slider main function
-                    function otBreakingSlide(item, direction,
-                                             thisisbutton) {
-                        if (item.data("breaking-hover") == true
-                            && !thisisbutton) {
-                            return false;
-                        }
-                        if (thisisbutton) {
-                            clearInterval(item
-                                .data("breaking-function"));
-                        }
-                        if (direction == "right"
-                            && parseInt(item
-                                .data("breaking-current"), 10) + 1 < parseInt(
-                                item.data("breaking-size"), 10)) {
-                            item
-                                .find(
-                                    ".ot-breaking-news-content .item")
-                                .eq(0)
-                                .css(
-                                    "margin-left",
-                                    "-"
-                                    + (100 * (parseInt(
-                                    item
-                                        .data("breaking-current"),
-                                    10) + 1))
-                                    + "%");
-                            item.data("breaking-current", parseInt(item
-                                .data("breaking-current"), 10) + 1);
-                        } else if (direction == "right") {
-                            item
-                                .find(
-                                    ".ot-breaking-news-content .item")
-                                .eq(0).css("margin-left", "0px");
-                            item.data("breaking-current", "0");
-                        }
-                        if (direction == "left"
-                            && parseInt(item
-                                .data("breaking-current"), 10) - 1 >= 0) {
-                            item
-                                .find(
-                                    ".ot-breaking-news-content .item")
-                                .eq(0)
-                                .css(
-                                    "margin-left",
-                                    "-"
-                                    + (100 * (parseInt(
-                                    item
-                                        .data("breaking-current"),
-                                    10) - 1))
-                                    + "%");
-                            item.data("breaking-current", parseInt(item
-                                .data("breaking-current"), 10) - 1);
-                        } else if (direction == "left") {
-                            item
-                                .find(
-                                    ".ot-breaking-news-content .item")
-                                .eq(0)
-                                .css(
-                                    "margin-left",
-                                    "-"
-                                    + (100 * (parseInt(
-                                    item
-                                        .data("breaking-size"),
-                                    10) - 1))
-                                    + "%");
-                            item.data("breaking-current", parseInt(item
-                                .data("breaking-size"), 10) - 1);
-                        }
-                    }
-
-                    jQuery("a[href='#top']", "body").on("click",
-                        function () {
-                            jQuery("body,html").animate({
-                                scrollTop: 0
-                            }, 500);
-                            return false;
-                        });
-
-                    jQuery(".ot-breaking-news-body", ".content")
-                        .toArray()
-                        .forEach2(
-                            function (a) {
-                                var thisel = jQuery(a), thiscontrol = thisel
-                                    .find(
-                                        ".ot-breaking-news-content .item")
-                                    .eq(0), slidetimeout = (thisel
-                                    .data("breaking-timeout") && parseInt(thisel
-                                    .data("breaking-timeout")) >= 1000) ? parseInt(thisel
-                                        .data("breaking-timeout"))
-                                    : 2000;
-                                thisel
-                                    .data(
-                                        "breaking-size",
-                                        thisel
-                                            .find(
-                                                ".ot-breaking-news-content .item")
-                                            .size())
-                                    .data(
-                                        "breaking-current",
-                                        "0");
-
-                                if (thisel
-                                        .data("breaking-autostart") == true) {
-                                    thisel
-                                        .data(
-                                            "breaking-function",
-                                            setInterval(
-                                                function () {
-                                                    otBreakingSlide(
-                                                        thisel,
-                                                        "right");
-                                                },
-                                                slidetimeout));
-                                }
-                            });
-
-                    jQuery(".ot-breaking-news-body", ".content").on(
-                        "mouseenter",
-                        function () {
-                            jQuery(this).addClass("mouseenter")
-                                .data("breaking-hover", true);
-                        }).on(
-                        "mouseleave",
-                        function () {
-                            jQuery(this).removeClass("mouseenter")
-                                .data("breaking-hover", false);
-                        });
-
-                    jQuery("button[data-break-dir='right']",
-                        ".ot-breaking-news-controls").on(
-                        "click",
-                        function () {
-                            otBreakingSlide(jQuery(this).parent()
-                                .parent(), "right", true);
-                            return false;
-                        });
-
-                    jQuery("button[data-break-dir='left']",
-                        ".ot-breaking-news-controls").on(
-                        "click",
-                        function () {
-                            otBreakingSlide(jQuery(this).parent()
-                                .parent(), "left", true);
-                            return false;
-                        });
-
-                });
-
-    })(jQuery);
 </script>
-
 
 <script>
     // Plugin options and our code
@@ -364,7 +136,6 @@
     var timeout = null;
 
     function login() {
-
         console.log(($('#login-form').serialize()));
         clearTimeout(timeout);
         timeout = setTimeout(
@@ -561,16 +332,22 @@
         var password = $('#passwordr').val();
         var rppassword = $('#rppasswordr').val();
         var email_regex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
+        var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
         console.log(email);
         if (userName == '') {
             $('#msgerror-r').text('* Vui Lòng Nhập UserName');
+        }else if(userName.length < 6){
+            $('#msgerror-r').text('* Tên Đăng Nhập Phải Lớn Hơn 6 Ký Tự');
         } else if (email == '') {
             $('#msgerror-r').text('* Vui Lòng Nhập Email');
         } else if (!email.match(email_regex)) {
             $('#msgerror-r').text('* Vui Lòng Nhập Đúng Email');
         } else if (password == '') {
             $('#msgerror-r').text('* Vui Lòng Nhập Mật Khẩu');
-        } else if (rppassword == '') {
+        } else if(!password.match(regularExpression)){
+            $('#msgerror-r').text('* Mật Khẩu Từ 6 -16 Ký Tự Bao Gồm Chữ, Số Và Ký Tự Đặc Biệt');
+        }
+        else if (rppassword == '') {
             $('#msgerror-r').text('* Vui Lòng Nhập Nhập Lại Mật Khẩu');
         } else if (rppassword != password) {
             $('#msgerror-r').text('* Nhập Lại Mật Khẩu Không Khớp');
