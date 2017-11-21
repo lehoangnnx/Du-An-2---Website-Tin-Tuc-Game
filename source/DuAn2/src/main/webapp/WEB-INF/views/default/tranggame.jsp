@@ -535,9 +535,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -565,9 +568,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game thời trang</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -595,9 +601,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -629,9 +638,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game di động</span> <span class="daysago"</span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -659,9 +671,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game việt</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -689,9 +704,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game di động</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -723,9 +741,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -753,9 +774,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game thời trang</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
@@ -783,9 +807,12 @@
                         <span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
                     </div>
                     <div class="counter-tab">
-                        <div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
-                        <div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
-                        <div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Số lượt bình chọn : </li>
+                            <li>5 Vote</li>
+                            <li>/ 10</li>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="bot-links">
