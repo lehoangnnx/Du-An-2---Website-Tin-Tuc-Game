@@ -619,6 +619,54 @@
 </div>
 <!-- Kết thúc mối tình tin tức-->
 
+<div class="container">
+	<h3>Liên hệ với chúng tôi</h3><br><br><br>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">
+				<div class="row">
+					<div class="col-sm-6 col-md-4">
+						<img src="images/anhgame/hi.jpg" alt="" class="img-rounded img-responsive" />
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<h4>
+							Lê Văn Luyện</h4>
+						<small><cite title="San Francisco, USA">27, Nguyễn Tất Thành <i class="glyphicon glyphicon-map-marker">
+						</i></cite></small>
+						<p>
+							<i class="glyphicon glyphicon-envelope"></i>levanlyten@gmail.com
+							<br />
+							<i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.levanluyen.com</a>
+							<br />
+							<i class="glyphicon glyphicon-gift"></i>June 02, 2002</p>
+						<!-- Split button -->
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">
+								Liên hệ</button>
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span><span class="sr-only">Social</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Twitter</a></li>
+								<li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+								<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">
+				<div class="row">
+
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.4203705870677!2d108.05146821458453!3d12.685963124514432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3171f7d6cb817ba1%3A0x4dc24e1422498126!2zMjcgTmd1eeG7hW4gVOG6pXQgVGjDoG5oLCBUcC4gQnXDtG4gTWEgVGh14buZdCwgxJDhuq9rIEzhuq9rLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1511234662551" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="content-block-single">
 	<div class="content-panel">
 		<c:if test="${objectCategoryAndTag.name == 'Video'}">
