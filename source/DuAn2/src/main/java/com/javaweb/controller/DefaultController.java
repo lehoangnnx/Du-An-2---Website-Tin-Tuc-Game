@@ -456,5 +456,14 @@ public class DefaultController {
         }
 
     }
-
+    @RequestMapping("/tranggame")
+    String tranggame(Model model) {
+        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
+        return "game";
+    }
+    @RequestMapping("/chitietgame")
+    String chitietgame(Model model) {
+        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
+        return "chitietgame";
+    }
 }
