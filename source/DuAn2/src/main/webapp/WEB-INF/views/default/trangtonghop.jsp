@@ -626,9 +626,11 @@
 			<div class="well well-sm">
 				<div class="row">
 					<div class="col-sm-6 col-md-4">
+						<br>
 						<img src="images/anhgame/hi.jpg" alt="" class="img-rounded img-responsive" />
 					</div>
 					<div class="col-sm-6 col-md-8">
+						<br><br>
 						<h4>
 							Lê Văn Luyện</h4>
 						<small><cite title="San Francisco, USA">27, Nguyễn Tất Thành <i class="glyphicon glyphicon-map-marker">
