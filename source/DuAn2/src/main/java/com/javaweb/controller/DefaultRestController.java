@@ -3,13 +3,14 @@ package com.javaweb.controller;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.ArticleCategory;
+import com.javaweb.model.Users;
 import com.javaweb.service.ArticleCategoryService;
 import com.javaweb.service.ArticleService;
+import com.javaweb.service.UsersService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,7 +23,8 @@ public class DefaultRestController {
     ArticleService articleService;
     @Autowired
     ArticleCategoryService articleCategoryService;
-
+    @Autowired
+    UsersService usersService;
     @GetMapping("/getarticle")
     public List<Map<String, Object>> get(@RequestParam(value = "page", defaultValue = "2") int page) {
         int pageSize = 10;
@@ -80,5 +82,22 @@ public class DefaultRestController {
 
         });
         return b;
+    }
+
+    @PostMapping("/updateuser")
+    public String updateUser(@RequestBody Users users, Authentication authentication){
+        try {
+            if (authentication != null){
+                Users updateUser = usersService.findByUserName(authentication.getName());
+                updateUser.setLastName(users.getLastName());
+                updateUser.setFirstName(users.getFirstName());
+                updateUser.setEmail(users.getEmail());
+                updateUser.setPhoneNumber(users.getPhoneNumber());
+            }
+
+        }catch (Exception e){
+
+        }
+        return null;
     }
 }

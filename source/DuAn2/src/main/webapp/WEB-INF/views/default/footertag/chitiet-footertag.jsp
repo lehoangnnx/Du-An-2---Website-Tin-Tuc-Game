@@ -243,7 +243,7 @@ $('#likearticle').click(function(){
                                     "  </div>" ;
                             }
 
-                            childcomment += "<ul class=\"children\">\n" +
+                            childcomment += "<ul style=\"background-color: aliceblue;\" class=\"children\">\n" +
                                 "   <li class=\"comment\">\n" +
                                 "    <div class=\"comment-block\">\n" +
                                 "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
@@ -363,7 +363,7 @@ $('#likearticle').click(function(){
                                                 "  </div>" ;
                                         }
 
-                                        childcomment += "<ul class=\"children\">\n" +
+                                        childcomment += "<ul style=\"background-color: aliceblue;\" class=\"children\">\n" +
                                             "   <li class=\"comment\">\n" +
                                             "    <div class=\"comment-block\">\n" +
                                             "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
@@ -531,7 +531,7 @@ $('#likearticle').click(function(){
                                                 "  </div>" ;
                                         }
 
-                                        childcomment += "<ul class=\"children\">\n" +
+                                        childcomment += "<ul style=\"background-color: aliceblue;\" class=\"children\">\n" +
                                             "   <li class=\"comment\">\n" +
                                             "    <div class=\"comment-block\">\n" +
                                             "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
@@ -628,7 +628,7 @@ $('#likearticle').click(function(){
                                     for (var j = 0; j < Object.keys(result.commentchild).length; j++) {
                                         if (result.commentchild[j].subCommentId !== 0 && result.commentchild[j].subCommentId === result.commentparent[i].commentId){
 
-                                            childcomment += "<ul class=\"children\">\n" +
+                                            childcomment += "<ul style=\"background-color: aliceblue;\" class=\"children\">\n" +
                                                 "   <li class=\"comment\">\n" +
                                                 "    <div class=\"comment-block\">\n" +
                                                 "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
@@ -657,7 +657,7 @@ $('#likearticle').click(function(){
                                     }
                                     html += "  <li class=\"comment\">\n" +
                                         " <div class=\"comment-block\">\n" +
-                                        "  <a href=\"#\" class=\"image-avatar\"> <img\n" +
+                                        "  <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
                                         "  src=\"" + result.commentparent[i].usersByUserAvatar + " \" \n" +
                                         "   data-ot-retina=\"" + result.commentparent[i].usersByUserAvatar + " \"\n" +
                                         "   alt=\"\"\n" +
