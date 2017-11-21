@@ -9,6 +9,666 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!-- Banner chi tiết bài viết -->
+<div class="container-fluid">
+	<div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+		<div class="carousel-inner">
+			<div class="item active">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3"><img src="images/anhgame/1.jpg" class="img-responsive"></div>
+						<div class="col-md-9">
+							<h2>Doto Mobile</h2>
+							<p>Doto Mobile là game di động chiến thuật được xây dựng dựa trên bối cảnh của tựa game huyền thoại Warcraft 3, từ cốt truyện, hệ thống nhân vật cho đến những chi tiết hấp dẫn khác, người chơi có thể dễ dàng nhận ra các nhân vật "gốc" từ Warcraft 3 được đưa vào trong game di động này. Bước vào thế giới Doto Mobile, người chơi sẽ tự đưa mình vào cuộc đại chiến tranh giành lãnh thổ. Mỗi người chơi sẽ xây dựng lãnh thổ và đội hình tướng cho riêng mình để cạnh tranh với người chơi khác. </p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3"><img src="images/anhgame/2.png" class="img-responsive"></div>
+						<div class="col-md-9">
+							<h2>Vô Địch Tam Quốc</h2>
+							<p>Đúng vào lúc 15h00 hôm nay 4/9, Doto Mobile - Tựa game tái hiện huyền thoại Warcraft trên di động sẽ chính thức mở cửa tại thị trường Việt Nam. Nhân dịp này, Nhà phát hành Doto Mobile cũng gửi tặng đọc giả 200 vipcode chứa nhiều vật phẩm giá trị.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3"><img src="images/anhgame/3.jpg" class="img-responsive"></div>
+						<div class="col-md-9">
+							<h2>Warcraft được game thủ yêu thích nhất</h2>
+							<p>Bối cảnh rộng lớn được khắc họa một cách chi tiết chính là một trong những ưu điểm góp phần làm lên thành công của thương hiệu Warcraft của Blizzard. Trong bối cảnh rộng lớn ấy, có những nhân vật nổi danh đã xuất hiện và để lại dấu ấn không thể xóa nhòa trong tâm trí của người hâm mộ. Hãy cùng tìm hiểu những Hero được xem như huyền thoại và mang tính biểu tượng trong Warcraft xem họ có gì đặc biệt.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3"><img src="images/anhgame/4.jpg" class="img-responsive"></div>
+						<div class="col-md-9">
+							<h2>Chơi thử Doto Mobile trước ngày game ra mắt tại Việt Nam 30/08</h2>
+							<p>Về tổng thể, Doto Mobile là một tựa game nhập vai, kết hợp thẻ tướng được xây dựng với cốt truyện dựa trên tựa game offline nổi tiếng WarCraft 3. Ngay khi tham gia vào game, người chơi đã có thể dễ dàng bắt gặp các nhân vật quen thuộc trong game WarCraft 3 ngày nào.Theo đó trong Doto Mobile nhiệm vụ của người chơi ....</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Kết thúc một mối tình -->
+		</div>
+		<!-- Banner nhỏ-->
+		<div class="controls">
+			<ul class="nav">
+				<li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="images/anhgame/g1.jpg"><small>Slide One</small></a></li>
+				<li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="images/anhgame/g2.jpg"><small>Slide Two</small></a></li>
+				<li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="images/anhgame/g3.jpg"><small>Slide Three</small></a></li>
+				<li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="images/anhgame/g4.jpg"><small>Slide Four</small></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<br>
+<!-- Danh sach game -->
+<div class="container">
+	<h2 class="widget-title feed-widget-title">
+		<a href="/video?sorted=hots">DANH SÁCH GAME</a>
+	</h2>
+	<br><br><br>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q1.jpg" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Đại Đường Võ Lâm
+						<span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q2.jpg" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Idol Thời Trang
+						<span class="artst-sub">Thể loại <span class="byname">Game thời trang</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q3.png" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Tây Du Chi Lộ
+						<span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q4.jpg" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Sứ Mệnh Rồng
+						<span class="artst-sub">Thể loại <span class="byname">Game di động</span> <span class="daysago"</span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q5.png" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Cửu Thiên Phong Thần
+						<span class="artst-sub">Thể loại <span class="byname">Game việt</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q6.jpg" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Doto Mobile
+						<span class="artst-sub">Thể loại <span class="byname">Game di động</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q1.jpg" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Đại Đường Võ Lâm
+						<span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q2.jpg" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Idol Thời Trang
+						<span class="artst-sub">Thể loại <span class="byname">Game thời trang</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="artist-data pull-left">
+				<div class="artst-pic pull-left">
+					<span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+					<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+					<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span>
+					<a href="#">
+						<img src="images/anhgame/q3.png" alt="" class="img-responsive" />
+					</a>
+				</div>
+				<div class="artst-prfle pull-right">
+					<div class="art-title">
+						Tây Du Chi Lộ
+						<span class="artst-sub">Thể loại <span class="byname">Game hành động</span> <span class="daysago"></span></span>
+					</div>
+					<div class="counter-tab">
+						<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+						<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+						<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+					</div>
+				</div>
+				<div class="bot-links">
+					<a href="#">Xem chi tiết</a>
+					<a href="#">Bình chọn</a>
+					<a href="#">Tải game</a>
+					<a href="#">Chơi thử game</a>
+					<a href="#">Xem video</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Mở đầu tin tức nè-->
+<div class="container-fluid">
+	<div class="container container-pad" id="property-listings">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Tin game mới nổi bật</h1><br>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/z1.png"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/z2.jpg"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/z3.jpg"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/2.png"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+			<div class="col-sm-6">
+
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/3.jpg"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/2.png"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/4.jpg"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+				<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+					<div class="media">
+						<a class="pull-left" href="#" target="_parent">
+							<img alt="image" class="img-responsive" src="images/anhgame/1.jpg"></a>
+
+						<div class="clearfix visible-sm"></div>
+
+						<div class="media-body fnt-smaller">
+							<a href="#" target="_parent"></a>
+
+							<h4 class="media-heading">
+								<a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+								<li>4444 Lượt xem</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Bình luận</li>
+
+								<li style="list-style: none">|</li>
+
+								<li>5 Vote</li>
+							</ul>
+
+							<p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
+								...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Kết thúc mối tình tin tức-->
+
+<div class="container">
+	<h3>Liên hệ với chúng tôi</h3><br><br><br>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">
+				<div class="row">
+					<div class="col-sm-6 col-md-4">
+						<br>
+						<img src="images/anhgame/hi.jpg" alt="" class="img-rounded img-responsive" />
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<br><br>
+						<h4>
+							Lê Văn Luyện</h4>
+						<small><cite title="San Francisco, USA">27, Nguyễn Tất Thành <i class="glyphicon glyphicon-map-marker">
+						</i></cite></small>
+						<p>
+							<i class="glyphicon glyphicon-envelope"></i>levanlyten@gmail.com
+							<br />
+							<i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.levanluyen.com</a>
+							<br />
+							<i class="glyphicon glyphicon-gift"></i>June 02, 2002</p>
+						<!-- Split button -->
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">
+								Liên hệ</button>
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span><span class="sr-only">Social</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Twitter</a></li>
+								<li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+								<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">
+				<div class="row">
+
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.4203705870677!2d108.05146821458453!3d12.685963124514432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3171f7d6cb817ba1%3A0x4dc24e1422498126!2zMjcgTmd1eeG7hW4gVOG6pXQgVGjDoG5oLCBUcC4gQnXDtG4gTWEgVGh14buZdCwgxJDhuq9rIEzhuq9rLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1511234662551" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="content-block-single">
 	<div class="content-panel">
 		<c:if test="${objectCategoryAndTag.name == 'Video'}">
