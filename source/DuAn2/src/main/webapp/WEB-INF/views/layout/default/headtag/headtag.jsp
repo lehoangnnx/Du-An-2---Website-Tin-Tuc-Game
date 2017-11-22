@@ -37,6 +37,10 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css5.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css6.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css7.css"/>
+
+<style>
+
+</style>
 <style>
     body {
         background-color: #fff;

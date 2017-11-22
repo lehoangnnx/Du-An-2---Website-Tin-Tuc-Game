@@ -57,6 +57,7 @@
 	<definition name="game" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/tranggame.jsp" />
+		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/game-footertag.jsp" />
 		<put-attribute name="sitebar"
 					   value="" />
 	</definition>

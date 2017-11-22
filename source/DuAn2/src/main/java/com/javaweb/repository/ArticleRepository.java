@@ -42,7 +42,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>,JpaSp
 	List<Article> findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(ArticleCategory articleCategory, String status, Date date);
 
 
-	List<Article> findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+	List<Article> findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
 			(String title,String slug,String subContent,String mainContent,String author, ArticleCategory articleCategory, Tags tags,  String status, Date date, Pageable pageable);
 
 

@@ -414,13 +414,14 @@ public class DefaultController {
             articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork,keywork,"active");
             tags = tagsService.findTop1ByNameContainingOrSlugContaining(keywork,keywork);
 
-            articleList = articleService.findAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date(), null)
-                    .stream()
-                    .distinct().collect(Collectors.toList());
+            articleList = articleService.findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date(), null);
+
             int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
             int totalArticle = articleList.size();
-            articleList = articleList.stream().skip(limit *(page-1)).limit(limit).collect(Collectors.toList());
+            articleList = articleService.findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
+                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date(),
+                            new PageRequest(page-1,limit,new Sort(Sort.Direction.DESC,sorted)));
             if(articleList.size() != 0){
                 objectCategoryAndTagMap.put("name", "Kết Quả Tìm Kiếm : " + totalArticle +" Kết Quả");
                 objectCategoryAndTagMap.put("slug", "search.html?q="+q);
@@ -463,8 +464,25 @@ public class DefaultController {
     }
     @RequestMapping("/games/hoso.html")
     String tranggame(Model model) {
-        model.addAttribute("title", "Hồ Sơ Game - Cổng Thông Tin Game - Game Mới Cập Nhập");
-        return "game";
+        try {
+            List<Games> Top5gamesList = gamesService.findTop5ByStatusAndIsHotOrderByViewsDesc("active",(byte) 1);
+            List<Games> gamesList = gamesService.findAll();
+            List<GameCategory> gameCategoryList = gameCategoryService.findAll().stream()
+                    .filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+            model.addAttribute("Top5gamesList",Top5gamesList);
+            model.addAttribute("gamesList",gamesList);
+            model.addAttribute("gameCategoryList",gameCategoryList);
+            List<Article> articleList = articleService.findTop10ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active")
+                    .stream().filter(x -> !x.getGameId().equals(0)).collect(Collectors.toList());
+            System.out.println(articleList.size()+"SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss");
+            model.addAttribute("articleList",articleList);
+            model.addAttribute("title", "Hồ Sơ Game - Cổng Thông Tin Game - Game Mới Cập Nhập");
+            return "game";
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return "redirect:/403";
+        }
+
     }
     @RequestMapping("/chitietgame")
     String chitietgame(Model model) {

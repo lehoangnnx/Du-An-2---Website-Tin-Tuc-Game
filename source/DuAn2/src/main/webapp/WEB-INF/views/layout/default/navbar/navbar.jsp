@@ -28,7 +28,7 @@
                     <c:forEach var="atl" items="${articleCategoryList}">
                         <c:if test="${atl.sortOrder == 1}">
                             <li class="scroll"><a
-                                    href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+                                    href="${contextPath}/${atl.slug}?sorted=news">${atl.name}</a></li>
                         </c:if>
                     </c:forEach>
                     <li class="scroll"><a href="${contextPath}/games/hoso.html">Game</a></li>
@@ -37,7 +37,7 @@
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder == 2}">
-                                    <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+                                    <li><a href="${contextPath}/${atl.slug}?sorted=news">${atl.name}</a></li>
                                 </c:if>
 
                             </c:forEach>
@@ -49,7 +49,7 @@
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder > 2}">
-                                    <li><a href="${contextPath}${atl.slug}?sorted=news">${atl.name}</a></li>
+                                    <li><a href="${contextPath}/${atl.slug}?sorted=news">${atl.name}</a></li>
                                 </c:if>
 
                             </c:forEach>
@@ -123,7 +123,7 @@
                         <h2>Game</h2>
                         <c:forEach var="gc"  items="${gamesCategoryList}">
                         <c:if test="${gc.sortOrder ==1 }">
-                        <a class="dummy-media-object" href="${contextPath}${gc.slug}">
+                        <a class="dummy-media-object" href="${contextPath}/${gc.slug}">
                             
                             <h3>${gc.name}</h3>
                         </a>
