@@ -127,10 +127,10 @@
             <div class="col-sm-6">
                 <c:forEach var="al" items="${articleList}" begin="0" end="4">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                        <div class="media">
+                        <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
-                                <img alt="image" class="img-responsive"
-                                     src="${contextPath}/images/articles/${al.imagesThumbnail}"></a>
+                                <figure><img alt="image" class="img-responsive"
+                                             src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
                             <div class="clearfix visible-sm"></div>
 
@@ -164,10 +164,10 @@
             <div class="col-sm-6">
                 <c:forEach var="al" items="${articleList}" begin="5" end="9">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                        <div class="media">
+                        <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
-                                <img alt="image" class="img-responsive"
-                                     src="${contextPath}/images/articles/${al.imagesThumbnail}"></a>
+                                <figure> <img alt="image" class="img-responsive"
+                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
                             <div class="clearfix visible-sm"></div>
 
