@@ -19,7 +19,7 @@
                 <div class="item ${status.index == 0 ? 'active' : ''}">
                     <div class="container-fluid">
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-3"><a href="${contextPath}/games/${gl.slug}"><img
+                            <div class="col-md-3"><a href="${contextPath}/games/${gl.slug}"><img style="width: 100%;height: 150px;"
                                     src="${contextPath}/images/games/${gl.images}" class="img-responsive"></a></div>
                             <div class="col-md-9">
                                 <a href="${contextPath}/games/${gl.slug}"><h2>${gl.name}</h2></a>
@@ -129,7 +129,7 @@
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
-                                <figure><img alt="image" class="img-responsive"
+                                <figure><img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
                             <div class="clearfix visible-sm"></div>
@@ -138,7 +138,7 @@
 
                                 <h4 class="media-heading">
                                     <a href="${contextPath}/${al.slug}" target="_parent">
-                                            ${al.title}</a></h4>
+                                            ${fn:substring(al.title, 0, 100)} ... </a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>
 
@@ -151,7 +151,7 @@
                                     <li>${al.users.userName}</li>
                                 </ul>
 
-                                <p class="hidden-xs ">${al.subContent}</p>
+                                <p class="hidden-xs ">${fn:substring(al.subContent, 0, 100)} ...</p>
                                 <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
-                                <figure> <img alt="image" class="img-responsive"
+                                <figure> <img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
                                               src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
                             <div class="clearfix visible-sm"></div>
@@ -175,7 +175,7 @@
 
                                 <h4 class="media-heading">
                                     <a href="${contextPath}/${al.slug}" target="_parent">
-                                            ${al.title}</a></h4>
+                                            ${fn:substring(al.title, 0, 100)} ...</a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>
 
@@ -188,7 +188,7 @@
                                     <li>${al.users.userName}</li>
                                 </ul>
 
-                                <p class="hidden-xs ">${al.subContent}</p>
+                                <p class="hidden-xs ">${fn:substring(al.subContent, 0, 100)} ...</p>
                                 <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
                             </div>
                         </div>

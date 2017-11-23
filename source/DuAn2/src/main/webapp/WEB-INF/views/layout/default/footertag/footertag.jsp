@@ -60,13 +60,13 @@
 
 <script>
     // Mở Load Gif Trang
-    $(document).ready(function () {
+   /* $(document).ready(function () {
         $("#LoadingImage").show();
     });
     $(window).load(function () {
         // Animate loader off screen
         $("#LoadingImage").hide();
-    });
+    });*/
     // Đóng Lòa Gif Trang
 
     // Mở Captcha

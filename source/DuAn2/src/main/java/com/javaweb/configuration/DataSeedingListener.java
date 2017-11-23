@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 22/10/2017
+* Lớp DataSeedingListener kế thừa interface  ApplicationListener<ContextRefreshedEvent>
+*     bắt sự kiện khi website bắt đầu chạy
+* */
 package com.javaweb.configuration;
 
 import java.util.Date;

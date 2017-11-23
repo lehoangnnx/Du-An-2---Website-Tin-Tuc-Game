@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 22/10/2017
+* Lớp WebSecurityConfig là cấu hình Spring Security
+* Để kích hoạt Spring Security, Lớp WebSecurityConfig kế thừa abstract class WebSecurityConfigurerAdapter
+* */
 package com.javaweb.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,113 +34,82 @@ import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
 
+// Xác định lớp WebSecurityConfig là một lớp dùng để cấu hình
 @Configuration
+// Đẽ kích hoạt việc tích hợp Spring Security với Spring MVC
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*
-	 * Object principal =
+     * Object principal =
 	 * SecurityContextHolder.getContext().getAuthentication().getPrincipal(); String
 	 * username= ""; if (principal instanceof UserDetails) { username =
 	 * ((UserDetails) principal).getUsername(); } else { username =
 	 * principal.toString(); }
 	 */
 
-	// Cấu hình phân quyền truy cập vào website bằng Spring Security
 
-		@Autowired
-		private  AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+    // Inject AjaxAuthenticationFailureHandler để cấu hình
+    @Autowired
+    private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
 
-		@Autowired
-		private  AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
-		@Autowired
-		private  ConnectionFactoryLocator connectionFactoryLocator;
+    // Inject AjaxAuthenticationSuccessHandler để cấu hình
+    @Autowired
+    private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 
-		@Autowired
-		private  UsersConnectionRepository usersConnectionRepository;
+    // Inject ConnectionFactoryLocator để cấu hình
+    @Autowired
+    private ConnectionFactoryLocator connectionFactoryLocator;
 
-		@Autowired
-		private  FacebookConnectionSignup facebookConnectionSignup;
-		@Autowired
-		private UserDetailsService userDetailsService;
+    // Inject UsersConnectionRepository để cấu hình
+    @Autowired
+    private UsersConnectionRepository usersConnectionRepository;
 
+    // Inject FacebookConnectionSignup để cấu hình
+    @Autowired
+    private FacebookConnectionSignup facebookConnectionSignup;
 
-		@Bean
-		public PasswordEncoder passwordEncoder() {
-			return new BCryptPasswordEncoder();
-		}
-		@Autowired
-		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		}
+    // Inject UserDetailsService để cấu hình
+    @Autowired
+    private UserDetailsService userDetailsService;
 
+    // Mã hóa mật khẩu bằng Bcrypt
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
+    // Cấu hình và xác thực, quyền truy cập của người dùng
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
+        http.authorizeRequests().antMatchers("/home", "/").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
 
+                .and().formLogin().loginPage("/403").loginProcessingUrl("/login").usernameParameter("userName").passwordParameter("password")
+                .failureHandler(ajaxAuthenticationFailureHandler).successHandler(ajaxAuthenticationSuccessHandler)
 
-			http.authorizeRequests().antMatchers("/home", "/").permitAll()
-					 .antMatchers("/admin/**").hasRole("ADMIN")
+                .and().logout().logoutSuccessUrl("/")
 
-					.and().formLogin().loginPage("/403").loginProcessingUrl("/login").usernameParameter("userName").passwordParameter("password")
-					.failureHandler(ajaxAuthenticationFailureHandler).successHandler(ajaxAuthenticationSuccessHandler)
-					
-					.and().logout().logoutSuccessUrl("/")
+                .and().rememberMe().and()
+                .exceptionHandling().accessDeniedPage("/403");
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
-					.and().rememberMe().and()
-					.exceptionHandling().accessDeniedPage("/403");
-			http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+    }
 
-		}
-		
+    // Cấu hình đăng nhập bằng Facebook
+    @Bean
+    // @Primary
+    public ProviderSignInController providerSignInController() {
+        ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
+        return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
+                new FacebookSignInAdapter());
+    }
 
-		
-
-		
-
-		
-		@Bean
-		// @Primary
-		public ProviderSignInController providerSignInController() {
-			((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
-			return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
-					new FacebookSignInAdapter());
-		}
-	
-	
-	/*@Configuration
-	@Order(1)
-	public static class App1ConfigurationAdapter extends WebSecurityConfigurerAdapter {
-		
-		public App1ConfigurationAdapter() {
-			super();
-		}
-		@Autowired
-		private UserDetailsService userDetailsService;
-		@Bean
-		public PasswordEncoder passwordEncoder() {
-			return new BCryptPasswordEncoder();
-		}
-		@Autowired
-		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		}
-	    @Override
-	    protected void configure(HttpSecurity http) throws Exception {
-	        http.antMatcher("/admin/**")
-	            .authorizeRequests().anyRequest().hasRole("ADMIN")
-	            
-	            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-	            
-	            .and().httpBasic().realmName("admin realm").authenticationEntryPoint(authenticationEntryPoint());
-	    }
-	 
-	    @Bean
-	    public CustomBasicAuthenticationEntryPoint authenticationEntryPoint(){
-	        return new CustomBasicAuthenticationEntryPoint();
-	    }
-	}*/
 
 }

@@ -84,7 +84,7 @@
 								class="fa fa-eye"></i>${al.views}<i></i></span> <span
 								class="read-more-wrapper"><span class="read-more">Xem chi tiết<i></i>
 					</span></span>
-							<figure><img class="img-responsive" title="${al.title}"
+							<figure><img class="img-responsive" title="${al.title}" style="height: 200px;"
 										 src="${contextPath}/images/articles/${al.imagesThumbnail}" alt="${al.title}"/></figure>
 						</a>
 					</div>

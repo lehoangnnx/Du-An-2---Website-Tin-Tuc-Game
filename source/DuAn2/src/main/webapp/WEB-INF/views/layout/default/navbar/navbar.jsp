@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security"
            uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <header id="navigation">
     <div class="navbar navbar-inverse navbar-fixed-top" role="banner">
@@ -21,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="collapse navbar-collapse  col-md-6">
+            <div class="collapse navbar-collapse   col-md-6">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="scroll active"><a href="${contextPath}/">Trang
                         chủ</a></li>
@@ -62,9 +63,9 @@
                     <security:authorize access="isAuthenticated()">
                         <security:authentication var="principal" property="principal"/>
                         <li class="dropdown"><a class="dropdown-toggle"
-                                                data-toggle="dropdown" href="#"> <security:authorize
+                                                data-toggle="dropdown" title="${user.firstName}" href="#"> <security:authorize
                                 access="hasAnyRole('FACEBOOK', 'GOOGLE')">
-                            ${user.firstName} ${ user.lastName   }
+                            ${fn:substring(user.firstName, 0, 6)}
                         </security:authorize> <security:authorize
                                 access="hasAnyRole('MEMBER', 'ADMIN')">
                             ${user.userName}

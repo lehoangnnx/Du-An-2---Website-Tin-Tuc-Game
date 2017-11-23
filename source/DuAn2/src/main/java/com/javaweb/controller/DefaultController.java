@@ -1,41 +1,33 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 15/11/2017
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.*;
-import com.javaweb.repository.ArticleRepository;
 import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.RequestHandledEvent;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- *
- */
-@Controller
-@Scope(value = WebApplicationContext.SCOPE_GLOBAL_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 
+@Controller
 public class DefaultController {
 
     @Autowired
@@ -52,20 +44,20 @@ public class DefaultController {
     GamesService gamesService;
     @Autowired
     GameCategoryService gameCategoryService;
-
     @Autowired
     TagsService tagsService;
     @Autowired
     GameReviewsService gameReviewsService;
     @Autowired
     CommentService commentService;
-        @Autowired
-        ArticleLikeService articleLikeService;
-    @ModelAttribute("user")
-    public void sessionUser(Authentication authentication, HttpSession session) {
+    @Autowired
+    ArticleLikeService articleLikeService;
 
+
+    @ModelAttribute("user")
+    // Lưu Session Thông tin người dùng đăng nhập
+    public void sessionUser(Authentication authentication, HttpSession session) {
         if (authentication != null) {
-            System.out.println("VAO DAY");
             System.out.println(authentication.getAuthorities());
             session.setAttribute("user", usersService.findByUserName(authentication.getName()));
 
@@ -73,45 +65,100 @@ public class DefaultController {
     }
 
     @RequestMapping(value = {"/", "/home"})
-    public String index(Principal p, Authentication authentication, HttpSession session, Model model
+    public String index(Model model
 
     ) {
-        int pageSize = 10;
-
+        /*
+        * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Video
+        * Đầu vào : Tên danh mục
+        * Đầu ra : Danh mục bài viết
+        * */
         ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
         model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
-
+        /*
+        * Lấy danh danh sách 10 bài viết có danh mục là Video thuộc tính isHot = 1, trạng thái là active và có ngày hiển thị nhỏ hơn ngày hiện tại
+        *  Đầu vào :danh mục bài viết isHot = 1 , status = active , showDate < ngày hiện tại
+        * Đầu ra : Danh sách 10 bài viết
+        * */
         List<Article> getTop10ArticleCategoryNewAndHotVideoList = articleService
                 .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
                         (getArticleCategoryVideo, (byte) 1, "active", new Date());
         model.addAttribute("getTop10ArticleCategoryNewAndHotVideoList", getTop10ArticleCategoryNewAndHotVideoList);
 
-
+        /*
+        * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Sự Kiện
+        * Đầu vào : Tên danh mục
+        * Đầu ra : Danh mục bài viết
+        * */
         ArticleCategory getArticleCategorySuKien = articleCategoryService.findByName("Sự Kiện");
+
+        /*
+        * Lấy danh danh sách 5 bài viết có danh mục bài viết là Sự Kiện và trạng thái là active
+        *  Đầu vào : danh mục bài viết , trạng thái
+        * Đầu ra : Danh sách 5 bài viết
+        * */
         List<Article> getTop5ArticleCategoryNewSuKienList = articleService
                 .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategorySuKien, "active")
                 .stream().limit(5).collect(Collectors.toList());
         model.addAttribute("getTop5ArticleCategoryNewSuKienList", getTop5ArticleCategoryNewSuKienList);
 
+        /*
+        * Lấy danh danh sách 10 bài viết có trạng thái là active,showDate nhỏ hơn ngày hiện tại và
+        * sắp xếp giảm dần theo showDate
+        *  Đầu vào : trạng thái, ngày hiện tại
+        * Đầu ra : Danh sách 10 bài viết
+        * */
         List<Article> getTop10ArticleList = articleService
                 .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
-
         model.addAttribute("getTop10ArticleList", getTop10ArticleList);
 
+         /*
+        * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Pc-Console
+        * Đầu vào : Tên danh mục game
+        * Đầu ra : Danh mục game
+        * */
         GameCategory gameCategoryPcConsole = gameCategoryService.findByName("Game Pc-Console");
+
+        /*
+        * Lấy danh danh sách 3 Game có danh mục game là Pc-Console , trạng thái là active và isHot = 1
+        *  Đầu vào : trạng thái, isHot
+        * Đầu ra : Danh sách 3 Game
+        * */
         List<Games> getTop3GamePcConsole = gamesService
                 .findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(gameCategoryPcConsole, (byte) 1, "active")
                 .stream().limit(3).collect(Collectors.toList());
         model.addAttribute("getTop3GamePcConsole", getTop3GamePcConsole);
 
+         /*
+        * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Esport
+        * Đầu vào : Tên danh mục game
+        * Đầu ra : Danh mục game
+        * */
         GameCategory gameCategoryEsport = gameCategoryService.findByName("Game Esport");
+
+        /*
+        * Lấy danh danh sách 3 Game có danh mục game là Esport , trạng thái là active và isHot = 1
+        *  Đầu vào : danh mục game, trạng thái, isHot
+        * Đầu ra : Danh sách 3 Game
+        * */
         List<Games> getTop3GameEsport = gamesService
                 .findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(gameCategoryEsport, (byte) 1, "active")
                 .stream().limit(3).collect(Collectors.toList());
         model.addAttribute("getTop3GameEsport", getTop3GameEsport);
 
+         /*
+        * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Mobile
+        * Đầu vào : Tên danh mục game
+        * Đầu ra : Danh mục game
+        * */
         GameCategory gameCategoryMobile = gameCategoryService.findByName("Game Mobile");
+
+        /*
+        * Lấy danh danh sách 3 Game có danh mục game là Mobile , trạng thái là active và isHot = 1
+        *  Đầu vào : danh mục game, trạng thái, isHot
+        * Đầu ra : Danh sách 3 Game
+        * */
         List<Games> getTop3GameMobile = gamesService
                 .findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(gameCategoryMobile, (byte) 1, "active")
                 .stream().limit(3).collect(Collectors.toList());
@@ -121,54 +168,115 @@ public class DefaultController {
         return "home";
     }
 
+
     @ModelAttribute("getTop5ArticleCategoryHotVideoList")
     public List<Article> getTop5ArticleCategoryHotVideoList() {
+        /*
+        * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Video
+        * Đầu vào : Tên danh mục
+        * Đầu ra : Danh mục bài viết
+        * */
         ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+         /*
+        * Lấy danh danh sách 5 bài viết có danh mục là Video thuộc tính isHot = 1, trạng thái là active và có ngày hiển thị nhỏ hơn ngày hiện tại
+        * sắp xếp giảm dần thuộc tính Views
+        *  Đầu vào :danh mục bài viết isHot = 1 , status = active , showDate < ngày hiện tại
+        * Đầu ra : Danh sách 5 bài viết
+        * */
         List<Article> getTop5ArticleCategoryHotVideoList = articleService
-                .findTop5ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(getArticleCategoryVideo,  "active", new Date());
-        getTop5ArticleCategoryHotVideoList.forEach(x -> System.out.println(x.getSlug()));
+                .findTop5ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(getArticleCategoryVideo, "active", new Date());
         return getTop5ArticleCategoryHotVideoList;
     }
 
     @ModelAttribute("getTop10HotArticle")
     public List<Article> getTop10HotArticle() {
+         /*
+        * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Video
+        * Đầu vào : Tên danh mục
+        * Đầu ra : Danh mục bài viết
+        * */
         ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+
+        /*
+        * Lấy danh danh sách 10 bài viết có danh mục khác Video thuộc tính isHot = 1, trạng thái là active
+        * sắp xếp giảm dần thuộc tính Views
+        *  Đầu vào :danh mục bài viết, isHot = 1 , status = active
+        * Đầu ra : Danh sách 10 bài viết
+        * */
         List<Article> getTop10HotArticle = articleService.findTop10ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active")
                 .stream().filter(x -> x.getArticleCategories() != getArticleCategoryVideo).collect(Collectors.toList());
-        getTop10HotArticle.forEach(x -> System.out.println(x.getTitle()));
         return getTop10HotArticle;
     }
 
     @ModelAttribute("getTop10NewGame")
     public List<Games> getTop10NewGame() {
+
+        /*
+        * Lấy danh danh sách 10 game có  trạng thái là active
+        *  Đầu vào : status = active
+        * Đầu ra : Danh sách 10 game
+        * */
         List<Games> getTop10NewGame = gamesService.findTop10ByStatusOrderByReleasesDesc("active");
         return getTop10NewGame;
     }
 
     @ModelAttribute("getTop10HotGame")
     public List<Games> getTop10HotGame() {
+        /*
+        * Lấy danh danh sách 10 game có  trạng thái là active, isHot = 1
+        *  Đầu vào : status = active, isHot = 1
+        * Đầu ra : Danh sách 10 game
+        * */
         List<Games> getTop10HotGame = gamesService.findTop10ByIsHotAndStatusOrderByReleasesDesc((byte) 1, "active");
         return getTop10HotGame;
     }
 
     @ModelAttribute("getTop10GameOnline")
     public List<Games> getTop10GameOnline() {
+          /*
+        * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Online
+        * Đầu vào : Tên danh mục game
+        * Đầu ra : Danh mục game
+        * */
         GameCategory gameCategory = gameCategoryService.findByName("Game Online");
-        List<Games> getTop10GameOnline = gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(gameCategory, (byte) 1, "active");
+        /*
+        * Lấy danh danh sách 10 game có danh mục game là  Game Online,  trạng thái là active, isHot = 1
+        *  Đầu vào : danh mục game, status = active, isHot = 1
+        * Đầu ra : Danh sách 10 game
+        * */
+        List<Games> getTop10GameOnline = gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc
+                (gameCategory, (byte) 1, "active");
         return getTop10GameOnline;
     }
 
     @ModelAttribute("getTop10GameOffline")
     public List<Games> getTop10GameOffline() {
+          /*
+        * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Offline
+        * Đầu vào : Tên danh mục game
+        * Đầu ra : Danh mục game
+        * */
         GameCategory gameCategory = gameCategoryService.findByName("Game Offline");
-        List<Games> getTop10GameOffline = gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc(gameCategory, (byte) 1, "active");
+         /*
+        * Lấy danh danh sách 10 game có danh mục game là  Game Offline,  trạng thái là active, isHot = 1
+        *  Đầu vào : danh mục game, status = active, isHot = 1
+        * Đầu ra : Danh sách 10 game
+        * */
+        List<Games> getTop10GameOffline = gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc
+                (gameCategory, (byte) 1, "active");
         return getTop10GameOffline;
     }
 
     @ModelAttribute("getTop5ArticleHotAndViews")
     public List<Article> getTop5ArticleHotAndViews() {
-
-        List<Article> getTop5ArticleHotAndViews = articleService.findTop5ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active");
+        /*
+        * Lấy danh danh sách 5 bài viết có isHot = 1, trạng thái là active
+        * sắp xếp giảm dần thuộc tính Views
+        *  Đầu vào :isHot = 1 , status = active
+        * Đầu ra : Danh sách 5 bài viết
+        * */
+        List<Article> getTop5ArticleHotAndViews = articleService.findTop5ByIsHotAndStatusOrderByViewsDesc
+                ((byte) 1, "active");
         return getTop5ArticleHotAndViews;
     }
 
@@ -212,6 +320,7 @@ public class DefaultController {
         return articleCategoryList;
 
     }
+
     @ModelAttribute("gamesCategoryList")
     public List<GameCategory> gamesCategoryList() {
         List<GameCategory> articleCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
@@ -223,7 +332,7 @@ public class DefaultController {
 
     @RequestMapping("/{slug}")
     String chitiet(@PathVariable("slug") String slug, Model model,
-                   @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "2") Integer limit
+                   @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "20") Integer limit
             , @RequestParam(value = "sorted", defaultValue = "news") String sorted, Authentication authentication
     ) {
         Article article = null;
@@ -246,7 +355,6 @@ public class DefaultController {
             List<Article> articleList = null;
 
             if (article != null) {
-
 
 
                 article.setMainContent(HtmlUtils.htmlUnescape(article.getMainContent()));
@@ -300,11 +408,11 @@ public class DefaultController {
                     model.addAttribute("games", games);
                 }
 
-                List<ArticleLike> articleLikeList =  articleLikeService.findAllByArticle(article);
+                List<ArticleLike> articleLikeList = articleLikeService.findAllByArticle(article);
                 boolean userOfArticleLike = false;
-                for (ArticleLike al : articleLikeList){
+                for (ArticleLike al : articleLikeList) {
                     if (authentication != null) {
-                        if (al.getUsers() == usersService.findByUserName(authentication.getName())){
+                        if (al.getUsers() == usersService.findByUserName(authentication.getName())) {
                             userOfArticleLike = true;
                             break;
                         }
@@ -317,7 +425,7 @@ public class DefaultController {
 
                 return "chitiet";
             } else if (articleCategory != null) {
-                if(articleCategory.getName().equals("Video")){
+                if (articleCategory.getName().equals("Video")) {
                     List<Article> getTop10ArticleCategoryNewVideoList = articleService
                             .findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory, "active", new Date());
 
@@ -393,8 +501,8 @@ public class DefaultController {
 
 
     @RequestMapping("/search.html")
-    String search(Model model,@RequestParam("q") String q,
-                  @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "2") Integer limit
+    String search(Model model, @RequestParam("q") String q,
+                  @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "20") Integer limit
             , @RequestParam(value = "sorted", defaultValue = "hots") String sorted) {
         String keywork = HtmlUtils.htmlEscape(q);
         System.out.println("KEY WORK : " + keywork);
@@ -411,32 +519,32 @@ public class DefaultController {
             sorted = "views";
         }
         try {
-            articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork,keywork,"active");
-            tags = tagsService.findTop1ByNameContainingOrSlugContaining(keywork,keywork);
+            articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork, keywork, "active");
+            tags = tagsService.findTop1ByNameContainingOrSlugContaining(keywork, keywork);
 
             articleList = articleService.findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date(), null);
+                    (keywork, keywork, keywork, keywork, keywork, articleCategory, tags, "active", new Date(), null);
 
             int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
             int totalArticle = articleList.size();
             articleList = articleService.findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
-                    (keywork,keywork,keywork,keywork,keywork,articleCategory,tags,"active", new Date(),
-                            new PageRequest(page-1,limit,new Sort(Sort.Direction.DESC,sorted)));
-            if(articleList.size() != 0){
-                objectCategoryAndTagMap.put("name", "Kết Quả Tìm Kiếm : " + totalArticle +" Kết Quả");
-                objectCategoryAndTagMap.put("slug", "search.html?q="+q);
+                    (keywork, keywork, keywork, keywork, keywork, articleCategory, tags, "active", new Date(),
+                            new PageRequest(page - 1, limit, new Sort(Sort.Direction.DESC, sorted)));
+            if (articleList.size() != 0) {
+                objectCategoryAndTagMap.put("name", "Kết Quả Tìm Kiếm : " + totalArticle + " Kết Quả");
+                objectCategoryAndTagMap.put("slug", "search.html?q=" + q);
                 model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
                 model.addAttribute("title", q);
                 model.addAttribute("articleList", articleList);
                 model.addAttribute("currentpage", page);
                 model.addAttribute("pagecount", pageCount);
-            }else {
+            } else {
                 objectCategoryAndTagMap.put("name", "Không Tìm Thấy Kết Quả Nào");
-                objectCategoryAndTagMap.put("slug", "search.html?q="+q);
+                objectCategoryAndTagMap.put("slug", "search.html?q=" + q);
                 model.addAttribute("objectCategoryAndTag", objectCategoryAndTagMap);
             }
             return "search";
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return "redirect:/403";
         }
@@ -446,17 +554,17 @@ public class DefaultController {
 
 
     @GetMapping("/profile.html")
-    public String profile (Authentication authentication, Model model){
+    public String profile(Authentication authentication, Model model) {
         try {
-            if (authentication != null){
+            if (authentication != null) {
 
 
                 model.addAttribute("title", "Trang Cá Nhân");
                 return "canhan";
-            }else {
+            } else {
                 return "redirect:/403";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return "redirect:/403";
         }

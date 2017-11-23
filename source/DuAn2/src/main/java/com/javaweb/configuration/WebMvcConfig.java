@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 22/10/2017
+* Lớp WebMvcConfig kế thừa abstract class WebMvcConfigurerAdapter
+* là lớp cấu hình cho Spring MVC
+* */
 package com.javaweb.configuration;
 
 import java.nio.charset.Charset;

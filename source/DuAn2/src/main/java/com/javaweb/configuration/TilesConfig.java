@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp TilesConfig là lớp cấu hình Apache Tiles
+* */
 package com.javaweb.configuration;
 
 import org.springframework.context.annotation.Bean;
@@ -24,7 +29,6 @@ public class TilesConfig {
     public TilesViewResolver tilesViewResolver() {
         TilesViewResolver resolver = new TilesViewResolver();
         resolver.setViewClass(TilesView.class);
- 
         return resolver;
     }
 }

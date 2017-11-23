@@ -13,7 +13,7 @@
     <div class="content-panel">
 
         <div class="article-full-image">
-            <img class="img-responsive" src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="">
+            <img style="width: 782px; height:440px; " class="img-responsive" src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="${article.title}">
             <div class="wrapper" style="margin-top: 31px;">
                 <div class="content-panel-body article-header">
                     <input hidden id="articleId" value="${article.articleId}"/>
@@ -107,10 +107,10 @@
                     <div class="row">
                         <div style="padding-top: 10px;" class="col-md-7">
                             <div class="col-md-4">
-                            <img src="${contextPath}/images/games/${games.images}" alt="${games.name}"
+                            <img style="width: 100%; height: 120px;" src="${contextPath}/images/games/${games.images}" alt="${games.name}"
                                  class="pull-left m-r-10 hidden-xs"></div>
                             <div class="col-md-8 ">
-                            <h2 style="color: #e54c10;" class="title-game-vote">${games.name}</h2></div>
+                            <h3 style="color: #e54c10;" class="title-game-vote">${games.name}</h3></div>
                             <div class="pull-left">
 
                                 <p>
@@ -119,7 +119,8 @@
                                         <a href="">${gc.name}</a>
                                     </c:forEach>
                                     <br>
-                                    Nhà phát hành: <span>${games.publishers}</span>
+                                    Nhà phát hành: <span>
+                                        ${fn:substring(games.publishers, 0, 20)} ...</span><br/>
                                 </p>
                                 <a class="btn btn-default btn-sm" href="${contextPath}/${games.slug}">Thông tin game</a>
                                 <a
@@ -282,9 +283,11 @@
             </security:authorize>
 
             <security:authorize access="!isAuthenticated()">
-                Vui Lòng Đăng Nhập Để Bình Luận
-                <li class="scroll"><a class="modal_trigger" href="#modal">Đăng
-                    Nhập</a></li>
+                <div style="text-align: center;">
+                <span>Vui Lòng Đăng Nhập Để Bình Luận
+                <li class="scroll"><a style="color: #e54c10;" class="modal_trigger" href="#modal">Đăng
+                    Nhập</a></li></span>
+                </div>
             </security:authorize>
             <!-- End trả lời bình luận -->
         </div>
@@ -313,16 +316,16 @@
                         <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="4">
                             <div class="item">
                                 <div class="item-header">
-                                    <a href="#"><img src="${contextPath}/images/articles/${alql.imagesThumbnail}"
+                                    <a href="${contextPath}/${alql.slug}"><img src="${contextPath}/images/articles/${alql.imagesThumbnail}"
                                                      alt=""/></a>
                                 </div>
                                 <div class="item-content">
                                     <h4>
-                                        <a href="#">${alql.title}</a>
+                                        <a href="${contextPath}/${alql.slug}"> ${fn:substring(alql.title, 0, 50)} ...</a>
                                     </h4>
-                                    <span class="item-meta"> <a
+                                    <span class="item-meta"> <%--<a
                                             href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
-                                            class="fa fa-comment-o"></i>82 Bình luận</a> <a
+                                            class="fa fa-comment-o"></i>82 Bình luận</a>--%> <a
                                             href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
                                             class="fa fa-clock-o"></i><fmt:formatDate
                                             pattern="dd-MM-yyyy" value="${alql.showDate}"/></a>
@@ -407,7 +410,7 @@
                         </strong>
 
                         <h3>
-                            <a href="${contextPath}/${gal.slug}">${gal.title}</a>
+                            <a alt="${gal.title}" href="${contextPath}/${gal.slug}">${gal.title}</a>
                         </h3>
                         <span class="item-meta">
                             <a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i

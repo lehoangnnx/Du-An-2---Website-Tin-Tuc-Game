@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,17 @@ public class GamesController {
     UsersService usersService;
     @Autowired
     ArticleCategoryService articleCategoryService;
+
+    @ModelAttribute("user")
+    public void sessionUser(Authentication authentication, HttpSession session) {
+
+        if (authentication != null) {
+            System.out.println("VAO DAY");
+            System.out.println(authentication.getAuthorities());
+            session.setAttribute("user", usersService.findByUserName(authentication.getName()));
+
+        }
+    }
     @ModelAttribute("articleCategoryList")
     public List<ArticleCategory> getCategory() {
         List<ArticleCategory> articleCategoryList = articleCategoryService.findAllByStatusOrderBySortOrderAsc("active");
