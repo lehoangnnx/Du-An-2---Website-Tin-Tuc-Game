@@ -14,29 +14,34 @@
             <div class="row coralbg white">
                 <div class="col-md-6 no-pad">
                     <div class="user-pad">
-                        <h3 >Call of Duty</h3><br>
-                        <h4 class="white"><i class="fa fa-check-circle-o"></i> Game nhập vai hành động</h4>
-                        <p>Call of duty là game di động chiến thuật được xây dựng dựa trên bối cảnh của tựa game huyền thoại Warcraft 3. </p>
-                    </div>
+                        <h3 >${games.name}</h3><br>
+                        <h4 class="white"><i class="fa fa-check-circle-o"></i>
+                            <c:forEach items="${games.gameCategories}" var="gc">
+                                ${gc.name} |
+                            </c:forEach>
+                        </h4>
+                        <p>Nhà Phát Hành : ${games.publishers}</p><br/>
+                        <p>Ngày Phát Hành : <fmt:formatDate pattern="dd-MM-yyyy" value="${games.releases}"/></p>
+                         </div>
                 </div>
                 <div class="col-md-6 no-pad">
                     <div class="user-image">
-                        <img src="images/anhgame/t1.jpg" class="img-responsive thumbnail">
+                        <img src="${contextPath}/images/games/${games.images}" class="img-responsive thumbnail">
                     </div>
                 </div>
             </div>
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
-                    <h3>LƯỢT XEM</h3>
-                    <h4>2,784</h4>
+                    <h3 style="text-align: center;">LƯỢT XEM</h3>
+                    <h4>${games.views}</h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>ĐÁNH GIÁ</h3>
-                    <h4>456</h4>
+                    <h3 style="text-align: center;">ĐIỂM ĐÁNH GIÁ</h3>
+                    <h4>${pointGameReviews}/10</h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>SỐ LƯỢT TẢI </h3>
-                    <h4>4,901</h4>
+                    <h3 style="text-align: center;">LƯỢT ĐÁNH GIÁ </h3>
+                    <h4>${gameReviews}</h4>
                 </div>
             </div>
         </div>
@@ -63,7 +68,7 @@
                     Thông tin game
                 </h3>
                 <ul class="user-menu-list">
-                    <p>Call of Duty Black Ops III (Call of Duty Black Ops 3, Call of Duty 2015, Call of Duty 12) là game bắn súng góc nhìn thứ nhất, là phiên bản thứ 12 trong seri Call of Duty. Game đưa người chơi vào chiến trường mạnh mẽ của tương lai, nơi mà công nghệ sinh học đã cho phép tạo ra những người lính công nghệ cao, những quân nhân nửa người nửa robot với những khả năng vượt trội.</p>
+                    <p>${games.info}</p>
                 </ul>
             </div>
             <div class="user-menu-content">
@@ -71,38 +76,53 @@
                     Cấu hình chơi game
                 </h3>
                 <ul class="user-menu-list">
-                    <li>
-                        <h4>OS: Windows 7 64-Bit / Windows 8 64-Bit / Windows 8.1 64-Bit OS: Windows 7 64-Bit / Windows 8 64-Bit / Windows 8.1 64-Bit OS: Windows 7 64-Bit / Windows 8 64-Bit / Windows 8.1 64-Bit
-                        </h4>
-                    </li>
-                    <li>
-                        <h4>Processor: Intel® Core™ i3-530 @ 2.93 GHz / AMD Phenom™ II X4 810 @ 2.60 GHz
-                            Memory: 6 GB RAM</h4>
-                    </li>
-                    <li>
-                        <h4>Graphics: NVIDIA® GeForce® GTX 470 @ 1GB / ATI® Radeon™ HD 6970 @ 1GB
-                            DirectX: Version 11</h4>
-                    </li>
+                    ${games.systemRequirements}
+
                 </ul>
             </div>
             <div class="user-menu-content">
                 <h3>
                     Bình chọn game
                 </h3>
-                <ul class="user-menu-list">
+                <div class="stars">
+
+                        <form action="">
+                            <h4></h4>
+                            <input hidden id="gameId" value="${article.gameId}"/>
+                            <input ${pointGameReviewsOfUser == 5 ? 'checked' : '' } class="star star-5" id="star-5"
+                                                                                    type="radio" name="star">
+                            <label onclick="gamereivews(5);" class="star star-5" for="star-5"></label>
+                            <input ${pointGameReviewsOfUser == 4 ? 'checked' : '' }
+                                    class="star star-4" id="star-4" type="radio" name="star">
+                            <label onclick="gamereivews(4);" class="star star-4" for="star-4"></label>
+                            <input ${pointGameReviewsOfUser == 3 ? 'checked' : '' }
+                                    class="star star-3" id="star-3" type="radio" name="star">
+                            <label onclick="gamereivews(3);" class="star star-3" for="star-3"></label>
+                            <input ${pointGameReviewsOfUser == 2 ? 'checked' : '' }
+                                    class="star star-2" id="star-2" type="radio" name="star">
+                            <label onclick="gamereivews(2);" class="star star-2" for="star-2"></label>
+                            <input ${pointGameReviewsOfUser == 1 ? 'checked' : '' }
+                                    class="star star-1" id="star-1" type="radio" name="star"><label
+                                onclick="gamereivews(1);"
+                                class="star star-1" for="star-1"></label>
+                        </form>
+
+                </div>
+                <%--<ul class="user-menu-list">
 
                     <div class="row lead evaluation">
                         <div id="colorstar" class="starrr ratable" ></div>
-                        <span id="count">0</span> star(s) - <span id="meaning"> </span>
+                        <span id="count">2</span> star(s) - <span id="meaning"> </span>
 
                         <div class='indicators' style="display:none">
+                            <input hidden id="pointGameReviewsOfUser" value="${pointGameReviewsOfUser}" />
                             <div id='textwr'>What went wrong?</div>
                             <input id="rate[]" name="rate[]" type="text" placeholder="" class="form-control input-md" style="display:none;">
                             <input id="rating[]" name="rating[]" type="text" placeholder="" class="form-control input-md rateval" style="display:none;">
                         </div>
 
                     </div>
-                </ul>
+                </ul>--%>
             </div>
             <div class="user-menu-content">
                 <h2 class="text-center">
@@ -110,12 +130,12 @@
                 </h2>
                 <center><i class="fa fa-cloud-upload fa-4x"></i></center>
                 <div class="share-links">
-                    <center><button type="button" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
-                        <span class="btn-label"><i class="fa fa-arrow-circle-o-down"></i></span>TẢI TRỰC TIẾP TỪ WEB
-                    </button></center>
-                    <center><button type="button" class="btn btn-lg btn-labeled btn-warning" href="#">
+                    <center><s type="button" target="_blank" class="btn btn-lg btn-labeled btn-success" href="${games.downloadUrl}" style="margin-bottom: 15px;">
+                        <span class="btn-label"><i class="fa fa-arrow-circle-o-down"></i></span>TẢI TRỰC TIẾP TỪ WEBSITE
+                    </s></center>
+                    <%--<center><button type="button" class="btn btn-lg btn-labeled btn-warning" href="#">
                         <span class="btn-label"><i class="fa fa-arrow-circle-o-down"></i></span>LINK DRIVE
-                    </button></center>
+                    </button></center>--%>
                 </div>
             </div>
         </div>
@@ -128,17 +148,18 @@
     <div class="container container-pad" id="property-listings">
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="border-bottom: 1px solid #f0f0f0; margin-bottom: 30px; padding-bottom: 15px;">
                 <h1>Tin game mới nổi bật</h1><br>
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-6">
+                <c:forEach var="al" items="${articleList}" begin="0" end="4">
                 <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                     <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/z1.png"></a>
+                        <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                            <img alt="image" class="img-responsive" src="${contextPath}/images/articles/${al.imagesThumbnail}"></a>
 
                         <div class="clearfix visible-sm"></div>
 
@@ -146,239 +167,67 @@
                             <a href="#" target="_parent"></a>
 
                             <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
+                                <a href="${contextPath}/${al.slug}" target="_parent">
+                                        ${al.title}</a></h4>
                             <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
+                                <li>${al.views} Lượt xem</li>
 
                                 <li style="list-style: none">|</li>
 
-                                <li>5 Bình luận</li>
+                                <li>${fn:length(al.comments)} Bình luận</li>
 
                                 <li style="list-style: none">|</li>
 
-                                <li>5 Vote</li>
+                                <li>${al.users.userName}</li>
                             </ul>
 
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+
+                            <p class="hidden-xs ">${al.subContent}</p>
+                            <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/z2.jpg"></a>
-
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
-
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/z3.jpg"></a>
-
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
-
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/2.png"></a>
-
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
-
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
-                        </div>
-                    </div>
-                </div>
-
+                </c:forEach>
 
             </div>
 
             <div class="col-sm-6">
+                <c:forEach var="al" items="${articleList}" begin="5" end="9">
+                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                        <div class="media hover14 column">
+                            <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                                <figure> <img alt="image" class="img-responsive"
+                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/3.jpg"></a>
+                            <div class="clearfix visible-sm"></div>
 
-                        <div class="clearfix visible-sm"></div>
+                            <div class="media-body fnt-smaller">
 
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
+                                <h4 class="media-heading">
+                                    <a href="${contextPath}/${al.slug}" target="_parent">
+                                            ${al.title}</a></h4>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                    <li>${al.views} Lượt xem</li>
 
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
+                                    <li style="list-style: none">|</li>
 
-                                <li style="list-style: none">|</li>
+                                    <li>${fn:length(al.comments)} Bình luận</li>
 
-                                <li>5 Bình luận</li>
+                                    <li style="list-style: none">|</li>
 
-                                <li style="list-style: none">|</li>
+                                    <li>${al.users.userName}</li>
+                                </ul>
 
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
+                                <p class="hidden-xs ">${al.subContent}</p>
+                                <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:forEach>
 
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/2.png"></a>
 
-                        <div class="clearfix visible-sm"></div>
 
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
 
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/4.jpg"></a>
-
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
-
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="#" target="_parent">
-                            <img alt="image" class="img-responsive" src="images/anhgame/1.jpg"></a>
-
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
-
-                            <h4 class="media-heading">
-                                <a href="#" target="_parent">SGame tung Teaser ra mắt Tân Tiên Kiếm “cuộn chuột” độc đáo</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>4444 Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>5 Vote</li>
-                            </ul>
-
-                            <p class="hidden-xs">Vào đúng sáng ngày Nhà Giáo Việt Nam 20/11, NPH SGame đã công bố trang teaser chính thức giới thiệu về webgame 3D Tân Tiên Kiếm.
-                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: GameK</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

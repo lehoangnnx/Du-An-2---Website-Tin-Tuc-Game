@@ -65,6 +65,7 @@
 	<definition name="chitietgame" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/trangchitietgame.jsp" />
+		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/chitietgame-footertag.jsp" />
 		<put-attribute name="sitebar"
 					   value="" />
 

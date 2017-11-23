@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <!-- Meta tags -->
-	<meta charset="utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Creative One Page Parallax Template">
 <meta name="author" content="">

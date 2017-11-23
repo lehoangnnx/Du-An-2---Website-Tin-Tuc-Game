@@ -1,5 +1,40 @@
 <%@ page pageEncoding="UTF-8" %>
+<script>
+    $(document).ready(function(ev){
+        $('#custom_carousel').on('slide.bs.carousel', function (evt) {
+            $('#custom_carousel .controls li.active').removeClass('active');
+            $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').addClass('active');
+        })
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var $btnSets = $('#responsive'),
+            $btnLinks = $btnSets.find('a');
 
+        $btnLinks.click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.user-menu>div.user-menu-content").removeClass("active");
+            $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+        });
+    });
+
+    $( document ).ready(function() {
+        $("[rel='tooltip']").tooltip();
+
+        $('.view').hover(
+            function(){
+                $(this).find('.caption').slideDown(250); //.fadeIn(250)
+            },
+            function(){
+                $(this).find('.caption').slideUp(250); //.fadeOut(205)
+            }
+        );
+    });
+</script>
 <script>
     $(document).ready(function(){
 
@@ -42,13 +77,13 @@
                             "   <span class=\"artst-like\"><a href=\"#\"><i class=\"glyphicon glyphicon-heart-empty\"></i></a></span>\n" +
                             "  <span class=\"artst-share\"><a href=\"#\"><i class=\"glyphicon glyphicon-share\"></i></a></span>\n" +
                             "  <span class=\"artst-plus\"><a href=\"#\"><i class=\"glyphicon glyphicon-plus-sign\"></i></a></span>\n" +
-                            "  <a href=\"${pageContext.request.contextPath}/games" + result[i].slug + " \">\n" +
+                            "  <a href=\"${pageContext.request.contextPath}/games/" + result[i].slug + " \">\n" +
                             "  <img style=\"height:150px;\" src=\"${pageContext.request.contextPath}/images/games/" + result[i].images + "\" alt=\"\" class=\"img-responsive\" />\n" +
                             " </a>\n" +
                             " </div>\n" +
                             " <div class=\"artst-prfle pull-right\">\n" +
                             " <div class=\"art-title\">\n" +
-                            " <a href=\"${pageContext.request.contextPath}/games" + result[i].slug + "\">"+result[i].name+" </a> \n" +
+                            " <a href=\"${pageContext.request.contextPath}/games/" + result[i].slug + "\">"+result[i].name+" </a> \n" +
                             " <span class=\"artst-sub\">Thể loại : <span class=\"byname\"> "+gameCategory+" </span> <span class=\"daysago\"></span></span>\n" +
                             "  </div>\n" +
                             "  <div class=\"counter-tab\">\n" +
@@ -63,7 +98,7 @@
                             " </div>\n" +
                             " </div>\n" +
                             "<div class=\"bot-links\">\n" +
-                            " <a href=\"${pageContext.request.contextPath}/games" + result[i].slug + "\">Xem chi tiết</a>\n" +
+                            " <a href=\"${pageContext.request.contextPath}/games/" + result[i].slug + "\">Xem chi tiết</a>\n" +
                             " <a target=\"_blank\" href=\""+result[i].homeUrl+"\">Trang Chủ</a>\n" +
                             " <a target=\"_blank\" href=\""+result[i].downloadUrl+"\">Tải game</a>\n" +
                             " </div>\n" +

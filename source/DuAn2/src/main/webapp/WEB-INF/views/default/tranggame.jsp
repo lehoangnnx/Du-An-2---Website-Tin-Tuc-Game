@@ -86,11 +86,11 @@
 
             <div class="col-md-3" style="margin-right: 15px;">
                 <h5>Tên Game</h5>
-                <form class="form-horizontal" role="form">
+
                     <div class="form-group">
                         <input id="keysearch" style="height: 34px;" type="text" class="form-control"/>
                     </div>
-                </form>
+
             </div>
 
             <div class="col-md-2">
@@ -200,41 +200,6 @@
     </div>
 </div>
 </div>
-<div style="padding-bottom: 60px; border-bottom: 1px solid #F0F0F0" class="content-panel-body pagination ">
-    <%--<a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i>Trước</a>
-    <a class="page-numbers" href="#">1</a> <span
-        class="page-numbers current">2</span> <a class="page-numbers"
-                                                 href="#">3</a> <a class="page-numbers" href="#">4</a> <a
-        class="page-numbers" href="#">5</a> <a class="next page-numbers"
-                                               href="#">Tiếp theo<i class="fa fa-angle-right"></i></a>--%>
-    <c:if test="${currentpage > 1  }">
 
-        <a class="prev page-numbers"
-           href="${contextPath}/${objectCategoryAndTag.slug}/?${sorted}&page=${currentpage -1 }"><i
-                class="fa fa-angle-left"></i>Trước</a>
-    </c:if>
-    <c:forEach begin="${(currentpage - 3) > 0 ? currentpage - 3 : 1 }"
-               end="${currentpage + 3 < pagecount ? currentpage + 3 : pagecount }"
-               varStatus="status">
-        <c:choose>
-            <c:when test="${status.index == currentpage }">
-
-                <span class="page-numbers current">${status.index }</span>
-            </c:when>
-            <c:otherwise>
-
-                <a class="page-numbers"
-                   href="${contextPath}/${objectCategoryAndTag.slug}?${sorted}&page=${status.index }">${status.index }</a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-    <c:if test="${currentpage < pagecount }">
-
-        <a class="next page-numbers"
-           href="${contextPath}/${objectCategoryAndTag.slug}?${sorted}&page=${currentpage +1 }">Sau<i
-                class="fa fa-angle-right"></i></a>
-    </c:if>
-
-</div>
 
 

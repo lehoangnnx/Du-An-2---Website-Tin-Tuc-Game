@@ -462,31 +462,5 @@ public class DefaultController {
         }
 
     }
-    @RequestMapping("/games/hoso.html")
-    String tranggame(Model model) {
-        try {
-            List<Games> Top5gamesList = gamesService.findTop5ByStatusAndIsHotOrderByViewsDesc("active",(byte) 1);
-            List<Games> gamesList = gamesService.findAll();
-            List<GameCategory> gameCategoryList = gameCategoryService.findAll().stream()
-                    .filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
-            model.addAttribute("Top5gamesList",Top5gamesList);
-            model.addAttribute("gamesList",gamesList);
-            model.addAttribute("gameCategoryList",gameCategoryList);
-            List<Article> articleList = articleService.findTop10ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active")
-                    .stream().filter(x -> !x.getGameId().equals(0)).collect(Collectors.toList());
-            System.out.println(articleList.size()+"SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss");
-            model.addAttribute("articleList",articleList);
-            model.addAttribute("title", "Hồ Sơ Game - Cổng Thông Tin Game - Game Mới Cập Nhập");
-            return "game";
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return "redirect:/403";
-        }
 
-    }
-    @RequestMapping("/chitietgame")
-    String chitietgame(Model model) {
-        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
-        return "chitietgame";
-    }
 }
