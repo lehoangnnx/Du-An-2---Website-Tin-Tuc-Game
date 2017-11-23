@@ -84,8 +84,7 @@
                 <h3>
                     Bình chọn game
                 </h3>
-                <div class="stars">
-
+                <div class="stars1">
                         <form action="">
                             <h4></h4>
                             <input hidden id="gameId" value="${article.gameId}"/>
@@ -105,6 +104,7 @@
                                     class="star star-1" id="star-1" type="radio" name="star"><label
                                 onclick="gamereivews(1);"
                                 class="star star-1" for="star-1"></label>
+                            <p>Đẹp trai</p>
                         </form>
 
                 </div>
