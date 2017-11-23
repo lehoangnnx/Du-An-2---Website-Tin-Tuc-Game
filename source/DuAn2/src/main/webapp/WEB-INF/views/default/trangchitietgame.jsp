@@ -85,9 +85,10 @@
                     Bình chọn game
                 </h3>
                 <div class="stars1">
+                    <security:authorize access="isAuthenticated()">
                         <form action="">
                             <h4></h4>
-                            <input hidden id="gameId" value="${article.gameId}"/>
+                            <input hidden id="gameId" value="${games.gameId}"/>
                             <input ${pointGameReviewsOfUser == 5 ? 'checked' : '' } class="star star-5" id="star-5"
                                                                                     type="radio" name="star">
                             <label onclick="gamereivews(5);" class="star star-5" for="star-5"></label>
@@ -104,9 +105,29 @@
                                     class="star star-1" id="star-1" type="radio" name="star"><label
                                 onclick="gamereivews(1);"
                                 class="star star-1" for="star-1"></label>
-                            <p>Đẹp trai</p>
                         </form>
+                    </security:authorize>
+                    <security:authorize access="!isAuthenticated()">
+                        <form action="">
+                            <h4></h4>
 
+                            <input class="star star-5" id="star-5" type="radio" name="star">
+                            <a class="modal_trigger" href="#modal"> <label class="star star-5" for="star-5"></label></a>
+                            <input
+                                    class="star star-4" id="star-4" type="radio" name="star">
+                            <a class="modal_trigger" href="#modal"><label class="star star-4" for="star-4"></label></a>
+                            <input
+                                    class="star star-3" id="star-3" type="radio" name="star">
+                            <a class="modal_trigger" href="#modal"> <label class="star star-3" for="star-3"></label></a>
+                            <input $
+                                   class="star star-2" id="star-2" type="radio" name="star">
+                            <a class="modal_trigger" href="#modal"> <label class="star star-2" for="star-2"></label></a>
+                            <input
+                                    class="star star-1" id="star-1" type="radio" name="star"><a
+                                class="modal_trigger" href="#modal"><label
+                                class="star star-1" for="star-1"></label></a>
+                        </form>
+                    </security:authorize>
                 </div>
                 <%--<ul class="user-menu-list">
 
@@ -130,9 +151,9 @@
                 </h2>
                 <center><i class="fa fa-cloud-upload fa-4x"></i></center>
                 <div class="share-links">
-                    <center><s type="button" target="_blank" class="btn btn-lg btn-labeled btn-success" href="${games.downloadUrl}" style="margin-bottom: 15px;">
+                    <center><a type="button" target="_blank" class="btn btn-lg btn-labeled btn-success" href="${games.downloadUrl}" style="margin-bottom: 15px;">
                         <span class="btn-label"><i class="fa fa-arrow-circle-o-down"></i></span>TẢI TRỰC TIẾP TỪ WEBSITE
-                    </s></center>
+                    </a></center>
                     <%--<center><button type="button" class="btn btn-lg btn-labeled btn-warning" href="#">
                         <span class="btn-label"><i class="fa fa-arrow-circle-o-down"></i></span>LINK DRIVE
                     </button></center>--%>
@@ -156,56 +177,19 @@
         <div class="row">
             <div class="col-sm-6">
                 <c:forEach var="al" items="${articleList}" begin="0" end="4">
-                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                    <div class="media">
-                        <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
-                            <img alt="image" class="img-responsive" src="${contextPath}/images/articles/${al.imagesThumbnail}"></a>
-
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-                            <a href="#" target="_parent"></a>
-
-                            <h4 class="media-heading">
-                                <a href="${contextPath}/${al.slug}" target="_parent">
-                                        ${al.title}</a></h4>
-                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                <li>${al.views} Lượt xem</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>${fn:length(al.comments)} Bình luận</li>
-
-                                <li style="list-style: none">|</li>
-
-                                <li>${al.users.userName}</li>
-                            </ul>
-
-
-                            <p class="hidden-xs ">${al.subContent}</p>
-                            <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
-                        </div>
-                    </div>
-                </div>
-                </c:forEach>
-
-            </div>
-
-            <div class="col-sm-6">
-                <c:forEach var="al" items="${articleList}" begin="5" end="9">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
-                                <figure> <img alt="image" class="img-responsive"
-                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
+                                <figure><img alt="${al.title}" class="img-responsive" style="width: 100%; height: 130px;"
+                                             src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
                             <div class="clearfix visible-sm"></div>
 
                             <div class="media-body fnt-smaller">
 
                                 <h4 class="media-heading">
-                                    <a href="${contextPath}/${al.slug}" target="_parent">
-                                            ${al.title}</a></h4>
+                                    <a alt="${al.title}" href="${contextPath}/${al.slug}" target="_parent">
+                                            ${fn:substring(al.title, 0, 100)} ... </a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>
 
@@ -218,17 +202,51 @@
                                     <li>${al.users.userName}</li>
                                 </ul>
 
-                                <p class="hidden-xs ">${al.subContent}</p>
+                                <p class="hidden-xs ">${fn:substring(al.subContent, 0, 100)} ...</p>
                                 <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
 
-
-
-
             </div>
+
+
+            <div class="col-sm-6">
+                <c:forEach var="al" items="${articleList}" begin="5" end="9">
+                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                        <div class="media hover14 column">
+                            <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                                <figure> <img alt="${al.title}" class="img-responsive" style="width: 100%; height: 130px;"
+                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
+
+                            <div class="clearfix visible-sm"></div>
+
+                            <div class="media-body fnt-smaller">
+
+                                <h4 class="media-heading">
+                                    <a alt="${al.title}" href="${contextPath}/${al.slug}" target="_parent">
+                                            ${fn:substring(al.title, 0, 100)} ...</a></h4>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                    <li>${al.views} Lượt xem</li>
+
+                                    <li style="list-style: none">|</li>
+
+                                    <li>${fn:length(al.comments)} Bình luận</li>
+
+                                    <li style="list-style: none">|</li>
+
+                                    <li>${al.users.userName}</li>
+                                </ul>
+
+                                <p class="hidden-xs ">${fn:substring(al.subContent, 0, 100)} ...</p>
+                                <span class="fnt-smaller fnt-lighter fnt-arial">Nguồn: ${al.author}</span>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
         </div>
     </div>
 </div>

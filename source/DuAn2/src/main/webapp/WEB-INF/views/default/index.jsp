@@ -122,41 +122,41 @@
             </div>
 
             <div class="split-article-slide-right">
-                <c:forEach var="gacnskl" items="${getTop5ArticleCategoryNewSuKienList}" begin="0"
-                           end="1" step="2">
+
                     <div class="item">
                         <div class="item-header hover14 column">
-                            <a href="${contextPath}/${gacnskl.slug}"> <span class="comment-tag"><i
-                                    class="fa fa-comment-o"></i>${gacnskl.views}<i></i></span> <span
+                            <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}">
+                                <span class="comment-tag"><i
+                                    class="fa fa-comment-o"></i>${getTop5ArticleCategoryNewSuKienList[0].views}<i></i></span> <span
                                     class="read-more-wrapper"><span class="read-more">Xem
 									chi tiết<i></i>
 							</span></span>
                                 <figure><img
-                                        src="${contextPath}/images/articles/${gacnskl.imagesThumbnail}"
-                                        alt="${gacnskl.title}"/></figure>
+                                        src="${contextPath}/images/articles/${getTop5ArticleCategoryNewSuKienList[0].imagesThumbnail}"
+                                        alt="${getTop5ArticleCategoryNewSuKienList[0].title}"/></figure>
                             </a>
                         </div>
                         <div class="item-content">
                             <h3>
-                                <a href="${gacnskl.slug}">${gacnskl.title}</a>
+                                <a href="${getTop5ArticleCategoryNewSuKienList[0].slug}">${getTop5ArticleCategoryNewSuKienList[0].title}</a>
                             </h3>
                             <span class="item-meta">
-                                <a style="font-weight: bold;" href="${contextPath}/${gacnskl.slug}"><i
-                                        class="fa fa-user"></i>${gacnskl.users.userName}</a>
-                                <a href="${contextPath}/${gacnskl.slug}"><i
-                                    class="fa fa-comment-o"></i>${fn:length(gacnskl.comments)} Bình luận</a> <a
-                                    href="${contextPath}/${gacnskl.slug}"><i
+                                <a style="font-weight: bold;" href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}"><i
+                                        class="fa fa-user"></i>${getTop5ArticleCategoryNewSuKienList[0].users.userName}</a>
+                                <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}"><i
+                                    class="fa fa-comment-o"></i>${fn:length(getTop5ArticleCategoryNewSuKienList[0].comments)} Bình luận</a> <a
+                                    href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}"><i
                                     class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
-                                                                              value="${gacnskl.showDate}"/></a>
+                                                                              value="${getTop5ArticleCategoryNewSuKienList[0].showDate}"/></a>
 						</span>
-                            <p>${gacnskl.subContent}</p>
-                            <a href="${contextPath}/${gacnskl.slug}" class="read-more-button">Xem
+                            <p>${getTop5ArticleCategoryNewSuKienList[0].subContent}</p>
+                            <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}" class="read-more-button">Xem
                                 chi tiết<i
                                         class="fa fa-mail-forward"></i>
                             </a>
                         </div>
                     </div>
-                </c:forEach>
+
             </div>
 
         </div>
@@ -197,12 +197,12 @@
                                 </div>
                                 <ul>
                                     <c:forEach var="ggpc" items="${getTop3GamePcConsole}">
-                                        <li><a href="${ggpc.slug}" class="pull-left p-r-15"> <img
-                                                src="${contextPath}/images/games/${ggpc.images}"
+                                        <li><a href="${contextPath}/games/${ggpc.slug}" class="pull-left p-r-15"> <img
+                                                src="${contextPath}/images/games/${ggpc.images} "
                                                 alt="${ggpc.name}"
                                                 style="border-radius: 13px;"></a>
                                             <h2>
-                                                <a href="${contextPath}/${ggpc.slug}">${ggpc.name}</a>
+                                                <a href="${contextPath}/games/${ggpc.slug}">${ggpc.name}</a>
                                             </h2>
                                             <p>${ggpc.publishers}</p> <span class="view"><a
                                                     href="${contextPath}/${ggpc.slug}"><i
@@ -210,7 +210,7 @@
                                                     class="download"><a
                                                     href="${ggpc.downloadUrl}" rel="nofollow"
                                                     target="_blank"><i
-                                                    class="fa fa-download"></i> Download</a></span>
+                                                    class="fa fa-download"></i> Tải</a></span>
                                             <div class="clearfix"></div>
                                         </li>
 
@@ -230,12 +230,12 @@
                                 </div>
                                 <ul>
                                     <c:forEach var="ggm" items="${getTop3GameMobile}">
-                                        <li><a href="${ggm.slug}" class="pull-left p-r-15"> <img
+                                        <li><a href="${contextPath}/games/${ggm.slug}" class="pull-left p-r-15"> <img
                                                 src="${contextPath}/images/games/${ggm.images}"
                                                 alt="${ggm.name}"
                                                 style="border-radius: 13px;"></a>
                                             <h2>
-                                                <a href="${contextPath}/${ggm.slug}">${ggm.name}</a>
+                                                <a href="${contextPath}/games/${ggm.slug}">${ggm.name}</a>
                                             </h2>
                                             <p>${ggm.publishers}</p> <span class="view"><a
                                                     href="${contextPath}/${ggm.slug}"><i
@@ -243,7 +243,7 @@
                                                     class="download"><a
                                                     href="${ggm.downloadUrl}" rel="nofollow"
                                                     target="_blank"><i
-                                                    class="fa fa-download"></i> Download</a></span>
+                                                    class="fa fa-download"></i> Tải</a></span>
                                             <div class="clearfix"></div>
                                         </li>
 
@@ -264,12 +264,12 @@
                                 </div>
                                 <ul>
                                     <c:forEach var="gge" items="${getTop3GameEsport}">
-                                        <li><a href="${gge.slug}" class="pull-left p-r-15"> <img
+                                        <li><a href="${contextPath}/games/${gge.slug}" class="pull-left p-r-15"> <img
                                                 src="${contextPath}/images/games/${gge.images}"
                                                 alt="${gge.name}"
                                                 style="border-radius: 13px;"></a>
                                             <h2>
-                                                <a href="${contextPath}/${gge.slug}">${gge.name}</a>
+                                                <a href="${contextPath}/games/${gge.slug}">${gge.name}</a>
                                             </h2>
                                             <p>${gge.publishers}</p> <span class="view"><a
                                                     href="${contextPath}/${gge.slug}"><i
@@ -277,7 +277,7 @@
                                                     class="download"><a
                                                     href="${gge.downloadUrl}" rel="nofollow"
                                                     target="_blank"><i
-                                                    class="fa fa-download"></i> Download</a></span>
+                                                    class="fa fa-download"></i> Tải</a></span>
                                             <div class="clearfix"></div>
                                         </li>
 
@@ -294,78 +294,6 @@
         </div>
         <!-- End danh sách game -->
     </div>
-
-    <%--<div class="content-panel">
-        <div class="content-panel-title">
-            <div class="feed-widget-header">
-                <h2 class="widget-title feed-widget-title">
-                    <a href="#">KHÁM PHÁ</a>
-                </h2>
-                <div class="feed-widget-viewall">
-                    <a href="#"><span>XEM THÊM</span> <i
-                            class="fa fa-chevron-right"></i></a>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div class="content-panel-body full-width-articles">
-
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"> <span class="comment-tag"><i
-                            class="fa fa-comment-o"></i>139<i></i></span> <span
-                            class="read-more-wrapper"><span class="read-more">Xem
-                                chi tiết<i></i>
-                        </span></span> <img src="images/photos/image-20.jpg" alt="">
-                    </a>
-                </div>
-                <div class="item-content">
-                    <h3>
-                        <a href="#">Game thủ Pokemon Go Việt đã có cơ hội sở hữu
-                            Pokemon huyền thoại Entei ngay từ thời điểm này</a>
-                    </h3>
-                    <span class="item-meta"> <a href="##comments"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-                    </span>
-                    <p>Đúng như kế hoạch mà Niantic đã công bố trong thời gian
-                        trước đây, bộ 3 Pokemon huyền thoại: Entei, Raikou và Suicune đã
-                        tiếp tục di cư sang khu vực khác...</p>
-                    <a href="#" class="read-more-button">Xem chi tiết<i
-                            class="fa fa-mail-forward"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <a href="#"> <span class="comment-tag"><i
-                            class="fa fa-comment-o"></i>139<i></i></span> <span
-                            class="read-more-wrapper"><span class="read-more">Xem
-                                chi tiết<i></i>
-                        </span></span> <img src="images/photos/image-20.jpg" alt="">
-                    </a>
-                </div>
-                <div class="item-content">
-                    <h3>
-                        <a href="#">Game thủ Pokemon Go Việt đã có cơ hội sở hữu
-                            Pokemon huyền thoại Entei ngay từ thời điểm này</a>
-                    </h3>
-                    <span class="item-meta"> <a href="##comments"><i
-                            class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
-                            class="fa fa-clock-o"></i>Tháng 11, 2017</a>
-                    </span>
-                    <p>Đúng như kế hoạch mà Niantic đã công bố trong thời gian
-                        trước đây, bộ 3 Pokemon huyền thoại: Entei, Raikou và Suicune đã
-                        tiếp tục di cư sang khu vực khác...</p>
-                    <a href="#" class="read-more-button">Xem chi tiết<i
-                            class="fa fa-mail-forward"></i>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-        <!-- END -->
-    </div>--%>
 
     <div class="content-panel">
         <div class="content-panel-title">
@@ -392,7 +320,7 @@
                                 class="read-more-wrapper"><span
                                 class="read-more">Xem chi tiết<i></i>
 					</span></span>
-                            <figure><img title="${gal.title}"
+                            <figure><img title="${gal.title}" style="height: 200px;"
                                          src="${contextPath}/images/articles/${gal.imagesThumbnail}"
                                          alt=""/></figure>
                         </a>

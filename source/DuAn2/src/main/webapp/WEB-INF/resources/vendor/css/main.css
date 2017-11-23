@@ -1,5 +1,5 @@
 body {
-	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
 	position: relative;
 	font-weight: 400;
 	background: #fff;
@@ -296,9 +296,10 @@ iframe {
 
 /*--Tin má»›i liÃªn quan--*/
 .item-header img {
-
-	height: auto;
-	width: 50px;
+	width: 65px;
+	height: 40px;
+	/*height: auto;
+	width: 50px;*/
 }
 /*--Ä�Ã³ng tin má»›i liÃªn quan--*/
 
@@ -1523,6 +1524,8 @@ p {
 .row img {
 	display: block;
 	margin-right: auto;
+	height: 50px;
+	width: 50px;
 }
 
 .btn-top {
@@ -1976,4 +1979,9 @@ input[type=text], select, textarea {
     text-align: center;
     background: #f7f7f7;
     margin-bottom: 20px;
+}
+
+.imageschinh {
+	width: 65px;
+	height: 40px;
 }

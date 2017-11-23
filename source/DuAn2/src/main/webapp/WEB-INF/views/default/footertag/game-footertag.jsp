@@ -78,7 +78,7 @@
                             "  <span class=\"artst-share\"><a href=\"#\"><i class=\"glyphicon glyphicon-share\"></i></a></span>\n" +
                             "  <span class=\"artst-plus\"><a href=\"#\"><i class=\"glyphicon glyphicon-plus-sign\"></i></a></span>\n" +
                             "  <a href=\"${pageContext.request.contextPath}/games/" + result[i].slug + " \">\n" +
-                            "  <img style=\"height:150px;\" src=\"${pageContext.request.contextPath}/images/games/" + result[i].images + "\" alt=\"\" class=\"img-responsive\" />\n" +
+                            "  <img style=\"width: 100%; height: 160px;\" src=\"${pageContext.request.contextPath}/images/games/" + result[i].images + "\" alt=\"\" class=\"img-responsive\" />\n" +
                             " </a>\n" +
                             " </div>\n" +
                             " <div class=\"artst-prfle pull-right\">\n" +
@@ -123,12 +123,12 @@
     };
     $('#next').click(function(){
         page = page +1;
-        alert(page);
+
         getGame();
     });
     $('#preview').click(function(){
         page = page - 1;
-        alert(page);
+
         getGame();
 
     });

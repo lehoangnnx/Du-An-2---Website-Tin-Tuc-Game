@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 22/10/2017
+* Lớp AjaxAuthenticationFailureHandler kế thừa Interface AuthenticationFailureHandler xử lý quá trình đăng nhập
+* khi đăng nhập lỗi bằng Ajax
+* */
 package com.javaweb.configuration;
 
 import java.io.IOException;

@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 22/10/2017
+* Lớp AjaxAuthenticationSuccessHandler kế thừa Interface AuthenticationSuccessHandler xử lý quá trình đăng nhập
+* khi đăng nhập thành công bằng Ajax
+* */
 package com.javaweb.configuration;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +30,7 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
 		
-		// After login success
+		// Sau khi đăng nhập thành công
 		String contentType= "text/html;charset=UTF-8";
 	    response.setContentType(contentType);
 	    response.setCharacterEncoding("utf-8");     

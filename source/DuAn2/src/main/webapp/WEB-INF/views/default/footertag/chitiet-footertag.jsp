@@ -3,6 +3,7 @@
 <!-- Thích Bài Viết -->
 <script>
 $('#likearticle').click(function(){
+
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         var likearticle= $('#likearticle').text();
@@ -18,7 +19,7 @@ $('#likearticle').click(function(){
 
             fnlikearticle(false);
         }
-    }, 1000);
+    }, 500);
     function fnlikearticle(status){
             var articleId = $('#articleId').val();
             var token = $("meta[name='_csrf']").attr("content");
@@ -47,7 +48,7 @@ $('#likearticle').click(function(){
 })
 
 </script>
-
+<!-- Đánh Giá Game -->
 <script>
     function gamereivews(starreview){
         clearTimeout(timeout);

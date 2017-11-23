@@ -1722,7 +1722,7 @@ ul.ot-mega-menu .widget .widget-article-list .item .item-content .item-meta a:nt
 	z-index: 1;
 	color: #fff;
 	font-size: 11px;
-	font-family: 'Arvo', serif;
+
 	right: 10px;
 	top: 10px;
 	line-height: 100%;
@@ -3830,7 +3830,7 @@ select {
 
 .widget .widget-article-list .item .item-content {
 	display: block;
-	margin-left: 65px;
+	margin-left: 85px;
 }
 
 .widget .widget-article-list .item.no-image .item-content {
@@ -3918,7 +3918,7 @@ select {
 
 .widget .widget-comments-list .item .item-content {
 	display: block;
-	margin-left: 65px;
+	margin-left: 85px;
 }
 
 .widget .widget-comments-list .item.no-image .item-content {

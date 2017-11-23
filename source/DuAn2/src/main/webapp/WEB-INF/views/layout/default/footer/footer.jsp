@@ -4,7 +4,7 @@
 <!-- Login Form -->
 <div id="modal" class="popupContainer" style="display: none;">
 	<header class="popupHeader">
-		<span class="header_title">Login</span> <span class="modal_close"><i
+		<span class="header_title">Đăng nhập</span> <span class="modal_close"><i
 			class="fa fa-times"></i></span>
 	</header>
 
@@ -17,8 +17,7 @@
 					<input type="hidden" name="${_csrf.parameterName}"
 						   value="${_csrf.token}"/>
 
-					<button type="submit" class="loginBtn loginBtn--facebook">Login
-						with Facebook
+					<button type="submit" class="loginBtn loginBtn--facebook">Đăng nhập bằng Facebook
 					</button>
 				</form:form>
 
@@ -29,15 +28,15 @@
 
 
 			<div class="centeredText">
-				<span>Or use your Email address</span>
+				<span style="font-size: 15px;">Hoặc đăng nhập bằng Tài Khoản</span>
 			</div>
 
 			<div class="action_btns">
 				<div class="one_half">
-					<a href="#" id="login_form" class="btn">Login</a>
+					<a href="#" id="login_form" class="btn">Đăng nhập</a>
 				</div>
 				<div class="one_half last">
-					<a href="#" id="register_form" class="btn">Sign up</a>
+					<a href="#" id="register_form" class="btn">Đăng ký</a>
 				</div>
 			</div>
 		</div>
@@ -45,28 +44,28 @@
 		<!-- Username & Password Login form -->
 		<div class="user_login">
 			<form id="login-form">
-				<label>Email / Username</label> <input id="userName" name="userName"
-													   type="text"/> <br/> <label>Password</label> <input
+				<label>Tài khoản</label> <input id="userName" name="userName"
+													   type="text"/> <br/> <label>Mật khẩu</label> <input
 					id="password" name="password" type="password"/> <br/> <label
 					id="msgerror" class="msgerror"></label> <br/>
 				<div class="checkbox">
 					<input id="remember" type="checkbox" name="remember-me"/> <label
-						for="remember">Remember me on this computer</label>
+						for="remember">Lưu tài khoản</label>
 				</div>
 
 				<div class="action_btns">
 					<div class="one_half">
 						<a href="#" class="btn back_btn"><i
-								class="fa fa-angle-double-left"></i> Back</a>
+								class="fa fa-angle-double-left"></i> Quay lại</a>
 					</div>
 
 					<button type="button" id="btn-login"
-							class="one_half last btn btn_red">Login
+							class="one_half last btn btn_red">Đăng nhập
 					</button>
 				</div>
 			</form>
 
-			<a href="#" id="forgot_password" class="forgot_password">Forgot password?</a>
+			<a href="#" id="forgot_password" class="forgot_password">Quên mật khẩu?</a>
 		</div>
 
 		<!-- Register Form -->
@@ -84,7 +83,7 @@
 				<div class="action_btns">
 					<div class="one_half">
 						<a href="#" class="btn back_btn"><i
-								class="fa fa-angle-double-left"></i> Back</a>
+								class="fa fa-angle-double-left"></i> Quay lại</a>
 					</div>
 					<button type="button" id="btn-register"
 							class="one_half last btn btn_red">Đăng Ký
@@ -105,7 +104,7 @@
 
 					<div class="one_half">
 						<a href="#" class="btn back_btn"><i
-								class="fa fa-angle-double-left"></i> Back</a>
+								class="fa fa-angle-double-left"></i> Quay lại</a>
 					</div>
 					<button disabled type="button" id="btn-forgot"
 							class="one_half last btn btn_red">Gửi
