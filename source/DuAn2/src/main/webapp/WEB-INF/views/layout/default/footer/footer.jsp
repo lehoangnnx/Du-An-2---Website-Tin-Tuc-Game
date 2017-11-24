@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!-- Login Form -->
 <div id="modal" class="popupContainer" style="display: none;">
 	<header class="popupHeader">
@@ -120,7 +121,7 @@
 			<div class="text-center">
 				<div class="row">
 					<div class="col-md-4 col-sm-8" style="margin-top: 17px;">
-						<img alt="#" src="images/logo2.png"><br>
+						<img style=" width: 50%;height: auto;" alt="${contextPath}/" src="${contextPath}/images/logo2.png"><br>
 						<p>
 							© Copyright 2007 - 2017 – By FourHansTeam<br>Tầng 3 Toà nhà
 							VIB - 27 Nguyễn Tất Thành, Buôn Ma Thuột<br>Giấy phép thiết

@@ -307,6 +307,36 @@ public class DefaultController {
         return getTop10ArticleCategoryNewThuThuatList;
     }
 
+    @ModelAttribute("getTop10ArticleHotAndNewGamingGearList")
+    public List<Article> getTop10ArticleHotAndNewGamingGearList() {
+        ArticleCategory getArticleCategoryGamingGear = articleCategoryService.findByName("Gaming Gear");
+
+        List<Article> getTop10ArticleHotAndNewGamingGearList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryGamingGear,(byte) 1, "active", new Date())
+                .stream().limit(5).collect(Collectors.toList());
+        return getTop10ArticleHotAndNewGamingGearList;
+    }
+    @ModelAttribute("getTop10ArticleHotAndNewMangaFilmList")
+    public List<Article> getTop10ArticleHotAndNewMangaFilm() {
+        ArticleCategory getArticleCategoryMangaFilm = articleCategoryService.findByName("Manga/Film");
+
+        List<Article> getTop10ArticleHotAndNewMangaFilmList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryMangaFilm,(byte) 1, "active", new Date())
+                .stream().limit(5).collect(Collectors.toList());
+        return getTop10ArticleHotAndNewMangaFilmList;
+    }
+    @ModelAttribute("getTop10ArticleHotAndNewReviewsList")
+    public List<Article> getTop10ArticleHotAndNewReviewsList() {
+        ArticleCategory getArticleCategoryReviews = articleCategoryService.findByName("Reviews");
+
+        List<Article> getTop10ArticleHotAndNewReviewsList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryReviews,(byte) 1, "active", new Date())
+                .stream().limit(5).collect(Collectors.toList());
+        return getTop10ArticleHotAndNewReviewsList;
+    }
     @ModelAttribute("getTop20TagsList")
     public List<Tags> getTop20TagsList() {
         List<Tags> getTop20TagsList = tagsService.findAll().stream().limit(20).collect(Collectors.toList());
@@ -330,7 +360,7 @@ public class DefaultController {
     }
 
 
-    @RequestMapping("/{slug}")
+    @RequestMapping("/{slug}.html")
     String chitiet(@PathVariable("slug") String slug, Model model,
                    @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "20") Integer limit
             , @RequestParam(value = "sorted", defaultValue = "news") String sorted, Authentication authentication
@@ -485,7 +515,6 @@ public class DefaultController {
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "LOIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
             model.addAttribute("title", "Trang Thông Báo Lỗi 404");
             return "redirect:/403";
         }
@@ -493,7 +522,7 @@ public class DefaultController {
 
     }
 
-    @RequestMapping("/403")
+    @RequestMapping("/403.html")
     String error(Model model) {
         model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
@@ -546,7 +575,7 @@ public class DefaultController {
             return "search";
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return "redirect:/403";
+            return "redirect:/403.html";
         }
 
 

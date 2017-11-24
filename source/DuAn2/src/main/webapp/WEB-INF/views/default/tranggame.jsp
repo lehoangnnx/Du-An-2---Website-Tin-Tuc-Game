@@ -19,10 +19,10 @@
                 <div class="item ${status.index == 0 ? 'active' : ''}">
                     <div class="container-fluid">
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-3"><a href="${contextPath}/games/${gl.slug}"><img style="width: 100%;height: 150px;"
+                            <div class="col-md-3"><a href="${contextPath}/games/${gl.slug}.html"><img style="width: 100%;height: 150px;"
                                     src="${contextPath}/images/games/${gl.images}" class="img-responsive"></a></div>
                             <div class="col-md-9">
-                                <a href="${contextPath}/games/${gl.slug}"><h2>${gl.name}</h2></a>
+                                <a href="${contextPath}/games/${gl.slug}.html"><h2>${gl.name}</h2></a>
                                 <p>${gl.info}</p>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
             <ul class="nav">
                 <c:forEach var="gl" items="${Top5gamesList}" varStatus="status">
                     <li data-target="#custom_carousel" data-slide-to="${status.index}"
-                        class="${status.index == 0 ? 'active' : ''}"><a href="${contextPath}/games/${gl.slug}">
+                        class="${status.index == 0 ? 'active' : ''}"><a href="${contextPath}/games/${gl.slug}.html">
                         <img style="width: 30%; height: 50px;" src="${contextPath}/images/games/${gl.images}">
                         <small>${gl.name}</small>
                     </a></li>
@@ -128,7 +128,7 @@
                 <c:forEach var="al" items="${articleList}" begin="0" end="4">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
-                            <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                            <a class="pull-left" href="${contextPath}/${al.slug}.html" target="_parent">
                                 <figure><img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
@@ -137,7 +137,7 @@
                             <div class="media-body fnt-smaller">
 
                                 <h4 class="media-heading">
-                                    <a href="${contextPath}/${al.slug}" target="_parent">
+                                    <a href="${contextPath}/${al.slug}.html" target="_parent">
                                             ${fn:substring(al.title, 0, 100)} ... </a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>
@@ -165,7 +165,7 @@
                 <c:forEach var="al" items="${articleList}" begin="5" end="9">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
-                            <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                            <a class="pull-left" href="${contextPath}/${al.slug}.html" target="_parent">
                                 <figure> <img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
                                               src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
@@ -174,7 +174,7 @@
                             <div class="media-body fnt-smaller">
 
                                 <h4 class="media-heading">
-                                    <a href="${contextPath}/${al.slug}" target="_parent">
+                                    <a href="${contextPath}/${al.slug}.html" target="_parent">
                                             ${fn:substring(al.title, 0, 100)} ...</a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>

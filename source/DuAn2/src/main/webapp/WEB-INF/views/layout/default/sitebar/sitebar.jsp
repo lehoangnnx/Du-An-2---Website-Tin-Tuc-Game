@@ -12,7 +12,7 @@
             <c:forEach var="gactvl" items="${getTop5ArticleCategoryHotVideoList}">
                 <div class="item">
                     <div class="item-header">
-                        <a href="${contextPath}/${gactvl.slug}"><img
+                        <a href="${contextPath}/${gactvl.slug}.html"><img
                                 src="${contextPath}/images/articles/${gactvl.imagesThumbnail}"
                                 class="img-responsive " title="${gactvl.title}" alt="${gactvl.title}"/>
 
@@ -20,11 +20,11 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a title="${gactvl.title}" href="${contextPath}/${gactvl.slug}">${gactvl.title}</a>
+                            <a title="${gactvl.title}" href="${contextPath}/${gactvl.slug}.html">${gactvl.title}</a>
                         </h4>
-                        <span class="item-meta"> <a href="${contextPath}/${gactvl.slug}"><i
+                        <span class="item-meta"> <a href="${contextPath}/${gactvl.slug}.html"><i
                                 class="fa fa-eye"></i>${gactvl.views} Lượt Xem</a> <a
-                                href="${contextPath}/${gactvl.slug}"><i
+                                href="${contextPath}/${gactvl.slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
                                                                           value="${gactvl.createdDate}"/></a>
 										</span>
@@ -32,7 +32,7 @@
                 </div>
             </c:forEach>
 
-            <a href="${contextPath}/video?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/video.html?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
 
@@ -43,17 +43,17 @@
             <c:forEach var="gha" items="${getTop10HotArticle}">
                 <div class="item">
                     <div class="item-header">
-                        <a href="${contextPath}/${gha.slug}"><img class="img-responsive "
+                        <a href="${contextPath}/${gha.slug}.html"><img class="img-responsive "
                                                                   src="${contextPath}/images/articles/${gha.imagesThumbnail}"
                                                                   alt="${gha.title}"/></a>
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${gha.slug}">${gha.title}</a>
+                            <a href="${contextPath}/${gha.slug}.html">${gha.title}</a>
                         </h4>
-                        <span class="item-meta"> <a href="${contextPath}/${gha.slug}"><i
+                        <span class="item-meta"> <a href="${contextPath}/${gha.slug}.html"><i
                                 class="fa fa-eye"></i>${gha.views} Lượt Xem</a> <a
-                                href="${contextPath}/    ${gha.slug}"><i
+                                href="${contextPath}/${gha.slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
                                                                           value="${gha.createdDate}"/></a>
 										</span>
@@ -61,7 +61,7 @@
                 </div>
             </c:forEach>
 
-            <a href="${contextPath}/articles?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/articles.html?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
     <div class="widget widget-tabbed">
@@ -77,15 +77,16 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${ghg.slug}">${ghg.name}</a>
+                            <a href="${contextPath}/${ghg.slug}.html">${ghg.name}</a>
                         </h4>
                         <p>${ghg.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${ghg.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/${ghg.slug}.html">
+                            <i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game?sorted=hots" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/game.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
         </div>
         <div class="widget-article-list">
             <c:forEach var="ggo" items="${getTop10GameOnline}">
@@ -95,15 +96,15 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${ggo.slug}">${ggo.name}</a>
+                            <a href="${contextPath}/${ggo.slug}.html">${ggo.name}</a>
                         </h4>
                         <p>${ggo.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${ggo.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/${ggo.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game-online?sorted=hots" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/game-online.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
         </div>
 
 
@@ -115,15 +116,15 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${ggof.slug}">${ggof.name}</a>
+                            <a href="${contextPath}/${ggof.slug}.html">${ggof.name}</a>
                         </h4>
                         <p>${ggof.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${ggof.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/${ggof.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game-offline?sorted=hots" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/game-offline.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
 
         </div>
     </div>
@@ -155,61 +156,61 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${gng.slug}">${gng.name}</a>
+                            <a href="${contextPath}/${gng.slug}.html">${gng.name}</a>
                         </h4>
                         <p>${gng.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${gng.slug}"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/${gng.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/game.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
         </div>
         <div class="widget-article-list">
             <c:forEach var="gacnrl" items="${getTop10ArticleCategoryNewReviewsList}">
                 <div class="item">
                     <div class="item-header">
-                        <a href="${contextPath}/${gacnrl.slug}"><img class="img-responsive "
+                        <a href="${contextPath}/${gacnrl.slug}.html"><img class="img-responsive "
                                                                      src="${contextPath}/images/articles/${gacnrl.imagesThumbnail}"
                                                                      alt=""/></a>
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${gacnrl.slug}">${gacnrl.title}</a>
+                            <a href="${contextPath}/${gacnrl.slug}.html">${gacnrl.title}</a>
                         </h4>
-                        <span class="item-meta"> <a href="${contextPath}/${gacnrl.slug}"><i
-                                class="fa fa-eye"></i>${gacnrl.views}</a> <a href="${contextPath}/${gacnrl.slug}"><i
+                        <span class="item-meta"> <a href="${contextPath}/${gacnrl.slug}.html"><i
+                                class="fa fa-eye"></i>${gacnrl.views}</a> <a href="${contextPath}/${gacnrl.slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
                                                                           value="${gacnrl.createdDate}"/></a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/reviews?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/reviews.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
         </div>
         <div class="widget-article-list">
             <c:forEach var="gacntcl" items="${getTop10ArticleCategoryNewTienIchList}">
                 <div class="item">
                     <div class="item-header">
-                        <a href="${contextPath}/${gacntcl.slug}"><img class="img-responsive "
+                        <a href="${contextPath}/${gacntcl.slug}.html"><img class="img-responsive "
                                                                       src="${contextPath}/images/articles/${gacntcl.imagesThumbnail}"
                                                                       alt=""/></a>
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${gacntcl.slug}">${gacntcl.title}</a>
+                            <a href="${contextPath}/${gacntcl.slug}.html">${gacntcl.title}</a>
                         </h4>
-                        <span class="item-meta"> <a href="${contextPath}/${gacntcl.slug}"><i
-                                class="fa fa-eye"></i>${gacntcl.views}</a> <a href="${contextPath}/${gacntcl.slug}"><i
+                        <span class="item-meta"> <a href="${contextPath}/${gacntcl.slug}.html"><i
+                                class="fa fa-eye"></i>${gacntcl.views}</a> <a href="${contextPath}/${gacntcl.slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
                                                                           value="${gacntcl.createdDate}"/></a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/tien-ich?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/tien-ich.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
 
         </div>
@@ -222,17 +223,17 @@
                 <div class="item">
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${gacnttl.slug}">${gacnttl.title}</a>
+                            <a href="${contextPath}/${gacnttl.slug}.html">${gacnttl.title}</a>
                         </h4>
-                        <span class="item-meta"> <a href="${contextPath}/${gacnttl.slug}"><i
+                        <span class="item-meta"> <a href="${contextPath}/${gacnttl.slug}.html"><i
                                 class="fa fa-eye"></i>${gacnttl.views} Lượt xem</a> <a
-                                href="${contextPath}/${gacnttl.slug}"><i
+                                href="${contextPath}/${gacnttl.slug}.html"><i
                                 class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/tien-ich?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/tien-ich.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
 
         </div>
@@ -241,7 +242,7 @@
         <h3>Xem thêm</h3>
         <div class="tagcloud">
             <c:forEach var="gtl" items="${getTop20TagsList}">
-                <a href="${contextPath}/${gtl.slug}">#${gtl.name}</a>
+                <a href="${contextPath}/${gtl.slug}.html">#${gtl.name}</a>
             </c:forEach>
         </div>
     </div>

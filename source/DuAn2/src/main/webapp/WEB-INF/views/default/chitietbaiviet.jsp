@@ -13,13 +13,14 @@
     <div class="content-panel">
 
         <div class="article-full-image">
-            <img style="width: 782px; height:440px; " class="img-responsive" src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="${article.title}">
+            <img style="width: 782px; height:440px; " class="img-responsive"
+                 src="${contextPath}/images/articles/${article.imagesThumbnail}" alt="${article.title}">
             <div class="wrapper" style="margin-top: 31px;">
                 <div class="content-panel-body article-header">
                     <input hidden id="articleId" value="${article.articleId}"/>
                     <strong class="category-link">
                         <c:forEach var="ac" items="${article.articleCategories}">
-                            <a href="${contextPath}/${ac.slug}">${ac.name} &emsp;</a>
+                            <a href="${contextPath}/${ac.slug}.html">${ac.name} &emsp;</a>
                             <span>  </span>
                         </c:forEach>
 
@@ -59,20 +60,23 @@
                 <span id="msglikearticle">
                     <c:choose>
                         <c:when test="${userOfArticleLike == true}">
-                            <b>Bạn</b> Và <span id="numberUserArticleLike">  ${fn:length(articleLikeList) -1} </span>  người khác thích bài viết này
+                            <b>Bạn</b> Và <span
+                                id="numberUserArticleLike"> ${fn:length(articleLikeList) -1} </span> người khác thích bài viết này
                         </c:when>
                         <c:otherwise>
-                            <b id="numberUserArticleLike"> ${fn:length(articleLikeList)} </b>  người thích bài viết này
+                            <b id="numberUserArticleLike"> ${fn:length(articleLikeList)} </b> người thích bài viết này
                         </c:otherwise>
                     </c:choose>
 
                 </span>
                 <security:authorize access="isAuthenticated()">
-                <a href="javascript:void(0)"  style=" float: right;"><i style="padding-right: 5px;" class="fa fa-thumbs-up"></i>
-                       <span id="likearticle" >${userOfArticleLike == true ? 'Bỏ Thích' : 'Thích'}</span> </a>
+                    <a href="javascript:void(0)" style=" float: right;"><i style="padding-right: 5px;"
+                                                                           class="fa fa-thumbs-up"></i>
+                        <span id="likearticle">${userOfArticleLike == true ? 'Bỏ Thích' : 'Thích'}</span> </a>
                 </security:authorize>
                 <security:authorize access="!isAuthenticated()">
-                    <a class="modal_trigger" href="#modal"  style=" float: right;"><i style="padding-right: 5px;" class="fa fa-thumbs-up"></i>Thích</a>
+                    <a class="modal_trigger" href="#modal" style=" float: right;"><i style="padding-right: 5px;"
+                                                                                     class="fa fa-thumbs-up"></i>Thích</a>
                 </security:authorize>
 
             </div>
@@ -84,18 +88,23 @@
         <div class="content-panel">
             <div class="content-panel-body article-main-share">
 				<span class="share-front"><i class="fa fa-share-alt"></i>Chia
-					sẻ</span> <a href="#" class="article-main-share-button"><strong
-                    class="hover-color-facebook">Facebook</strong><i>2.1k</i></a> <a
-                    href="#" class="article-main-share-button"><strong
-                    class="hover-color-twitter">Twitter</strong><i>1.4k</i></a> <a href="#"
-                                                                                   class="article-main-share-button"><strong
-                    class="hover-color-google-plus">Google+</strong><i>603</i></a> <br>
+					sẻ</span> <a id="sharefacebook"
+                                 onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')"
+                                 class="article-main-share-button"><strong
+                    class="hover-color-facebook">Facebook</strong><i id="countsharefacebook"></i></a> <a
+                    id="sharetwitter" onclick="return !window.open(this.href, 'Twitter', 'width=640,height=580')"
+                     class="article-main-share-button"><strong
+                    class="hover-color-twitter">Twitter</strong><i id="countsharetwitter"></i></a>
+                <a id="sharegoogle" class="article-main-share-button" onclick="return !window.open(this.href, 'Google', 'width=640,height=580')">
+                    <strong class="hover-color-google-plus">Google+</strong><i id="countsharegoogle"></i></a> <br>
+
+
             </div>
             <div class="content-panel">
                 <div class="content-panel-body article-main-tags">
                     <span class="tags-front"><i class="fa fa-tags"></i>Xem thêm</span>
                     <c:forEach var="at" items="${article.tagses}">
-                        <a href="${contextPath}/${at.slug}">${at.name}</a>
+                        <a href="${contextPath}/${at.slug}.html">${at.name}</a>
                     </c:forEach>
                 </div>
             </div>
@@ -107,29 +116,30 @@
                     <div class="row">
                         <div style="padding-top: 10px;" class="col-md-7">
                             <div class="col-md-4">
-                            <img style="width: 100%; height: 120px;" src="${contextPath}/images/games/${games.images}" alt="${games.name}"
-                                 class="pull-left m-r-10 hidden-xs"></div>
+                                <img style="width: 100%; height: 120px;"
+                                     src="${contextPath}/images/games/${games.images}" alt="${games.name}"
+                                     class="pull-left m-r-10 hidden-xs"></div>
                             <div class="col-md-8 ">
-                            <h3 style="color: #e54c10;" class="title-game-vote">${games.name}</h3></div>
+                                <h3 style="color: #e54c10;" class="title-game-vote">${games.name}</h3></div>
                             <div class="pull-left">
 
                                 <p>
                                     Danh mục:
                                     <c:forEach items="${games.gameCategories}" var="gc">
-                                        <a href="">${gc.name}</a>
+                                        <a href="">${gc.name}</a><br/>
                                     </c:forEach>
                                     <br>
                                     Nhà phát hành: <span>
                                         ${fn:substring(games.publishers, 0, 20)} ...</span><br/>
                                 </p>
-                                <a class="btn btn-default btn-sm" href="${contextPath}/${games.slug}">Thông tin game</a>
+                                <a class="btn btn-default btn-sm" href="${contextPath}/${games.slug}.html">Thông tin game</a>
                                 <a
                                         class="btn btn-success btn-sm" href="#">Bạn bình chọn</a>
                             </div>
                         </div>
                         <div class="col-md-5" style="padding-top: 10px;">
                             <div class="rank-vote pull-right">${pointGameReviews * 2}</div>
-                            <div class="pull-right text-right" >
+                            <div class="pull-right text-right">
                                 Điểm đánh giá<br>
                                 <c:forEach begin="1" end="${pointGameReviews}">
                                     <i style="padding-top: 10px;" class="fa fa-star"></i>
@@ -192,14 +202,14 @@
                 <div class="content-panel-body article-main-next-prev">
                     <div class="paragraph-row">
                         <div class="column6">
-                            <a href="${contextPath}/${articleLienQuanList[0].slug}" class="article-nav-previous">
+                            <a href="${contextPath}/${articleLienQuanList[0].slug}.html" class="article-nav-previous">
                                 <i class="fa fa-chevron-left"></i>
                                 <span>Bài Viết Trước</span>
                                 <strong>${articleLienQuanList[0].title}</strong>
                             </a>
                         </div>
                         <div class="column6">
-                            <a href="${contextPath}/${articleLienQuanList[1].slug}" class="article-nav-next">
+                            <a href="${contextPath}/${articleLienQuanList[1].slug}.html" class="article-nav-next">
                                 <i class="fa fa-chevron-right"></i>
                                 <span>Bài Viết Sau</span>
                                 <strong>${articleLienQuanList[1].title}</strong>
@@ -273,7 +283,7 @@
                                       placeholder="Viết bình luận của bạn.."
                                       style="width: 100%; height: 100px"></textarea>
                             <p class="form-submit">
-                                <input  name="submit" type="submit" id="btn-newcomment" disabled="disabled"
+                                <input name="submit" type="submit" id="btn-newcomment" disabled="disabled"
                                        class="submit button btn-postcomment" value="Gửi bình luận">
 
                             </p>
@@ -298,10 +308,10 @@
         <div class="content-panel-title">
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="#">CÙNG CHUYÊN MỤC</a>
+                    <a href="${contextPath}/${articleCategory.slug}.html?sorted=news">CÙNG CHUYÊN MỤC</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/${articleCategory.slug}?sorted=news"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/${articleCategory.slug}.html?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -316,12 +326,14 @@
                         <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="4">
                             <div class="item">
                                 <div class="item-header">
-                                    <a href="${contextPath}/${alql.slug}"><img src="${contextPath}/images/articles/${alql.imagesThumbnail}"
-                                                     alt=""/></a>
+                                    <a href="${contextPath}/${alql.slug}.html"><img
+                                            src="${contextPath}/images/articles/${alql.imagesThumbnail}"
+                                            alt=""/></a>
                                 </div>
                                 <div class="item-content">
                                     <h4>
-                                        <a href="${contextPath}/${alql.slug}"> ${fn:substring(alql.title, 0, 50)} ...</a>
+                                        <a href="${contextPath}/${alql.slug}.html"> ${fn:substring(alql.title, 0, 50)}
+                                            ...</a>
                                     </h4>
                                     <span class="item-meta"> <%--<a
                                             href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
@@ -343,7 +355,7 @@
             <div class="split-article-slide-right">
                 <div class="item">
                     <div class="item-header hover14 column">
-                        <a href="${contextPath}/${articleLienQuanList[0].slug}"> <span class="comment-tag"><i
+                        <a href="${contextPath}/${articleLienQuanList[0].slug}.html"> <span class="comment-tag"><i
                                 class="fa fa-comment-o"></i>${articleLienQuanList[0].views}<i></i></span> <span
                                 class="read-more-wrapper"><span class="read-more">Xem
 									chi tiết<i></i>
@@ -354,15 +366,15 @@
                     </div>
                     <div class="item-content">
                         <h3>
-                            <a href="${contextPath}/${articleLienQuanList[0].slug}">${articleLienQuanList[0].title}</a>
+                            <a href="${contextPath}/${articleLienQuanList[0].slug}.html">${articleLienQuanList[0].title}</a>
                         </h3>
-                        <span class="item-meta"> <a href="#"><i
-                                class="fa fa-comment-o"></i>82 Bình luận</a> <a href="#"><i
+                        <span class="item-meta"> <a href="${contextPath}/${articleLienQuanList[0].slug}.html"><i
+                                class="fa fa-comment-o"></i>82 Bình luận</a> <a href="${contextPath}/${articleLienQuanList[0].slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate
                                 pattern="dd-MM-yyyy" value="${articleLienQuanList[0].showDate}"/></a>
 						</span>
                         <p>${articleLienQuanList[0].subContent}</p>
-                        <a href="${contextPath}/${articleLienQuanList[0].slug}" class="read-more-button">Xem chi tiết<i
+                        <a href="${contextPath}/${articleLienQuanList[0].slug}.html" class="read-more-button">Xem chi tiết<i
                                 class="fa fa-mail-forward"></i>
                         </a>
                     </div>
@@ -379,10 +391,10 @@
 
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="#">TIN MỚI</a>
+                    <a href="${contextPath}/articles.html?sorted=news">TIN MỚI</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/articles?sorted=news"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/articles.html?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -393,7 +405,7 @@
             <c:forEach var="gal" items="${getTop10ArticleList}">
                 <div class="item">
                     <div class="item-header hover14 column">
-                        <a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
+                        <a href="${contextPath}/${gal.slug}.html"> <span class="comment-tag"><i
                                 class="fa fa-comment-o"></i>${gal.views}<i></i></span> <span
                                 class="read-more-wrapper"><span class="read-more">Xem
 								chi tiết<i></i>
@@ -405,19 +417,19 @@
                     <div class="item-content">
                         <strong class="category-link">
                             <c:forEach var="ac" items="${gal.articleCategories}">
-                                <a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
+                                <a style="padding-right: 7px;" href="${contextPath}/${ac.slug}.html">${ac.name}</a>
                             </c:forEach>
                         </strong>
 
                         <h3>
-                            <a alt="${gal.title}" href="${contextPath}/${gal.slug}">${gal.title}</a>
+                            <a alt="${gal.title}" href="${contextPath}/${gal.slug}.html">${gal.title}</a>
                         </h3>
                         <span class="item-meta">
-                            <a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i
+                            <a style="font-weight: bold;" href="${contextPath}/${gal.slug}.html"><i
                                     class="fa fa-user"></i>${gal.users.userName}</a>
-                            <a href="${contextPath}/${gal.slug}"><i
-                                class="fa fa-comment-o"></i>${fn:length(gal.comments)}</a> <a
-                                href="${contextPath}/${gal.slug}"><i
+                            <a href="${contextPath}/${gal.slug}.html"><i
+                                    class="fa fa-comment-o"></i>${fn:length(gal.comments)}</a> <a
+                                href="${contextPath}/${gal.slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${gal.showDate}"/></a>
 					</span>
                         <p>${gal.subContent}</p>

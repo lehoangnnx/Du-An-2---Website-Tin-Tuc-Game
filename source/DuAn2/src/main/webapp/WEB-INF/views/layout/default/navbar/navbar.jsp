@@ -27,9 +27,9 @@
                     <li class="scroll active"><a href="${contextPath}/">Trang
                         chủ</a></li>
                     <c:forEach var="atl" items="${articleCategoryList}">
-                        <c:if test="${atl.sortOrder == 1}">
+                        <c:if test="${atl.sortOrder == 1 && atl.subArticleCategoryId == 0}">
                             <li class="scroll"><a
-                                    href="${contextPath}/${atl.slug}?sorted=news">${atl.name}</a></li>
+                                    href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
                         </c:if>
                     </c:forEach>
                     <li class="scroll"><a href="${contextPath}/games/hoso.html">Game</a></li>
@@ -37,8 +37,8 @@
                                             data-toggle="dropdown" href="#">Tin Game<span class=" fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
-                                <c:if test="${atl.sortOrder == 2}">
-                                    <li><a href="${contextPath}/${atl.slug}?sorted=news">${atl.name}</a></li>
+                                <c:if test="${atl.sortOrder == 2 && atl.subArticleCategoryId == 0}">
+                                    <li><a href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
                                 </c:if>
 
                             </c:forEach>
@@ -49,8 +49,8 @@
                                             data-toggle="dropdown" href="#">Khác <span class="fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
-                                <c:if test="${atl.sortOrder > 2}">
-                                    <li><a href="${contextPath}/${atl.slug}?sorted=news">${atl.name}</a></li>
+                                <c:if test="${atl.sortOrder > 2 && atl.subArticleCategoryId == 0}">
+                                    <li><a href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
                                 </c:if>
 
                             </c:forEach>
@@ -121,14 +121,39 @@
                 </form:form>
                 <div class="morphsearch-content">
                     <div class="dummy-column">
-                        <h2>Game</h2>
-                        <c:forEach var="gc"  items="${gamesCategoryList}">
-                        <c:if test="${gc.sortOrder ==1 }">
-                        <a class="dummy-media-object" href="${contextPath}/${gc.slug}">
-                            
-                            <h3>${gc.name}</h3>
-                        </a>
-                        </c:if>
+                        <h2>Gaming Gear</h2>
+                        <c:forEach var="gahvl"  items="${getTop10ArticleHotAndNewGamingGearList}">
+
+                            <a class="dummy-media-object" href="${contextPath}/${gahvl.slug}.html">
+                                <img style="height: 35px;" src="${contextPath}/images/articles/${gahvl.imagesThumbnail}"
+                                     alt="${gahvl.title}"/>
+                                <h3>${fn:substring(gahvl.title, 0, 60)} ...</h3>
+                            </a>
+
+                        </c:forEach>
+                    </div>
+                    <div class="dummy-column">
+                        <h2>Manga/Film</h2>
+                        <c:forEach var="gahvl"  items="${getTop10ArticleHotAndNewMangaFilmList}">
+
+                            <a class="dummy-media-object" href="${contextPath}/${gahvl.slug}.html">
+                                <img style="height: 35px;" src="${contextPath}/images/articles/${gahvl.imagesThumbnail}"
+                                     alt="${gahvl.title}"/>
+                                <h3>${fn:substring(gahvl.title, 0, 60)} ...</h3>
+                            </a>
+
+                        </c:forEach>
+                    </div>
+                    <div class="dummy-column">
+                        <h2>Reviews</h2>
+                        <c:forEach var="gahvl"  items="${getTop10ArticleHotAndNewReviewsList}">
+
+                            <a class="dummy-media-object" href="${contextPath}/${gahvl.slug}.html">
+                                <img style="height: 35px;" src="${contextPath}/images/articles/${gahvl.imagesThumbnail}"
+                                     alt="${gahvl.title}"/>
+                                <h3>${fn:substring(gahvl.title, 0, 60)} ...</h3>
+                            </a>
+
                         </c:forEach>
                     </div>
                 </div><!-- /morphsearch-content -->
@@ -159,7 +184,7 @@
                         <marquee behavior="scroll" direction="left" scrollamount="8"
                                  scrolldelay="20" width="90%">
                             <c:forEach var="gahav" items="${getTop5ArticleHotAndViews}">
-                                <a href="${contextPath}/${gahav.slug} "
+                                <a href="${contextPath}/${gahav.slug}.html "
                                    style="color: #fc7700; padding-right: 150px;">${gahav.title}</a>
                             </c:forEach>
                         </marquee>

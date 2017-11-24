@@ -129,21 +129,7 @@
                         </form>
                     </security:authorize>
                 </div>
-                <%--<ul class="user-menu-list">
 
-                    <div class="row lead evaluation">
-                        <div id="colorstar" class="starrr ratable" ></div>
-                        <span id="count">2</span> star(s) - <span id="meaning"> </span>
-
-                        <div class='indicators' style="display:none">
-                            <input hidden id="pointGameReviewsOfUser" value="${pointGameReviewsOfUser}" />
-                            <div id='textwr'>What went wrong?</div>
-                            <input id="rate[]" name="rate[]" type="text" placeholder="" class="form-control input-md" style="display:none;">
-                            <input id="rating[]" name="rating[]" type="text" placeholder="" class="form-control input-md rateval" style="display:none;">
-                        </div>
-
-                    </div>
-                </ul>--%>
             </div>
             <div class="user-menu-content">
                 <h2 class="text-center">
@@ -179,7 +165,7 @@
                 <c:forEach var="al" items="${articleList}" begin="0" end="4">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
-                            <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                            <a class="pull-left" href="${contextPath}/${al.slug}.html" target="_parent">
                                 <figure><img alt="${al.title}" class="img-responsive" style="width: 100%; height: 130px;"
                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
@@ -188,7 +174,7 @@
                             <div class="media-body fnt-smaller">
 
                                 <h4 class="media-heading">
-                                    <a alt="${al.title}" href="${contextPath}/${al.slug}" target="_parent">
+                                    <a alt="${al.title}" href="${contextPath}/${al.slug}.html" target="_parent">
                                             ${fn:substring(al.title, 0, 100)} ... </a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>
@@ -216,7 +202,7 @@
                 <c:forEach var="al" items="${articleList}" begin="5" end="9">
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
-                            <a class="pull-left" href="${contextPath}/${al.slug}" target="_parent">
+                            <a class="pull-left" href="${contextPath}/${al.slug}.html" target="_parent">
                                 <figure> <img alt="${al.title}" class="img-responsive" style="width: 100%; height: 130px;"
                                               src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
 
@@ -225,7 +211,7 @@
                             <div class="media-body fnt-smaller">
 
                                 <h4 class="media-heading">
-                                    <a alt="${al.title}" href="${contextPath}/${al.slug}" target="_parent">
+                                    <a alt="${al.title}" href="${contextPath}/${al.slug}.html" target="_parent">
                                             ${fn:substring(al.title, 0, 100)} ...</a></h4>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li>${al.views} Lượt xem</li>

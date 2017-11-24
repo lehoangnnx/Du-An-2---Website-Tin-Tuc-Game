@@ -52,6 +52,8 @@
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/trangcanhan.jsp" />
 		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/canhan-footertag.jsp" />
+		<put-attribute name="sitebar"
+					   value="" />
 	</definition>
 
 	<definition name="game" extends="defaultlayout">

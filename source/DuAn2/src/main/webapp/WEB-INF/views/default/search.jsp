@@ -20,7 +20,7 @@
 
 			<div class="feed-widget-header">
 				<h2 class="widget-title feed-widget-title">
-					<a href="${contextPath}/${objectCategoryAndTag.slug}?sorted=news">${objectCategoryAndTag.name}</a>
+					<a href="${contextPath}/${objectCategoryAndTag.slug}.html?sorted=news">${objectCategoryAndTag.name}</a>
 				</h2>
 
 				<div class="clear"></div>
@@ -32,7 +32,7 @@
 				<div class="item">
 
 					<div class="item-header hover14 column">
-						<a href="${contextPath}/${al.slug}"> <span class="comment-tag"><i
+						<a href="${contextPath}/${al.slug}.html"> <span class="comment-tag"><i
 								class="fa fa-eye"></i>${al.views}<i></i></span> <span
 								class="read-more-wrapper"><span class="read-more">Xem chi tiết<i></i>
 					</span></span>
@@ -45,18 +45,18 @@
 
 						<strong class="category-link">
 							<c:forEach var="ac" items="${al.articleCategories}">
-								<a style="padding-right: 7px;" href="${contextPath}/${ac.slug}">${ac.name}</a>
+								<a style="padding-right: 7px;" href="${contextPath}/${ac.slug}.html">${ac.name}</a>
 							</c:forEach>
 						</strong>
 
 						<h3>
-							<a title="${al.title}" href="${contextPath}/${al.slug}">${al.title}</a>
+							<a title="${al.title}" href="${contextPath}/${al.slug}.html">${al.title}</a>
 						</h3>
 						<span class="item-meta">
-						<a style="font-weight: bold;" href="${contextPath}/${al.slug}"><i
+						<a style="font-weight: bold;" href="${contextPath}/${al.slug}.html"><i
 								class="fa fa-user"></i>${al.users.userName}</a>
-						<a href="${contextPath}/${al.slug}"><i
-								class="fa fa-comment-o"></i>${fn:length(al.comments)} Bình luận</a> <a href="${contextPath}/${al.slug}"><i
+						<a href="${contextPath}/${al.slug}.html"><i
+								class="fa fa-comment-o"></i>${fn:length(al.comments)} Bình luận</a> <a href="${contextPath}/${al.slug}.html"><i
 								class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy" value="${al.showDate}"/></a>
 
 					</span>

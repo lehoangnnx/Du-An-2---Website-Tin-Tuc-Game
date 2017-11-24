@@ -14,11 +14,11 @@
             <div class="feed-widget-header" >
 
                 <h2 class="widget-title feed-widget-title" >
-                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=hots">VIDEO ĐÁNG CHÚ Ý</a>
+                    <a href="${contextPath}/${getArticleCategoryVideo.slug}.html?sorted=hots">VIDEO ĐÁNG CHÚ Ý</a>
                 </h2>
 
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/${getArticleCategoryVideo.slug}?sorted=host"><span>XEM THÊM</span>
+                    <a href="${contextPath}/${getArticleCategoryVideo.slug}.html?sorted=host"><span>XEM THÊM</span>
                         <i
                                 class="fa fa-chevron-right"></i></a>
                 </div>
@@ -80,10 +80,10 @@
         <div class="content-panel-title">
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="${contextPath}/su-kien?sorted=news">SỰ KIỆN</a>
+                    <a href="${contextPath}/su-kien.html?sorted=news">SỰ KIỆN</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/su-kien?sorted=news"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/su-kien.html?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -101,7 +101,7 @@
                             <div class="item">
 
                                 <div class="item-header">
-                                    <a href="${contextPath}/${gacnskl.slug}">
+                                    <a href="${contextPath}/${gacnskl.slug}.html">
                                         <img src="${contextPath}/images/articles/${gacnskl.imagesThumbnail}"
                                              alt="${gacnskl.title}"/></a>
                                 </div>
@@ -125,7 +125,7 @@
 
                     <div class="item">
                         <div class="item-header hover14 column">
-                            <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}">
+                            <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html">
                                 <span class="comment-tag"><i
                                     class="fa fa-comment-o"></i>${getTop5ArticleCategoryNewSuKienList[0].views}<i></i></span> <span
                                     class="read-more-wrapper"><span class="read-more">Xem
@@ -138,19 +138,19 @@
                         </div>
                         <div class="item-content">
                             <h3>
-                                <a href="${getTop5ArticleCategoryNewSuKienList[0].slug}">${getTop5ArticleCategoryNewSuKienList[0].title}</a>
+                                <a href="${getTop5ArticleCategoryNewSuKienList[0].slug}.html">${getTop5ArticleCategoryNewSuKienList[0].title}</a>
                             </h3>
                             <span class="item-meta">
-                                <a style="font-weight: bold;" href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}"><i
+                                <a style="font-weight: bold;" href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html"><i
                                         class="fa fa-user"></i>${getTop5ArticleCategoryNewSuKienList[0].users.userName}</a>
-                                <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}"><i
+                                <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html"><i
                                     class="fa fa-comment-o"></i>${fn:length(getTop5ArticleCategoryNewSuKienList[0].comments)} Bình luận</a> <a
-                                    href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}"><i
+                                    href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html"><i
                                     class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
                                                                               value="${getTop5ArticleCategoryNewSuKienList[0].showDate}"/></a>
 						</span>
                             <p>${getTop5ArticleCategoryNewSuKienList[0].subContent}</p>
-                            <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}" class="read-more-button">Xem
+                            <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html" class="read-more-button">Xem
                                 chi tiết<i
                                         class="fa fa-mail-forward"></i>
                             </a>
@@ -169,10 +169,10 @@
 
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="${contextPath}/game?sorted=news">GAME</a>
+                    <a href="${contextPath}/game.html?sorted=news">GAME</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/game?sorted=news"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/game.html?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -191,21 +191,21 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/pc-console?sorted=news">Game
+                                        <a style="color: white;" href="${contextPath}/pc-console.html?sorted=news">Game
                                             Pc-Console</a>
                                     </h2>
                                 </div>
                                 <ul>
                                     <c:forEach var="ggpc" items="${getTop3GamePcConsole}">
-                                        <li><a href="${contextPath}/games/${ggpc.slug}" class="pull-left p-r-15"> <img
+                                        <li><a href="${contextPath}/games/${ggpc.slug}.html" class="pull-left p-r-15"> <img
                                                 src="${contextPath}/images/games/${ggpc.images} "
                                                 alt="${ggpc.name}"
                                                 style="border-radius: 13px;"></a>
                                             <h2>
-                                                <a href="${contextPath}/games/${ggpc.slug}">${ggpc.name}</a>
+                                                <a href="${contextPath}/games/${ggpc.slug}.html">${ggpc.name}</a>
                                             </h2>
                                             <p>${ggpc.publishers}</p> <span class="view"><a
-                                                    href="${contextPath}/${ggpc.slug}"><i
+                                                    href="${contextPath}/${ggpc.slug}.html"><i
                                                     class="fa fa-eye"></i> Xem</a></span> <span
                                                     class="download"><a
                                                     href="${ggpc.downloadUrl}" rel="nofollow"
@@ -217,7 +217,7 @@
                                     </c:forEach>
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/pc-console?sorted=news">Xem thêm</a>
+                                    <a href="${contextPath}/pc-console.html?sorted=news">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -225,20 +225,20 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/game-mobile?sorted=news">Game mobile</a>
+                                        <a style="color: white;" href="${contextPath}/game-mobile.html?sorted=news">Game mobile</a>
                                     </h2>
                                 </div>
                                 <ul>
                                     <c:forEach var="ggm" items="${getTop3GameMobile}">
-                                        <li><a href="${contextPath}/games/${ggm.slug}" class="pull-left p-r-15"> <img
+                                        <li><a href="${contextPath}/games/${ggm.slug}.html" class="pull-left p-r-15"> <img
                                                 src="${contextPath}/images/games/${ggm.images}"
                                                 alt="${ggm.name}"
                                                 style="border-radius: 13px;"></a>
                                             <h2>
-                                                <a href="${contextPath}/games/${ggm.slug}">${ggm.name}</a>
+                                                <a href="${contextPath}/games/${ggm.slug}.html">${ggm.name}</a>
                                             </h2>
                                             <p>${ggm.publishers}</p> <span class="view"><a
-                                                    href="${contextPath}/${ggm.slug}"><i
+                                                    href="${contextPath}/${ggm.slug}.html"><i
                                                     class="fa fa-eye"></i> Xem</a></span> <span
                                                     class="download"><a
                                                     href="${ggm.downloadUrl}" rel="nofollow"
@@ -251,7 +251,7 @@
 
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/game-mobile?sorted=news">Xem thêm</a>
+                                    <a href="${contextPath}/game-mobile.html?sorted=news">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -259,20 +259,20 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/esport?sorted=news">eSport</a>
+                                        <a style="color: white;" href="${contextPath}/esport.html?sorted=news">eSport</a>
                                     </h2>
                                 </div>
                                 <ul>
                                     <c:forEach var="gge" items="${getTop3GameEsport}">
-                                        <li><a href="${contextPath}/games/${gge.slug}" class="pull-left p-r-15"> <img
+                                        <li><a href="${contextPath}/games/${gge.slug}.html" class="pull-left p-r-15"> <img
                                                 src="${contextPath}/images/games/${gge.images}"
                                                 alt="${gge.name}"
                                                 style="border-radius: 13px;"></a>
                                             <h2>
-                                                <a href="${contextPath}/games/${gge.slug}">${gge.name}</a>
+                                                <a href="${contextPath}/games/${gge.slug}.html">${gge.name}</a>
                                             </h2>
                                             <p>${gge.publishers}</p> <span class="view"><a
-                                                    href="${contextPath}/${gge.slug}"><i
+                                                    href="${contextPath}/${gge.slug}.html"><i
                                                     class="fa fa-eye"></i> Xem</a></span> <span
                                                     class="download"><a
                                                     href="${gge.downloadUrl}" rel="nofollow"
@@ -284,7 +284,7 @@
                                     </c:forEach>
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/game-mobile?sorted=news">Xem thêm</a>
+                                    <a href="${contextPath}/game-mobile.html?sorted=news">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -300,10 +300,10 @@
 
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="${contextPath}/articles?sorted=news">TIN MỚI</a>
+                    <a href="${contextPath}/articles.html?sorted=news">TIN MỚI</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/articles?sorted=news"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/articles.html?sorted=news"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>
@@ -315,7 +315,7 @@
                 <div class="item">
 
                     <div class="item-header hover14 column">
-                        <a href="${contextPath}/${gal.slug}"> <span class="comment-tag"><i
+                        <a href="${contextPath}/${gal.slug}.html"> <span class="comment-tag"><i
                                 class="fa fa-eye"></i>${gal.views}<i></i></span> <span
                                 class="read-more-wrapper"><span
                                 class="read-more">Xem chi tiết<i></i>
@@ -331,20 +331,20 @@
                         <strong class="category-link">
                             <c:forEach var="ac" items="${gal.articleCategories}">
                                 <a style="padding-right: 7px;"
-                                   href="${contextPath}/${ac.slug}">${ac.name}</a>
+                                   href="${contextPath}/${ac.slug}.html">${ac.name}</a>
                             </c:forEach>
                         </strong>
 
                         <h3>
                             <a title="${gal.title}"
-                               href="${contextPath}/${gal.slug}">${gal.title}</a>
+                               href="${contextPath}/${gal.slug}.html">${gal.title}</a>
                         </h3>
                         <span class="item-meta">
-						<a style="font-weight: bold;" href="${contextPath}/${gal.slug}"><i
+						<a style="font-weight: bold;" href="${contextPath}/${gal.slug}.html"><i
                                 class="fa fa-user"></i>${gal.users.userName}</a>
-						<a href="${contextPath}/${gal.slug}"><i
+						<a href="${contextPath}/${gal.slug}.html"><i
                                 class="fa fa-comment-o"></i>${fn:length(gal.comments)} Bình luận</a> <a
-                                href="${contextPath}/${gal.slug}"><i
+                                href="${contextPath}/${gal.slug}.html"><i
                                 class="fa fa-clock-o"></i><fmt:formatDate pattern="dd-MM-yyyy"
                                                                           value="${gal.showDate}"/></a>
 
