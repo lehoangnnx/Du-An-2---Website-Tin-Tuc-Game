@@ -25,8 +25,6 @@
 
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
-<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/style.css"/>--%>
-<%--<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/ionicons.min.css"/>--%>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/component-search.css"/>
 
 <%--Css mới--%>
