@@ -1,9 +1,6 @@
 package com.javaweb.service;
 
-import com.javaweb.model.Article;
-import com.javaweb.model.ArticleCategory;
-import com.javaweb.model.Comment;
-import com.javaweb.model.Tags;
+import com.javaweb.model.*;
 import com.javaweb.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -119,5 +116,15 @@ public class ArticleServiceImpl implements ArticleService {
 			(String title, String slug, String subContent, String mainContent, String author, ArticleCategory articleCategory, Tags tags, String status, Date date,Pageable pageable) {
 		return articleRepository.findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
 				(title,slug,subContent,mainContent,author,articleCategory,tags,status,date,pageable);
+	}
+
+	@Override
+	public List<Article> findAllByUsersAndStatusOrderByShowDateDesc(Users users,String status) {
+		return articleRepository.findAllByUsersAndStatusOrderByShowDateDesc(users,status);
+	}
+
+	@Override
+	public List<Article> findAllByStatusOrderByShowDateDesc(String status) {
+		return articleRepository.findAllByStatusOrderByShowDateDesc(status);
 	}
 }

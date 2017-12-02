@@ -15,4 +15,5 @@ public interface GameCategoryRepository extends JpaRepository<GameCategory, Inte
 
 
 	List<GameCategory> findAllByStatusOrderBySortOrderDesc(String status);
+	List<GameCategory> findAllByStatus(String status);
 }

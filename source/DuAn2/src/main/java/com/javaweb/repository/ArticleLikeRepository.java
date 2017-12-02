@@ -13,4 +13,5 @@ public interface ArticleLikeRepository extends JpaRepository<ArticleLike,Integer
     ArticleLike findByUsersAndArticle(Users users, Article article);
 
     List<ArticleLike> findAllByArticle(Article article);
+
 }

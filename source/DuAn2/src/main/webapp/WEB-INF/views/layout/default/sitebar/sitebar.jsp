@@ -77,16 +77,16 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${ghg.slug}.html">${ghg.name}</a>
+                            <a href="${contextPath}/games/${ghg.slug}.html">${ghg.name}</a>
                         </h4>
                         <p>${ghg.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${ghg.slug}.html">
+                        <span class="item-meta"> <a href="${contextPath}/games/${ghg.slug}.html">
                             <i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/games/hoso.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
         </div>
         <div class="widget-article-list">
             <c:forEach var="ggo" items="${getTop10GameOnline}">
@@ -96,15 +96,15 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${ggo.slug}.html">${ggo.name}</a>
+                            <a href="${contextPath}/games/${ggo.slug}.html">${ggo.name}</a>
                         </h4>
                         <p>${ggo.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${ggo.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/games/${ggo.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game-online.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/games/hoso.html?gamecategory=game-online" class="button-read-more">Hiện thị thêm</a>
         </div>
 
 
@@ -116,15 +116,15 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${ggof.slug}.html">${ggof.name}</a>
+                            <a href="${contextPath}/games/${ggof.slug}.html">${ggof.name}</a>
                         </h4>
                         <p>${ggof.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${ggof.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/games/${ggof.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game-offline.html?sorted=hots" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/games/hoso.html?gamecategory=game-offline" class="button-read-more">Hiện thị thêm</a>
 
         </div>
     </div>
@@ -132,11 +132,11 @@
         <h3>Kết nối với chúng tôi</h3>
         <div class="social-widget">
             <div class="social-squares">
-                <a href="#" target="_blank" class="hover-color-facebook"><i
-                        class="fa fa-facebook"></i></a> <a href="#" target="_blank"
+                <a href="https://www.facebook.com/websiegames24h/" target="_blank" class="hover-color-facebook"><i
+                        class="fa fa-facebook"></i></a> <a href="https://twitter.com/WebsiteGame24h" target="_blank"
                                                            class="hover-color-twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" target="_blank" class="hover-color-google-plus"><i
-                        class="fa fa-google-plus"></i></a> <a href="#" target="_blank"
+                <a href="https://plus.google.com/u/0/112818901771334126445" target="_blank" class="hover-color-google-plus"><i
+                        class="fa fa-google-plus"></i></a> <a href="https://www.youtube.com/channel/UCNS4T2OaMXfPZQEh66KxqAw?view_as=subscriber" target="_blank"
                                                               class="hover-color-youtube"><i
                     class="fa fa-youtube-play"></i></a>
             </div>
@@ -156,15 +156,15 @@
                     </div>
                     <div class="item-content">
                         <h4>
-                            <a href="${contextPath}/${gng.slug}.html">${gng.name}</a>
+                            <a href="${contextPath}/games/${gng.slug}.html">${gng.name}</a>
                         </h4>
                         <p>${gng.description}</p>
-                        <span class="item-meta"> <a href="${contextPath}/${gng.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
+                        <span class="item-meta"> <a href="${contextPath}/games/${gng.slug}.html"><i class="fa fa-reply"></i>Xem chi tiết</a>
 										</span>
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/game.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/games/hoso.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
         </div>
         <div class="widget-article-list">

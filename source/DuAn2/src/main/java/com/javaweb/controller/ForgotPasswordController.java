@@ -46,8 +46,9 @@ public class ForgotPasswordController {
         try {
             user = usersService.findByForgotpassword(key);
             if (user == null){
-                return "redirect:/403";
+                return "redirect:/403.html";
             }
+            model.addAttribute("title", "Lấy Lại Mật Khẩu");
             model.addAttribute("key", key);
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -86,7 +87,7 @@ public class ForgotPasswordController {
 
         }catch (Exception e){
             System.out.println("Lỗi "+e.getMessage());
-            return "redirect:/403";
+            return "redirect:/403.html";
         }
 
         return "redirect:/";

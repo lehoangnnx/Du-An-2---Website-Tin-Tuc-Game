@@ -444,15 +444,15 @@ a:active {
 }
 
 .site-header .navbar-brand .logo {
-  width: 100px;
-  height: 25px;
-  background: url(../img/logo.png) no-repeat;
+  width: 180px;
+  height: 50px;
+  background: url(../../images/ico/logoadmin.png) no-repeat;
 }
 
 @media (min-width: 768px) {
   .compact-sidebar .site-header .navbar-brand .logo {
     width: 25px;
-    background: url(../img/logo-small.png) no-repeat;
+    background: url(../../images/logo2.png) no-repeat;
   }
 }
 
@@ -3150,7 +3150,7 @@ footer .f-title {
 }
 
 .tile h1 {
-  font-family: 'Roboto', sans-serif;
+ /* font-family: 'Roboto', sans-serif;*/
   font-weight: normal;
 }
 
@@ -4517,7 +4517,7 @@ table.focus-on tbody tr.focused th, table.focus-on tbody tr.focused td {
   top: 0;
   left: 0;
   line-height: 1;
-  font-family: 'Exo 2', sans-serif;
+/*  font-family: 'Exo 2', sans-serif;*/
   font-weight: bold;
   font-size: 119px;
   color: #ddd;

@@ -12,8 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.javaweb.controller.ImagesManager;
+import com.javaweb.model.Users;
 import com.javaweb.service.GameReviewsService;
+import com.javaweb.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +36,7 @@ import com.javaweb.service.GameCategoryService;
 import com.javaweb.service.GamesService;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/admin")
@@ -45,22 +49,20 @@ public class AdminGamesController {
     GamesService gamesService;
     @Autowired
     GameCategoryService gameCategoryService;
-
+    @Autowired
+    UsersService usersService;
     @GetMapping("/games")
-    public String getAllGames(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
-        List<Games> gameList = gamesService.findAll()
-                .stream()
-                .filter(x -> x.getStatus().equals(status))
-                .sorted(Comparator.comparing(Games::getGameId).reversed()).collect(Collectors.toList());
+    public String getAllGames(Model model, @RequestParam(name = "status", defaultValue = "active") String status,
+                              Authentication authentication, HttpServletRequest request) {
+        List<Games> gameList = gamesService.findAllByStatusOrderByGameIdDesc(status);
+
         model.addAttribute("gameList", gameList);
         return "games";
     }
 
     @GetMapping("/games/addgames")
     public String addGames(Model model) {
-        List<GameCategory> gameCategoryList = gameCategoryService.findAll()
-                .stream()
-                .filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+        List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatus("active");
         model.addAttribute("gameCategoryList", gameCategoryList);
         return "addgames";
     }
@@ -68,9 +70,7 @@ public class AdminGamesController {
     @GetMapping("/games/{gameId}")
     public String addGames(Model model, @PathVariable("gameId") Integer gameId) {
         Games games = gamesService.findByGameId(gameId);
-        List<GameCategory> gameCategoryList = gameCategoryService.findAll()
-                .stream()
-                .filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+        List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatus("active");
         model.addAttribute("gameCategoryList", gameCategoryList);
         model.addAttribute("games", games);
         return "updategames";
@@ -78,7 +78,7 @@ public class AdminGamesController {
 
     @PostMapping("/games")
     public String addGames(Model model, @RequestParam("name") String name, @RequestParam("slug") String slug,
-                           @RequestParam("status") String status, @RequestParam("gameCategories") List<Integer> gameCategories,
+                           @RequestParam(value = "status",defaultValue = "inactive") String status, @RequestParam("gameCategories") List<Integer> gameCategories,
                            @RequestParam("releases") String releases, @RequestParam("publishers") String publishers,
                            @RequestParam("developers") String developers, @RequestParam("writers") String writers,
                            @RequestParam("composers") String composers, @RequestParam("engine") String engine,
@@ -178,7 +178,7 @@ public class AdminGamesController {
 
     @PatchMapping("/games")
     public String updateGames(Model model, @RequestParam("gameId") Integer gameId, @RequestParam("name") String name, @RequestParam("slug") String slug,
-                              @RequestParam("status") String status, @RequestParam("gameCategories") List<Integer> gameCategories,
+                              @RequestParam(value = "status",defaultValue = "inactive") String status, @RequestParam("gameCategories") List<Integer> gameCategories,
                               @RequestParam("releases") String releases, @RequestParam("publishers") String publishers,
                               @RequestParam("developers") String developers, @RequestParam("writers") String writers,
                               @RequestParam("composers") String composers, @RequestParam("engine") String engine,
@@ -188,7 +188,7 @@ public class AdminGamesController {
                               @RequestParam("downloadUrl") String downloadUrl,
                               @RequestParam("systemRequirements") String systemRequirements,
                               @RequestParam("images") MultipartFile images,
-                              RedirectAttributes redirectAttributes) {
+                              RedirectAttributes redirectAttributes, HttpServletRequest request) {
         System.out.println("Vao PATCH");
 
         String monthAndYear = imagesManager.getMonthAndYearNow();
@@ -245,7 +245,9 @@ public class AdminGamesController {
             if(!systemRequirements.equals("")){
                 games.setSystemRequirements(HtmlUtils.htmlEscape(systemRequirements));
             }
-            games.setStatus(status);
+            if(request.isUserInRole("ROLE_ADMIN")) {
+                games.setStatus(status);
+            }
             games.setIsHot((byte) isHot);
             gameCategories.forEach(x -> gameCategoryHashSet.add(gameCategoryService.findByGameCategoryId(x)));
             games.setGameCategories(gameCategoryHashSet);
@@ -274,7 +276,7 @@ public class AdminGamesController {
             return "redirect:/admin/games/" + gameId;
         }
 
-        return "redirect:/admin/games?status="+status;
+        return "redirect:/admin/games?status="+games.getStatus();
     }
 
     @DeleteMapping("/games")

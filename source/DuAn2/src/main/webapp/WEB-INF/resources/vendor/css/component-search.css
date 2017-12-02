@@ -347,8 +347,10 @@ input[type="search"] { /* reset normalize */
 
 @media screen and (max-width: 60.625em) {
 	.morphsearch {
-		width: 80%;
+		/*width: 80%;
 		top: 10%;
-		right: 10%;
+		right: 10%;*/
+		width: 100%;
+		top:10%;
 	}
 }

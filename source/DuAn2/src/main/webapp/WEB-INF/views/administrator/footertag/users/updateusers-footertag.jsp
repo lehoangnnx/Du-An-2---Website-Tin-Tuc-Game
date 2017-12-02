@@ -4,14 +4,15 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<script type="text/javascript"
-	src="${contextPath}/js/jquery/jquery-1.12.3.min.js"></script>
+
 
 <script type="text/javascript"
 	src="${contextPath}/js/js/jquery-3.2.1.min.js"></script>
 
 <script type="text/javascript"
 	src="${contextPath}/js/js/jquery.validate.js"></script>
+<script type="text/javascript"
+		src="${contextPath}/js/js/additional-methods.min.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/tether/js/tether.min.js"></script>
 <script type="text/javascript"
@@ -116,7 +117,7 @@
 						}
 					});
 
-				}, 1000);
+				}, 200);
 			}
 		});
 
@@ -147,30 +148,33 @@
 			var phoneNumber = $("#phoneNumber").val();
 			
 			var phone_regex = /^(01[2689]|09)[0-9]{8}$/;
-			var name_regex = /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/;
+			var name_regex = /^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ]+$/;
 			var email_regex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
 			if (!email.match(email_regex) || email.length == 0) {
-				console.log("sdssd");
+
 				$('#email-error').text("Vui Lòng Nhập Email"); // This Segment Displays The Validation Rule For Email
 				$("#email").focus();
 				e.preventDefault();
 				return false;
 			} 
 			else if (!firstName.match(name_regex) && firstName.length != 0 ) {
-				console.log(firstName+ lastName+email+ "sssssssssss" );
+
 				$('#firstName-error').text("Vui Lòng Nhập Đúng Họ");
+                $('#email-error').text("");
 				$("#firstName").focus();
 				e.preventDefault();
 				return false;
 			}
 			else if (!lastName.match(name_regex) && lastName.length != 0) {
 				$('#lastName-error').text("Vui Lòng Nhập Đúng Tên");
+                $('#firstName-error').text("");
 				$("#lastName").focus();
 				e.preventDefault();
 				return false;
 			}
 			else if(!phoneNumber.match(phone_regex) && phoneNumber.length != 0){
 				$('#phoneNumber-error').text("Vui Lòng Nhập Đúng Số Điện Thoại");
+                $('#lastName-error').text("");
 				$("#lastName").focus();
 				e.preventDefault();
 				return false;
@@ -192,26 +196,46 @@
         rules : {
             email: {
               required : true,
-				email : true
+				email : true,
+				maxlength:255
+			},
+            firstName:{
+                maxlength:255
+			},
+            lastName:{
+                maxlength:255
+			},
+            phoneNumber:{
+                maxlength:15
 			},
             roleses: {
                 required : true
 			},
             avatar : {
-                required : true,
+               
                 accept: "image/*"
             }
         },
 		messages : {
             email: {
               required : "Vui Lòng Nhập Email",
-				email : "Vui Lòng Nhập Đúng Email"
+				email : "Vui Lòng Nhập Đúng Email",
+                maxlength : "Email Tối Đa 255 Ký Tự."
 			},
+            firstName:{
+                maxlength : "Họ Tối Đa 255 Ký Tự."
+            },
+            lastName:{
+                maxlength : "Tên Tối Đa 255 Ký Tự."
+            },
+            phoneNumber:{
+                maxlength : "Số Điện Thoại Tối Đa 15 Ký Tự."
+            },
             roleses: {
                 required : "Vui Lòng Chọn Quyền"
             },
             avatar : {
-                required : "Vui Lòng Chọn Ảnh",
+               
                 accept : "Vui Lòng Chọn File Ảnh"
             }
         }

@@ -52,7 +52,7 @@ public class LoginController {
 		return "adminlogin";
 	}
 	  
-	
+	/*
 	@PostMapping(value="/logout")
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -66,8 +66,8 @@ public class LoginController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
 		System.out.println("HTYPPPPPPPPPPPPPPPPPPP"+uri);
-		return "redirect:/";
+		return "redirect:/"+uri;
 	}
-
+*/
 	
 }

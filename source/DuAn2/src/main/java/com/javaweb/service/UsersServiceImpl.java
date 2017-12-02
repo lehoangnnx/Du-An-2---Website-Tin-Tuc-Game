@@ -46,4 +46,14 @@ public class UsersServiceImpl implements UsersService {
 		
 		return usersRepository.findByUserName(userName);
 	}
+
+	@Override
+	public Users findByUserNameAndStatus(String userName, String status) {
+		return usersRepository.findByUserNameAndStatus(userName,status);
+	}
+
+	@Override
+	public List<Users> findAllByStatusOrderByCreatedDateDesc(String status) {
+		return usersRepository.findAllByStatusOrderByCreatedDateDesc(status);
+	}
 }

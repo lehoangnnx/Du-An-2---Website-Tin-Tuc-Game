@@ -6,9 +6,14 @@ import com.javaweb.model.ArticleCategory;
 import com.javaweb.model.Users;
 import com.javaweb.service.ArticleCategoryService;
 import com.javaweb.service.ArticleService;
+import com.javaweb.service.CommentService;
 import com.javaweb.service.UsersService;
+
+
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +30,38 @@ public class DefaultRestController {
     ArticleCategoryService articleCategoryService;
     @Autowired
     UsersService usersService;
+    @Autowired
+    CommentService commentService;
     @GetMapping("/getarticle")
-    public List<Map<String, Object>> get(@RequestParam(value = "page", defaultValue = "2") int page) {
-        int pageSize = 10;
-        System.out.println("PAGE :" + page);
+    public List<Map<String, Object>> get(@RequestParam(value = "page", defaultValue = "2") String stpage,
+     @RequestParam(value = "limit", defaultValue = "10") String stlimit
+            , @RequestParam(value = "sorted", defaultValue = "news") String sorted) {
+        int limit =10;
+        int page = 1;
+        if (sorted.equals("news")) {
+            sorted = "showDate";
+        }
+        else if (sorted.equals("hots")) {
+            sorted = "views";
+        }else {
+            sorted = "showDate";
+        }
+        try {
+            limit = Integer.parseInt(stlimit);
+        }catch (NumberFormatException e){
+            limit = 10;
+        }
+        try {
+            page = Integer.parseInt(stpage);
+        }catch (NumberFormatException e){
+            page = 1;
+        }
+
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
-        List<Article> findAllArticle = articleService
-                .findByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
-        if((page * pageSize) < findAllArticle.size() && (page * pageSize) < 50 ){
-            findAllArticle = findAllArticle
-                    .stream().skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList());
+        List<Article> findAllArticle = articleService.findAllByStatusAndShowDateBefore("active", new Date(),
+                new PageRequest(page - 1, limit, new Sort(Sort.Direction.DESC, sorted)));
+
 
 
             List<Map<String, Object>> articleListMap = new ArrayList<Map<String, Object>>();
@@ -58,15 +84,14 @@ public class DefaultRestController {
                     articleCategoryListMap.add(articleCategoryMap);
 
                 });
+
+                articleMap.put("countComment", commentService.findAllByArticleAndStatus(x, "active").size());
                 articleMap.put("articleCategories", articleCategoryListMap);
 
                 articleListMap.add(articleMap);
 
             });
             return articleListMap;
-        }else {
-            return null;
-        }
 
 
     }
@@ -100,4 +125,30 @@ public class DefaultRestController {
         }
         return null;
     }
+    
+    
+    /*@GetMapping("/json")
+    public JSONObject jsson () {
+    	JSONObject mainObj = new JSONObject();
+        for(int i = 0; i<200; i++) {
+        	 JSONArray ja = new JSONArray();
+        	for(int j=0;j<100;j++) {
+        		JSONObject jo = new JSONObject();
+                jo.put("firstName", "John"+j);
+                jo.put("lastName", "Doe"+j);
+                ja.add(jo);
+        	}
+        	
+          
+           
+           
+           
+            mainObj.put("employees"+i, ja);
+        	
+        }
+        
+        System.out.println(mainObj);
+        
+        return mainObj;
+    }*/
 }

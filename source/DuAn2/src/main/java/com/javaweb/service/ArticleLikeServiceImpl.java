@@ -38,4 +38,6 @@ public class ArticleLikeServiceImpl implements  ArticleLikeService {
     public List<ArticleLike> findAllByArticle(Article article) {
         return articleLikeRepository.findAllByArticle(article);
     }
+
+
 }

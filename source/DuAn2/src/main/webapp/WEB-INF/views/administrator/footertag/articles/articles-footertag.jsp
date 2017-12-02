@@ -103,7 +103,7 @@ function showactive(){
 
 		},
 		error : function(e) {
-			alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
+			//alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
 		}
 	}); 
 	
@@ -178,7 +178,7 @@ $(document).ready(function() {
 						alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
 					}
 				}); 
-			}, 1000);
+			}, 200);
 			
 		};
 

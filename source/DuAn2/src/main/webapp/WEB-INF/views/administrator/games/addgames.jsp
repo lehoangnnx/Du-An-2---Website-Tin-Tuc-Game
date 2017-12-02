@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="security"
+		   uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <style>
 .error {
@@ -9,10 +11,9 @@
 }
 </style>
 <div class="container-fluid">
-	<h4>Bài Viết</h4>
+	<h4>Game</h4>
 	<ol class="breadcrumb no-bg mb-1">
-		<li class="breadcrumb-item"><a href="forms-material.html#">Home</a></li>
-		<li class="breadcrumb-item"><a href="forms-material.html#">Forms</a></li>
+		<li class="breadcrumb-item"><a href="${contextPath}/admin/index">Trang Chủ</a></li>
 		<li class="breadcrumb-item active">Thêm Games</li>
 	</ol>
 
@@ -23,7 +24,7 @@
 			method="post" enctype="multipart/form-data">
 
 			<div class="form-group row">
-				<label class="col-md-2 control-label" for="form_control_1">Ảnh Game</label>
+				<label class="col-md-2 control-label">Ảnh Game<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input name="images" type="file" id="input-file-max-fs" accept="image/*"
 						   required="required" value="${games.images}" class="dropify"
@@ -35,8 +36,8 @@
 			</div>
 
 			<div id="divTitle" class="form-group row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Tên
-					Game</label>
+				<label class="col-md-2 col-form-label">Tên
+					Game<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input maxlength="100" type="text" class="maxlength form-control "
 						value="${games.name }" id="name" name="name"
@@ -47,8 +48,8 @@
 			</div>
 
 			<div id="divSlug" class="form-group  row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Đường
-					Dẫn</label>
+				<label class="col-md-2 col-form-label" >Đường
+					Dẫn<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input type="text" value="${games.slug }" class="form-control maxlength" maxlength="100"
 						id="slug" name="slug">
@@ -57,22 +58,22 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label">Game Nổi Bật</label>
+				<label class="col-md-2 col-form-label">Game Nổi Bật<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<div class="md-radio-inline">
 						<div class="md-radio">
-							<input type="radio" id="radio53" name="isHot" value="1"
+							<input type="radio" id="isHotY" name="isHot" value="1"
 								${games.isHot == 1 ? 'checked' : '' } class="md-radiobtn">
-							<label for="radio53"> <span></span> <span class="check"></span>
+							<label for="isHotY"> <span></span> <span class="check"></span>
 								<span class="box"></span>Có
 							</label>
 						</div>
 
 
 						<div class="md-radio has-error">
-							<input type="radio" id="radio52" name="isHot" value="0"
+							<input type="radio" id="isHotN" name="isHot" value="0"
 								${games.isHot == 0 ? 'checked' : '' } checked="checked"
-								   class="md-radiobtn"> <label for="radio52"> <span></span>
+								   class="md-radiobtn"> <label for="isHotN"> <span></span>
 							<span class="check"></span> <span class="box"></span> Không
 						</label>
 						</div>
@@ -84,18 +85,18 @@
 			<div class=" form-group row">
 
 
-				<label class="col-md-2 form-control-label">Mô Tả Game</label>
+				<label class="col-md-2 form-control-label">Mô Tả Game<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<textarea id="info" class="form-control maxlength" maxlength="4000"
 							  name="info" rows="5"
-							  placeholder="This textarea has a limit of 4000 chars.">${games.info }</textarea>
-					<label id="info-error" class="error" ></label>
+							  placeholder="Mô Tả Tối Đa 4000 Ký Tự">${games.info }</textarea>
+					<label id="info-error" class="error" for="info" ></label>
 				</div>
 
 
 			</div>
 			<div class="form-group  row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Trang Chủ</label>
+				<label class="col-md-2 col-form-label" >Trang Chủ<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input type="text" value="${games.homeUrl }"
 						   class="form-control " id="homeUrl" name="homeUrl">
@@ -104,7 +105,7 @@
 			</div>
 
 			<div class="form-group  row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Trang Tải Game</label>
+				<label class="col-md-2 col-form-label" >Trang Tải Game<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input type="text" value="${games.downloadUrl }"
 						   class="form-control " id="downloadUrl" name="downloadUrl">
@@ -114,17 +115,17 @@
 
 
 			<div class="form-group  row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Nhà
-					Phát Hành</label>
+				<label class="col-md-2 col-form-label">Nhà
+					Phát Hành<span class="error"> *</span></label>
 				<div class="col-md-10">
-					<input type="text" value="${games.publishers }"
+					<input type="text" maxlength="500" value="${games.publishers }"
 						class="form-control " id="publishers" name="publishers">
 
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="example-datetime-local-input"
-					class="col-md-2 col-form-label">Ngày Phát Hành</label>
+				<label
+					class="col-md-2 col-form-label">Ngày Phát Hành<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input class="form-control" type="datetime-local" name="releases"
 						value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${games.releases}"/>"
@@ -133,7 +134,7 @@
 			</div>
 
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label">Cấu Hình</label>
+				<label class="col-md-2 col-form-label">Cấu Hình<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<textarea name="systemRequirements" id="summernote">${games.systemRequirements }</textarea>
 
@@ -145,7 +146,7 @@
 				<label class="col-md-2 col-form-label" for="developers">Nhà
 					Phát Triển</label>
 				<div class="col-md-10">
-					<input type="text" value="${games.developers }"
+					<input type="text" maxlength="500" value="${games.developers }"
 						class="form-control " id="developers" name="developers">
 
 				</div>
@@ -154,7 +155,7 @@
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="writers">Kịch Bản</label>
 				<div class="col-md-10">
-					<input type="text" value="${games.writers }"
+					<input type="text" maxlength="500" value="${games.writers }"
 						class="form-control " id="writers" name="writers">
 
 				</div>
@@ -162,7 +163,7 @@
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="composers">Âm Nhạc</label>
 				<div class="col-md-10">
-					<input type="text" value="${games.composers }"
+					<input type="text" maxlength="500" value="${games.composers }"
 						class="form-control " id="composers" name="composers">
 
 				</div>
@@ -170,7 +171,7 @@
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="engine">Công Nghệ</label>
 				<div class="col-md-10">
-					<input type="text" value="${games.engine }"
+					<input type="text" maxlength="500" value="${games.engine }"
 						class="form-control " id="engine" name="engine">
 
 				</div>
@@ -178,14 +179,14 @@
 			<div class="form-group  row">
 				<label class="col-md-2 col-form-label" for="platforms">Nền Tảng</label>
 				<div class="col-md-10">
-					<input type="text" value="${games.platforms }"
+					<input type="text" maxlength="500" value="${games.platforms }"
 						class="form-control " id="platforms" name="platforms">
 
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label">Danh Mục Games</label>
+				<label class="col-md-2 col-form-label">Danh Mục Games<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<div class="md-checkbox-inline">
 
@@ -196,7 +197,7 @@
 									<c:when test="${gcl == gc}">
 										<c:set var="found" value="true" />
 										<div class="md-checkbox">
-											<input name="gameCategories" type="checkbox"
+											<input  name="gameCategories" type="checkbox"
 												checked="checked" value="${gcl.gameCategoryId}"
 												id="${gcl.gameCategoryId }" class="md-check"> <label
 												for="${gcl.gameCategoryId }"> <span></span> <span
@@ -209,7 +210,7 @@
 							<c:choose>
 								<c:when test="${!found}">
 									<div class="md-checkbox">
-										<input name="gameCategories" type="checkbox"
+										<input  name="gameCategories" type="checkbox"
 											value="${gcl.gameCategoryId }" id="${gcl.gameCategoryId }"
 											class="md-check"> <label for="${gcl.gameCategoryId }">
 											<span></span> <span class="check"></span> <span class="box"></span>
@@ -220,42 +221,42 @@
 							</c:choose>
 						</c:forEach>
 					</div>
-					<label id="gameCategories-error" class="error" for="gameCategories"></label>
+					<label id="gameCategories-error" class="error" for="gameCategories" style=""></label>
 				</div>
 
 			</div>
 
-
+			<security:authorize access="hasRole('ADMIN')">
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label">Trạng Thái</label>
+				<label class="col-md-2 col-form-label">Trạng Thái<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<div class="md-radio-inline">
 						<div class="md-radio">
-							<input type="radio" id="radio54" name="status" value="active"
+							<input type="radio" id="statusactive" name="status" value="active"
 								${games.status == 'active' ? 'checked' : '' }
-								class="md-radiobtn"> <label for="radio54"> <span></span>
+								class="md-radiobtn"> <label for="statusactive"> <span></span>
 								<span class="check"></span> <span class="box"></span>Kích Hoạt
 							</label>
 						</div>
 						<div class="md-radio has-info">
-							<input type="radio" id="radio55" name="status" value="inactive"
+							<input type="radio" id="statusinactive" name="status" value="inactive"
 								${games.status == 'inactive' ? 'checked' : '' }
 								checked="checked" class="md-radiobtn"> <label
-								for="radio55"> <span class="inc"></span> <span
+								for="statusinactive"> <span class="inc"></span> <span
 								class="check"></span> <span class="box"></span> Chưa Kích Hoạt
 							</label>
 						</div>
 						<div class="md-radio has-warning">
-							<input type="radio" id="radio56" name="status" value="draft"
+							<input type="radio" id="statusdraft" name="status" value="draft"
 								${games.status == 'draft' ? 'checked' : '' } class="md-radiobtn">
-							<label for="radio56"> <span class="inc"></span> <span
+							<label for="statusdraft"> <span class="inc"></span> <span
 								class="check"></span> <span class="box"></span> Chờ Kích Hoạt
 							</label>
 						</div>
 						<div class="md-radio has-error">
-							<input type="radio" id="radio57" name="status" value="deleted"
+							<input type="radio" id="statusdeleted" name="status" value="deleted"
 								${games.status == 'deleted' ? 'checked' : '' }
-								class="md-radiobtn"> <label for="radio57"> <span></span>
+								class="md-radiobtn"> <label for="statusdeleted"> <span></span>
 								<span class="check"></span> <span class="box"></span> Xóa
 							</label>
 						</div>
@@ -263,7 +264,7 @@
 				</div>
 			</div>
 
-
+			</security:authorize>
 
 			<div class="form-group row"
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">

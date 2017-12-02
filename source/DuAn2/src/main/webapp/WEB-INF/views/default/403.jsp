@@ -1,7 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <section class="content">
-				
 				<!-- BEGIN .wrapper -->
 				<div class="wrapper">
 

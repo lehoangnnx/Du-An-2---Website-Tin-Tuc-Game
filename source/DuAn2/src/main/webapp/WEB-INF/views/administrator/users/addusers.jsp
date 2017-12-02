@@ -17,7 +17,7 @@
 
 		<form class="">
 			<div class="form-group row">
-				<label style="padding-top: 2rem; " id="mat-label" for="inputEmail3"
+				<label style="padding-top: 2rem; "
 					class="col-sm-2 col-form-label">Primary</label>
 				<div class="col-sm-10">
 					<div class="form-group form-md-line-input form-md-floating-label">
@@ -42,7 +42,7 @@
 			</div> -->
 			
 			<div class="form-group row">
-				<label id="mat-label" for="inputEmail3"
+				<label id="mat-label"
 					class="col-sm-2 col-form-label">Checkbox</label>
 				<div class="col-sm-10">
 					<div class="md-checkbox-inline">
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 			<div class="form-group row  ">
-				<label for="inputEmail3" class="col-sm-2 col-form-label">Nội Dung</label>
+				<label  class="col-sm-2 col-form-label">Nội Dung</label>
 				<div class="col-sm-10">
 					<div id="summernote">
 						

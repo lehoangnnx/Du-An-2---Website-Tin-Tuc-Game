@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!-- Login Form -->
+
 <div id="modal" class="popupContainer" style="display: none;">
 	<header class="popupHeader">
 		<span class="header_title">Đăng nhập</span> <span class="modal_close"><i
@@ -12,20 +13,17 @@
 	<section class="popupBody">
 		<!-- Social Login -->
 		<div class="social_login">
-			<div class="">
-				<form:form action="${contextPath }/signin/facebook" method="POST">
-					<input type="hidden" name="scope" value="public_profile"/>
-					<input type="hidden" name="${_csrf.parameterName}"
-						   value="${_csrf.token}"/>
-
-					<button type="submit" class="loginBtn loginBtn--facebook">Đăng nhập bằng Facebook
-					</button>
-				</form:form>
 
 
-			</div>
-			<div id="btn-google" class="g-signin2 " data-width="290"
-				 data-height="32" data-longtitle="true" data-onsuccess="onSignIn" data-theme="dark"></div>
+				<a style="color: white;" id="btn-facebook" class="btn btn-block btn-social btn-facebook">
+					<span class="fa fa-facebook"></span> Đăng nhập bằng Facebook
+				</a>
+
+			<a style="color: white;" id="btn-google" class="btn btn-block btn-social btn-google">
+				<span class="fa fa-google-plus"></span> Đăng Nhập Bằng Google
+			</a>
+
+
 
 
 			<div class="centeredText">
@@ -86,7 +84,7 @@
 						<a href="#" class="btn back_btn"><i
 								class="fa fa-angle-double-left"></i> Quay lại</a>
 					</div>
-					<button type="button" id="btn-register"
+					<button type="button" id="btn-register" disabled
 							class="one_half last btn btn_red">Đăng Ký
 					</button>
 
@@ -123,31 +121,39 @@
 					<div class="col-md-4 col-sm-8" style="margin-top: 17px;">
 						<img style=" width: 50%;height: auto;" alt="${contextPath}/" src="${contextPath}/images/logo2.png"><br>
 						<p>
-							© Copyright 2007 - 2017 – By FourHansTeam<br>Tầng 3 Toà nhà
+							© Copyright 2007 - 2017 – By FourHansTeam<br>Tầng 2 Toà nhà
 							VIB - 27 Nguyễn Tất Thành, Buôn Ma Thuột<br>Giấy phép thiết
 							lập trang thông tin điện tử tổng hợp trên internet số 1395
 						</p>
 					</div>
-					<div class="col-md-4 col-sm-8">
+					<div class="col-md-4 col-sm-8" style="margin-top: 17px;">
 						<h3>Ban biên tập Game24h</h3>
 						<p>
-							Điện thoại: 0941.41.4307<br>Email: info@game24h.vn<br>Chịu
+							Điện thoại: 0941.41.4307<br>Email: websitegame24h@gmail.com<br>Chịu
 							trách nhiệm quản lý nội dung: Ông Phạm Văn Hùng<br>27 Nguyễn
 							Tất Thành, Tp. Buôn Ma Thuột
 						</p>
 					</div>
-					<div class="col-md-4 col-sm-8">
+					<div class="col-md-4 col-sm-8" style="margin-top: 17px;">
 						<h3>Liên hệ quảng cáo</h3>
 						<p>
-							Admicro Hotline hỗ trợ quảng cáo: 0942 86 1<br>Email:
-							giaitrixahoi@admicro.vn<br>Hỗ trợ & CSKH: Admicro Address:
-							Tầng 20, Tòa nhà Center Building
+							Admicro Hotline hỗ trợ quảng cáo: 0989.007.595<br>Email:
+							websitegame24h@gmail.com<br>Hỗ trợ & CSKH: Admicro Address:
+							Tâng 2 - 27 Nguyễn Tất Thành, Tp. Buôn Ma Thuột
 						</p>
 					</div>
 
 				</div>
+				<p>Ngôn Ngữ</p>
+				<div style="margin:15px;" id="google_translate_element"></div>
+				<script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'vi', includedLanguages: 'en,fr,fy,ru,vi,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-110169898-1'}, 'google_translate_element');
+                    }
+				</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 				<p style="font-weight: bold;">
-					Copyright &copy; 2017 - <a href="#">Game24h</a> | Four Hand Team
+					Copyright &copy; 2017 - <a href="#">Game24h</a> | Four Hands Team
 				</p>
 			</div>
 		</div>
@@ -156,5 +162,5 @@
 
 	</footer>
 	<div id="LoadingImage" style="display: none">
-  <img src="${contextPath }/images/load2.gif" />
+  <img src="${contextPath }/images/load3.gif" />
 </div>

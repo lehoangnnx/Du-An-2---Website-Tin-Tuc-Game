@@ -81,11 +81,7 @@
     });
 </script>
 <script>
-$("#ab").click(function(){
-    $.get("${pageContext.request.contextPath}/admin/users1", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-});
+
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

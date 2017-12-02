@@ -11,10 +11,15 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.javaweb.service.SecurityService;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +44,8 @@ public class LoginRestController {
     UsersService usersService;
     @Autowired
     RolesService rolesService;
-
+    @Autowired
+    PasswordEncoder passwordEncoder;
     private static final HttpTransport TRANSPORT = new NetHttpTransport();
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
@@ -71,20 +77,22 @@ public class LoginRestController {
 
                 // Get profile information from payload
                 String email = payload.getEmail();
+
                 boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
                 String name = (String) payload.get("name");
                 String pictureUrl = (String) payload.get("picture");
                 String locale = (String) payload.get("locale");
                 String familyName = (String) payload.get("family_name");
                 String givenName = (String) payload.get("given_name");
-
+                System.out.println("GOOOGLE NEF : " + givenName +"--"+ familyName);
                 user = usersService.findByUserName(userId);
                 if (user == null) {
                     user = new Users();
                     user.setUserName(userId);
-                    user.setPassword(randomAlphabetic(8));
-                    user.setEmail(email);
-                    user.setFirstName(name);
+                    user.setPassword(passwordEncoder.encode(randomAlphabetic(8)));
+                    user.setEmail(userId+"-"+email);
+                    user.setFirstName(givenName);
+                    user.setLastName(familyName);
                     user.setAvatar(pictureUrl);
                     user.setStatus("active");
                     user.setCreatedDate(new Date());
@@ -112,6 +120,44 @@ public class LoginRestController {
 
         }
 
+        return "success";
+    }
+
+    @PostMapping("/signin-facebook")
+    public  String signinFacebook(@RequestBody String accessToken ){
+        System.out.println("THU ACE BOOK NEG : " +accessToken);
+        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+        User me = fbClient.fetchObject("me", User.class,
+                Parameter.with("fields", "picture,first_name,last_name,gender,name,email"));
+
+        System.out.println("MAIL :" +me.getPicture().getUrl()+me.getId()+me.getName()+me.getFirstName()
+        +me.getEmail()+me.getLastName()+me.getAbout()+me.getBio()+me.getBirthday()
+        +me.getGender()+me.getHometownName()+me.getHometown()+me.getLink()+me.getLocale());
+        Users user = null;
+        try {
+            user = usersService.findByUserName(me.getId());
+            if(user == null ) {
+                user = new Users();
+                user.setUserName(me.getId());
+                user.setPassword(passwordEncoder.encode(randomAlphabetic(8)));
+                user.setEmail(me.getId()+"-"+me.getEmail());
+                user.setFirstName(me.getFirstName());
+                user.setLastName(me.getLastName());
+                user.setAvatar(me.getPicture().getUrl());
+                user.setStatus("active");
+                user.setCreatedDate(new Date());
+                user.setLoggedInDate(new Date());
+                user.setIsOnline((byte) 1);
+                HashSet<Roles> roleses = new  HashSet<>();
+                roleses.add(rolesService.findByName("ROLE_FACEBOOK"));
+                user.setRoleses(roleses);
+                usersService.saveorupdate(user);
+            }
+            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(me.getId(),
+                    null, Arrays.asList(new SimpleGrantedAuthority("ROLE_FACEBOOK"))));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return "success";
     }
 }

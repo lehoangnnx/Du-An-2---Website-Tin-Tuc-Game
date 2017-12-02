@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ import com.javaweb.service.RolesService;
 import com.javaweb.service.UsersService;
 
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin")
 public class AdminUsersController {
 	@Autowired
@@ -61,10 +63,7 @@ public class AdminUsersController {
 		/* Lấy tất cả đối tượng user trong cơ sở dữ liệu
 		* Lọc kết quả trae về theo điều kiện Status của user không bằng deleted
 		*/
-		List<Users> usersList = usersService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals(status))
-				.collect(Collectors.toList());
+		List<Users> usersList = usersService.findAllByStatusOrderByCreatedDateDesc(status);
 		//newlistUsers.forEach(u -> System.out.println(u.getEmail() +"-" + u.getStatus()));
 		//System.out.println(newlistUsers);
 		
@@ -94,9 +93,7 @@ public class AdminUsersController {
 		// Lấy User theo Id
 		Users user = usersService.findByUserId(userId);
 		//Lấy tất cả quyên
-		List<Roles> rolesList = rolesService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+		List<Roles> rolesList = rolesService.findAllByStatusOrderByRoleIdDesc("active");
 		
 		/*
 		 * for (Roles r : user.getRoleses()) { listRolesOfUser.add(r.getName()); }

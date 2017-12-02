@@ -12,4 +12,6 @@ public interface UsersService {
 	Users findByUserName(String userName);
 	Users findByEmail(String email);
 	Users findByForgotpassword(String forgotpassword);
+	Users findByUserNameAndStatus(String userName,String status);
+	List<Users> findAllByStatusOrderByCreatedDateDesc(String status);
 }

@@ -82,12 +82,15 @@
 		 	var link =	$("#inputframeVideo").val();
 		 	
 		 	if(link.search("iframe") == 1){
-			 	
+                $('#ifVideo').css('display','block');
 				link = link.slice(link.indexOf("src")+5, link.indexOf("frameborder")-2);
 				$("#inputframeVideo").val(link);
-			}
+			}else {
+                $('#ifVideo').css('display','none');
+            }
+
 			$("#ifVideo").attr("src", link);
-			 }, 1500);
+			 }, 500);
 			});
 	});
 
@@ -191,7 +194,7 @@
 									alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
 								}
 							});
-				}, 1000);
+				}, 200);
 	}
 	function errorBtn() {
 		
@@ -258,72 +261,78 @@
 			});
 		
 		//Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
-		$("#formArticle").validate({
+        $("#formArticle").validate({
 
-			rules : {
-				title : {
-					required : true,
-					maxlength : 100
-				},
-				slug : {
-					required : true,
-					maxlength : 100
-				},
-				articleCategories : {
-					required : true
-				},
-				tags : {
-					required : true
-				},
-				subContent : {
-					required : true
-				},
-				
-				author : {
-					required : true
-				},
+            rules : {
+                title : {
+                    required : true,
+                    maxlength : 255
+                },
+                slug : {
+                    required : true,
+                    maxlength : 255
+                },
+                articleCategories : {
+                    required : true
+                },
+                tags : {
+                    required : true
+                },
+                subContent : {
+                    required : true,
+                    maxlength : 4000
+                },
+
+                author : {
+                    required : true,
+                    maxlength: 255
+                },
                 imagesThumbnail : {
 
                     accept: "image/*"
                 },
-				video : {
 
-					url: true
+                video : {
 
-				}
-			},
-			messages : {
-				title : {
-					required : "Vui Lòng Nhập Tiêu Đề",
-					maxlength : "Tiêu Đề Không Dài Hơn 100 Ký Tự"
-				},
-				slug : {
-					required : "Vui Lòng Nhập Đường Dẫn",
-					maxlength : "Đường Dẫn Không Dài Hơn 100 Ký Tự"
-				},
-				articleCategories : {
-					required : "Vui Lòng Chọn Danh Mục"
-				},
-				tags : {
-					required : "Vui Lòng Chọn Thẻ"
-				},
-				subContent : {
-					required : "Vui Lòng Nhập Tóm Tắt"
-				},
-				
-				author : {
-					required : "Vui Lòng Nhập Tác Giả/Nguồn"
-				},
+                    url: true
+
+                }
+            },
+            messages : {
+                title : {
+                    required : "Vui Lòng Nhập Tiêu Đề",
+                    maxlength : "Tiêu Đề Không Dài Hơn 255 Ký Tự"
+                },
+                slug : {
+                    required : "Vui Lòng Nhập Đường Dẫn",
+                    maxlength : "Đường Dẫn Không Dài Hơn 255 Ký Tự"
+                },
+                articleCategories : {
+                    required : "Vui Lòng Chọn Danh Mục"
+                },
+                tags : {
+                    required : "Vui Lòng Chọn Thẻ"
+                },
+                subContent : {
+                    required : "Vui Lòng Nhập Tóm Tắt",
+                    maxlength : "Tóm Tắt Không Dài Hơn 4000 Ký Tự"
+                },
+
+                author : {
+                    required : "Vui Lòng Nhập Tác Giả/Nguồn",
+                    maxlength : "Tác Giả/Nguồn Không Dài Hơn 255 Ký Tự"
+                },
                 imagesThumbnail : {
 
                     accept : "Vui Lòng Chọn File Ảnh"
                 },
-				video : {
 
-					url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "
-				}
+                video : {
 
-			}
-		});
+                    url : "Vui Lòng Nhập Đúng URL. Ví Dụ: https://www.youtube.com/embed/cMg8KaMdDYo "
+                }
+
+            }
+        });
 	});
 </script>

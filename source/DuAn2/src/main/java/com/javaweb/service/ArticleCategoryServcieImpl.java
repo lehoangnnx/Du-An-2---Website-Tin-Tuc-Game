@@ -52,4 +52,9 @@ public class ArticleCategoryServcieImpl implements ArticleCategoryService {
 	public ArticleCategory findTop1ByNameContainingOrSlugContainingAndStatus(String name, String slug, String status) {
 		return articleCategoryRepository.findTop1ByNameContainingOrSlugContainingAndStatus(name,slug,status);
 	}
+
+	@Override
+	public List<ArticleCategory> findAllByStatusOrderByArticleCategoryIdDesc(String status) {
+		return articleCategoryRepository.findAllByStatusOrderByArticleCategoryIdDesc(status);
+	}
 }

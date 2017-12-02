@@ -47,4 +47,9 @@ public class GameCategoryServcieImpl implements GameCategoryService{
 	public List<GameCategory> findAllByStatusOrderBySortOrderDesc(String status) {
 		return gameCategoryRepository.findAllByStatusOrderBySortOrderDesc(status);
 	}
+
+	@Override
+	public List<GameCategory> findAllByStatus(String status) {
+		return gameCategoryRepository.findAllByStatus(status);
+	}
 }

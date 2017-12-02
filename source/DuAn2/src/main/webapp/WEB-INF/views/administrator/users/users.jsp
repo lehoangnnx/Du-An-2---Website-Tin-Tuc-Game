@@ -6,19 +6,23 @@
 <input hidden="" id="msg" value="${msg }"></input>
 <div class="content-area py-1">
 	<div class="container-fluid">
-		<h4>Bảng Dữ Liệu</h4>
+		<h4>Người Dùng</h4>
 
 		<ol class="breadcrumb no-bg mb-1">
 			<li class="breadcrumb-item"><a
 				href="${contextPath }/admin/index">Trang Chủ</a></li>
-			<li class="breadcrumb-item"><a href="tables-datatable.html#">Bảng</a></li>
-			<li class="breadcrumb-item active">Bảng Dữ Liệu</li>
+
+			<li class="breadcrumb-item active">Danh Sách Người Dùng</li>
 		</ol>
 		<div class="tab">
-			<button class="tablinks active"
-				onclick="openTab(event, 'showAllUsers')">All</button>
-			<button id="abold" class="tablinks"
-				onclick="openTab(event, 'showUsersInactive')">Inactive</button>
+			<a href="${contextPath }/admin/users?status=active" ><button  class="tablinks ${param.status == 'active' ? 'active' : '' }" >
+				Đã Kích Hoạt</button></a>
+			<a href="${contextPath }/admin/users?status=inactive" >
+				<button class="tablinks ${param.status == 'inactive' ? 'active' : '' }" >Chưa Kích Hoạt</button></a>
+			<a href="${contextPath }/admin/users?status=draft" >
+				<button  class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button></a>
+			<a href="${contextPath }/admin/users?status=deleted" >
+				<button class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button></a>
 
 		</div>
 
@@ -41,8 +45,6 @@
 									<th >User Name</th>
 
 									<th >Quyền</th>
-									<%--<th class="add"><a href="${contextPath}/admin/addusers"><i
-											style="color: green;" class="fa fa-plus fa-2x" title="Thêm"></i></a></th>--%>
 									<th></th>
 								</tr>
 							</thead>
@@ -83,9 +85,7 @@
 			</div>
 		</div>
 
-		<div id="showUsersInactive" class="tabcontent">
-			<h4>Hiển Thị Danh Sách Người DÙng Inactive (Bị Khóa)</h4>
-		</div>
+
 
 
 

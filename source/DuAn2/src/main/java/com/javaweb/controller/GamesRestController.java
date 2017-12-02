@@ -30,49 +30,75 @@ public class GamesRestController {
     GameReviewsService gameReviewsService;
 
     @GetMapping("/getgames")
-    public List<Map<String, Object>> getGame(@RequestParam("gameCategoryId") Integer gameCategoryId,
-                                             @RequestParam("publishers") String publishers, @RequestParam("keysearch") String keysearch,
-                                             @RequestParam(value = "page", defaultValue = "1") Integer page) {
+    public List<Map<String, Object>> getGame(@RequestParam(value = "gameCategorySlug",defaultValue = "all") String gameCategorySlug,
+                                             @RequestParam(value = "publishers",defaultValue = "all") String publishers,
+                                             @RequestParam(value = "keysearch",defaultValue = "") String keysearch,
+                                             @RequestParam(value = "page", defaultValue = "1") String stpage,
+                                             @RequestParam(value = "sorted", defaultValue = "news") String sorted ) {
+        int page = 1;
+        try {
+            page = Integer.parseInt(stpage);
+        }catch (NumberFormatException e){
+            page = 1;
+        }
+        if (sorted.equals("news")) {
+            sorted = "releases";
+        }
+        else if (sorted.equals("hots")) {
+            sorted = "views";
+        }else {
+            sorted = "releases";
+        }
         List<Map<String, Object>> gamesListMap = new ArrayList<Map<String, Object>>();
 
-        System.out.println(gameCategoryId + publishers + keysearch + "NNNNNNNNNNNNNNNN");
-        String gameName = HtmlUtils.htmlEscape(keysearch);
+
+        String gameKeySearch = HtmlUtils.htmlEscape(keysearch);
         String gamePublishers = HtmlUtils.htmlEscape(publishers);
+
         try {
             List<Games> gamesList = null;
             GameCategory gameCategory = null;
-            if (!gameCategoryId.equals(0) && publishers.equals("all") && keysearch.equals("")) {
-                gameCategory = gameCategoryService.findByGameCategoryId(gameCategoryId);
+            if (!gameCategorySlug.equals("all") && publishers.equals("all") && keysearch.equals("")) {
+
+                gameCategory = gameCategoryService.findBySlug(gameCategorySlug);
                 gamesList = gamesService.findDistinctByGameCategoriesAndStatus(gameCategory, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (!gameCategoryId.equals(0) && !publishers.equals("all") && keysearch.equals("")) {
-                gameCategory = gameCategoryService.findByGameCategoryId(gameCategoryId);
-                gamesList = gamesService.findDistinctByGameCategoriesAndPublishersAndStatus(gameCategory, gamePublishers, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (!gameCategoryId.equals(0) && publishers.equals("all") && !keysearch.equals("")) {
-                gameCategory = gameCategoryService.findByGameCategoryId(gameCategoryId);
-                gamesList = gamesService.findDistinctByGameCategoriesAndNameContainingAndStatus(gameCategory, gameName, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (gameCategoryId.equals(0) && !publishers.equals("all") && keysearch.equals("")) {
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+            } else if (!gameCategorySlug.equals("all") && !publishers.equals("all") && keysearch.equals("")) {
+                gameCategory = gameCategoryService.findBySlug(gameCategorySlug);
+                gamesList = gamesService.findDistinctByGameCategoriesAndPublishersAndStatus
+                (gameCategory, gamePublishers, "active",
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+            } else if (!gameCategorySlug.equals("all") && publishers.equals("all") && !keysearch.equals("")) {
+                gameCategory = gameCategoryService.findBySlug(gameCategorySlug);
+                gamesList = gamesService.findDistinctByGameCategoriesAndNameContainingOrSlugContainingAndStatus
+                (gameCategory, gameKeySearch,gameKeySearch, "active",
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+            } else if (gameCategorySlug.equals("all") && !publishers.equals("all") && keysearch.equals("")) {
                 gamesList = gamesService.findDistinctByPublishersAndStatus(gamePublishers, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (gameCategoryId.equals(0) && !publishers.equals("all") && !keysearch.equals("")) {
-                gamesList = gamesService.findDistinctByPublishersAndNameContainingAndStatus(gamePublishers, gameName, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (gameCategoryId.equals(0) && publishers.equals("all") && !keysearch.equals("")) {
-                gamesList = gamesService.findDistinctByNameContainingAndStatus(gameName, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (!gameCategoryId.equals(0) && !publishers.equals("all") && !keysearch.equals("")) {
-                gameCategory = gameCategoryService.findByGameCategoryId(gameCategoryId);
-                gamesList = gamesService.findDistinctByGameCategoriesAndPublishersAndNameContainingAndStatus(gameCategory, gamePublishers, gameName, "active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
-            } else if (gameCategoryId.equals(0) && publishers.equals("all") && keysearch.equals("")) {
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+            } else if (gameCategorySlug.equals("all") && !publishers.equals("all") && !keysearch.equals("")) {
+                gamesList = gamesService.findDistinctByPublishersAndNameContainingOrSlugContainingAndStatus
+                (gamePublishers, gameKeySearch,gameKeySearch ,"active",
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+
+            } else if (gameCategorySlug.equals("all") && publishers.equals("all") && !keysearch.equals("")) {
+                gamesList = gamesService.findDistinctByNameContainingOrSlugContainingAndStatus
+                (gameKeySearch,gameKeySearch, "active",
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+
+            } else if (!gameCategorySlug.equals("all") && !publishers.equals("all") && !keysearch.equals("")) {
+                gameCategory = gameCategoryService.findBySlug(gameCategorySlug);
+                gamesList = gamesService.findDistinctByGameCategoriesAndPublishersAndNameContainingOrSlugContainingAndStatus
+                (gameCategory, gamePublishers, gameKeySearch,gameKeySearch, "active",
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
+
+            } else if (gameCategorySlug.equals("all") && publishers.equals("all") && keysearch.equals("")) {
                 gamesList = gamesService.findAllByStatus("active",
-                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, "views")));
+                        new PageRequest(page - 1, 9, new Sort(Sort.Direction.DESC, sorted)));
             }
 
             gamesList.forEach(x -> {
-                System.out.println(x.getGameId());
+
                 Map<String, Object> gamesMap = new HashMap<String, Object>();
                 gamesMap.put("name", x.getName());
                 gamesMap.put("slug", x.getSlug());
@@ -102,13 +128,27 @@ public class GamesRestController {
                     gamesCategoryListMap.add(articleCategoryMap);
 
                 });
+
                 gamesMap.put("gamesCategories", gamesCategoryListMap);
+
                 gamesListMap.add(gamesMap);
             });
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         return gamesListMap;
     }
+    @GetMapping("/getgamesname")
+    public Map<String, Object> getnamegame(){
+        Map<String, Object> gamesNameMap = new HashMap<String, Object>();
+        List<String> nameGame = gamesService.findName("active");
+        gamesNameMap.put("gamesName", nameGame);
+        return gamesNameMap;
+    }
 }
+
+
+

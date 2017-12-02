@@ -1,85 +1,36 @@
-<%@ page pageEncoding="UTF-8" %>
-<script>
-    var timeout1 = null;
-    var page = 2;
-    var checknull = false;
-    $(window).scroll(function () {
-        var hT = $('#xemthem').offset().top,
-            hH = $('#xemthem').outerHeight(),
-            wH = $(window).height(),
-            wS = $(this).scrollTop();
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-        if (wS > (hT + hH - wH) && (hT > wS) && (wS + wH > hT + hH)) {
-            {
-                clearTimeout(timeout1);
-                timeout1 = setTimeout(
-                    function () {
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%--<script type="text/javascript"
+	src="${contextPath}/js/js/jquery-latest.min.js"></script>--%>
+<script type="text/javascript" src="${contextPath}/js/js/jquery.js"></script>
+<script type="text/javascript"
+        src="${contextPath}/js/js/bootstrap.min.js"></script>
+
+<script type="text/javascript"
+        src="${contextPath}/js/js/smoothscroll.js"></script>
 
 
-                        if (checknull == false) {
-                            $("#LoadingGifSmall").show();
-                            $.ajax({
-                                type: 'GET',
-                                contentType: "application/json",
-                                url: '${pageContext.request.contextPath}/getarticle?page=' + page,
+<script src="${contextPath}/js/sliderengine/amazingslider.js"></script>
+<script src="${contextPath}/js/sliderengine/initslider-1.js"></script>
 
-                                success: function (result) {
-                                    if (result !== '') {
-                                        console.log(result + "Rssult");
-                                        var n = Object.keys(result).length;
-                                        var html = '';
+<script src='${contextPath}/js/js/jquery.leanModal.min_.js'></script>
 
-                                        for (var i = 0; i < n; i++) {
-                                            var articleCategory = "";
-                                            for (var j = 0; j < Object.keys(result[i].articleCategories).length; j++) {
-                                                articleCategory += "<a style=\"padding-right: 7px;\" href=\" ${pageContext.request.contextPath}/" + result[i].articleCategories[j].slug + ".html \"> " + result[i].articleCategories[j].name + " </a>";
-                                            }
+<script src='${contextPath}/js/js/rvslider.js'></script>
 
-                                            html += "<div class=\"item\">"
+<%--<script src="https://apis.google.com/js/platform.js?onload=renderButton"
+	async defer></script>--%>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
-                                                + "<div class=\"item-header hover14 column\">\n"
-                                                + "<a href=\"${pageContext.request.contextPath}/" + result[i].slug + ".html \"> <span class=\"comment-tag\"><i\n "
-                                                + "class=\"fa fa-comment-o\"></i>" + result[i].views + "<i></i></span> <span\n"
-                                                + "class=\"read-more-wrapper\"><span class=\"read-more\">Xem chi tiết<i></i>\n"
-                                                + "</span></span> <figure><img title=\"" + result[i].title + "\" src=\"${pageContext.request.contextPath}/images/articles/" + result[i].imagesThumbnail + " \" alt=\"\" /></figure>\n"
-                                                + "</a></div>\n"
-                                                + "<div class=\"item-content\">\n"
-                                                + "<strong class=\"category-link\">\n"
+<script src="${contextPath}/js/js/classie-search.js"></script>
 
-                                                + " " + articleCategory + "\n"
-                                                + "</strong>\n"
-                                                + "<h3>\n"
-                                                + "<a title=\"" + result[i].title + "\" href=\" ${pageContext.request.contextPath}/" + result[i].slug + ".html\">" + result[i].title + "</a>\n"
-                                                + "</h3>\n"
-                                                + "<span class=\"item-meta\">\n" +
-                                                "<a style=\"font-weight: bold;\" href=\" ${pageContext.request.contextPath}/" + result[i].slug + ".html\"><i\n" +
-                                                "class=\"fa fa-user\"></i>" + result[i].user + "</a>\n" +
-                                                "<a href=\"" + ${pageContext.request.contextPath} +"/" + result[i].slug + "\"><i\n" +
-                                                "class=\"fa fa-comment-o\"></i>82 Bình luận</a> <a href=\" ${pageContext.request.contextPath}/" + result[i].slug + ".html\"><i\n" +
-                                                "class=\"fa fa-clock-o\"></i>" + result[i].showDate + "</a>\n" +
-                                                "</span>\n" +
-                                                "<p>" + result[i].subContent + "</p>\n" +
-                                                "</div></div>"
+<script src="https://apis.google.com/js/api:client.js"></script>
 
-                                        }
+<script>var contextPath = "${pageContext.request.contextPath}"</script>
+<script src="${contextPath}/js/js/layout/default/layout-footertag.js"></script>
+<script src="${contextPath}/js/js/views/default/index-footertag.js"></script>
 
-                                        $('#posts').append(html);
-                                        page = page + 1;
-                                        $("#LoadingGifSmall").hide();
-                                    } else {
-                                        checknull = true;
-                                        var xemthem = "<a class=\"page-numbers col-md-12 \" href=\"${pageContext.request.contextPath}/articles?sorted=news \">Xem Thêm</a>";
-                                        $('#xemthem').html(xemthem);
-                                        $("#LoadingGifSmall").hide();
-                                    }
-                                }
-                            });
-                        }
-                    }, 500);
-            }
-        }
-    });
 
-</script>
 

@@ -170,7 +170,7 @@
 
                         }
                     });
-            }, 1000);
+            }, 200);
     }
 
     function errorBtn() {
@@ -259,8 +259,16 @@
                     maxlength: 100
                 },
                 publishers: {
-                    required : true
+                    required : true,
+                    maxlength: 500
                 },
+                developers:{
+                    maxlength:500
+                },
+                writers:{maxlength:500},
+                composers:{maxlength:500},
+                engine:{maxlength:500},
+                platforms:{maxlength:500},
                 gameCategories : {
                     required : true
                 },
@@ -272,7 +280,8 @@
                     accept: "image/*"
                 },
                 info : {
-                    required : true
+                    required : true,
+                    maxlength : 4000
                 },
                 homeUrl :{
                     required: true,
@@ -294,8 +303,16 @@
                     maxlength: "Đường Dẫn Không Dài Hơn 100 Ký Tự"
                 },
                 publishers : {
-                  required : "Vui Lòng Nhập Tên Nhà Phát Hành"
+                  required : "Vui Lòng Nhập Tên Nhà Phát Hành",
+                    maxlength: "Nhà Phát Hành Không Dài Hơn 500 Ký Tự"
                 },
+                developers:{
+                    maxlength: "Nhà Phát Triển Không Dài Hơn 500 Ký Tự"
+                },
+                writers:{maxlength: "Kịch bản Không Dài Hơn 500 Ký Tự"},
+                composers:{maxlength: "Âm Thanh Không Dài Hơn 500 Ký Tự"},
+                engine:{maxlength: "Công Nghệ Không Dài Hơn 500 Ký Tự"},
+                platforms:{maxlength: "Nền Tảng Không Dài Hơn 500 Ký Tự"},
                 gameCategories : {
                     required: "Vui Lòng Chọn Danh Mục Game"
                 },
@@ -307,7 +324,8 @@
                     accept : "Vui Lòng Chọn File Ảnh"
                 },
                 info : {
-                    required : "Vui Lòng Nhập Mô Tả Game"
+                    required : "Vui Lòng Nhập Mô Tả Game",
+                    maxlength : "Mô Tả Tối Đa 4000 Ký Tự."
                 },
                 homeUrl :{
                     required : "Vui Lòng Nhập URL",

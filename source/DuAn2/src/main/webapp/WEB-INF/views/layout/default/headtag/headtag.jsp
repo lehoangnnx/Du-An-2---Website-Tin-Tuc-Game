@@ -20,8 +20,8 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/reset.css"/>
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/responsive1.css"/>
-<link rel="stylesheet" type="text/css"
-      href="${contextPath}/sliderengine/amazingslider-1.css">
+<%--<link rel="stylesheet" type="text/css"
+      href="${contextPath}/sliderengine/amazingslider-1.css">--%>
 
 
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/rvslider.css"/>
@@ -36,5 +36,16 @@
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css4.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css5.css"/>
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css6.css"/>
-<link type="text/css" rel="stylesheet" href="${contextPath}/css/css2/css7.css"/>
+
 <link type="text/css" rel="stylesheet" href="${contextPath}/css/css/tonghop.css"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/css/css/bootstrap-social.css"/>
+<link rel="stylesheet" href="${contextPath}/css/css/jquery-ui.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110169898-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110169898-1');
+</script>

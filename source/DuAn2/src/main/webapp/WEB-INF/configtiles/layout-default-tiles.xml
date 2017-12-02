@@ -19,23 +19,25 @@
 		<put-attribute name="footertag"
 			value="/WEB-INF/views/layout/default/footertag/footertag.jsp" />
 
-		<put-attribute name="scriptfootertag"
-					   value="" />
+
 	</definition>
 
 
 	<definition name="home" extends="defaultlayout">
 
 		<put-attribute name="body" value="/WEB-INF/views/default/index.jsp" />
-		<put-attribute name="scriptfootertag"
+		<put-attribute name="footertag"
 					   value="/WEB-INF/views/default/footertag/index-footertag.jsp" />
 
 	</definition>
 
 	<definition name="chitiet" extends="defaultlayout">
-		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/chitiet-footertag.jsp" />
+<put-attribute name="head"
+			value="/WEB-INF/views/default/head/chitiet-head.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/default/chitietbaiviet.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/default/footertag/chitiet-footertag.jsp" />
 	</definition>
 
 	<definition name="tonghop" extends="defaultlayout">
@@ -51,7 +53,8 @@
 	<definition name="canhan" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/trangcanhan.jsp" />
-		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/canhan-footertag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/default/footertag/canhan-footertag.jsp" />
 		<put-attribute name="sitebar"
 					   value="" />
 	</definition>
@@ -59,7 +62,8 @@
 	<definition name="game" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/tranggame.jsp" />
-		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/game-footertag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/default/footertag/game-footertag.jsp" />
 		<put-attribute name="sitebar"
 					   value="" />
 	</definition>
@@ -67,7 +71,8 @@
 	<definition name="chitietgame" extends="defaultlayout">
 		<put-attribute name="body"
 					   value="/WEB-INF/views/default/trangchitietgame.jsp" />
-		<put-attribute name="scriptfootertag" value="/WEB-INF/views/default/footertag/chitietgame-footertag.jsp" />
+		<put-attribute name="footertag"
+					   value="/WEB-INF/views/default/footertag/chitietgame-footertag.jsp" />
 		<put-attribute name="sitebar"
 					   value="" />
 

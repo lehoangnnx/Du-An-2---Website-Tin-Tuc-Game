@@ -11,70 +11,61 @@
 <div class="container-fluid">
    <h4>Người Dùng</h4>
    <ol class="breadcrumb no-bg mb-1">
-      <li class="breadcrumb-item"><a href="forms-material.html#">Home</a></li>
-      <li class="breadcrumb-item"><a href="forms-material.html#">Forms</a></li>
-      <li class="breadcrumb-item active">Material Form</li>
+      <li class="breadcrumb-item"><a href="${contextPath}/admin/index">Trang Chủ</a></li>
+      <li class="breadcrumb-item"><a href="forms-material.html#">Sửa Người Dùng</a></li>
+
    </ol>
    <div class="box box-block bg-white">
       <h5>Sửa Người Dùng</h5>
       <form:form  action="${contextPath }/admin/users" method="patch" id="formUser"
-         enctype="multipart/form-data" modelAttribute="user">
-         <form:hidden path="userId" />
+         enctype="multipart/form-data" >
+
+         <input hidden value="${user.userId}" id="userId" name="userId" />
          <div class="form-group row">
-            <label class="col-md-2 col-form-label">User Name</label>
+            <label class="col-md-2 col-form-label">User Name<span class="error"> *</span></label>
             <div class="col-md-10">
                <input type="text" readonly="readonly" id="userName"
                   class="form-control" name="userName" value="${user.userName }"
                   placeholder="Disabled input">
             </div>
          </div>
-         <%-- <div class="form-group row">
-            <label style="padding-top: 2rem;" id="mat-label" for="inputEmail3"
-            	class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-            	<div id="divEmail"
-            		class="form-group form-md-line-input form-md-floating-label">
-            		<input type="text" class="form-control" value="${user.email }"
-            			name="email" id="email" /> <label for="form_control_1">Email</label>
-            		<span id="spanEmail" class="help-block">Nhập Email</span>
-            	</div>
-            </div>
-            </div> --%>
+
          <div id="divEmail" class="form-group row">
-            <label class="col-md-2 col-form-label" for="email">Email</label>
+            <label class="col-md-2 col-form-label" for="email">Email<span class="error"> *</span></label>
             <div class="col-md-10">
-               <input type="email" class="form-control "
+               <input type="email" class="form-control " maxlength="255"
                   value="${user.email }" name="email" id="email">
                <label id="email-error" class="error" for="email"></label>
             </div>
          </div>
          <div class="form-group  row">
-            <label class="col-md-2 col-form-label" for="email">Họ</label>
+            <label class="col-md-2 col-form-label" for="firstName">Họ</label>
             <div class="col-md-10">
-               <input type="text" class="form-control "
+               <input type="text" class="form-control " maxlength="255"
                   value="${user.firstName }" name="firstName" id="firstName">
                 <label id="firstName-error" class="error" for="firstName"></label>
+
             </div>
          </div>
          <div class="form-group  row">
-            <label class="col-md-2 col-form-label" for="email">Tên</label>
+            <label class="col-md-2 col-form-label" for="lastName">Tên</label>
             <div class="col-md-10">
-               <input type="text" class="form-control "
+               <input type="text" class="form-control " maxlength="255"
                   value="${user.lastName }" name="lastName" id="lastName">
                    <label id="lastName-error" class="error" for="lastName"></label>
             </div>
          </div>
          <div class="form-group  row">
-            <label class="col-md-2 col-form-label" for="email">Số Điện
+            <label class="col-md-2 col-form-label" for="phoneNumber">Số Điện
             Thoại</label>
             <div class="col-md-10">
-               <input type="text" class="form-control "
+               <input type="text" class="form-control " maxlength="15"
                   value="${user.phoneNumber }" name="phoneNumber" id="phoneNumber">
                 <label id="phoneNumber-error" class="error" for="phoneNumber"></label>
             </div>
          </div>
          <div class="form-group row">
-            <label for="example-datetime-local-input"
+            <label
                class="col-md-2 col-form-label">Ngày Tạo</label>
             <div class="col-md-10">
                <input class="form-control" type="datetime-local"
@@ -85,7 +76,7 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="example-datetime-local-input"
+            <label
                class="col-md-2 col-form-label">Ngày Đăng Nhập</label>
             <div class="col-md-10">
                <input class="form-control" type="datetime-local"
@@ -125,54 +116,44 @@
             </div>
          </div>
          <div class="form-group row">
-            <label class="col-md-2 col-form-label">Trạng Thái</label>
+            <label class="col-md-2 col-form-label">Trạng Thái<span class="error"> *</span></label>
             <div class="col-md-10">
                <div class="md-radio-inline">
                   <div class="md-radio">
-                     <input type="radio" id="radio58" name="status" value="active"
+                     <input type="radio" id="statusactive" name="status" value="active"
                      ${user.status == 'active' ? 'checked' : '' } class="md-radiobtn">
-                     <label for="radio58"> <span></span> <span class="check"></span>
+                     <label for="statusactive"> <span></span> <span class="check"></span>
                      <span class="box"></span>Kích Hoạt
                      </label>
                   </div>
                   <div class="md-radio has-info">
-                     <input type="radio" id="radio55" name="status" value="inactive"
+                     <input type="radio" id="statusinactive" name="status" value="inactive"
                      ${user.status == 'inactive' ? 'checked' : '' }
-                     class="md-radiobtn"> <label for="radio55"> <span
+                     class="md-radiobtn"> <label for="statusinactive"> <span
                         class="inc"></span> <span class="check"></span> <span
                         class="box"></span> Chưa Kích Hoạt
                      </label>
                   </div>
                   <div class="md-radio has-warning">
-                     <input type="radio" id="radio52" name="status" value="draft"
+                     <input type="radio" id="statusdraft" name="status" value="draft"
                      ${user.status == 'draft' ? 'checked' : '' } class="md-radiobtn">
-                     <label for="radio52"> <span class="inc"></span> <span
+                     <label for="statusdraft"> <span class="inc"></span> <span
                         class="check"></span> <span class="box"></span> Chờ Kích Hoạt
                      </label>
                   </div>
                   <div class="md-radio has-error">
-                     <input type="radio" id="radio56" name="status" value="deleted"
+                     <input type="radio" id="statusdeleted" name="status" value="deleted"
                      ${user.status == 'deleted' ? 'checked' : '' }
-                     class="md-radiobtn"> <label for="radio56"> <span></span>
+                     class="md-radiobtn"> <label for="statusdeleted"> <span></span>
                      <span class="check"></span> <span class="box"></span> Xóa
                      </label>
                   </div>
                </div>
             </div>
          </div>
-         <!-- <div class="form-group row">
-            <label style="padding-top: 2rem; " id="mat-label" for="inputEmail3"
-            	class="col-sm-2 col-form-label">Primary</label>
-            <div class="col-sm-10">
-            	<div class="form-group form-md-line-input form-md-floating-label has-error">
-            		<input type="text" class="form-control" id="form_control_1">
-            		<label for="form_control_1">Input with help</label> <span
-            			class="help-block">Some help goes here...</span>
-            	</div>
-            </div>
-            </div> -->
+
          <div class="form-group row">
-            <label class="col-md-2 col-form-label">Quyền</label>
+            <label class="col-md-2 col-form-label">Quyền<span class="_error"> *</span></label>
             <div class="col-md-10">
                <div class="md-checkbox-inline">
                   <c:forEach var="lr" items="${rolesList }">
@@ -204,32 +185,26 @@
                      </c:choose>
                   </c:forEach>
                </div>
+
                <label id="roleses-error" class="error" for="roleses"></label>
             </div>
          </div>
-         <!-- <div class="form-group row  ">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nội
-            	Dung</label>
-            <div class="col-sm-10">
-            	<div id="summernote"></div>
-            </div>
-            </div>
-            -->
          <div class="form-group row">
-            <label class="col-md-2 control-label" for="form_control_1">Ảnh
-            Đại Diện</label>
+            <label class="col-md-2 control-label" >Ảnh
+            Đại Diện<span class="_error"> *</span></label>
             <div class="col-md-10">
                <input name="avatar" type="file" id="input-file-max-fs" accept="image/*"
                   value="${user.avatar}" class="dropify" data-max-file-size="15M"
                   data-default-file="${contextPath}/images/avatar/${user.avatar}">
-               <label id="avatar-error" class="error" for="avatar"></label>
+
+               <label id="input-file-max-fs-error" class="error" for="input-file-max-fs"></label>
             </div>
          </div>
          <input type="hidden" name="${_csrf.parameterName}"
             value="${_csrf.token}" />
          <div class="form-group row"
             style="border-top: 1px solid #e7ecf1; padding: 20px;">
-            <input hidden="" id="msg" value="${msg }"></input>
+            <input hidden="" id="msg" value="${msg }" />
             <div class="offset-sm-2 col-sm-10">
 
                <button type="submit" class="btn btn-primary" id="btn-submit">Xác

@@ -79,8 +79,10 @@ public class GamesServiceImpl implements GamesService {
 	}
 
 	@Override
-	public List<Games> findDistinctByGameCategoriesAndNameContainingAndStatus(GameCategory gameCategory, String name, String status, Pageable pageable) {
-		return gamesRepository.findDistinctByGameCategoriesAndNameContainingAndStatus(gameCategory,name,status,pageable);
+	public List<Games> findDistinctByGameCategoriesAndNameContainingOrSlugContainingAndStatus
+	(GameCategory gameCategory, String name,String slug, String status, Pageable pageable) {
+		return gamesRepository.findDistinctByGameCategoriesAndNameContainingOrSlugContainingAndStatus
+		(gameCategory,name,slug,status,pageable);
 	}
 
 	@Override
@@ -89,22 +91,41 @@ public class GamesServiceImpl implements GamesService {
 	}
 
 	@Override
-	public List<Games> findDistinctByPublishersAndNameContainingAndStatus(String publishers, String name, String status, Pageable pageable) {
-		return gamesRepository.findDistinctByPublishersAndNameContainingAndStatus(publishers,name,status,pageable);
+	public List<Games> findDistinctByPublishersAndNameContainingOrSlugContainingAndStatus
+	(String publishers, String name,String slug, String status, Pageable pageable) {
+		return gamesRepository.findDistinctByPublishersAndNameContainingOrSlugContainingAndStatus
+		(publishers,name,slug,status,pageable);
 	}
 
 	@Override
-	public List<Games> findDistinctByNameContainingAndStatus(String name, String status, Pageable pageable) {
-		return gamesRepository.findDistinctByNameContainingAndStatus(name,status,pageable);
+	public List<Games> findDistinctByNameContainingOrSlugContainingAndStatus(String name,String slug, String status, Pageable pageable) {
+		return gamesRepository.findDistinctByNameContainingOrSlugContainingAndStatus(name,slug,status,pageable);
 	}
 
 	@Override
-	public List<Games> findDistinctByGameCategoriesAndPublishersAndNameContainingAndStatus(GameCategory gameCategory, String publishers, String name, String status, Pageable pageable) {
-		return gamesRepository.findDistinctByGameCategoriesAndPublishersAndNameContainingAndStatus(gameCategory,publishers,name,status,pageable);
+	public List<Games> findDistinctByGameCategoriesAndPublishersAndNameContainingOrSlugContainingAndStatus
+	(GameCategory gameCategory, String publishers, String name,String slug, String status, Pageable pageable) {
+		return gamesRepository.findDistinctByGameCategoriesAndPublishersAndNameContainingOrSlugContainingAndStatus
+		(gameCategory,publishers,name,slug,status,pageable);
 	}
 
 	@Override
 	public List<Games> findAllByStatus(String status, Pageable pageable) {
 		return gamesRepository.findAllByStatus(status,pageable);
+	}
+
+	@Override
+	public Games findByGameIdAndStatus(Integer gameId, String status) {
+		return gamesRepository.findByGameIdAndStatus(gameId,status);
+	}
+
+	@Override
+	public List<String> findName(String status) {
+		return gamesRepository.findName(status);
+	}
+
+	@Override
+	public List<Games> findAllByStatusOrderByGameIdDesc(String status) {
+		return gamesRepository.findAllByStatusOrderByGameIdDesc(status);
 	}
 }

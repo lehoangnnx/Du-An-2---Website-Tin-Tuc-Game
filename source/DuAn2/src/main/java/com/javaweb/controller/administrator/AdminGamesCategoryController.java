@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,7 @@ import com.javaweb.service.GameCategoryService;
 
 
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin")
 public class AdminGamesCategoryController {
 	@Autowired
@@ -31,19 +33,13 @@ public class AdminGamesCategoryController {
 	ArticleCategoryService articleCategoryService;
 	@GetMapping("/games/categorys")
 	public String showGamesCategory(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
-		List<GameCategory> gameCategoryList = gameCategoryService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals(status))
-				.sorted(Comparator.comparing(GameCategory::getGameCategoryId).reversed()).collect(Collectors.toList());
+		List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc(status);
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		return "gamescategory";
 	}
 	@GetMapping("/games/categorys/addcategorys")
 	public String addGamesCategorys(Model model) {
-		List<GameCategory> gameCategoryList = gameCategoryService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals("active"))
-				.collect(Collectors.toList());
+		List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		return "addgamescategory"; 
 	}
@@ -80,10 +76,7 @@ public class AdminGamesCategoryController {
 	@GetMapping("/games/categorys/{gameCategoryId}")
 	public String updateArticleCategory(Model model, @PathVariable("gameCategoryId") Integer gameCategoryId) {
 		GameCategory gameCategory= gameCategoryService.findByGameCategoryId(gameCategoryId);
-		List<GameCategory> gameCategoryList = gameCategoryService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals("active"))
-				.collect(Collectors.toList());
+		List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		model.addAttribute("gameCategory", gameCategory);
 		return "updategamescategory";

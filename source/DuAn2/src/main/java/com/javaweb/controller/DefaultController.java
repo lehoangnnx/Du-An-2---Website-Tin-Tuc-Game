@@ -6,11 +6,16 @@ package com.javaweb.controller;
 
 import com.javaweb.model.*;
 import com.javaweb.service.*;
+
+
+import org.apache.commons.lang3.math.NumberUtils;
+import org.omg.IOP.ServiceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Date;
@@ -25,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -52,13 +60,14 @@ public class DefaultController {
     CommentService commentService;
     @Autowired
     ArticleLikeService articleLikeService;
-
+    @Autowired
+    ServletContext servletContext;
 
     @ModelAttribute("user")
     // Lưu Session Thông tin người dùng đăng nhập
     public void sessionUser(Authentication authentication, HttpSession session) {
         if (authentication != null) {
-            System.out.println(authentication.getAuthorities());
+            System.out.println("Đây Hả"+authentication.getAuthorities());
             session.setAttribute("user", usersService.findByUserName(authentication.getName()));
 
         }
@@ -68,6 +77,7 @@ public class DefaultController {
     public String index(Model model
 
     ) {
+    	
         /*
         * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Video
         * Đầu vào : Tên danh mục
@@ -204,7 +214,9 @@ public class DefaultController {
         * Đầu ra : Danh sách 10 bài viết
         * */
         List<Article> getTop10HotArticle = articleService.findTop10ByIsHotAndStatusOrderByViewsDesc((byte) 1, "active")
-                .stream().filter(x -> x.getArticleCategories() != getArticleCategoryVideo).collect(Collectors.toList());
+                .stream().filter(x -> x.getArticleCategories() != getArticleCategoryVideo)
+                .limit(5)
+                .collect(Collectors.toList());
         return getTop10HotArticle;
     }
 
@@ -216,7 +228,8 @@ public class DefaultController {
         *  Đầu vào : status = active
         * Đầu ra : Danh sách 10 game
         * */
-        List<Games> getTop10NewGame = gamesService.findTop10ByStatusOrderByReleasesDesc("active");
+        List<Games> getTop10NewGame = gamesService.findTop10ByStatusOrderByReleasesDesc("active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10NewGame;
     }
 
@@ -227,7 +240,8 @@ public class DefaultController {
         *  Đầu vào : status = active, isHot = 1
         * Đầu ra : Danh sách 10 game
         * */
-        List<Games> getTop10HotGame = gamesService.findTop10ByIsHotAndStatusOrderByReleasesDesc((byte) 1, "active");
+        List<Games> getTop10HotGame = gamesService.findTop10ByIsHotAndStatusOrderByReleasesDesc((byte) 1, "active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10HotGame;
     }
 
@@ -245,7 +259,8 @@ public class DefaultController {
         * Đầu ra : Danh sách 10 game
         * */
         List<Games> getTop10GameOnline = gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc
-                (gameCategory, (byte) 1, "active");
+                (gameCategory, (byte) 1, "active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10GameOnline;
     }
 
@@ -263,7 +278,8 @@ public class DefaultController {
         * Đầu ra : Danh sách 10 game
         * */
         List<Games> getTop10GameOffline = gamesService.findTop10ByGameCategoriesAndIsHotAndStatusOrderByReleasesDesc
-                (gameCategory, (byte) 1, "active");
+                (gameCategory, (byte) 1, "active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10GameOffline;
     }
 
@@ -285,7 +301,8 @@ public class DefaultController {
         ArticleCategory getArticleCategoryReviews = articleCategoryService.findByName("Reviews");
 
         List<Article> getTop10ArticleCategoryNewReviewsList = articleService
-                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryReviews, "active");
+                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryReviews, "active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10ArticleCategoryNewReviewsList;
     }
 
@@ -294,7 +311,8 @@ public class DefaultController {
         ArticleCategory getArticleCategoryTienIch = articleCategoryService.findByName("Tiện Ích");
 
         List<Article> getTop10ArticleCategoryNewTienIchList = articleService
-                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryTienIch, "active");
+                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryTienIch, "active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10ArticleCategoryNewTienIchList;
     }
 
@@ -303,7 +321,8 @@ public class DefaultController {
         ArticleCategory getArticleCategoryThuThuat = articleCategoryService.findByName("Thủ Thuật");
 
         List<Article> getTop10ArticleCategoryNewThuThuatList = articleService
-                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryThuThuat, "active");
+                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryThuThuat, "active")
+                .stream().limit(5).collect(Collectors.toList());
         return getTop10ArticleCategoryNewThuThuatList;
     }
 
@@ -361,22 +380,37 @@ public class DefaultController {
 
 
     @RequestMapping("/{slug}.html")
-    String chitiet(@PathVariable("slug") String slug, Model model,
-                   @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "20") Integer limit
+    String chitiet(@PathVariable("slug") String slug, Model model,HttpServletRequest request,
+                   @RequestParam(value = "page", defaultValue = "1") String stpage,
+                   @RequestParam(value = "limit", defaultValue = "15") String stlimit
             , @RequestParam(value = "sorted", defaultValue = "news") String sorted, Authentication authentication
     ) {
+
         Article article = null;
         ArticleCategory articleCategory = null;
         Tags tags = null;
         Games games = null;
         model.addAttribute("sorted", "sorted=" + sorted);
+        int limit =15;
+        int page = 1;
         if (sorted.equals("news")) {
             sorted = "showDate";
         }
-        if (sorted.equals("hots")) {
+        else if (sorted.equals("hots")) {
             sorted = "views";
+        }else {
+            sorted = "showDate";
         }
-
+        try {
+            limit = Integer.parseInt(stlimit);
+        }catch (NumberFormatException e){
+            limit = 15;
+        }
+        try {
+            page = Integer.parseInt(stpage);
+        }catch (NumberFormatException e){
+            page = 1;
+        }
         try {
             article = articleService.findBySlug(HtmlUtils.htmlEscape(slug));
             articleCategory = articleCategoryService.findBySlug(HtmlUtils.htmlEscape(slug));
@@ -396,13 +430,15 @@ public class DefaultController {
                     getarticleCategory = articleCategoryService.findByArticleCategoryId(a.getArticleCategoryId());
 
                 }
+                Integer articleId = article.getArticleId();
                 List<Article> articleLienQuanList = articleService
-                        .findTop5ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(getarticleCategory, (byte) 1, "active", new Date());
+                        .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc(getarticleCategory, (byte) 1, "active", new Date())
+                        .stream().filter(x-> !x.getArticleId().equals(articleId)).collect(Collectors.toList());
 
-                articleLienQuanList.forEach(x -> System.out.println(x.getTitle() + "-----------------------------------"));
                 List<Comment> getTop10Comment = commentService.findTop10ByStatusOrderByCreatedDateDesc("active");
                 List<Article> getTop10ArticleList = articleService
-                        .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date());
+                        .findTop10ByStatusAndShowDateBeforeOrderByShowDateDesc("active", new Date())
+                        .stream().filter(x-> !x.getArticleId().equals(articleId)).collect(Collectors.toList());
                 model.addAttribute("getTop10ArticleList", getTop10ArticleList);
                 model.addAttribute("getTop10Comment", getTop10Comment);
                 model.addAttribute("article", article);
@@ -417,7 +453,7 @@ public class DefaultController {
                 int pointGameReviews = 0;
                 int pointGameReviewsOfUser = 0;
                 if (article.getGameId() != 0) {
-                    games = gamesService.findByGameId(article.getGameId());
+                    games = gamesService.findByGameIdAndStatus(article.getGameId(),"active");
                     if (!gameReviewsService.findAllByGames(games).isEmpty()) {
                         List<GameReviews> gameReviewsList = gameReviewsService.findAllByGames(games);
                         for (GameReviews g : gameReviewsList) {
@@ -493,7 +529,8 @@ public class DefaultController {
                 return "tonghop";
             } else if (slug.equals("articles")) {
 
-                articleList = articleService.findAllByStatusAndShowDateBefore("active", new Date(), null);
+                articleList = articleService.findAllByStatusAndShowDateBefore
+                        ("active", new Date(), null);
                 int pageCount = (articleList.size()) / limit + (articleList.size() % limit > 0 ? 1 : 0);
                 articleList = articleService.findAllByStatusAndShowDateBefore("active", new Date(),
                         new PageRequest(page - 1, limit, new Sort(Sort.Direction.DESC, sorted)));
@@ -511,27 +548,25 @@ public class DefaultController {
                 return "tonghop";
             } else {
                 model.addAttribute("title", "Trang Thông Báo Lỗi 404");
-                return "redirect:/403";
+                return "redirect:/403.html";
             }
 
         } catch (Exception e) {
             model.addAttribute("title", "Trang Thông Báo Lỗi 404");
-            return "redirect:/403";
+            System.out.println(e.getMessage());
+            return "redirect:/403.html";
         }
 
 
     }
 
-    @RequestMapping("/403.html")
-    String error(Model model) {
-        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
-        return "403";
-    }
+
 
 
     @RequestMapping("/search.html")
     String search(Model model, @RequestParam("q") String q,
-                  @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "20") Integer limit
+                  @RequestParam(value = "page", defaultValue = "1") String stpage,
+                  @RequestParam(value = "limit", defaultValue = "15") String stlimit
             , @RequestParam(value = "sorted", defaultValue = "hots") String sorted) {
         String keywork = HtmlUtils.htmlEscape(q);
         System.out.println("KEY WORK : " + keywork);
@@ -541,11 +576,25 @@ public class DefaultController {
         Tags tags = null;
         Comment comment = null;
         model.addAttribute("sorted", "sorted=" + sorted);
+        int limit =15;
+        int page = 1;
         if (sorted.equals("news")) {
             sorted = "showDate";
         }
-        if (sorted.equals("hots")) {
+        else if (sorted.equals("hots")) {
             sorted = "views";
+        }else {
+            sorted = "showDate";
+        }
+        try {
+            limit = Integer.parseInt(stlimit);
+        }catch (NumberFormatException e){
+            limit = 15;
+        }
+        try {
+            page = Integer.parseInt(stpage);
+        }catch (NumberFormatException e){
+            page = 1;
         }
         try {
             articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork, keywork, "active");
@@ -591,13 +640,23 @@ public class DefaultController {
                 model.addAttribute("title", "Trang Cá Nhân");
                 return "canhan";
             } else {
-                return "redirect:/403";
+                return "redirect:/403.html";
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return "redirect:/403";
+            return "redirect:/403.html";
         }
 
     }
+    @RequestMapping("/403.html")
+    String error(Model model) {
 
+        
+        
+        
+        model.addAttribute("title", "Trang Thông Báo Lỗi 404");
+        return "403";
+    }
+    
+    
 }

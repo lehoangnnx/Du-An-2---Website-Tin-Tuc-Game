@@ -12,4 +12,5 @@ public interface ArticleLikeService {
     void delete(ArticleLike articleLike);
     List<ArticleLike> findAll();
     List<ArticleLike> findAllByArticle(Article article);
+
 }

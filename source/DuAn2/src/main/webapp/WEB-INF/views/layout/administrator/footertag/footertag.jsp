@@ -14,8 +14,8 @@
 		<script type="text/javascript" src="${contextPath}/js/jquery-fullscreen-plugin/jquery.fullscreen-min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/waves/waves.min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/switchery/dists/switchery.min.js"></script>
-		<script type="text/javascript" src="${contextPath}/js/flot/jquery.flot.min.js"></script>
-		<script type="text/javascript" src="${contextPath}/js/flot/jquery.flot.resize.min.js"></script>
+		<%--<script type="text/javascript" src="${contextPath}/js/flot/jquery.flot.min.js"></script>
+		<script type="text/javascript" src="${contextPath}/js/flot/jquery.flot.resize.min.js"></script>--%>
 		<script type="text/javascript" src="${contextPath}/js/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/CurvedLines/curvedLines.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/TinyColor/tinycolor.js"></script>
@@ -30,8 +30,7 @@
 		<!-- Neptune JS -->
 		<script type="text/javascript" src="${contextPath}/js/js/app.js"></script>
 		<script type="text/javascript" src="${contextPath}/js/js/demo.js"></script>
-		<script type="text/javascript" src="${contextPath}/js/js/index.js"></script>
-		
+		<%--<script type="text/javascript" src="${contextPath}/js/js/index.js"></script>--%>
 
-		
-		
+
+

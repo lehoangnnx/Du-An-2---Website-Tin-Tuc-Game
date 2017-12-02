@@ -3,10 +3,7 @@ package com.javaweb.service;
 import java.util.Date;
 import java.util.List;
 
-import com.javaweb.model.Article;
-import com.javaweb.model.ArticleCategory;
-import com.javaweb.model.Comment;
-import com.javaweb.model.Tags;
+import com.javaweb.model.*;
 import org.springframework.data.domain.Pageable;
 
 public interface ArticleService {
@@ -38,5 +35,6 @@ public interface ArticleService {
     List<Article> findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
             (String title,String slug,String subContent,String mainContent,String author, ArticleCategory articleCategory, Tags tags, String status, Date date, Pageable pageable);
 
-
+    List<Article> findAllByUsersAndStatusOrderByShowDateDesc(Users users,String status);
+    List<Article> findAllByStatusOrderByShowDateDesc(String status);
 }

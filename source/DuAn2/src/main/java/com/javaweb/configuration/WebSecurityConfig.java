@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,21 +23,16 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 
-import com.javaweb.service.FacebookConnectionSignup;
-import com.javaweb.service.FacebookSignInAdapter;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
 
 // Xác định lớp WebSecurityConfig là một lớp dùng để cấu hình
 @Configuration
 // Đẽ kích hoạt việc tích hợp Spring Security với Spring MVC
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*
@@ -65,9 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsersConnectionRepository usersConnectionRepository;
 
-    // Inject FacebookConnectionSignup để cấu hình
     @Autowired
-    private FacebookConnectionSignup facebookConnectionSignup;
+    private AccessDeniedHandlerImpl accessDeniedHandler;
 
     // Inject UserDetailsService để cấu hình
     @Autowired
@@ -83,32 +77,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-
+    @Autowired
+    CustomLogoutSuccessHandler customLogoutSuccessHandler;
     // Cấu hình và xác thực, quyền truy cập của người dùng
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests().antMatchers("/home", "/").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-
-                .and().formLogin().loginPage("/403").loginProcessingUrl("/login").usernameParameter("userName").passwordParameter("password")
+                .antMatchers("/admin/**").hasRole("WRITING")
+                .and().formLogin().loginPage("/403.html").loginProcessingUrl("/login").usernameParameter("userName").passwordParameter("password")
                 .failureHandler(ajaxAuthenticationFailureHandler).successHandler(ajaxAuthenticationSuccessHandler)
 
-                .and().logout().logoutSuccessUrl("/")
+                .and().logout()
+                .logoutSuccessHandler(customLogoutSuccessHandler)
 
                 .and().rememberMe().and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
-    }
-
-    // Cấu hình đăng nhập bằng Facebook
-    @Bean
-    // @Primary
-    public ProviderSignInController providerSignInController() {
-        ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
-        return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
-                new FacebookSignInAdapter());
     }
 
 

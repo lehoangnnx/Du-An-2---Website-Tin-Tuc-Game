@@ -15,6 +15,6 @@ public interface ArticleCategoryRepository extends JpaRepository<ArticleCategory
 	List<ArticleCategory> findAllByStatusOrderBySortOrderAsc(String status);
 
 	ArticleCategory findTop1ByNameContainingOrSlugContainingAndStatus (String name, String slug, String status);
-
+	List<ArticleCategory> findAllByStatusOrderByArticleCategoryIdDesc(String status);
 
 }

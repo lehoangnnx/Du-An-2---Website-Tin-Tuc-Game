@@ -74,7 +74,7 @@ public class UsersController {
         } catch (Exception e) {
             // model.addAttribute("error", "Sửa Người Dùng Thất Bại");
 
-            return "redirect:/403" ;
+            return "redirect:/403.html" ;
 
         }
         return "redirect:/profile.html";

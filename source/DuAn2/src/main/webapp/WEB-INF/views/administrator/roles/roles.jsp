@@ -51,13 +51,13 @@ give gallery's parent container a cursor: pointer.**/
 <input hidden="" id="msg" value="${msg }"></input>
 <div class="content-area py-1">
 	<div class="container-fluid">
-		<h4>Bảng Dữ Liệu</h4>
+		<h4>Quyền</h4>
 
 		<ol class="breadcrumb no-bg mb-1">
 			<li class="breadcrumb-item"><a
 				href="${contextPath }/admin/index">Trang Chủ</a></li>
 
-			<li class="breadcrumb-item active">Danh Sách Danh Mục  Bài Viết</li>
+			<li class="breadcrumb-item active">Danh Sách Quyền</li>
 		</ol>
 		<div class="tab">
 			<a href="${contextPath }/admin/roles?status=active" ><button  class="tablinks ${param.status == 'active' ? 'active' : '' }" >
@@ -65,9 +65,9 @@ give gallery's parent container a cursor: pointer.**/
 			<a href="${contextPath }/admin/roles?status=inactive" >
 			<button class="tablinks ${param.status == 'inactive' ? 'active' : '' }" >Chưa Kích Hoạt</button></a>
 			<a href="${contextPath }/admin/roles?status=draft" >
-			<button id="" class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button></a>
+			<button class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button></a>
 			<a href="${contextPath }/admin/roles?status=deleted" >
-			<button id="" class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button></a>
+			<button  class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button></a>
 
 		</div>
 

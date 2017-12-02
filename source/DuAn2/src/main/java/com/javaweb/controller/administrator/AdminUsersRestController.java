@@ -24,17 +24,14 @@ public class AdminUsersRestController {
 		
 	
 		String error = "";
-		System.out.println("9999"+user.getEmail());
 		try {
 			Users u = usersService.findByEmail(user.getEmail());
 			
 			if(u == null || u.getUserId().equals(user.getUserId())) {
-				System.out.println("SUCCESS");
 				error = "successemail";
 				
 			}else {
-				
-				System.out.println("ERROR");
+
 				error = "erroremail";
 				
 			}
@@ -45,7 +42,6 @@ public class AdminUsersRestController {
 			System.out.println(e.getMessage());
 			
 		}
-		
 		return error;
 	} 
 }

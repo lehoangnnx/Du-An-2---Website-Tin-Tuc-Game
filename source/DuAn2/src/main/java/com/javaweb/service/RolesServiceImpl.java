@@ -46,5 +46,8 @@ public class RolesServiceImpl implements RolesService {
 		return rolesRepository.findByRoleId(roleId);
 	}
 
-
+	@Override
+	public List<Roles> findAllByStatusOrderByRoleIdDesc(String status) {
+		return rolesRepository.findAllByStatusOrderByRoleIdDesc(status);
+	}
 }

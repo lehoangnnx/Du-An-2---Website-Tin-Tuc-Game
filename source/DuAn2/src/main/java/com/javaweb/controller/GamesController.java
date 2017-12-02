@@ -73,7 +73,7 @@ public class GamesController {
             return "game";
         }catch (Exception e){
             System.out.println(e.getMessage());
-            return "redirect:/403";
+            return "redirect:/403.html";
         }
 
     }
@@ -115,7 +115,7 @@ public class GamesController {
             return "chitietgame";
         }catch (Exception e){
             System.out.println(e.getMessage());
-            return "redirect:/403";
+            return "redirect:/403.html";
         }
 
     }

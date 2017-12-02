@@ -5,6 +5,7 @@ import com.javaweb.model.Roles;
 
 import com.javaweb.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin")
 public class AdminRolesController {
 	@Autowired
@@ -26,8 +28,7 @@ public class AdminRolesController {
 	@GetMapping("/roles")
 	public String showArticlesCategory(Model model,@RequestParam(name = "status", defaultValue = "active") String status) {
 
-		List<Roles> rolesList = rolesService.findAll().stream().filter(x -> x.getStatus().equals(status))
-				.collect(Collectors.toList());
+		List<Roles> rolesList = rolesService.findAllByStatusOrderByRoleIdDesc(status);
 		model.addAttribute("rolesList", rolesList);
 		return "roles";
 	}

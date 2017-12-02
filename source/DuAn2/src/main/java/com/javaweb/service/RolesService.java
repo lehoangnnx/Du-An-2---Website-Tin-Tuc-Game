@@ -9,4 +9,5 @@ public interface RolesService {
 	Roles findByName(String name);
 	void saveorupdate(Roles roles);
 	Roles findByRoleId(Integer roleId);
+	List<Roles> findAllByStatusOrderByRoleIdDesc(String status);
 }

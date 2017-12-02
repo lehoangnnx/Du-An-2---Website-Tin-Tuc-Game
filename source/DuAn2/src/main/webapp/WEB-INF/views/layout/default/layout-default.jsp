@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+		
 		<tiles:insertAttribute name="head" />
 		<tiles:insertAttribute name="headtag" />
 
@@ -62,7 +62,7 @@
 	<tiles:insertAttribute name="footer" />
 	
 	<tiles:insertAttribute name="footertag" />
-	<tiles:insertAttribute name="scriptfootertag" />
+	
 </body>
 
 </html>

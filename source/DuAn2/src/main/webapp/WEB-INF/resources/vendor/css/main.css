@@ -20,7 +20,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Roboto', sans-serif;
+/*	font-family: 'Roboto', sans-serif;*/
 }
 /*====================
 ======Header CSS=====
@@ -53,8 +53,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #navigation .navbar-nav.navbar-right li a {
 	color: #43484E;
-	font-family: 'Roboto', sans-serif;
-	font-size: 14px;
+/*	font-family: 'Roboto', sans-serif;*/
+	font-size: 13px;
 	padding: 0;
 	text-transform: uppercase;
 	-webkit-transition: all .9s ease 0s;
@@ -138,7 +138,7 @@ button.btn.btn-default:hover {
 }
 
 .tieude h2 {
-	font-family: 'Noto Sans', sans-serif;
+/*	font-family: 'Noto Sans', sans-serif;*/
 }
 /*--close search-button--*/
 
@@ -255,7 +255,7 @@ iframe {
 	font-weight: normal;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
-	font-family: 'Offside', cursive;
+	/*font-family: 'Offside', cursive;*/
 	font-weight: 600;
 	text-transform: capitalize;
 }
@@ -357,7 +357,7 @@ li {
 .videosamecattitle h4 {
 	font-size: 20px;
 	line-height: 38px;
-	font-family: "UTM Bebas", sans-serif;
+/*	font-family: "UTM Bebas", sans-serif;*/
 	text-transform: uppercase;
 	color: #fff;
 	margin-left: 13px;
@@ -372,7 +372,7 @@ li {
 .videosamecattitle1 h4 {
 	font-size: 20px;
 	line-height: 38px;
-	font-family: "UTM Bebas", sans-serif;
+	/*font-family: "UTM Bebas", sans-serif;*/
 	text-transform: uppercase;
 	color: #fff;
 	margin-left: 13px;
@@ -409,7 +409,7 @@ li {
 
 .videosamecat ul li h5 a {
 	font-size: 13px;
-	font-family: Tahoma, sans-serif;
+/*	font-family: Tahoma, sans-serif;*/
 	color: #383838;
 }
 
@@ -669,7 +669,7 @@ a:focus {
 }
 
 h2, h3 {
-	font-family: inherit;
+/*	font-family: inherit;*/
 	font-weight: 500;
 	line-height: 1.1;
 	color: inherit;
@@ -719,7 +719,7 @@ a:hover {
 }
 
 .more {
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 	font-style: 16px;
 	text-align: center;
 }
@@ -743,7 +743,7 @@ img {
 }
 
 .giftcode h2, .giftcode h3 {
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 }
 
 .giftcode {
@@ -784,7 +784,7 @@ img {
 }
 
 .topgame h2 {
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 }
 
 .topgame h2 {
@@ -819,7 +819,7 @@ img {
 
 p {
 	line-height: 1.7;
-	font-family: Roboto, sans-serif !important;
+	/*font-family: Roboto, sans-serif !important;*/
 }
 
 p {
@@ -1331,7 +1331,7 @@ a:hover {
 }
 
 .more {
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 	font-style: 16px;
 	text-align: center;
 }
@@ -1367,7 +1367,7 @@ img {
 	padding: 8px 15px;
 	font-size: 16px;
 	font-weight: 700;
-	font-family: 'Roboto Condensed', sans-serif;
+/*	font-family: 'Roboto Condensed', sans-serif;*/
 }
 
 .thuvien .box li {
@@ -1381,7 +1381,7 @@ img {
 .thuvien h2 {
 	font-size: 24px;
 	text-transform: uppercase;
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 }
 
 .thuvien h2 {
@@ -1399,11 +1399,11 @@ img {
 	padding: 8px 15px;
 	font-size: 16px;
 	border-bottom: none;
-	font-family: 'Roboto Condensed', sans-serif;
+/*	font-family: 'Roboto Condensed', sans-serif;*/
 }
 
 .thuvien .box li h2 {
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 }
 
 .thuvien .box ul {
@@ -1457,7 +1457,7 @@ img {
 
 p {
 	line-height: 1.7;
-	font-family: Roboto, sans-serif !important;
+	/*font-family: Roboto, sans-serif !important;*/
 }
 
 p {

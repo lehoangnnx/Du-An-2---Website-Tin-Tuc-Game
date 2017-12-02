@@ -73,7 +73,7 @@
 	$(document).ready(function() {
 		
 		
-	$('#inputframeVideo').on('keyup keypress keydown', function() {
+
         var timeout = null;
 
         $('#inputframeVideo').on('keyup keypress keydown', function() {
@@ -84,15 +84,16 @@
                 var link =	$("#inputframeVideo").val();
 
                 if(link.search("iframe") == 1){
-
+					$('#ifVideo').css('display','block');
                     link = link.slice(link.indexOf("src")+5, link.indexOf("frameborder")-2);
                     $("#inputframeVideo").val(link);
-                }
+                }else {
+                    $('#ifVideo').css('display','none');
+				}
                 $("#ifVideo").attr("src", link);
-            }, 1500);
+            }, 500);
         });
 
-	});
 	});
 
 	function ChangeToSlug() {
@@ -196,7 +197,7 @@
 
 								}
 							});
-				}, 1000);
+				}, 200);
 	}
 	function errorBtn() {
 		
@@ -284,11 +285,13 @@
 					required : true
 				},
 				subContent : {
-					required : true
+					required : true,
+                    maxlength : 4000
 				},
 				
 				author : {
-					required : true
+					required : true,
+					maxlength: 255
 				},
 				imagesThumbnail : {
 					required : true,
@@ -317,11 +320,13 @@
 					required : "Vui Lòng Chọn Thẻ"
 				},
 				subContent : {
-					required : "Vui Lòng Nhập Tóm Tắt"
+					required : "Vui Lòng Nhập Tóm Tắt",
+                    maxlength : "Tóm Tắt Không Dài Hơn 4000 Ký Tự"
 				},
 				
 				author : {
-					required : "Vui Lòng Nhập Tác Giả/Nguồn"
+					required : "Vui Lòng Nhập Tác Giả/Nguồn",
+                    maxlength : "Tác Giả/Nguồn Không Dài Hơn 255 Ký Tự"
 				},
 				imagesThumbnail : {
 					required : "Vui Lòng Chọn Ảnh",

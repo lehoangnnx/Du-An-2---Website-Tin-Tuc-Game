@@ -2912,7 +2912,7 @@ ul.ot-mega-menu .widget .widget-article-list .item .item-content .item-meta a:nt
 .comment-block .comment-text .user-nick {
 	display: block;
 	margin-bottom: 12px;
-	font-family: 'Arvo', serif;
+	/*font-family: 'Arvo', serif;*/
 	font-weight: normal;
 	font-size: 17px;
 	line-height: 100%;
@@ -2935,7 +2935,7 @@ ul.ot-mega-menu .widget .widget-article-list .item .item-content .item-meta a:nt
 	display: block;
 	font-size: 13px;
 	color: #bebebe;
-	font-family: 'Arvo', serif;
+	/*font-family: 'Arvo', serif;*/
 	padding-top: 2px;
 }
 
@@ -3422,7 +3422,7 @@ ul.ot-mega-menu .widget .widget-article-list .item .item-content .item-meta a:nt
     display: block;
     right: 0px;
     top: -30px;
-    font-family: Arial;
+   /* font-family: Arial;*/
     position: absolute;
     font-size: 14px;
     color: #fff;
@@ -4440,7 +4440,7 @@ input[type=submit].button:active {
 	margin-bottom: 10px;
 	font-weight: normal;
 	text-align: left;
-	font-family: 'PT Sans Narrow', sans-serif;
+	/*font-family: 'PT Sans Narrow', sans-serif;*/
 }
 
 .woocommerce .products .product:nth-child(4n+1) {
@@ -4958,7 +4958,7 @@ input[type=number]::-webkit-outer-spin-button {
 	border: 1px solid #c4c4c4;
 	padding: 12px 15px;
 	font-size: 1em;
-	font-family: Arial;
+	/*font-family: Arial;*/
 	margin: 0px;
 	border-radius: 2px;
 	line-height: 14px;
@@ -5910,7 +5910,7 @@ textarea.input-text {
 	color: #333;
 	padding: 10px 12px;
 	border: 1px solid #ccc;
-	font-family: Arial;
+	/*font-family: Arial;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -6486,7 +6486,7 @@ div.bbp-breadcrumb {
 }
 #bbpress-forums,
 #bbpress-forums p {
-    font-family: Arial, sans-serif!important;
+   /* font-family: Arial, sans-serif!important;*/
 }
 .bbp-topic-permalink {
     font-size: 14px;

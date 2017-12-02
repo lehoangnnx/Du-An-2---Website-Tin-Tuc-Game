@@ -19,7 +19,8 @@
                 <div class="item ${status.index == 0 ? 'active' : ''}">
                     <div class="container-fluid">
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-md-3"><a href="${contextPath}/games/${gl.slug}.html"><img style="width: 100%;height: 150px;"
+                            <div class="col-md-3"><a href="${contextPath}/games/${gl.slug}.html"><img
+                                    style="width: 100%;height: 150px;"
                                     src="${contextPath}/images/games/${gl.images}" class="img-responsive"></a></div>
                             <div class="col-md-9">
                                 <a href="${contextPath}/games/${gl.slug}.html"><h2>${gl.name}</h2></a>
@@ -60,10 +61,10 @@
                 <h5>Thể loại</h5>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <select class="form-control" id="gameCategoryId">
-                            <option value="0" selected>Tất Cả</option>
+                        <select class="form-control" id="gameCategorySlug">
+                            <option value="all" >Tất Cả</option>
                             <c:forEach var="gcl" items="${gameCategoryList}">
-                                <option value="${gcl.gameCategoryId}">${gcl.name}</option>
+                                <option value="${gcl.slug}">${gcl.name}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -87,9 +88,9 @@
             <div class="col-md-3" style="margin-right: 15px;">
                 <h5>Tên Game</h5>
 
-                    <div class="form-group">
-                        <input id="keysearch" style="height: 34px;" type="text" class="form-control"/>
-                    </div>
+                <div class="form-group">
+                    <input id="keysearch" style="height: 34px;" type="text" class="form-control"/>
+                </div>
 
             </div>
 
@@ -130,7 +131,8 @@
                         <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}.html" target="_parent">
                                 <figure><img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
-                                             src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
+                                             src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure>
+                            </a>
 
                             <div class="clearfix visible-sm"></div>
 
@@ -166,8 +168,9 @@
                     <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                         <div class="media hover14 column">
                             <a class="pull-left" href="${contextPath}/${al.slug}.html" target="_parent">
-                                <figure> <img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
-                                              src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure></a>
+                                <figure><img alt="image" class="img-responsive" style="width: 100%; height: 130px;"
+                                             src="${contextPath}/images/articles/${al.imagesThumbnail}"></figure>
+                            </a>
 
                             <div class="clearfix visible-sm"></div>
 

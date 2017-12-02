@@ -165,7 +165,7 @@ $(document).ready(function() {
 						alert("Lỗi ! Vui Lòng Kiểm Tra Lại Thông Tin");
 					}
 				}); 
-			}, 1000);
+			}, 200);
 			
 		};
 

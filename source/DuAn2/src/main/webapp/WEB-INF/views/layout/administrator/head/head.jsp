@@ -5,9 +5,11 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="description" content="">
 		<meta name="author" content="">
-
+<meta name="_csrf" content="${_csrf.token}" />
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 		<!-- Title -->
-		
+		<link rel="shortcut icon" href="${contextPath}/images/ico/favicon-.png">
 		
 		
 

@@ -26,44 +26,50 @@
             </div>
         </div>
 
-        <div class="content-panel-body article-list">
+        <div class="content-panel-body article-list " style="padding-top: 10px;">
             <div class="item">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <article class="content">
-                        <div id="amazingslider-wrapper-1"
-                             style="display: block; position: relative; max-width: 900px; padding-left: 0px; padding-right: 244px; margin: 0px auto 0px;">
-                            <div id="amazingslider-1"
-                                 style="display: block; position: relative; margin: 0 auto;">
-                                <ul class="amazingslider-slides" style="display: none;">
-                                    <c:forEach var="gacnhvl"
-                                               items="${getTop10ArticleCategoryNewAndHotVideoList}">
-                                        <li><img
-                                                src="${contextPath}/images/articles/${gacnhvl.imagesThumbnail}"
-                                                alt="${fn:substring(gacnhvl.title, 0, 50)} ..."
-                                                title="${fn:substring(gacnhvl.title, 0, 50)} ..."
-                                                data-description="${gacnhvl.views} Lượt xem"/>
-                                            <video
-                                                    preload="none"
-                                                    src="${gacnhvl.video}">
-                                            </video>
-                                        </li>
-                                    </c:forEach>
 
-                                </ul>
-                                <ul class="amazingslider-thumbnails" style="display: none;">
-                                    <c:forEach var="gacnhvl"
-                                               items="${getTop10ArticleCategoryNewAndHotVideoList}">
-                                        <li><img
-                                                src="${contextPath}/images/articles/${gacnhvl.imagesThumbnail}"
-                                                alt="${gacnhvl.title}"
-                                                title="${gacnhvl.title}"/></li>
-                                    </c:forEach>
-                                </ul>
+                    <div class="rvs-container">
+
+                        <div class="rvs-item-container">
+                            <div class="rvs-item-stage">
+                                <c:forEach var="gacnhvl"
+                                           items="${getTop10ArticleCategoryNewAndHotVideoList}">
+                                    <!-- The below is a single item, simply duplicate this layout for each item -->
+                                    <div class="rvs-item" style="background-image: url('images/articles/${gacnhvl.imagesThumbnail}')">
+                                        <p class="rvs-item-text">${gacnhvl.title}
+                                            <small>${gacnhvl.views} Lượt Xem</small>
+                                        </p>
+                                        <a href="${gacnhvl.video}" class="rvs-play-video"></a>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
-                        <!-- END REVOLUTION SLIDER -->
 
-                    </article>
+                        <div class="rvs-nav-container">
+                            <a class="rvs-nav-prev"></a>
+
+                            <div class="rvs-nav-stage">
+                                <c:forEach var="gacnhvl"
+                                           items="${getTop10ArticleCategoryNewAndHotVideoList}">
+                                    <!-- The below is the corresponding nav item for the single item, simply duplicate this layout for each item -->
+                                    <a class="rvs-nav-item">
+                                            <span class="rvs-nav-item-thumb"
+                                                  style="background-image: url('images/articles/${gacnhvl.imagesThumbnail}')"></span>
+                                        <h4 class="rvs-nav-item-title">${gacnhvl.title}</h4>
+                                        <small class="rvs-nav-item-credits">${gacnhvl.views} Lượt Xem</small>
+                                    </a>
+                                </c:forEach>
+                            </div>
+
+                            <a class="rvs-nav-next"></a>
+                        </div>
+
+                    </div>
+                    <!-- END REVOLUTION SLIDER -->
+
+
                     <!-- home slider -->
                 </div>
             </div>
@@ -107,7 +113,7 @@
                                 </div>
                                 <div class="item-content">
                                     <h4>
-                                        <a href="${contextPath}/${gacnskl.slug}">${gacnskl.title}.</a>
+                                        <a href="${contextPath}/${gacnskl.slug}.html">${gacnskl.title}.</a>
                                     </h4>
 
                                 </div>
@@ -138,7 +144,7 @@
                         </div>
                         <div class="item-content">
                             <h3>
-                                <a href="${getTop5ArticleCategoryNewSuKienList[0].slug}.html">${getTop5ArticleCategoryNewSuKienList[0].title}</a>
+                                <a href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html">${getTop5ArticleCategoryNewSuKienList[0].title}</a>
                             </h3>
                             <span class="item-meta">
                                 <a style="font-weight: bold;" href="${contextPath}/${getTop5ArticleCategoryNewSuKienList[0].slug}.html"><i
@@ -191,7 +197,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/pc-console.html?sorted=news">Game
+                                        <a style="color: white;" href="${contextPath}/games/hoso.html?gamecategory=pc-console">Game
                                             Pc-Console</a>
                                     </h2>
                                 </div>
@@ -217,7 +223,7 @@
                                     </c:forEach>
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/pc-console.html?sorted=news">Xem thêm</a>
+                                    <a href="${contextPath}/games/hoso.html?gamecategory=pc-console">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +231,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/game-mobile.html?sorted=news">Game mobile</a>
+                                        <a style="color: white;" href="${contextPath}/games/hoso.html?gamecategory=game-mobile">Game mobile</a>
                                     </h2>
                                 </div>
                                 <ul>
@@ -251,7 +257,7 @@
 
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/game-mobile.html?sorted=news">Xem thêm</a>
+                                    <a href="${contextPath}/games/hoso.html?gamecategory=game-mobile">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +265,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/esport.html?sorted=news">eSport</a>
+                                        <a style="color: white;" href="${contextPath}/games/hoso.html?gamecategory=esport">eSport</a>
                                     </h2>
                                 </div>
                                 <ul>
@@ -284,7 +290,7 @@
                                     </c:forEach>
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/game-mobile.html?sorted=news">Xem thêm</a>
+                                    <a href="${contextPath}/games/hoso.html?gamecategory=esport">Xem thêm</a>
                                 </div>
                             </div>
                         </div>
@@ -358,6 +364,7 @@
         <div style="padding-bottom: 60px; border-bottom: 1px solid #F0F0F0"
              class="content-panel-body pagination "
              id="xemthem">
+            <a id="_xemthem" class="page-numbers col-md-12 " href="javascript:void(0);">Xem Thêm</a>
             <div id="LoadingGifSmall" style="display: none;">
                 <img src="${contextPath }/images/36.gif"/>
             </div>

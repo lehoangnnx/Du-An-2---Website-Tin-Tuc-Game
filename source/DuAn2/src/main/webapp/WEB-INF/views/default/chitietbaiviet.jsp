@@ -9,6 +9,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!-- Banner chi tiết bài viết -->
+
+
 <div class="content-block-single" style="padding-top: 10px;">
     <div class="content-panel">
 
@@ -32,7 +34,8 @@
                                                                                        class="meta-item"><fmt:formatDate
                             pattern="dd-MM-yyyy" value="${article.showDate}"/></a> <a href="#"
                                                                                       class="meta-item">${article.views}
-                        lượt xem</a>
+                        lượt xem 
+                        </a>
                     </div>
                 </div>
 
@@ -70,9 +73,10 @@
 
                 </span>
                 <security:authorize access="isAuthenticated()">
-                    <a href="javascript:void(0)" style=" float: right;"><i style="padding-right: 5px;"
+
+                    <a id="likearticle" href="javascript:void(0)" style=" float: right;"><i style="padding-right: 5px;"
                                                                            class="fa fa-thumbs-up"></i>
-                        <span id="likearticle">${userOfArticleLike == true ? 'Bỏ Thích' : 'Thích'}</span> </a>
+                        <span id="textlike" >${userOfArticleLike == true ? 'Bỏ Thích' : 'Thích'}</span> </a>
                 </security:authorize>
                 <security:authorize access="!isAuthenticated()">
                     <a class="modal_trigger" href="#modal" style=" float: right;"><i style="padding-right: 5px;"
@@ -111,7 +115,7 @@
             <!-- END Thẻ hagtag, chi sẻ -->
 
             <!-- Game vote -->
-            <c:if test="${article.gameId != 0 }">
+            <c:if test="${article.gameId != 0 && !empty games }">
                 <div class="game-vote">
                     <div class="row">
                         <div style="padding-top: 10px;" class="col-md-7">
@@ -132,9 +136,8 @@
                                     Nhà phát hành: <span>
                                         ${fn:substring(games.publishers, 0, 20)} ...</span><br/>
                                 </p>
-                                <a class="btn btn-default btn-sm" href="${contextPath}/${games.slug}.html">Thông tin game</a>
-                                <a
-                                        class="btn btn-success btn-sm" href="#">Bạn bình chọn</a>
+                                <a class="btn btn-default btn-sm" href="${contextPath}/games/${games.slug}.html">Thông tin game</a>
+                                <a target="_blank" class="btn btn-success btn-sm" href="${games.homeUrl }">Trang Chủ</a>
                             </div>
                         </div>
                         <div class="col-md-5" style="padding-top: 10px;">
@@ -232,13 +235,7 @@
                     <ol id="comments">
                     </ol>
                 </div>
-                <%--<div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn fa fa-ellipsis-h" style="color: #0b0b0b"></button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#hihi xóa nè">Xóa</a>
-                        <a href="#hihi sửa nè">Sửa</a>
-                    </div>
-                </div>--%>
+                
                 <div class="xemthemcomment"
                      style="padding: 10px 1px; text-align: center; background: #f7f7f7; margin-bottom: 20px;">
                     <div id="LoadingGifSmall">
@@ -251,7 +248,9 @@
 
             <!-- Trả lời bình luận -->
             <security:authorize access="isAuthenticated()">
-                <input hidden id="CommentId" value="0"/>
+            <c:choose>
+            	<c:when test="${article.allowComment == 'allow' }">
+            	<input hidden id="CommentId" value="0"/>
                 <input hidden id="subCommentId" value="0"/>
                 <input hidden id="usersBySubUserId" value="0"/>
                 <li class="comment">
@@ -290,6 +289,15 @@
                         </div>
                     </div>
                 </li>
+            	</c:when>
+            	<c:otherwise>
+            	 <div style="text-align: center;">
+                <span>Quản Trị Viên Đã Tắt Bình Luận Bài Viết Này
+                </span>
+                </div>
+            	</c:otherwise>
+            </c:choose>
+                
             </security:authorize>
 
             <security:authorize access="!isAuthenticated()">
@@ -323,7 +331,7 @@
                 <div class="widget">
                     <br>
                     <div class="widget-article-list">
-                        <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="4">
+                        <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="7">
                             <div class="item">
                                 <div class="item-header">
                                     <a href="${contextPath}/${alql.slug}.html"><img

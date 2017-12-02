@@ -7,11 +7,9 @@ package com.javaweb.controller;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.Comment;
+import com.javaweb.model.CommentLike;
 import com.javaweb.model.Users;
-import com.javaweb.service.ArticleService;
-import com.javaweb.service.CommentService;
-import com.javaweb.service.RolesService;
-import com.javaweb.service.UsersService;
+import com.javaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -37,12 +35,14 @@ public class CommentRestController {
     ArticleService articleService;
     @Autowired
     RolesService rolesService;
-
+    @Autowired
+    CommentLikeService commentLikeService;
 
     @PostMapping("/newcomment")
     // Tạo mới bình luận và lưu vào cơ sở dữ liệu
     public Map<String, Object> comment(@RequestParam("articleId") Integer articleId,
-                                       @RequestParam("content") String content, Authentication authentication, HttpServletRequest request) {
+                                       @RequestParam("content") String content, Authentication authentication,
+                                       HttpServletRequest request) {
 
         try {
 
@@ -63,14 +63,16 @@ public class CommentRestController {
 
         }
 
-        return getAllcommentPaging(0, articleId, authentication, request);
+        return getAllcommentPaging("0", articleId, authentication, request);
     }
 
     @PostMapping("/replycomment")
     // Tạo mới bình luận, bình luận được tạo mới là bình luận con của bình luận có sẵn
-    public Map<String, Object> replycomment(@RequestParam("subCommentId") Integer subCommentId, @RequestParam("articleId") Integer articleId,
+    public Map<String, Object> replycomment(@RequestParam("subCommentId") Integer subCommentId,
+                                            @RequestParam("articleId") Integer articleId,
                                             @RequestParam("usersBySubUserId") Integer usersBySubUserId,
-                                            @RequestParam("content") String content, Authentication authentication, HttpServletRequest request) {
+                                            @RequestParam("content") String content, Authentication authentication,
+                                            HttpServletRequest request) {
 
         try {
 
@@ -91,17 +93,44 @@ public class CommentRestController {
 
         }
 
-        return getAllcommentPaging(0, articleId, authentication, request);
+        return getAllcommentPaging("0", articleId, authentication, request);
     }
 
     @GetMapping("/getcomment")
     // Lấy tất cả bình luận trong cơ sở dữ liệu
-    public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "0") Integer page, @RequestParam("articleId") Integer articleId,
+    public Map<String, Object> getcomment(@RequestParam(value = "page", defaultValue = "0") String stpage,
+                                          @RequestParam("articleId") Integer articleId,
                                           Authentication authentication, HttpServletRequest request) {
 
-        return getAllcommentPaging(page, articleId, authentication, request);
+        return getAllcommentPaging(stpage, articleId, authentication, request);
     }
+    @PostMapping("/commentlike")
+    public Map<String,Object> commentLike(Authentication authentication,@RequestParam("commentId") Integer commentId){
+        CommentLike  commentLike = null;
+        try {
+            Comment comment = commentService.findByCommentId(commentId);
+            Users users = usersService.findByUserName(authentication.getName());
+            commentLike = commentLikeService.findByCommentAndUsers(comment,users);
+            Map<String ,Object> commentLikeMap =  new HashMap<>();
+            if(commentLike == null){
+                commentLike = new CommentLike();
+                commentLike.setComment(comment);
+                commentLike.setUsers(users);
+                commentLike.setCreateDate(new Date());
+                commentLikeService.saveorupdate(commentLike);
+                commentLikeMap.put("status",true);
+            }else {
+                commentLikeService.delete(commentLike);
+                commentLikeMap.put("status",false);
+            }
+            commentLikeMap.put("countcommentlike",commentLikeService.countByComment(comment));
+            return commentLikeMap;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
+        return null;
+    }
     @PostMapping("/deletecomment")
     // Xóa bình luận - Chuyển trạng thái bình luận sang deleted
     public String deletecomment(@RequestParam("commentId") Integer commentId) {
@@ -137,10 +166,17 @@ public class CommentRestController {
     }
 
     // Lấy tất cả bình luận trong cơ sở dữ liệu và phân trang
-    public Map<String, Object> getAllcommentPaging(Integer page, Integer articleId,
+    public Map<String, Object> getAllcommentPaging(String stpage, Integer articleId,
                                                    Authentication authentication, HttpServletRequest request) {
 
 
+        int page = 0;
+
+        try {
+            page = Integer.parseInt(stpage);
+        }catch (NumberFormatException e){
+            page = 0;
+        }
         Article article = articleService.findByArticleId(articleId);
         List<Comment> commentParentPage = commentService.findAllByArticleAndStatusAndSubCommentId(article, "active", 0,
                 new PageRequest(page, 10, new Sort(Sort.Direction.DESC, "createdDate")));
@@ -148,7 +184,8 @@ public class CommentRestController {
         List<Map<String, Object>> commentParentListMap = new ArrayList<Map<String, Object>>();
         List<Map<String, Object>> commentChildListMap = new ArrayList<Map<String, Object>>();
         Map<String, Object> commentAllMap = new HashMap<String, Object>();
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat df = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+
         commentParentPage.forEach(x -> {
             Map<String, Object> commentMap = new HashMap<String, Object>();
             commentMap.put("commentId", x.getCommentId());
@@ -159,7 +196,7 @@ public class CommentRestController {
             if (x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
                     || x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE"))) {
 
-                commentMap.put("usersByUserUserName", x.getUsersByUserId().getFirstName());
+                commentMap.put("usersByUserUserName", x.getUsersByUserId().getFirstName()+" "+ x.getUsersByUserId().getLastName());
                 commentMap.put("usersByUserAvatar", x.getUsersByUserId().getAvatar());
             } else {
                 commentMap.put("usersByUserUserName", x.getUsersByUserId().getUserName());
@@ -167,11 +204,22 @@ public class CommentRestController {
             }
             if (x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
                     || x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE"))) {
-                commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getFirstName());
+                commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getFirstName()+" "+x.getUsersBySubUserId().getLastName());
 
             } else {
                 commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getUserName());
             }
+            if (authentication != null){
+                if(commentLikeService.findByCommentAndUsers(x,usersService.findByUserName(authentication.getName())) == null){
+                    commentMap.put("statusofusercommentlike", false);
+                }
+                else {
+                    commentMap.put("statusofusercommentlike", true);
+                }
+            }
+
+
+            commentMap.put("countcommentlike", commentLikeService.countByComment(x));
             commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getUserName());
             commentMap.put("content", x.getContent());
             commentMap.put("modifiedDate", df.format(x.getModifiedDate()));
@@ -187,7 +235,7 @@ public class CommentRestController {
             commentMap.put("usersBySubUserId", x.getUsersBySubUserId().getUserId());
             if (x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
                     || x.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE"))) {
-                commentMap.put("usersByUserUserName", x.getUsersByUserId().getFirstName());
+                commentMap.put("usersByUserUserName", x.getUsersByUserId().getFirstName()+" "+x.getUsersByUserId().getLastName());
                 commentMap.put("usersByUserAvatar", x.getUsersByUserId().getAvatar());
             } else {
                 commentMap.put("usersByUserUserName", x.getUsersByUserId().getUserName());
@@ -196,13 +244,20 @@ public class CommentRestController {
             if (x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
                     || x.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE"))) {
 
-                commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getFirstName());
+                commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getFirstName()+" "+x.getUsersBySubUserId().getLastName());
             } else {
 
                 commentMap.put("usersBySubUserUserName", x.getUsersBySubUserId().getUserName());
             }
-
-
+            if (authentication != null){
+                if(commentLikeService.findByCommentAndUsers(x,usersService.findByUserName(authentication.getName())) == null){
+                    commentMap.put("statusofusercommentlike", false);
+                }
+                else {
+                    commentMap.put("statusofusercommentlike", true);
+                }
+            }
+            commentMap.put("countcommentlike", commentLikeService.countByComment(x));
             commentMap.put("content", x.getContent());
             commentMap.put("modifiedDate", df.format(x.getModifiedDate()));
             commentChildListMap.add(commentMap);

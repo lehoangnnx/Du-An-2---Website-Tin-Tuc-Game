@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,24 +22,22 @@ import com.javaweb.model.ArticleCategory;
 import com.javaweb.service.ArticleCategoryService;
 
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin")
 public class AdminArticlesCategoryController {
 	@Autowired
-	ArticleCategoryService articleCategoryService; 
+	ArticleCategoryService articleCategoryService;
+
+
 	@GetMapping("/articles/categorys")
 	public String showArticlesCategory(Model model,@RequestParam(name = "status", defaultValue = "active") String status) {
-		List<ArticleCategory> articleCategoriesList = articleCategoryService.findAll()
-				.stream().filter(x -> x.getStatus().equals(status))
-				.sorted(Comparator.comparing(ArticleCategory::getArticleCategoryId).reversed()).collect(Collectors.toList());
-
+		List<ArticleCategory> articleCategoriesList = articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc(status);
 		model.addAttribute("articleCategoriesList", articleCategoriesList);
 		return "articlescategory";
 	}
 	@GetMapping("/articles/categorys/addcategorys")
 	public String addcategorys(Model model ) {
-		List<ArticleCategory> articleCategoryList= articleCategoryService.findAll()
-				.stream()
-				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());
+		List<ArticleCategory> articleCategoryList= articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc("active");
 		model.addAttribute("articleCategoryList", articleCategoryList);
 		return "addarticlescategory"; 
 	}
@@ -75,9 +74,7 @@ public class AdminArticlesCategoryController {
 	@GetMapping("/articles/categorys/{articleCategoryId}")
 	public String updateArticleCategory(Model model, @PathVariable("articleCategoryId") Integer articleCategoryId) {
 		ArticleCategory articleCategory = articleCategoryService.findByArticleCategoryId(articleCategoryId);
-		List<ArticleCategory> articleCategoryList= articleCategoryService.findAll()
-				.stream()
-				.filter(x -> !x.getStatus().equals("deleted")).collect(Collectors.toList());;
+		List<ArticleCategory> articleCategoryList= articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc("active");
 		model.addAttribute("articleCategoryList", articleCategoryList);
 		model.addAttribute("articleCategory", articleCategory);
 		return "updatearticlescategory";

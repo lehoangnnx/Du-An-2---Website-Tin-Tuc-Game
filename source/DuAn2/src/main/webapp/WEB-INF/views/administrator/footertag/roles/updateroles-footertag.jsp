@@ -122,7 +122,7 @@
 
                         }
                     });
-            }, 1000);
+            }, 200);
     }
     function errorBtn() {
 
@@ -134,7 +134,7 @@
     }
     function errortitle() {
 
-        $("#spanName").text("Tên Đã Tồn Tại - Vui Lòng Nhập Tên Khác");
+        $("#spanName").text("Tên Quyền Đã Tồn Tại - Vui Lòng Nhập Tên Khác");
     }
 
     function successtitle() {
@@ -183,6 +183,9 @@
                 name : {
                     required : true,
                     maxlength : 100
+                },
+                description: {
+                    maxlength : 255
                 }
 
 
@@ -191,6 +194,9 @@
                 name : {
                     required : "Vui Lòng Nhập Tên ",
                     maxlength : "Tên Không Dài Hơn 100 Ký Tự"
+                },
+                description: {
+                    maxlength : "Mô Tả Không Dài Hơn 100 Ký Tự"
                 }
 
 

@@ -13,8 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
+import com.javaweb.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,10 +35,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 
 import com.javaweb.controller.ImagesManager;
 import com.javaweb.controller.Slugify;
-import com.javaweb.model.Article;
-import com.javaweb.model.ArticleCategory;
-import com.javaweb.model.Games;
-import com.javaweb.model.Tags;
 import com.javaweb.service.ArticleCategoryService;
 import com.javaweb.service.ArticleService;
 import com.javaweb.service.GamesService;
@@ -67,14 +66,21 @@ public class AdminArticlesController {
 	 * Tên articles trong file layout-administrator-tiles.xml cấu hình Apache Tiles
 	 */
 	@GetMapping("/articles")
-	public String getAllArticles(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
-		// Lấy danh sách Article
+	public String getAllArticles(Model model, Authentication authentication, @RequestParam(name = "status", defaultValue = "active") String status,
+								 HttpServletRequest request) {
 
-		System.out.println("STATUS : " + status);
-		List<Article> articleList = articleService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals(status))
-				.sorted(Comparator.comparing(Article::getCreatedDate).reversed()).collect(Collectors.toList());
+		// Lấy danh sách Article
+		List<Article> articleList = null;
+		if(request.isUserInRole("ROLE_ADMIN")){
+			articleList = articleService.findAllByStatusOrderByShowDateDesc(status);
+
+		}else {
+			Users users = usersService.findByUserName(authentication.getName());
+			articleList = articleService.findAllByUsersAndStatusOrderByShowDateDesc(users,status);
+		}
+
+
+
 		// articleList.sort(( a1, a2) ->
 		// a1.getCreatedDate().compareTo(a2.getCreatedDate()));
 
@@ -91,14 +97,9 @@ public class AdminArticlesController {
 	@GetMapping("/addarticles")
 	public String addarticles(Model model) {
 		// Lấy danh sách ArticleCategory
-		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+		List<ArticleCategory> articleCategoryList = articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc("active");
 		// Lấy danh sách Games
-		List<Games> gameList = gamesService.findAll()
-				.stream()
-				.filter(x -> x.getStatus().equals("active"))
-				.collect(Collectors.toList());
+		List<Games> gameList = gamesService.findAllByStatusOrderByGameIdDesc("active");
 		// Lấy danh sách Tags
 		List<Tags> tagsList = tagsService.findAll();
 		// Lưu danh sách ArticleCategory vào Model
@@ -118,7 +119,7 @@ public class AdminArticlesController {
 	@PostMapping("/articles")
 	public String addarticles(@RequestParam("title") String title, @RequestParam("slug") String slug,
 			@RequestParam("articleCategories") List<Integer> articleCategoriesList,
-			@RequestParam("status") String status, @RequestParam("isHot") int isHot,
+			@RequestParam(value = "status", defaultValue = "inactive") String status, @RequestParam("isHot") int isHot,
 			@RequestParam("subContent") String subContent, @RequestParam("mainContent") String mainContent,
 			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment,
 			@RequestParam("gameId") Integer gameId, @RequestParam("tags") List<String> tagsList,
@@ -163,9 +164,9 @@ public class AdminArticlesController {
 				article.setAuthor(HtmlUtils.htmlEscape(author));
 
 			}
-			if (!status.equals("")) {
-				article.setStatus(status);
-			}
+
+
+
 			if (!showDate.equals("")) {
 				Date date = df.parse(showDate);
 				article.setShowDate(date);
@@ -179,6 +180,7 @@ public class AdminArticlesController {
 			if (!video.equals("")) {
 				article.setVideo(video);
 			}
+			article.setStatus(status);
 			article.setGameId(gameId);
 			article.setViews(0);
 			article.setCreatedDate(new Date());
@@ -218,7 +220,6 @@ public class AdminArticlesController {
 			article.setTagses(tagses);
 			article.setUsers(usersService.findByUserName(principal.getName()));
 			// Kiểm tra nếu imagesThumbnail khác rỗng
-			System.out.println("TAHNG NĂM _________________________________________------------------------------"+ monthAndYear);
 			if (!imagesThumbnail.isEmpty()) {
 				// Kiểm tra và tạo thư mục trong đường dẫn /WEB-INF/files/images/articles/" +
 				// monthAndYear nêu chưa có
@@ -261,11 +262,9 @@ public class AdminArticlesController {
 		
 		
 		// Lấy danh sách ArticleCategory
-		List<ArticleCategory> articleCategoryList = articleCategoryService.findAll().stream()
-				.filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
+		List<ArticleCategory> articleCategoryList = articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc("active");
 		// Lấy danh sách Games
-		List<Games> gameList = gamesService.findAll().stream().filter(x -> x.getStatus().equals("active"))
-				.collect(Collectors.toList());
+		List<Games> gameList = gamesService.findAllByStatusOrderByGameIdDesc("active");
 		Games game = gamesService.findByGameId(article.getGameId());
 
 		model.addAttribute("articleCategoryList", articleCategoryList);
@@ -278,12 +277,13 @@ public class AdminArticlesController {
 	@PatchMapping("/articles")
 	public String updateArticle(@RequestParam("articleId") Integer articleId, @RequestParam("title") String title,
 			@RequestParam("slug") String slug, @RequestParam("articleCategories") List<Integer> articleCategoriesList,
-			@RequestParam("status") String status, @RequestParam("isHot") int isHot,
+			@RequestParam(value = "status", defaultValue = "inactive") String status, @RequestParam("isHot") int isHot,
 			@RequestParam("subContent") String subContent, @RequestParam("mainContent") String mainContent,
 			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment,
 			@RequestParam("gameId") Integer gameId, @RequestParam("tags") List<String> tagsList,
 			@RequestParam("showDate") String showDate, Principal princial, @RequestParam("video") String video,
 			@RequestParam("imagesThumbnail") MultipartFile imagesThumbnail, RedirectAttributes redirectAttributes,
+			HttpServletRequest request,
 			Model model) {
 
 		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
@@ -321,7 +321,8 @@ public class AdminArticlesController {
 				article.setAuthor(HtmlUtils.htmlEscape(author));
 
 			}
-			if (!status.equals("")) {
+			if(request.isUserInRole("ROLE_ADMIN")){
+
 				article.setStatus(status);
 			}
 			if (!showDate.equals("")) {
@@ -401,7 +402,7 @@ public class AdminArticlesController {
 			return "redirect:/admin/updatearticles/" + articleId;
 		}
 
-		return "redirect:/admin/articles?status="+status;
+		return "redirect:/admin/articles?status="+article.getStatus();
 	}
 
 	@DeleteMapping("/articles")

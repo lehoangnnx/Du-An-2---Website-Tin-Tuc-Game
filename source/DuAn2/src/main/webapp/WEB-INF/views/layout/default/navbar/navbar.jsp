@@ -5,7 +5,13 @@
            uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<style>
+    .chinh{
+        font-size: 10px;
+    }
+</style>
 <header id="navigation">
+
     <div class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <div class="container" style="margin-top: -10px;">
             <div class="navbar-header  col-md-2 ">
@@ -23,34 +29,34 @@
             </div>
 
             <div class="collapse navbar-collapse   col-md-6">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="scroll active"><a href="${contextPath}/">Trang
+                <ul style="margin-right: 0px; margin-bottom: 15px;" class="nav navbar-nav navbar-right">
+                    <li class="scroll active"><a class="chinh" href="${contextPath}/">Trang
                         chủ</a></li>
                     <c:forEach var="atl" items="${articleCategoryList}">
                         <c:if test="${atl.sortOrder == 1 && atl.subArticleCategoryId == 0}">
-                            <li class="scroll"><a
+                            <li class="scroll"><a class="chinh"
                                     href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
                         </c:if>
                     </c:forEach>
-                    <li class="scroll"><a href="${contextPath}/games/hoso.html">Game</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle"
+                    <li class="scroll"><a class="chinh" href="${contextPath}/games/hoso.html">Game</a></li>
+                    <li class="dropdown"><a  class="dropdown-toggle chinh"
                                             data-toggle="dropdown" href="#">Tin Game<span class=" fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder == 2 && atl.subArticleCategoryId == 0}">
-                                    <li><a href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
+                                    <li><a class="chinh" href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
                                 </c:if>
 
                             </c:forEach>
 
                         </ul>
                     </li>
-                    <li class="dropdown"><a class="dropdown-toggle"
+                    <li class="dropdown"><a class="dropdown-toggle chinh"
                                             data-toggle="dropdown" href="#">Khác <span class="fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu ">
                             <c:forEach var="atl" items="${articleCategoryList}">
                                 <c:if test="${atl.sortOrder > 2 && atl.subArticleCategoryId == 0}">
-                                    <li><a href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
+                                    <li><a class="chinh" href="${contextPath}/${atl.slug}.html?sorted=news">${atl.name}</a></li>
                                 </c:if>
 
                             </c:forEach>
@@ -62,8 +68,8 @@
 
                     <security:authorize access="isAuthenticated()">
                         <security:authentication var="principal" property="principal"/>
-                        <li class="dropdown"><a class="dropdown-toggle"
-                                                data-toggle="dropdown" title="${user.firstName}" href="#"> <security:authorize
+                        <li class="dropdown"><a class="dropdown-toggle chinh"
+                                                data-toggle="dropdown" title="${user.firstName} ${user.lastName}" href="#"> <security:authorize
                                 access="hasAnyRole('FACEBOOK', 'GOOGLE')">
                             ${fn:substring(user.firstName, 0, 6)}
                         </security:authorize> <security:authorize
@@ -73,48 +79,33 @@
                         </a>
                             <ul class="dropdown-menu ">
                                 <security:authorize access="hasRole('MEMBER')">
-                                    <li><a href="${contextPath}/profile.html">Thông Tin</a></li>
-
-                                </security:authorize>
-                                <security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
-                                    <li><a href="#">Trang Cá Nhân</a></li>
-                                </security:authorize>
-
-                                <security:authorize access="hasRole('ADMIN')">
-                                    <li><a href="${contextPath }/admin/index">Quản Trị</a></li>
-                                </security:authorize>
-                                <security:authorize access="hasRole('GOOGLE')">
-                                    <form:form id="logoutForm" method="POST" style="margin-left: 7px;"
-                                               action="${contextPath}/logout">
-                                        <input type="hidden" name="${_csrf.parameterName}"
-                                               value="${_csrf.token}"/>
-                                        <button type="submit" onclick="signOut();"><span class="fa fa-sign-out"></span> Logout tài khoản
-                                        </button>
-                                    </form:form>
+                                    <li class="text-center"><a class="chinh" href="${contextPath}/profile.html">Thông Tin</a></li>
 
                                 </security:authorize>
 
-                                <security:authorize access="!hasRole('GOOGLE')">
-                                    <form:form id="logoutForm" method="POST" style="margin-left: 7px;"
-                                               action="${contextPath}/logout">
-                                        <input type="hidden" name="${_csrf.parameterName}"
-                                               value="${_csrf.token}"/>
 
-                                        <button  type="submit"><span class="fa fa-sign-out"></span> Logout tài khoản</button>
-                                    </form:form>
+                                <security:authorize access="hasRole('WRITING')">
+                                    <li class="text-center"><a class="chinh" href="${contextPath }/admin/index">Quản Trị</a></li>
                                 </security:authorize>
+                                    <li class="text-center">
+                                        <%--<button type="submit"><i style="margin-right: 7px;" class="fa fa-sign-out"></i>Đăng Xuất</button>--%>
+                                            <a class="chinh" href="javascript:void(0);" id="btn-logout">Đăng Xuất</a>
+                                    </li>
+
+
+
                             </ul>
                         </li>
                     </security:authorize>
                     <security:authorize access="!isAuthenticated()">
-                        <li class="scroll"><a class="modal_trigger" href="#modal">Đăng
+                        <li class="scroll"><a class="modal_trigger chinh" href="#modal">Đăng
                             Nhập</a></li>
 
                     </security:authorize>
                 </ul>
             </div>
 
-            <div id="morphsearch" class="morphsearch col-md-4 pull-right collapse navbar-collapse ">
+            <div style="margin: 0px;" id="morphsearch" class="morphsearch col-md-4 pull-right collapse navbar-collapse ">
                 <form:form id="formsearch"  class="morphsearch-form" action="${contextPath}/search.html" method="get" >
                     <input class="morphsearch-input" id="inputsearch" name="q"  type="search" placeholder="Tìm Kiếm ..."/>
                     <button id="btnsearch" style="background-image: url('images/magnifier.svg')" class="morphsearch-submit" type="submit"></button>
@@ -165,12 +156,14 @@
     </div>
     <!--/navbar-->
 </header>
+
 <!--/Đóng header-->
 <!--/Tìm kiếm-->
 
 <!--/Đóng tìm kiếm-->
 <div class="content" style="padding-top: 100px;">
     <div class="container">
+
         <div class="row">
 
             <div class="col-md-12 push-right">

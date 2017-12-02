@@ -9,21 +9,20 @@
 }
 </style>
 <div class="container-fluid">
-	<h4>Bài Viết</h4>
+	<h4>Danh Mục Game</h4>
 	<ol class="breadcrumb no-bg mb-1">
-		<li class="breadcrumb-item"><a href="forms-material.html#">Home</a></li>
-		<li class="breadcrumb-item"><a href="forms-material.html#">Forms</a></li>
-		<li class="breadcrumb-item active">Thêm Danh Mục Bài Viêt</li>
+		<li class="breadcrumb-item"><a href="${contextPath}/admin/index">Trang Chủ</a></li>
+		<li class="breadcrumb-item active">Thêm Danh Mục Game</li>
 	</ol>
 
 	<div class="box box-block bg-white">
-		<h5>Thêm Danh Mục Bài Viêt</h5>
+		<h5>Thêm Danh Mục Game</h5>
 
 		<form:form id="formGameCategory" action="${contextPath }/admin/games/categorys"
 			method="post" enctype="multipart/form-data">
 
 			<div id="divTitle" class="form-group row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Tên Danh Mục</label>
+				<label class="col-md-2 col-form-label" >Tên Danh Mục<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input maxlength="100" type="text" class="maxlength form-control "
 						value="${gameCategory.name }" id="name" name="name"
@@ -34,8 +33,8 @@
 			</div>
 
 			<div id="divSlug" class="form-group  row">
-				<label class="col-md-2 col-form-label" for="inputSuccess1">Đường
-					Dẫn</label>
+				<label class="col-md-2 col-form-label" >Đường
+					Dẫn<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<input type="text" value="${gameCategory.slug }" class="form-control maxlength" maxlength="100"
 						id="slug" name="slug" >
@@ -59,36 +58,36 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label">Trạng Thái</label>
+				<label class="col-md-2 col-form-label">Trạng Thái<span class="error"> *</span></label>
 				<div class="col-md-10">
 					<div class="md-radio-inline">
 						<div class="md-radio">
-							<input type="radio" id="radio54" name="status" value="active"
+							<input type="radio" id="statusactive" name="status" value="active"
 								${gameCategory.status == 'active' ? 'checked' : '' }
-								class="md-radiobtn"> <label for="radio54"> <span></span>
+								class="md-radiobtn"> <label for="statusactive"> <span></span>
 								<span class="check"></span> <span class="box"></span>Kích Hoạt
 							</label>
 						</div>
 						<div class="md-radio has-info">
-							<input type="radio" id="radio55" name="status" value="inactive"
+							<input type="radio" id="statusinactive" name="status" value="inactive"
 								${gameCategory.status == 'inactive' ? 'checked' : '' }
 								checked="checked" class="md-radiobtn"> <label
-								for="radio55"> <span class="inc"></span> <span
+								for="statusinactive"> <span class="inc"></span> <span
 								class="check"></span> <span class="box"></span> Chưa Kích Hoạt
 							</label>
 						</div>
 						<div class="md-radio has-warning">
-							<input type="radio" id="radio56" name="status" value="draft"
+							<input type="radio" id="statusdraft" name="status" value="draft"
 								${gameCategory.status == 'draft' ? 'checked' : '' }
-								class="md-radiobtn"> <label for="radio56"> <span
+								class="md-radiobtn"> <label for="statusdraft"> <span
 								class="inc"></span> <span class="check"></span> <span
 								class="box"></span> Chờ Kích Hoạt
 							</label>
 						</div>
 						<div class="md-radio has-error">
-							<input type="radio" id="radio57" name="status" value="deleted"
+							<input type="radio" id="statusdeleted" name="status" value="deleted"
 								${gameCategory.status == 'deleted' ? 'checked' : '' }
-								class="md-radiobtn"> <label for="radio57"> <span></span>
+								class="md-radiobtn"> <label for="statusdeleted"> <span></span>
 								<span class="check"></span> <span class="box"></span> Xóa
 							</label>
 						</div>
@@ -100,7 +99,7 @@
 
 			<div class="form-group row"
 				style="border-top: 1px solid #e7ecf1; padding: 20px;">
-				<input hidden="" id="msg" value="${msg }"></input>
+				<input hidden="" id="msg" value="${msg }" />
 				<div class="offset-sm-2 col-md-10">
 
 					<button id="btn-submit" type="submit" class=" btn btn-primary">Xác
