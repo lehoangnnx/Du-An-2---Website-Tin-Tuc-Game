@@ -2,6 +2,7 @@ package com.javaweb.repository;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.Comment;
+import com.javaweb.model.Users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,4 +22,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
     List<Comment> findAllByCommentIdOrSubCommentId(Integer commentId, Integer subCommentId);
     Comment findByCommentId(Integer commentId);
     List<Comment> findAllByArticleAndStatus(Article article,String status);
+
+    Comment findTop1ByArticleAndUsersByUserIdAndSubCommentIdOrderByCreatedDateDesc
+            (Article article, Users users, Integer subCommentId);
 }

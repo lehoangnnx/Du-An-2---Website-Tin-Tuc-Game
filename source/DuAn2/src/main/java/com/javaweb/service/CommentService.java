@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.Comment;
+import com.javaweb.model.Users;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface CommentService {
     List<Comment> findAllByCommentIdOrSubCommentId(Integer commentId, Integer subCommentId);
     Comment findByCommentId(Integer commentId);
     List<Comment> findAllByArticleAndStatus(Article article,String status);
+    Comment findTop1ByArticleAndUsersByUserIdAndSubCommentIdOrderByCreatedDateDesc
+            (Article article, Users users, Integer subCommentId);
 }

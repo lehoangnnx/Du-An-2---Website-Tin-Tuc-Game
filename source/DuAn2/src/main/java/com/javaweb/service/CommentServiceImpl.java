@@ -2,6 +2,7 @@ package com.javaweb.service;
 
 import com.javaweb.model.Article;
 import com.javaweb.model.Comment;
+import com.javaweb.model.Users;
 import com.javaweb.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -58,5 +59,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findAllByArticleAndStatus(Article article, String status) {
         return commentRepository.findAllByArticleAndStatus(article,status);
+    }
+
+    @Override
+    public Comment findTop1ByArticleAndUsersByUserIdAndSubCommentIdOrderByCreatedDateDesc(Article article, Users users, Integer subCommentId) {
+        return commentRepository.findTop1ByArticleAndUsersByUserIdAndSubCommentIdOrderByCreatedDateDesc(article,users,subCommentId);
     }
 }

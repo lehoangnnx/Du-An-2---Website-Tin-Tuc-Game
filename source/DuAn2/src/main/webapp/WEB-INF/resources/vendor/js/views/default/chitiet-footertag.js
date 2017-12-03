@@ -315,153 +315,71 @@ $('.btn-postcomment').click(function () {
             //dataType: 'json',
             // timeout: 600000,
             success: function (result) {
-
+                console.log(result);
                 $("#LoadingImage").hide();
                 $('#content').val('');
                 var html = '';
 
-                if (result.userIdLogin != 0) {
-
-                    for (var i = 0; i < Object.keys(result.commentparent).length; i++) {
-                        if (result.commentparent[i].subCommentId === 0) {
-                            var childcomment = "";
-                            for (var j = 0; j < Object.keys(result.commentchild).length; j++) {
-                                if (result.commentchild[j].subCommentId !== 0 && result.commentchild[j].subCommentId === result.commentparent[i].commentId) {
-                                    var checkuserIdLoginCommentChild = '';
-                                    if (result.userIdLogin != result.commentchild[j].usersByUserId) {
-                                        var statusofusercommentlike = "";
-                                        if(result.commentchild[j].statusofusercommentlike == true){
-                                            statusofusercommentlike = " Bỏ Thích";
-                                        }else {
-                                            statusofusercommentlike = " Thích";
-                                        }
-                                        checkuserIdLoginCommentChild = " <span class=\"item-meta\"> " +
-                                            "<a href=\"javascript:void(0);\" onclick=\"commentlike("+result.commentchild[j].commentId+");\">" +
-                                            "<span id=\"countcommentlike"+result.commentchild[j].commentId+"\" " +
-                                            "style=\"margin:10px;\">"+result.commentchild[j].countcommentlike+"</span><i\n" +
-                                            " class=\"fa fa-thumbs-o-up\"></i><span id=\"statuscommentlike"+result.commentchild[j].commentId+"\" " +
-                                            "style=\"margin:5px;\">"+statusofusercommentlike+"</span> </a>\n" +
-                                            "       <a class=\"replycomment\"\n" +
-                                            "       onclick=\"replysubcomment('" + result.userName + "' ,'" + result.avatar + "' ," + result.commentchild[j].commentId + "," + result.commentparent[i].commentId + "," + result.commentchild[j].usersByUserId + ",'" + result.commentchild[j].usersByUserUserName + "' );\"\n" +
-                                            "        href=\"javascript:void(0)\"><i\n" +
-                                            "       class=\"fa fa-comment-o\"\n" +
-                                            "      style=\"margin-left: 25px;\"></i> \n" +
-                                            "Bình luận</a>\n" +
-                                            "</span> \n";
-                                    }
-                                    var editcommentchild = "";
-                                    if (result.roleEditComment == true || result.userIdLogin == result.commentchild[j].usersByUserId) {
-                                        editcommentchild = "<div class=\"dropdown time-stamp pull-right right\">\n" +
-                                            "   <button onclick=\"myFunction(" + result.commentchild[j].commentId + ")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
-                                            "  <div id=\"myDropdown" + result.commentchild[j].commentId + "\" class=\"dropdown-content\">\n" +
-                                            "  <a onclick=\"showModelDeleteComment(" + result.commentchild[j].commentId + ");\" href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                            "   <a onclick=\"showUpdateComment('" + result.userName + "' ,'" + result.avatar + "' ," + result.commentchild[j].commentId + "," + result.commentparent[i].commentId + "," + result.commentchild[j].usersByUserId + ",'" + result.commentchild[j].usersByUserUserName + "' );\" href=\"javascript:void(0)\">Sửa</a>\n" +
-                                            "   </div>\n" +
-                                            "  </div>";
-                                    }
-
-                                    childcomment += "<ul style=\"background-color: aliceblue;\" class=\"children\">\n" +
-                                        "   <li class=\"comment\">\n" +
-                                        "    <div class=\"comment-block\">\n" +
-                                        "    <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
-                                        "    src=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
-                                        "    data-ot-retina=\"" + result.commentchild[j].usersByUserAvatar + "\"\n" +
-                                        "     alt=\"\"\n" +
-                                        "     title=\"\">\n" +
-                                        "     </a>\n" +
-                                        "     <div class=\"comment-text\">\n" +
-                                        "     <strong\n" +
-                                        "     class=\"user-nick\">" +
-                                        editcommentchild +
-                                        "<a href=\"javascript:void(0)\">" + result.commentchild[j].usersByUserUserName + "</a>\n" +
-
-                                        "<span style=\"margin-top: 5px;\" class=\"time-stamp \">" + result.commentchild[j].modifiedDate + "</span>\n" +
-                                        "</strong>\n" +
-                                        "        <div class=\"shortcode-content\">\n" +
-                                        "         <p style=\"color: #ABABAB\">\n" +
-                                        "        <a style=\"color: #0c91e5;\"\n" +
-                                        "      href=\"\">@" + result.commentchild[j].usersBySubUserUserName + "</a>\n" +
-                                        "     <span id=\"spanContent" + result.commentchild[j].commentId + "\">" + result.commentchild[j].content + " </span> </p>\n" +
-                                        "         </div>\n" +
-                                        checkuserIdLoginCommentChild +
-                                        " </div>\n" +
-                                        "<div class=\"comment-text\">\n" +
-                                        "   <div id=\"showreplycomment" + result.commentchild[j].commentId + "\" class=\"comment-block\" style=\" margin:0px; margin-top:25px; \">\n" +
-
-                                        "   </div>\n" +
-
-                                        "</div>\n" +
-                                        " </div>\n" +
-                                        "  </li>\n" +
-                                        "    </ul>\n";
-                                }
-                            }
                             var checkuserIdLoginCommentParemt = '';
-                            if (result.userIdLogin != result.commentparent[i].usersByUserId) {
+                            if (result.userIdLogin != result.usersByUserId) {
                                 var statusofusercommentlike = "";
-                                if(result.commentparent[i].statusofusercommentlike == true){
+                                if(result.statusofusercommentlike == true){
                                     statusofusercommentlike = " Bỏ Thích";
                                 }else {
                                     statusofusercommentlike = " Thích";
                                 }
                                 checkuserIdLoginCommentParemt = " <span class=\"item-meta\"> " +
-                                    "<a href=\"javascript:void(0);\" onclick=\"commentlike("+result.commentparent[i].commentId+");\">" +
-                                    "<span id=\"countcommentlike"+result.commentparent[i].commentId+"\" " +
-                                    "style=\"margin:10px;\">"+result.commentparent[i].countcommentlike+"</span><i\n" +
-                                    "    class=\"fa fa-thumbs-o-up\"></i><span id=\"statuscommentlike"+result.commentparent[i].commentId+"\" " +
+                                    "<a href=\"javascript:void(0);\" onclick=\"commentlike("+result.commentId+");\">" +
+                                    "<span id=\"countcommentlike"+result.commentId+"\" " +
+                                    "style=\"margin:10px;\">"+result.countcommentlike+"</span><i\n" +
+                                    "    class=\"fa fa-thumbs-o-up\"></i><span id=\"statuscommentlike"+result.commentId+"\" " +
                                     "style=\"margin:5px;\">"+statusofusercommentlike+"</span> </a>\n" +
                                     "    <a class=\"replycomment\" href=\"javascript:void(0)\"\n" +
-                                    "     onclick=\"replysubcomment('" + result.userName + "' ,'" + result.avatar + "' ," + result.commentparent[i].commentId + "," + result.commentparent[i].commentId + "," + result.commentparent[i].usersByUserId + ",'" + result.commentparent[i].usersByUserUserName + "');\">\n" +
+                                    "     onclick=\"replysubcomment('" + result.userName + "' ,'" + result.avatar + "' ," + result.commentId + "," + result.commentId + "," + result.usersByUserId + ",'" + result.usersByUserUserName + "');\">\n" +
                                     "     <i class=\"fa fa-comment-o\" style=\"margin-left: 25px;\"></i> Bình\n" +
                                     "luận</a>\n" +
                                     "</span>\n";
                             }
                             var editcommentparen = "";
-                            if (result.roleEditComment == true || result.userIdLogin == result.commentparent[i].usersByUserId) {
+                            if (result.roleEditComment == true || result.userIdLogin == result.usersByUserId) {
                                 editcommentparen = "<div class=\"dropdown time-stamp pull-right right\">\n" +
-                                    "   <button onclick=\"myFunction(" + result.commentparent[i].commentId + ")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
-                                    "  <div id=\"myDropdown" + result.commentparent[i].commentId + "\" class=\"dropdown-content\">\n" +
-                                    "  <a onclick=\"showModelDeleteComment(" + result.commentparent[i].commentId + ");\" href=\"javascript:void(0)\"data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
-                                    "   <a onclick=\"showUpdateComment('" + result.userName + "' ,'" + result.avatar + "' ," + result.commentparent[i].commentId + "," + result.commentparent[i].commentId + "," + result.commentparent[i].usersByUserId + ",'" + result.commentparent[i].usersByUserUserName + "');\" href=\"javascript:void(0)\">Sửa</a>\n" +
+                                    "   <button onclick=\"myFunction(" + result.commentId + ")\" class=\"dropbtn fa fa-ellipsis-h\" style=\"color: #0b0b0b\"></button>\n" +
+                                    "  <div id=\"myDropdown" + result.commentId + "\" class=\"dropdown-content\">\n" +
+                                    "  <a onclick=\"showModelDeleteComment(" + result.commentId + ");\" href=\"javascript:void(0)\"data-toggle=\"modal\" data-target=\"#myModal\" >Xóa</a>\n" +
+                                    "   <a onclick=\"showUpdateComment('" + result.userName + "' ,'" + result.avatar + "' ," + result.commentId + "," + result.commentId + "," + result.usersByUserId + ",'" + result.usersByUserUserName + "');\" href=\"javascript:void(0)\">Sửa</a>\n" +
                                     "   </div>\n" +
                                     "  </div>";
                             }
                             html += "  <li  class=\"comment\">\n" +
-                                " <div id=\"comment" + result.commentparent[i].commentId + "\" class=\"comment-block\">\n" +
+                                " <div id=\"comment" + result.commentId + "\" class=\"comment-block\">\n" +
                                 "  <a href=\"javascript:void(0)\" class=\"image-avatar\"> <img\n" +
-                                "  src=\" " + result.commentparent[i].usersByUserAvatar + " \" \n" +
-                                "   data-ot-retina=\"" + result.commentparent[i].usersByUserAvatar + " \"\n" +
+                                "  src=\" " + result.usersByUserAvatar + " \" \n" +
+                                "   data-ot-retina=\"" + result.usersByUserAvatar + " \"\n" +
                                 "   alt=\"\"\n" +
                                 "   title=\"\">\n" +
                                 "    </a>\n" +
                                 "   <div class=\"comment-text\">\n" +
                                 "    <strong\n" +
-                                "      class=\"user-nick\">" +
+                                "   class=\"user-nick\">" +
                                 editcommentparen +
-                                "<a href=\"javascript:void(0)\"> " + result.commentparent[i].usersByUserUserName + " </a>" +
-                                "<span style=\"margin-top: 5px;\" class=\"time-stamp \">" + result.commentparent[i].modifiedDate + "</span>" +
+                                "<a href=\"javascript:void(0)\"> " + result.usersByUserUserName + " </a>" +
+                                "<span style=\"margin-top: 5px;\" class=\"time-stamp \">" + result.modifiedDate + "</span>" +
                                 "</strong>\n" +
                                 "       <div class=\"shortcode-content\">\n" +
-                                "     <p id=\"spanContent" + result.commentparent[i].commentId + "\">" + result.commentparent[i].content + "</p>\n" +
+                                "     <p id=\"spanContent" + result.commentId + "\">" + result.content + "</p>\n" +
                                 "    </div>\n" +
                                 checkuserIdLoginCommentParemt +
                                 "   </div>\n" +
                                 "<div class=\"comment-text\">\n" +
-                                "   <div id=\"showreplycomment" + result.commentparent[i].commentId + "\" class=\"comment-block\" style=\" margin-top:25px; \">\n" +
+                                "   <div id=\"showreplycomment" + result.commentId + "\" class=\"comment-block\" style=\" margin-top:25px; \">\n" +
                                 "   </div>\n" +
                                 "</div> \n" +
                                 "  </div>\n" +
-                                "<div id=\"childcomment" + result.commentparent[i].commentId + "\" >\n" +
-                                "" + childcomment + "" +
+                                "<div id=\"childcomment" + result.commentId + "\" >\n" +
                                 "</div>\n" +
                                 "   </li>\n";
 
-                        }
-
-                    }
-
-                }
-                $('#comments').html(html);
+                $('#comments').prepend(html);
                 $('html, body').animate({
                     scrollTop: $(".article-main-next-prev").offset().top
                 }, 500);

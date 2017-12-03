@@ -74,9 +74,7 @@ public class DefaultController {
     }
 
     @RequestMapping(value = {"/", "/home"})
-    public String index(Model model
-
-    ) {
+    public String index(Model model) {
     	
         /*
         * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Video

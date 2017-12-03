@@ -1,3 +1,9 @@
+
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AccessDeniedHandlerImpl kế thừa AccessDeniedHandler thực thi khi quyền truy cập không cho phép.
+* */
 package com.javaweb.controller.administrator;
 
 import java.util.Comparator;
@@ -29,20 +35,32 @@ public class AdminArticlesCategoryController {
 	ArticleCategoryService articleCategoryService;
 
 
+
 	@GetMapping("/articles/categorys")
 	public String showArticlesCategory(Model model,@RequestParam(name = "status", defaultValue = "active") String status) {
-		List<ArticleCategory> articleCategoriesList = articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc(status);
+
+		// Lấy danh sách danh mục bài viết theo status
+		List<ArticleCategory> articleCategoriesList = articleCategoryService
+				.findAllByStatusOrderByArticleCategoryIdDesc(status);
+
+		// Lưu danh sách danh mục bài viết vào Model
 		model.addAttribute("articleCategoriesList", articleCategoriesList);
 		return "articlescategory";
 	}
+
+
 	@GetMapping("/articles/categorys/addcategorys")
 	public String addcategorys(Model model ) {
-		List<ArticleCategory> articleCategoryList= articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc("active");
+		// Lấy danh sách danh mục bài viết theo status
+		List<ArticleCategory> articleCategoryList= articleCategoryService
+				.findAllByStatusOrderByArticleCategoryIdDesc("active");
+		// Lưu danh sách danh mục bài viết vào Model
 		model.addAttribute("articleCategoryList", articleCategoryList);
 		return "addarticlescategory"; 
 	}
 	
 	@PostMapping("/articles/categorys")
+	// Lưu danh mục bài viết
 	public String addcategorys(Model model, @RequestParam("name") String name,
 			@RequestParam("slug") String slug, @RequestParam("status") String status,
 			@RequestParam( "subArticleCategoryId") Integer subArticleCategoryId,
@@ -73,19 +91,27 @@ public class AdminArticlesCategoryController {
 	
 	@GetMapping("/articles/categorys/{articleCategoryId}")
 	public String updateArticleCategory(Model model, @PathVariable("articleCategoryId") Integer articleCategoryId) {
+		// Lấy danh mục bài viết theo Id
 		ArticleCategory articleCategory = articleCategoryService.findByArticleCategoryId(articleCategoryId);
-		List<ArticleCategory> articleCategoryList= articleCategoryService.findAllByStatusOrderByArticleCategoryIdDesc("active");
+
+		// Lấy danh sách danh mục bài viết theo status
+		List<ArticleCategory> articleCategoryList= articleCategoryService
+				.findAllByStatusOrderByArticleCategoryIdDesc("active");
+
 		model.addAttribute("articleCategoryList", articleCategoryList);
 		model.addAttribute("articleCategory", articleCategory);
 		return "updatearticlescategory";
 	}
 	
 	@PatchMapping("/articles/categorys")
+	// Sửa danh mục bài viết
 	public String updateArticleCategory(@RequestParam("articleCategoryId") Integer articleCategoryId,
 			@RequestParam("name") String name,
 			@RequestParam("slug") String slug, @RequestParam("status") String status,
 			@RequestParam( "subArticleCategoryId") Integer subArticleCategoryId,
 			RedirectAttributes redirectAttributes) {
+
+		// Lấy danh mục bài viết theo Id
 		ArticleCategory articleCategory = articleCategoryService.findByArticleCategoryId(articleCategoryId);
 		
 		try {
@@ -109,6 +135,7 @@ public class AdminArticlesCategoryController {
 	}
 	
 	@DeleteMapping("/articles/categorys")
+	// Xóa danh mục bài viết
 	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId ,
 			RedirectAttributes redirectAttributes) {
 		

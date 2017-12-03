@@ -175,10 +175,10 @@
 
             <div class="feed-widget-header">
                 <h2 class="widget-title feed-widget-title">
-                    <a href="${contextPath}/game.html?sorted=news">GAME</a>
+                    <a href="${contextPath}/games/hoso.html">GAME</a>
                 </h2>
                 <div class="feed-widget-viewall">
-                    <a href="${contextPath}/game.html?sorted=news"><span>XEM THÊM</span> <i
+                    <a href="${contextPath}/games/hoso.html"><span>XEM THÊM</span> <i
                             class="fa fa-chevron-right"></i></a>
                 </div>
                 <div class="clear"></div>

@@ -43,7 +43,8 @@ public class CommentRestController {
     public Map<String, Object> comment(@RequestParam("articleId") Integer articleId,
                                        @RequestParam("content") String content, Authentication authentication,
                                        HttpServletRequest request) {
-
+        DateFormat df = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+        Map<String, Object> commentMap = new HashMap<String, Object>();
         try {
 
             Users users = usersService.findByUserName(authentication.getName());
@@ -57,13 +58,78 @@ public class CommentRestController {
             comment.setStatus("active");
             comment.setCreatedDate(new Date());
             comment.setModifiedDate(new Date());
-
             commentService.saveorupdate(comment);
-        } catch (Exception e) {
 
+            Comment newcomment=commentService.findTop1ByArticleAndUsersByUserIdAndSubCommentIdOrderByCreatedDateDesc
+                    (article,users,0);
+
+
+            commentMap.put("commentId", newcomment.getCommentId());
+            commentMap.put("subCommentId", newcomment.getSubCommentId());
+            commentMap.put("articleId", newcomment.getArticle().getArticleId());
+            commentMap.put("usersByUserId", newcomment.getUsersByUserId().getUserId());
+            commentMap.put("usersBySubUserId", newcomment.getUsersBySubUserId().getUserId());
+            if (newcomment.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
+                    || newcomment.getUsersByUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE"))) {
+
+                commentMap.put("usersByUserUserName", newcomment.getUsersByUserId().getFirstName()+" "
+                        + newcomment.getUsersByUserId().getLastName());
+                commentMap.put("usersByUserAvatar", newcomment.getUsersByUserId().getAvatar());
+            } else {
+                commentMap.put("usersByUserUserName", newcomment.getUsersByUserId().getUserName());
+                commentMap.put("usersByUserAvatar", request.getContextPath() + "/images/avatar/" + newcomment.getUsersByUserId().getAvatar());
+            }
+            if (newcomment.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_FACEBOOK"))
+                    || newcomment.getUsersBySubUserId().getRoleses().contains(rolesService.findByName("ROLE_GOOGLE"))) {
+                commentMap.put("usersBySubUserUserName", newcomment.getUsersBySubUserId().getFirstName()+" "+newcomment.getUsersBySubUserId().getLastName());
+
+            } else {
+                commentMap.put("usersBySubUserUserName", newcomment.getUsersBySubUserId().getUserName());
+            }
+            if (authentication != null){
+                if(commentLikeService.findByCommentAndUsers(newcomment,usersService.findByUserName(authentication.getName())) == null){
+                    commentMap.put("statusofusercommentlike", false);
+                }
+                else {
+                    commentMap.put("statusofusercommentlike", true);
+                }
+            }
+
+
+            commentMap.put("countcommentlike", commentLikeService.countByComment(newcomment));
+            commentMap.put("usersBySubUserUserName", newcomment.getUsersBySubUserId().getUserName());
+            commentMap.put("content", newcomment.getContent());
+            commentMap.put("modifiedDate", df.format(newcomment.getModifiedDate()));
+
+            int userIdLogin = 0;
+            boolean roleEditComment = false;
+            String avatar = "";
+            String userName = "";
+
+
+                userIdLogin = users.getUserId();
+                if (request.isUserInRole("ROLE_FACEBOOK")
+                        || request.isUserInRole("ROLE_GOOGLE")) {
+                    userName = users.getFirstName();
+                    avatar = users.getAvatar();
+                } else {
+                    userName = users.getUserName();
+                    avatar = request.getContextPath() + "/images/avatar/" + users.getAvatar();
+                }
+                if (request.isUserInRole("ROLE_ADMIN")
+                        || article.getUsers().getUserId() == usersService.findByUserName(authentication.getName()).getUserId()) {
+                    roleEditComment = true;
+                }
+
+            commentMap.put("userIdLogin", userIdLogin);
+            commentMap.put("avatar", avatar);
+            commentMap.put("userName", userName);
+            commentMap.put("roleEditComment", roleEditComment);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-        return getAllcommentPaging("0", articleId, authentication, request);
+        return commentMap;
     }
 
     @PostMapping("/replycomment")

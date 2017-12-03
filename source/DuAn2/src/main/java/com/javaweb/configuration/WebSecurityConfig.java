@@ -60,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsersConnectionRepository usersConnectionRepository;
 
+    // Inject AccessDeniedHandlerImpl để cấu hình
     @Autowired
     private AccessDeniedHandlerImpl accessDeniedHandler;
 
