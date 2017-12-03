@@ -231,7 +231,7 @@
                             <div class="box">
                                 <div class="title">
                                     <h2>
-                                        <a style="color: white;" href="${contextPath}/games/hoso.html?gamecategory=game-mobile">Game mobile</a>
+                                        <a style="color: white;" href="${contextPath}/games/hoso.html?gamecategory=mobile">Game mobile</a>
                                     </h2>
                                 </div>
                                 <ul>
@@ -257,7 +257,7 @@
 
                                 </ul>
                                 <div class="more">
-                                    <a href="${contextPath}/games/hoso.html?gamecategory=game-mobile">Xem thêm</a>
+                                    <a href="${contextPath}/games/hoso.html?gamecategory=mobile">Xem thêm</a>
                                 </div>
                             </div>
                         </div>

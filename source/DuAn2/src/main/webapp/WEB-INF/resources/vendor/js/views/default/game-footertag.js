@@ -36,17 +36,11 @@ $( document ).ready(function() {
 $(document).ready(function(){
     var searchParams = new URLSearchParams(window.location.search);
     if(searchParams.has('gamecategory')){
-        $('#gameCategorySlug').find('option').each(function(i,e){
-            if($(e).val() == searchParams.get('gamecategory')){
-                $('#gameCategorySlug').prop('selectedIndex',i);
-            }
-        });
+        $('#gameCategorySlug').val(searchParams.get('gamecategory'));
+
     }else {
-        $('#gameCategorySlug').find('option').each(function(i,e){
-            if($(e).val() == 'all'){
-                $('#gameCategorySlug').prop('selectedIndex',i);
-            }
-        });
+        $('#gameCategorySlug').val('all');
+
     }
     getGame();
 });
@@ -82,9 +76,9 @@ function unescapeHtml(safe) {
 var timeout1 = null;
 var page = 1;
 function getGame() {
-    var searchParams = new URLSearchParams(window.location.search);
-    if(searchParams.has('sorted')){
-        var sorted = searchParams.get('sorted');
+    var searchParams1 = new URLSearchParams(window.location.search);
+    if(searchParams1.has('sorted')){
+        var sorted = searchParams1.get('sorted');
 
     }else {
         var sorted = 'news';
