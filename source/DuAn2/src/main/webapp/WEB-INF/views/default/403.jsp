@@ -15,10 +15,11 @@
 
 									<div class="big-message-inner">
 										<i class="fa fa-file-text-o"></i>
-										<h1>Page not found</h1>
-										<h2>Error 404</h2>
-										<p>Dang it! We just lost this page. If you have any idea what had to be in here, please let us know by <a href="contact-us.html">contacting us </a>.</p>
-										<a href="${contextPath }/" class="back-button"><i class="fa fa-home"></i>Back to homepage</a>
+										<h1>Không Tìm Thấy Trang</h1>
+										<h2>Lỗi 404</h2>
+										<p>Lỗi! Đã có vần đề gì đó gây ra lỗi. Nếu bạn có bất kỳ ý tưởng gì hoặc góp ý.
+											 Vui lòng cho chúng tôi biết bằng cách <a target="_blank" href="https://goo.gl/forms/xsW3nOs2gbXr8J5D2">liên hệ với chùng tôi </a>.</p>
+										<a href="${contextPath }/" class="back-button"><i class="fa fa-home"></i>Quay Về Trang Chủ</a>
 									</div>
 
 								</div>

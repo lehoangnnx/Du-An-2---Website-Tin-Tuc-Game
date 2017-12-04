@@ -74,7 +74,7 @@
                             ${fn:substring(user.firstName, 0, 6)}
                         </security:authorize> <security:authorize
                                 access="hasAnyRole('MEMBER', 'ADMIN')">
-                            ${user.userName}
+                            ${fn:substring(user.userName, 0, 6)}
                         </security:authorize> <span class="fa fa-level-down"></span>
                         </a>
                             <ul class="dropdown-menu ">

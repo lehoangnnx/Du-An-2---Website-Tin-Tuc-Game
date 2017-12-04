@@ -26,7 +26,8 @@
 
 
             <li class="nav-item dropdown hidden-sm-down">
-                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                <label style="font-weight: bold;font-size: 15px; margin-right: 10px;text-transform: uppercase;"> ${user.userName}</label>
+                <a href="javascipt:void(0);" data-toggle="dropdown" aria-expanded="false">
 									<span class="avatar box-32">
 										<img src="${contextPath}/images/avatar/${user.avatar}" alt="">
 									</span>

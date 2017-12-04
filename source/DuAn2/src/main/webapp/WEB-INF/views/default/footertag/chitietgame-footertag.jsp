@@ -29,5 +29,5 @@
 <script src="https://apis.google.com/js/api:client.js"></script>
 
 <script>var contextPath = "${pageContext.request.contextPath}"</script>
-<script src="${contextPath}/js/js/layout/default/layout-footertag.js"></script>
-<script src="${contextPath}/js/js/views/default/chitietgame-footertag.js"></script>
+<script src="${contextPath}/js/js/layout/default/layout-footertag.min.js"></script>
+<script src="${contextPath}/js/js/views/default/chitietgame-footertag.min.js"></script>

@@ -387,9 +387,9 @@ function checkregister(){
 	    if (userName == '') {
 	        $('#msgerror-r').text('* Vui Lòng Nhập UserName');
 	        return false;
-	    } else if (userName.length < 6) {
+	    } else if (userName.length < 6 || userName.length > 16 ) {
 	        $('#msgerror-r').text(
-	            '* Tên Đăng Nhập Phải Lớn Hơn 6 Ký Tự');
+	            '* Tên Đăng Nhập Từ 6 - 16 Ký Tự');
             return false;
 	    } else if (email == '') {
 	        $('#msgerror-r').text('* Vui Lòng Nhập Email');

@@ -30,6 +30,6 @@
 <script src="${contextPath}/js/js/jquery-ui.js"></script>
 
 <script>var contextPath = "${pageContext.request.contextPath}"</script>
-<script src="${contextPath}/js/js/layout/default/layout-footertag.js"></script>
-<script src="${contextPath}/js/js/views/default/game-footertag.js"></script>
+<script src="${contextPath}/js/js/layout/default/layout-footertag.min.js"></script>
+<script src="${contextPath}/js/js/views/default/game-footertag.min.js"></script>
 

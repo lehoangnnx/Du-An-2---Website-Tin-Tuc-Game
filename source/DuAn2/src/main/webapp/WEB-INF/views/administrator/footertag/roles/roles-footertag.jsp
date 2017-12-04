@@ -54,66 +54,8 @@
 <script type="text/javascript" src="${contextPath}/js/js/demo.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/js/js/tables-datatable.js"></script>
+<script>var contextPath = "${pageContext.request.contextPath}"</script>
 
-<!-- Check All Checkbox Table Users -->
-<script type="text/javascript">
-    $('#allcb').change(function() {
-        $("input[type='checkbox'][name='cb']").prop('checked', $(this).prop('checked'));
-
-    });
-
-    var tableControl = document.getElementById('table-3');
-    $("input[name='cb']").change(function() {
-        console.log($('[name="cb"]'));
-        var result = []
-
-        $('input[name=cb]:checked', tableControl).each(function() {
-            console.log($(this).val()+"i")
-            result.push($(this).val());
-            if(result.indexOf('on') == 0){
-                result.splice(result.indexOf('on'), 1 );
-            }
-        });
-
-        $("#arrayId").val(result);
-        console.log("ID :" + result);
-    });
-</script>
-<script>
-
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-
-</script>
-<script>
-	function deleteOne(arrayId){
-			$("#arrayId").val(arrayId);
-			$("#command").attr("action", "${pageContext.request.contextPath}/admin/roles");
-		}
-	function deleteAll(){
-			$("#command").attr("action", "${pageContext.request.contextPath}/admin/roles");
-	}
-</script>
-<script>
-$(document).ready(function() {
-	var msg = $("#msg").val();
-	if(msg != "" ){
-		alert(msg);
-	}
-	
-});
-</script>
-
+<script type="text/javascript"
+		src="${contextPath}/js/js/views/administrator/roles/roles-footertag.min.js"></script>
 
