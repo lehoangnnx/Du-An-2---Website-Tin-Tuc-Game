@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 15/11/2017
+* */
 package com.javaweb.controller;
 
 import java.io.File;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ImagesManager {
+	// Kiểm tra thư mục theo đường dẫn có tồn tại
 	public boolean checkFolderExists(String path) {
 		File file = new File(path);
 		if (!file.exists()) {
@@ -26,6 +31,7 @@ public class ImagesManager {
 		}
 		return true;
 	}
+	// Đổi tên file
 	public String renameFile(String fileName) {
         String[] arrImg = fileName.split("\\.");
         
@@ -41,7 +47,8 @@ public class ImagesManager {
         nameFile = nameFile + "-" + System.nanoTime() + "." + duoiFileImg;
         return nameFile;
     }
-	
+
+    // Lấy tháng và năm hiện tại
 	public String getMonthAndYearNow() {
 		Date date = new Date();
 		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

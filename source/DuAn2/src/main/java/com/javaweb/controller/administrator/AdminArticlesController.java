@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminArticlesController thực thi xử lý quản lý bài viết
+* */
+
 package com.javaweb.controller.administrator;
 
 import java.nio.file.Files;
@@ -219,6 +225,7 @@ public class AdminArticlesController {
 			article.setArticleCategories(articleCategories);
 			article.setTagses(tagses);
 			article.setUsers(usersService.findByUserName(principal.getName()));
+
 			// Kiểm tra nếu imagesThumbnail khác rỗng
 			if (!imagesThumbnail.isEmpty()) {
 				// Kiểm tra và tạo thư mục trong đường dẫn /WEB-INF/files/images/articles/" +
@@ -254,6 +261,7 @@ public class AdminArticlesController {
 	}
 
 	@GetMapping("/articles/{articleId}")
+	//Lấy bài viết theo ID
 	public String updateArticles(Model model, @PathVariable("articleId") Integer articleId
 
 	) {
@@ -406,6 +414,7 @@ public class AdminArticlesController {
 	}
 
 	@DeleteMapping("/articles")
+	// Xóa bài viết
 	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId, RedirectAttributes redirectAttributes) {
 
 		try {

@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp GamesServiceImpl kế thừ Interface GamesService thưc thi xử lý
+* */
 package com.javaweb.service;
 
 import java.util.List;

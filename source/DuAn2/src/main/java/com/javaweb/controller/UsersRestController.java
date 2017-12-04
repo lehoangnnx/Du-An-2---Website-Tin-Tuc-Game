@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 15/11/2017
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.Users;
@@ -24,6 +28,7 @@ public class UsersRestController {
     @Autowired
     PasswordEncoder passwordEncoder;
     @PostMapping("/validator-user")
+    // Kiểm tra email người dùng bị trùng
     public String validatorUser(@RequestBody Users user,Authentication authentication ) {
 
         String error = "erroremail";
@@ -40,6 +45,7 @@ public class UsersRestController {
         return error;
     }
     @PostMapping("/validator-password")
+    // Kiểm tra mật khẩu cũ
     public String validatorPassword(@RequestBody Users user,Authentication authentication ) {
 
         String error = "errorpassword";
@@ -57,6 +63,7 @@ public class UsersRestController {
         return error;
     }
     @PostMapping("/changepassword")
+    // Sửa mật khẩu
     public String changePassword(@RequestBody Users user,Authentication authentication ) {
 
         String error = "error";

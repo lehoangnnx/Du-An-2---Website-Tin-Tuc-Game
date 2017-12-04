@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.*;
@@ -32,10 +36,10 @@ public class GamesController {
     ArticleCategoryService articleCategoryService;
 
     @ModelAttribute("user")
+    // Lưu session người dùng
     public void sessionUser(Authentication authentication, HttpSession session) {
 
         if (authentication != null) {
-            System.out.println("VAO DAY");
             System.out.println(authentication.getAuthorities());
             session.setAttribute("user", usersService.findByUserName(authentication.getName()));
 
@@ -43,6 +47,7 @@ public class GamesController {
     }
     @ModelAttribute("articleCategoryList")
     public List<ArticleCategory> getCategory() {
+        // Lấy danh sách danh mục bài viết theo status
         List<ArticleCategory> articleCategoryList = articleCategoryService.findAllByStatusOrderBySortOrderAsc("active");
 
         return articleCategoryList;
@@ -50,16 +55,23 @@ public class GamesController {
     }
     @ModelAttribute("gamesCategoryList")
     public List<GameCategory> gamesCategoryList() {
-        List<GameCategory> articleCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
+        // Lấy danh sách danh mục game
+        List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
 
-        return articleCategoryList;
+        return gameCategoryList;
 
     }
     @RequestMapping("/games/hoso.html")
+    // Hiển thị trang game
     String tranggame(Model model) {
         try {
+
+            // Lấy danh sách game theo status và isHot
             List<Games> Top5gamesList = gamesService.findTop5ByStatusAndIsHotOrderByViewsDesc("active",(byte) 1);
+            // Lấy tất cả danh sách game
             List<Games> gamesList = gamesService.findAll();
+
+            // Lấy danh sách danh mục game
             List<GameCategory> gameCategoryList = gameCategoryService.findAll().stream()
                     .filter(x -> x.getStatus().equals("active")).collect(Collectors.toList());
             model.addAttribute("Top5gamesList",Top5gamesList);
@@ -78,6 +90,7 @@ public class GamesController {
 
     }
     @RequestMapping("/games/{slug}")
+    // Hiển thị trang chi tiết game
     public String chitietgame(Model model, @PathVariable("slug") String slug, Authentication authentication) {
 
         try {

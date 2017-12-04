@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp EmailServiceImpl kế thừ Interface EmailService thưc thi xử lý
+* */
 package com.javaweb.service;
 
 import java.io.File;

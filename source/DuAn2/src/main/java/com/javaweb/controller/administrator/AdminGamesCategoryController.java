@@ -1,3 +1,10 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminGamesCategoryController thực thi xử lý quản lý danh mục game
+* */
+
+
 package com.javaweb.controller.administrator;
 
 import java.util.Comparator;
@@ -32,19 +39,24 @@ public class AdminGamesCategoryController {
 	@Autowired
 	ArticleCategoryService articleCategoryService;
 	@GetMapping("/games/categorys")
+	// Hiển thị danh sách danh mục game
 	public String showGamesCategory(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
+		// Lấy danh sách danh mục game theo status và sắp xếp theo sort order
 		List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc(status);
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		return "gamescategory";
 	}
 	@GetMapping("/games/categorys/addcategorys")
+	// Hiển thị trang thêm danh mục game
 	public String addGamesCategorys(Model model) {
+		// Lấy danh sách danh mục game theo status và sắp xếp theo sort order
 		List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		return "addgamescategory"; 
 	}
 	
 	@PostMapping("/games/categorys")
+	// Thêm danh mục game
 	public String addGamesCategorys(Model model, @RequestParam("name") String name,
 			@RequestParam("slug") String slug, @RequestParam("status") String status,
 			@RequestParam( "subGameCategoryId") Integer subGameCategoryId,
@@ -74,8 +86,13 @@ public class AdminGamesCategoryController {
 	}
 	
 	@GetMapping("/games/categorys/{gameCategoryId}")
+	// Hiển thị trang sử danh mục game
 	public String updateArticleCategory(Model model, @PathVariable("gameCategoryId") Integer gameCategoryId) {
+
+		// Lấy danh mục game theo Id
 		GameCategory gameCategory= gameCategoryService.findByGameCategoryId(gameCategoryId);
+
+		// Lấy danh sách danh mục game theo status và sắp xếp theo sort order
 		List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
 		model.addAttribute("gameCategoryList", gameCategoryList);
 		model.addAttribute("gameCategory", gameCategory);
@@ -83,11 +100,14 @@ public class AdminGamesCategoryController {
 	}
 	
 	@PatchMapping("/games/categorys")
+	// Sửa danh mục game
 	public String updateArticleCategory(@RequestParam("gameCategoryId") Integer gameCategoryId,
 			@RequestParam("name") String name,
 			@RequestParam("slug") String slug, @RequestParam("status") String status,
 			@RequestParam( "subGameCategoryId") Integer subGameCategoryId,
 			RedirectAttributes redirectAttributes) {
+
+// Lấy danh mục game theo Id
 		GameCategory gameCategory = gameCategoryService.findByGameCategoryId(gameCategoryId);
 		
 		try {
@@ -111,6 +131,7 @@ public class AdminGamesCategoryController {
 	}
 	
 	@DeleteMapping("/games/categorys")
+	// Xóa danh mục game
 	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId ,
 			RedirectAttributes redirectAttributes) {
 		

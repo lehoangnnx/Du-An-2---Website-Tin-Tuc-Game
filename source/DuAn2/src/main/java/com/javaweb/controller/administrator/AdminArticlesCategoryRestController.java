@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminArticlesCategoryRestController thực thi quản lý danh mục bài viết bằng Ajax
+* */
+
 package com.javaweb.controller.administrator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +22,15 @@ public class AdminArticlesCategoryRestController {
 	@Autowired
 	ArticleCategoryService articleCategoryService;
 	@PostMapping("/validator-categorysarticles")
+	// Kiểm tra tên và đường dẫn bài viết bị trùng
 	public String validatorCategorysArticles(@RequestBody ArticleCategory articleCategory) {
 		ArticleCategory findByName = null;
 		ArticleCategory findBySlug = null;
 		
 		try {
+			// Lấy danh mục bài viết theo name
 			findByName = articleCategoryService.findByName(HtmlUtils.htmlEscape(articleCategory.getName()));
+			// Lấy danh mục bài viết theo slug
 			findBySlug= articleCategoryService.findBySlug(HtmlUtils.htmlEscape(articleCategory.getSlug()));
 			
 			if (articleCategory.getArticleCategoryId() == null) {

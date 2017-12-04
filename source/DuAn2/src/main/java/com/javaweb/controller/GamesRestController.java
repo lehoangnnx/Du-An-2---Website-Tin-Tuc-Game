@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp GamesRestController thực thi xử lý quản lý  game bằng Ajax
+* */
 package com.javaweb.controller;
 
 
@@ -30,6 +35,7 @@ public class GamesRestController {
     GameReviewsService gameReviewsService;
 
     @GetMapping("/getgames")
+    // Lấy danh sách game
     public List<Map<String, Object>> getGame(@RequestParam(value = "gameCategorySlug",defaultValue = "all") String gameCategorySlug,
                                              @RequestParam(value = "publishers",defaultValue = "all") String publishers,
                                              @RequestParam(value = "keysearch",defaultValue = "") String keysearch,

@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminArticlesRestController thực thi quản lý bài viết bằng Ajax
+* */
+
 package com.javaweb.controller.administrator;
 
 import java.security.Principal;
@@ -8,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletContext;
 
-import com.javaweb.model.ArticleLike;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
@@ -27,28 +33,24 @@ public class AdminArticlesRestController {
 
 	@Autowired
 	ServletContext context;
-	@PersistenceContext
-    EntityManager entityManager;
+
 	@PostMapping("/validator-article")
+	// Kiểm tra tiêu đề và đường dẫn bài viết bị trùng
 	public String validatorArticle(@RequestBody Article article) {
-		System.out.println("IIIII :" + article.getArticleId());
+
 		Article findByTitle = null;
 		Article findBySlug = null;
 		
 		try {
-			System.out.println("1");
 			findByTitle = articleService.findByTitle(HtmlUtils.htmlEscape(article.getTitle()));
 			findBySlug = articleService.findBySlug(HtmlUtils.htmlEscape(article.getSlug()));
 
 			if (article.getArticleId() == null) {
 				if (findByTitle != null && findBySlug != null) {
-					System.out.println("2");
 					return "error";
 				} else if (findByTitle != null) {
-					System.out.println("3");
 					return "errortitle";
 				} else if (findBySlug != null) {
-					System.out.println("4");
 
 					return "errorslug";
 				} else {
@@ -58,13 +60,12 @@ public class AdminArticlesRestController {
 				if (findByTitle != null && findBySlug != null
 						&& !findByTitle.getArticleId().equals(article.getArticleId())
 						&& !findBySlug.getArticleId().equals(article.getArticleId())) {
-					System.out.println("2");
+
 					return "error";
 				} else if (findByTitle != null && !findByTitle.getArticleId().equals(article.getArticleId())) {
-					System.out.println("3");
+
 					return "errortitle";
 				} else if (findBySlug != null && !findBySlug.getArticleId().equals(article.getArticleId())) {
-					System.out.println("4");
 
 					return "errorslug";
 				} else {
@@ -81,6 +82,7 @@ public class AdminArticlesRestController {
 	}
 
 	@PostMapping("/updateStatusArticles")
+	// Update trạng thái của bài viết
 	public String updateStatusArticles(@RequestBody Article article, Principal principal) {
 		System.out.println(article.getStatus() + article.getArticleId());
 		try {

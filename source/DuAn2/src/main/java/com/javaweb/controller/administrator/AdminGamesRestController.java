@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminGamesRestController thực thi xử lý quản lý  games bằng Ajax
+* */
+
 package com.javaweb.controller.administrator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +23,8 @@ public class AdminGamesRestController {
     GamesService gamesService;
 
     @PostMapping("/validator-games")
-	public String validatorCategorysArticles(@RequestBody Games games) {
+	// Kiểm tra tên và đường dẫn game bị trùng
+	public String validatorGame(@RequestBody Games games) {
     	Games findByName = null;
     	Games findBySlug = null;
 		

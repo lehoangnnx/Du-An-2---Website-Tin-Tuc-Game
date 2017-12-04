@@ -1,3 +1,9 @@
+
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminGamesController thực thi xử lý quản lý game
+* */
 package com.javaweb.controller.administrator;
 
 import java.nio.file.Files;
@@ -52,8 +58,11 @@ public class AdminGamesController {
     @Autowired
     UsersService usersService;
     @GetMapping("/games")
+    // Hiểm thị danh sách game
     public String getAllGames(Model model, @RequestParam(name = "status", defaultValue = "active") String status,
                               Authentication authentication, HttpServletRequest request) {
+
+        // Lấy danh sách game theo status và sắp xếp theo Id
         List<Games> gameList = gamesService.findAllByStatusOrderByGameIdDesc(status);
 
         model.addAttribute("gameList", gameList);
@@ -61,15 +70,23 @@ public class AdminGamesController {
     }
 
     @GetMapping("/games/addgames")
+    // Hiển thị trang thêm game
     public String addGames(Model model) {
+
+        // Lấy danh sách danh mục game theo status và sắp xếp theo Id
         List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatus("active");
         model.addAttribute("gameCategoryList", gameCategoryList);
         return "addgames";
     }
 
     @GetMapping("/games/{gameId}")
+    // Hiển thị trang sửa game
     public String addGames(Model model, @PathVariable("gameId") Integer gameId) {
+
+        // Lấy game theo Id
         Games games = gamesService.findByGameId(gameId);
+
+        // Lấy danh sách danh mục game theo status
         List<GameCategory> gameCategoryList = gameCategoryService.findAllByStatus("active");
         model.addAttribute("gameCategoryList", gameCategoryList);
         model.addAttribute("games", games);
@@ -77,6 +94,7 @@ public class AdminGamesController {
     }
 
     @PostMapping("/games")
+    // Thêm game
     public String addGames(Model model, @RequestParam("name") String name, @RequestParam("slug") String slug,
                            @RequestParam(value = "status",defaultValue = "inactive") String status, @RequestParam("gameCategories") List<Integer> gameCategories,
                            @RequestParam("releases") String releases, @RequestParam("publishers") String publishers,
@@ -90,7 +108,7 @@ public class AdminGamesController {
                            @RequestParam("images") MultipartFile images,
 
                            RedirectAttributes redirectAttributes) {
-        System.out.println("Vao POST");
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         String monthAndYear = imagesManager.getMonthAndYearNow();
         // Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
@@ -177,6 +195,7 @@ public class AdminGamesController {
     }
 
     @PatchMapping("/games")
+    //Sửa game
     public String updateGames(Model model, @RequestParam("gameId") Integer gameId, @RequestParam("name") String name, @RequestParam("slug") String slug,
                               @RequestParam(value = "status",defaultValue = "inactive") String status, @RequestParam("gameCategories") List<Integer> gameCategories,
                               @RequestParam("releases") String releases, @RequestParam("publishers") String publishers,
@@ -189,7 +208,7 @@ public class AdminGamesController {
                               @RequestParam("systemRequirements") String systemRequirements,
                               @RequestParam("images") MultipartFile images,
                               RedirectAttributes redirectAttributes, HttpServletRequest request) {
-        System.out.println("Vao PATCH");
+
 
         String monthAndYear = imagesManager.getMonthAndYearNow();
         // Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
@@ -280,6 +299,7 @@ public class AdminGamesController {
     }
 
     @DeleteMapping("/games")
+    // Xóa Game
     public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId, RedirectAttributes redirectAttributes) {
 
         try {

@@ -1,3 +1,10 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminGameReviewsRestController thực thi quản lý reviews games bằng Ajax
+* */
+
+
 package com.javaweb.controller.administrator;
 
 import com.javaweb.model.GameReviews;
@@ -23,6 +30,7 @@ public class AdminGameReviewsRestController {
     @Autowired
     GamesService gamesService;
     @PostMapping("/saveorupdategamereviews")
+    // Lưu hoặc sửa đánh giá game
     public String saveorupdategamereviews(@RequestParam("starreview") Integer starreview, @RequestParam("gameId") Integer gameId,
                                           Authentication authentication){
         GameReviews gameReviews =null;

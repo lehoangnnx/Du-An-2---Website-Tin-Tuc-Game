@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminRolesController thực thi xử lý quyền
+* */
+
 package com.javaweb.controller.administrator;
 
 
@@ -26,18 +32,22 @@ public class AdminRolesController {
 	RolesService rolesService;
 
 	@GetMapping("/roles")
+	// Hiển thị danh sách quyền
 	public String showArticlesCategory(Model model,@RequestParam(name = "status", defaultValue = "active") String status) {
 
+		// Lấy danh sách quyền thoe status và sắp xếp theo ID
 		List<Roles> rolesList = rolesService.findAllByStatusOrderByRoleIdDesc(status);
 		model.addAttribute("rolesList", rolesList);
 		return "roles";
 	}
 	@GetMapping("/addroles")
+	// Hiển thị trang thêm quyền
 	public String addcategorys(Model model ) {
 
 		return "addroles";
 	}
 	@PostMapping("/roles")
+	// Thêm quyền
 	public String addcategorys(Model model, @RequestParam("name") String name,
 							   @RequestParam("description") String description, @RequestParam("status") String status,
 							   RedirectAttributes redirectAttributes) {
@@ -63,13 +73,17 @@ public class AdminRolesController {
 	}
 
 	@GetMapping("/roles/{roleId}")
+	// Hiển thị trang sửa quyền
 	public String updateArticleCategory(Model model, @PathVariable("roleId") Integer roleId) {
+
+		// Lấy quyền theo Id
 		Roles roles = rolesService.findByRoleId(roleId);
 		model.addAttribute("roles",roles);
 		return "updateroles";
 	}
 
 	@PatchMapping("/roles")
+	// Sửa quyền
 	public String addcategorys(Model model, @RequestParam("name") String name,@RequestParam("roleId") Integer roleId,
 							   @RequestParam("description") String description, @RequestParam("status") String status,
 							   RedirectAttributes redirectAttributes) {
@@ -95,6 +109,7 @@ public class AdminRolesController {
 	}
 
 	@DeleteMapping("/roles")
+	// Xóa quyền
 	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId ,
 								RedirectAttributes redirectAttributes) {
 

@@ -71,9 +71,6 @@
 
 <script>
 	$(document).ready(function() {
-		
-		
-
         var timeout = null;
 
         $('#inputframeVideo').on('keyup keypress keydown', function() {

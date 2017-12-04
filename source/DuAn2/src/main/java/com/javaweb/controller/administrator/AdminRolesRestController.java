@@ -1,3 +1,10 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminRolesRestController thực thi xử lý quản lý  quyền bằng Ajax
+* */
+
+
 package com.javaweb.controller.administrator;
 
 import com.javaweb.model.ArticleCategory;
@@ -17,7 +24,8 @@ public class AdminRolesRestController {
 	@Autowired
 	RolesService rolesService;
 	@PostMapping("/validator-roles")
-	public String validatorCategorysArticles(@RequestBody Roles roles) {
+	// Kiểm tra tên quyền bị trùng
+	public String validatorRoles(@RequestBody Roles roles) {
 		Roles findByName = null;
 
 		

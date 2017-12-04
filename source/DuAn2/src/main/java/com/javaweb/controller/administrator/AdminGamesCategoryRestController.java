@@ -1,3 +1,10 @@
+
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminGamesCategoryRestController thực thi quản lý danh mục games bằng Ajax
+* */
+
 package com.javaweb.controller.administrator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +23,8 @@ public class AdminGamesCategoryRestController {
 	@Autowired
 	GameCategoryService gameCategoryService;
 	@PostMapping("/validator-gamescategory")
-	public String validatorCategorysArticles(@RequestBody GameCategory gameCategory) {
+	// Kiểm tra tên và dduongf dẫn game bị trùng
+	public String validatorCategorysGames(@RequestBody GameCategory gameCategory) {
 		GameCategory findByName = null;
 		GameCategory findBySlug = null;
 		

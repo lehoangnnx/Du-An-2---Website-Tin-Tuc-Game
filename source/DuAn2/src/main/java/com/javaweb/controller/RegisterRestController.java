@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.Roles;
@@ -29,10 +33,7 @@ public class RegisterRestController {
     UsersService usersService;
     @Autowired
     RolesService rolesService;
-    @Autowired
-    private UserDetailsService userDetailsService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
+
     @Autowired
     SecurityService securityService;
     @Bean
@@ -41,6 +42,7 @@ public class RegisterRestController {
     }
 
     @PostMapping("/register")
+    // Kiểm tra username và email đăng ký
     public String register(@RequestBody Users user) {
 
         Users findByUserName = null;
@@ -48,7 +50,6 @@ public class RegisterRestController {
         try {
             findByUserName = usersService.findByUserName(user.getUserName());
             findByEmail = usersService.findByEmail(user.getEmail());
-            System.out.println(user.getUserName() + user.getEmail() + user.getPassword());
 
             if (!user.getUserName().equals("") && findByUserName != null
                     && !user.getEmail().equals("") && findByEmail != null) {
@@ -71,8 +72,7 @@ public class RegisterRestController {
                 users.setUserName(HtmlUtils.htmlEscape(user.getUserName()));
                 users.setEmail(HtmlUtils.htmlEscape(user.getEmail()));
                 users.setPassword(passwordEncoder().encode(user.getPassword()));
-                System.out.println(HtmlUtils.htmlEscape(user.getUserName()) + "-" + HtmlUtils.htmlEscape(user.getEmail())
-                        + "-" + passwordEncoder().encode(user.getPassword()));
+
 
                 users.setAvatar("default.png");
                 users.setStatus("active");

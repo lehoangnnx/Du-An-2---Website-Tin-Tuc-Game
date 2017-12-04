@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminUsersController thực thi xử lý người dùng
+* */
+
 package com.javaweb.controller.administrator;
 
 import java.nio.file.Files;
@@ -55,6 +61,7 @@ public class AdminUsersController {
 	* Trả Về : Tên users trong file layout-administrator-tiles.xml cấu hình Apache Tiles
 	*/
 	@GetMapping("/users")
+	// Hiển thị danh sách người dùng
 	public String getAllUsers(Model model, @RequestParam(name = "status", defaultValue = "active") String status) {
 
 
@@ -114,6 +121,7 @@ public class AdminUsersController {
 	* Trả Về : Redirect về trang admin/addarticles
 	*/
 	@PatchMapping("/users")
+	// Sửa người dùng
 	public String updateUsers(Model model, @RequestParam("roleses") List<String> roleses,
 			@RequestParam("email") String email, @RequestParam("phoneNumber") String phoneNumber, 
 			@RequestParam("userId") int userId, @RequestParam("userName") String userName,
@@ -160,32 +168,18 @@ public class AdminUsersController {
 			redirectAttributes.addFlashAttribute("msg", "Sửa Người Dùng Thành Công");
 
 		} catch (Exception e) {
-			// model.addAttribute("error", "Sửa Người Dùng Thất Bại");
+
 			redirectAttributes.addFlashAttribute("msg", "Sửa Người Dùng Thất bại");
 			return "redirect:/admin/users/" + userId;
 
 		}
 		return "redirect:/admin/users?status="+status;
-		// return new ModelAndView(new RedirectView("/admin/users/"+userId),"message",
-		// "abc");
-		// return new ModelAndView("users","message", "abc" );
+
 	}
 
-	/*@DeleteMapping("/users/{userId}")
-	public String deleteUser(@PathVariable("userId") int userId ,RedirectAttributes redirectAttributes) {
-		Users user = usersService.findByUserId(userId);
-		try {
-			user.setStatus("deleted");
-			usersService.saveorupdate(user);
-			redirectAttributes.addFlashAttribute("msg", "Xóa Người Dùng Thành Công");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			redirectAttributes.addFlashAttribute("msg", "Xóa Người Dùng Thất Bại");
-		}
-		
-		return "redirect:/admin/users";
-	}*/
+
 	@DeleteMapping("/users")
+	// Xóa người dùng
 	public String deleteAllUser(@RequestParam("arrayId") List<Integer> arrayId ,RedirectAttributes redirectAttributes) {
 		
 		

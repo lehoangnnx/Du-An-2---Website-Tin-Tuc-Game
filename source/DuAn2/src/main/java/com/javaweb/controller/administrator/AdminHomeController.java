@@ -1,3 +1,9 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminHomeController thực thi xử lý trang chủ
+* */
+
 package com.javaweb.controller.administrator;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +28,6 @@ public class AdminHomeController {
 	@GetMapping("/index")
 	public String index(Authentication authentication, HttpSession session) {
 		if (authentication != null) {
-			System.out.println("VAO DAY");
 			System.out.println(authentication.getAuthorities());
 			session.setAttribute("user", usersService.findByUserName(authentication.getName()));
 			

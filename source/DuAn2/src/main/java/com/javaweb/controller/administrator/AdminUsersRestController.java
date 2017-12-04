@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp AdminUsersRestController thực thi xử lý quản lý  người dùng bằng Ajax
+* */
 package com.javaweb.controller.administrator;
 
 
@@ -20,6 +25,7 @@ public class AdminUsersRestController {
 	RolesService rolesService;
 	
 	@PostMapping("/validator-user")
+	// Kiểm tra email bị trùng
 	public String validatorUser(@RequestBody Users user) {
 		
 	

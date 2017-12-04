@@ -562,6 +562,7 @@ public class DefaultController {
 
 
     @RequestMapping("/search.html")
+    // Hiển thị trang tìm kiếm
     String search(Model model, @RequestParam("q") String q,
                   @RequestParam(value = "page", defaultValue = "1") String stpage,
                   @RequestParam(value = "limit", defaultValue = "15") String stlimit
@@ -595,9 +596,14 @@ public class DefaultController {
             page = 1;
         }
         try {
-            articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus(keywork, keywork, "active");
+            // Lấy danh sách danh mục bài viết theo tên và đường dẫn
+            articleCategory = articleCategoryService.findTop1ByNameContainingOrSlugContainingAndStatus
+                    (keywork, keywork, "active");
+
+            // Lấy danh sách tag bài viết theo tên và đường dẫn
             tags = tagsService.findTop1ByNameContainingOrSlugContaining(keywork, keywork);
 
+            // Lấy danh sách bài viết theo tên và đường dẫn
             articleList = articleService.findDistinctAllByTitleContainingOrSlugContainingOrSubContentContainingOrMainContentOrAuthorContainingOrArticleCategoriesOrTagsesAndStatusAndShowDateBeforeOrderByViewsDesc
                     (keywork, keywork, keywork, keywork, keywork, articleCategory, tags, "active", new Date(), null);
 
@@ -630,6 +636,7 @@ public class DefaultController {
 
 
     @GetMapping("/profile.html")
+    // Hiển thị trang thông tin cá nhân
     public String profile(Authentication authentication, Model model) {
         try {
             if (authentication != null) {
@@ -647,11 +654,10 @@ public class DefaultController {
 
     }
     @RequestMapping("/403.html")
+    // Hiển thị trang thông báo lỗi
     String error(Model model) {
 
-        
-        
-        
+
         model.addAttribute("title", "Trang Thông Báo Lỗi 404");
         return "403";
     }

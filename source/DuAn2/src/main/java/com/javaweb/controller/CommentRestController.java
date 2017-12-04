@@ -1,6 +1,7 @@
 /*
 * Người Tạo : Nguyễn Lê Hoàng
 * Ngày Tạo : 15/11/2017
+*  Lớp CommentRestController thực thi xử lý bình luận bằng Ajax
 * */
 package com.javaweb.controller;
 

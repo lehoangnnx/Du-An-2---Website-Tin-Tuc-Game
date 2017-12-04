@@ -129,7 +129,7 @@ function showUpdateComment(userName, avatar, commentId, subCommentId, usersBySub
         " <strong class=\"user-nick\"><a href=\"javascript:void(0)\">" + userName + "</a> <span id=\"msgsubcomment" + commentId + "\"></span></strong>\n" +
         "<textarea onkeydown=\"checkcontent(" + commentId + ");\" onkeyup=\"checkcontent(" + commentId + ");\" onkeypress=\"checkcontent(" + commentId + ");\" id=\"content" + commentId + "\" name=\"content\" placeholder=\"Viết bình luận của bạn..\" style=\"width: 100%; height: 100px;\"></textarea>\n" +
         " <p class=\"form-submit\">\n" +
-        " <input id=\"btn-updatecomment" + commentId + "\" disabled name=\"submit\" type=\"submit\" onclick=\"postupdatecomment(" + commentId + ");\" class=\"submit button\" value=\"Trả Lời\">\n" +
+        " <input id=\"btn-updatecomment" + commentId + "\" disabled name=\"submit\" type=\"submit\" onclick=\"postupdatecomment(" + commentId + ");\" class=\"submit button\" value=\"Sửa\">\n" +
         " <input onclick=\"cancelsubcomment(" + commentId + ");\"  name=\"submit\" type=\"submit\"  class=\"submit button pull-right\" value=\"Hủy\">\n" +
         " </p>\n" +
         " </div>\n");
@@ -150,7 +150,7 @@ function cancelsubcomment(commentId) {
 function postupdatecomment(commentId) {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        $("#LoadingImage").show();
+        
         var content = $('#content' + commentId).val();
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
@@ -169,12 +169,12 @@ function postupdatecomment(commentId) {
             //dataType: 'json',
             // timeout: 600000,
             success: function (result) {
-                $("#LoadingImage").hide();
+                
                 $('#spanContent' + commentId).text(content);
                 $('#showreplycomment' + commentId).empty();
             },
             error: function (e) {
-                $("#LoadingImage").hide();
+               
                 //alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
             }
         });
@@ -186,7 +186,7 @@ function postupdatecomment(commentId) {
 function postreplycomment(commentId, subCommentId, usersBySubUserId) {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        $("#LoadingImage").show();
+        
 
         var articleId = $('#articleId').val();
         var content = $('#content' + commentId).val();
@@ -209,7 +209,7 @@ function postreplycomment(commentId, subCommentId, usersBySubUserId) {
             //dataType: 'json',
             // timeout: 600000,
             success: function (result) {
-                $("#LoadingImage").hide();
+                
                 var childcomment = "";
 
                 for (var j = 0; j < Object.keys(result.commentchild).length; j++) {
@@ -281,7 +281,7 @@ function postreplycomment(commentId, subCommentId, usersBySubUserId) {
                 }, 500);
             },
             error: function (e) {
-                $("#LoadingImage").hide();
+                
               //  alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
             }
         });
@@ -294,7 +294,7 @@ function postreplycomment(commentId, subCommentId, usersBySubUserId) {
 $('.btn-postcomment').click(function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        $("#LoadingImage").show();
+        
 
         var articleId = $('#articleId').val();
         var content = $('#content').val();
@@ -315,8 +315,8 @@ $('.btn-postcomment').click(function () {
             //dataType: 'json',
             // timeout: 600000,
             success: function (result) {
-                console.log(result);
-                $("#LoadingImage").hide();
+               
+              
                 $('#content').val('');
                 var html = '';
 
@@ -386,7 +386,7 @@ $('.btn-postcomment').click(function () {
 
             },
             error: function (e) {
-                $("#LoadingImage").hide();
+                
                // alert("Lỗi ! Tạo Bình Luận");
             }
         });
@@ -689,8 +689,7 @@ function deletecomment(commentId) {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         var articleId = $('#articleId').val();
-        $('#morecomment').hide();
-        $("#LoadingGifSmall").show();
+       
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $(document).ajaxSend(function (e, xhr, options) {
@@ -708,11 +707,11 @@ function deletecomment(commentId) {
             //dataType: 'json',
             // timeout: 600000,
             success: function (result) {
-                $("#LoadingGifSmall").hide();
+                
                 location.reload();
             },
             error: function (e) {
-                $("#LoadingGifSmall").hide();
+               
                 //alert("Lỗi ! Xoa inh Luan");
             }
         });

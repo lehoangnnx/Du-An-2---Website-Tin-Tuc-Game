@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Interface CommentLikeService thưc thi xử lý
+* */
 package com.javaweb.service;
 
 import com.javaweb.model.Comment;

@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 15/11/2017
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.Users;
@@ -24,7 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
+
 
 @Controller
 public class ForgotPasswordController {
@@ -40,6 +44,7 @@ public class ForgotPasswordController {
     }
 
     @GetMapping("/forgotpassword/{key}")
+    // Hiển thị trang lấy lại mật khẩu
     public String forgotPassword(@PathVariable("key") String key, Model model){
 
         Users user = null;
@@ -61,17 +66,18 @@ public class ForgotPasswordController {
    
 
     @PostMapping("/forgotpassword")
+    // Lấy lại mật khẩu
     public String forgotPassword(@RequestParam("key") String key, @RequestParam("passwordfg") String password){
         Users user = null;
-        System.out.println(key+"KEY");
+
         try {
             user = usersService.findByForgotpassword(key);
             if (user != null){
-                System.out.println(key+"KEY");
+
                 user.setPassword(passwordEncoder().encode(password));
                 user.setForgotpassword("");
                 usersService.saveorupdate(user);
-                System.out.println(user.getUserName()+"------"+ user.getPassword());
+
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUserName());
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());

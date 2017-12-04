@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp DefaultRestController thực thi xử lý trang người dùng Ajax
+* */
 package com.javaweb.controller;
 
 
@@ -33,6 +38,7 @@ public class DefaultRestController {
     @Autowired
     CommentService commentService;
     @GetMapping("/getarticle")
+    // Lấy danh sách bài viết
     public List<Map<String, Object>> get(@RequestParam(value = "page", defaultValue = "2") String stpage,
      @RequestParam(value = "limit", defaultValue = "10") String stlimit
             , @RequestParam(value = "sorted", defaultValue = "news") String sorted) {
@@ -126,29 +132,5 @@ public class DefaultRestController {
         return null;
     }
     
-    
-    /*@GetMapping("/json")
-    public JSONObject jsson () {
-    	JSONObject mainObj = new JSONObject();
-        for(int i = 0; i<200; i++) {
-        	 JSONArray ja = new JSONArray();
-        	for(int j=0;j<100;j++) {
-        		JSONObject jo = new JSONObject();
-                jo.put("firstName", "John"+j);
-                jo.put("lastName", "Doe"+j);
-                ja.add(jo);
-        	}
-        	
-          
-           
-           
-           
-            mainObj.put("employees"+i, ja);
-        	
-        }
-        
-        System.out.println(mainObj);
-        
-        return mainObj;
-    }*/
+
 }

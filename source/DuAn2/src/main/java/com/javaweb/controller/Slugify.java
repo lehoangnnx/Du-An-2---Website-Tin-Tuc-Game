@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* */
 package com.javaweb.controller;
 import java.io.InputStream;
 import java.text.Normalizer;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.ibm.icu.text.Transliterator;
 @Component
+// Chuyển đổi tên thành slug
 public class Slugify {
 	private static final String BUILTIN_REPLACEMENTS_FILENAME = "replacements.properties";
 	private static final Properties REPLACEMENTS = new Properties();

@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.Roles;
@@ -32,6 +36,7 @@ public class UsersController {
 
 
     @PatchMapping("/users")
+    // Sửa người dùng
     public String updateUsers(Model model,
                               @RequestParam("email") String email, @RequestParam("phoneNumber") String phoneNumber,
                               @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,

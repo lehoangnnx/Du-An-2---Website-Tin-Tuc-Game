@@ -2,7 +2,7 @@
 /*
 * Người Tạo : Nguyễn Lê Hoàng
 * Ngày Tạo : 17/11/2017
-* Lớp AccessDeniedHandlerImpl kế thừa AccessDeniedHandler thực thi khi quyền truy cập không cho phép.
+* Lớp AdminArticlesCategoryController thực thi xử lý quản lý danh mục bài viết.
 * */
 package com.javaweb.controller.administrator;
 

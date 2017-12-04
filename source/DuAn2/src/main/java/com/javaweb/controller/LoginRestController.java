@@ -1,3 +1,7 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* */
 package com.javaweb.controller;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -52,6 +56,7 @@ public class LoginRestController {
 
 
     @PostMapping("/signin-google")
+    // Đăng nhập bằng google
     public String String(@RequestBody String idtoken
 
     ) {
@@ -124,6 +129,8 @@ public class LoginRestController {
     }
 
     @PostMapping("/signin-facebook")
+
+    // Đăng Nhập bằng facebook
     public  String signinFacebook(@RequestBody String accessToken ){
         System.out.println("THU ACE BOOK NEG : " +accessToken);
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);

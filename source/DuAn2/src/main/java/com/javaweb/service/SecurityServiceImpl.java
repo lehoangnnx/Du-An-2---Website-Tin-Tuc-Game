@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp SecurityServiceImpl kế thừ Interface SecurityService thưc thi xử lý
+* */
 package com.javaweb.service;
 
 import org.slf4j.Logger;

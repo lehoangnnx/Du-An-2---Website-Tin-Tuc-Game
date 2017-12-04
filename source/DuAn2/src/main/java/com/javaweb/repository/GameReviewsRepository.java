@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Interface GameReviewsRepository thưc thi truy vấn trưc tiếp với cơ sỡ dư liệu
+* */
 package com.javaweb.repository;
 
 import com.javaweb.model.GameReviews;

@@ -1,3 +1,8 @@
+/*
+* Người Tạo : Nguyễn Lê Hoàng
+* Ngày Tạo : 17/11/2017
+* Lớp ArticleLikeRestController thực thi xử lý thích bài viết bằng Ajax
+* */
 package com.javaweb.controller;
 
 import com.javaweb.model.Article;
@@ -27,6 +32,7 @@ public class ArticleLikeRestController {
     @Autowired
     ArticleService articleService;
     @PostMapping("/likearticles")
+    // Thích bài viết
     public boolean showactive(@RequestParam("articleId") Integer articleId,
                                         Authentication authentication) {
         ArticleLike articleLike = null;
