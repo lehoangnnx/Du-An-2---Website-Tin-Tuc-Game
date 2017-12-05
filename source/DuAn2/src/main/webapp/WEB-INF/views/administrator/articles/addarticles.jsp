@@ -196,7 +196,7 @@
 			</div>
 
 			<div class="form-group row">
-				<label  class="col-md-2 form-control-label">Thẻ </label>
+				<label  class="col-md-2 form-control-label">Thẻ<span class="error"> *</span></label>
 				<div class="col-md-10">
 
 					<select multiple data-role="tagsinput" name="tags" id="tags">
