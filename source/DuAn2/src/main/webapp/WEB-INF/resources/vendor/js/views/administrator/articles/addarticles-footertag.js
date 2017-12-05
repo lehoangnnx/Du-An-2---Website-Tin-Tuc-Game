@@ -184,11 +184,17 @@
 			    $("#mainContent-error").text("Vui Lòng Nhập Nội Dung");
 			    // cancel submit
 			    e.preventDefault();
-			  }
-			  else {
+			  } else {
                   $("#mainContent-error").text("");
-			  }
-			  
+			  };
+
+				if( $('#tags').has('option').length == 0 ){
+                    $("#_tags-error").text("Vui Lòng Nhập Thẻ");
+                    // cancel submit
+                    e.preventDefault();
+				}else{
+                    $("#_tags-error").text("");
+				};
 			});
 		//Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
 		$("#formArticle").validate({
@@ -205,7 +211,7 @@
 				articleCategories : {
 					required : true
 				},
-				tags : {
+                tags : {
 					required : true
 				},
 				subContent : {
@@ -241,7 +247,7 @@
 					required : "Vui Lòng Chọn Danh Mục"
 				},
 				tags : {
-					required : "Vui Lòng Chọn Thẻ"
+					required : "Vui Lòng Nhập Thẻ"
 				},
 				subContent : {
 					required : "Vui Lòng Nhập Tóm Tắt",

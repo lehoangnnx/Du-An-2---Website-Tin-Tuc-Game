@@ -128,7 +128,7 @@ public class AdminArticlesController {
 			@RequestParam(value = "status", defaultValue = "inactive") String status, @RequestParam("isHot") int isHot,
 			@RequestParam("subContent") String subContent, @RequestParam("mainContent") String mainContent,
 			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment,
-			@RequestParam("gameId") Integer gameId, @RequestParam("tags") List<String> tagsList,
+			@RequestParam("gameId") Integer gameId, @RequestParam(value = "tags",defaultValue = "") List<String> tagsList,
 			@RequestParam("showDate") String showDate, Principal principal, @RequestParam("video") String video,
 			@RequestParam("imagesThumbnail") MultipartFile imagesThumbnail, RedirectAttributes redirectAttributes,
 			Model model
@@ -197,29 +197,30 @@ public class AdminArticlesController {
 					.forEach(x -> articleCategories.add(articleCategoryService.findByArticleCategoryId(x)));
 
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
+			if(!tagsList.isEmpty()) {
+				tagsList.forEach(x -> {
 
-			tagsList.forEach(x -> {
+					if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) == null) {
+						Tags tagss = new Tags();
+						tagss.setName(x.trim());
+						tagss.setSlug(slugify.slugify(x.trim()));
 
-				if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) == null) {
-					Tags tagss = new Tags();
-					tagss.setName(x.trim());
-					tagss.setSlug(slugify.slugify(x.trim()));
+						tagsService.saveorupdate(tagss);
+					} else if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) != null) {
 
-					tagsService.saveorupdate(tagss);
-				} else if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) != null) {
+						Tags tagss = new Tags();
+						tagss.setName(x.trim());
+						tagss.setSlug(slugify.slugify(x.trim()) + "-" + tagsService.findBySlug(slugify.slugify(x.trim())).getTagsId());
+						tagsService.saveorupdate(tagss);
+					}
 
-					Tags tagss = new Tags();
-					tagss.setName(x.trim());
-					tagss.setSlug(slugify.slugify(x.trim()) + "-" + tagsService.findBySlug(slugify.slugify(x.trim())).getTagsId());
-					tagsService.saveorupdate(tagss);
-				}
+				});
 
-			});
-
-			tagsList.forEach(x -> tagses.add(tagsService.findByName(x.trim())));
-
+				tagsList.forEach(x -> tagses.add(tagsService.findByName(x.trim())));
+				article.setTagses(tagses);
+			}
 			article.setArticleCategories(articleCategories);
-			article.setTagses(tagses);
+
 			article.setUsers(usersService.findByUserName(principal.getName()));
 
 			// Kiểm tra nếu imagesThumbnail khác rỗng
@@ -284,7 +285,8 @@ public class AdminArticlesController {
 			@RequestParam(value = "status", defaultValue = "inactive") String status, @RequestParam("isHot") int isHot,
 			@RequestParam("subContent") String subContent, @RequestParam("mainContent") String mainContent,
 			@RequestParam("author") String author, @RequestParam("allowComment") String allowComment,
-			@RequestParam("gameId") Integer gameId, @RequestParam("tags") List<String> tagsList,
+			@RequestParam("gameId") Integer gameId,
+								@RequestParam(value = "tags",defaultValue = "") List<String> tagsList,
 			@RequestParam("showDate") String showDate, Principal princial, @RequestParam("video") String video,
 			@RequestParam("imagesThumbnail") MultipartFile imagesThumbnail, RedirectAttributes redirectAttributes,
 			HttpServletRequest request,
@@ -350,28 +352,29 @@ public class AdminArticlesController {
 					.forEach(x -> articleCategories.add(articleCategoryService.findByArticleCategoryId(x)));
 
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
+			if(!tagsList.isEmpty()) {
+				tagsList.forEach(x -> {
+					if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) == null) {
+						Tags tagss = new Tags();
+						tagss.setName(x.trim());
+						tagss.setSlug(slugify.slugify(x.trim()));
 
-			tagsList.forEach(x -> {
-				if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) == null) {
-					Tags tagss = new Tags();
-					tagss.setName(x.trim());
-					tagss.setSlug(slugify.slugify(x.trim()));
+						tagsService.saveorupdate(tagss);
+					} else if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) != null) {
 
-					tagsService.saveorupdate(tagss);
-				} else if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) != null) {
+						Tags tagss = new Tags();
+						tagss.setName(x.trim());
+						tagss.setSlug(slugify.slugify(x.trim()) + "-" + tagsService.findBySlug(slugify.slugify(x.trim())).getTagsId());
+						tagsService.saveorupdate(tagss);
+					}
 
-					Tags tagss = new Tags();
-					tagss.setName(x.trim());
-					tagss.setSlug(slugify.slugify(x.trim()) + "-" + tagsService.findBySlug(slugify.slugify(x.trim())).getTagsId());
-					tagsService.saveorupdate(tagss);
-				}
+				});
 
-			});
-
-			tagsList.forEach(x -> tagses.add(tagsService.findByName(x.trim())));
-
+				tagsList.forEach(x -> tagses.add(tagsService.findByName(x.trim())));
+				article.setTagses(tagses);
+			}
 			article.setArticleCategories(articleCategories);
-			article.setTagses(tagses);
+
 			article.setModifiedUserId(usersService.findByUserName(princial.getName()).getUserId());
 			article.setModifiedDate(new Date());
 			// Kiểm tra nếu imagesThumbnail khác rỗng

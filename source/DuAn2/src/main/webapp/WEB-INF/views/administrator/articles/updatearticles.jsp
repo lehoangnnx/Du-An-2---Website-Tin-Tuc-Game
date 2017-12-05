@@ -220,14 +220,14 @@
 			<div class="form-group row">
 				<label class="col-md-2 form-control-label">Thẻ</label>
 				<div class="col-md-10">
-					<select multiple data-role="tagsinput" name="tags">
+					<select multiple data-role="tagsinput" name="tags" id="tags">
 						<c:forEach var="at" items="${article.tagses }">
 
 							<option value="${at.name }">${at.name }</option>
 
 						</c:forEach>
-					</select> <label id="select2-demo-4-error" class="error"
-						></label>
+					</select>
+					<label id="_tags-error" style="color: red;" ></label>
 				</div>
 			</div>
 			<div class="form-group row">

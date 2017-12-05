@@ -181,7 +181,15 @@
 			    $("#mainContent-error").text("Vui Lòng Nhập Nội Dung");
 			    // cancel submit
 			    e.preventDefault();
-			  }
+			  }else {
+                  $("#mainContent-error").text("");
+              };
+
+				if( $('#tags').has('option').length == 0 ){
+					$("#_tags-error").text("Vui Lòng Nhập Thẻ");
+					// cancel submit
+					e.preventDefault();
+				};
 			  
 			  
 			});

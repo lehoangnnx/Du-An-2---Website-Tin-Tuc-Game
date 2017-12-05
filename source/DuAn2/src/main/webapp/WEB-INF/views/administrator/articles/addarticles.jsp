@@ -202,7 +202,9 @@
 					<select multiple data-role="tagsinput" name="tags" id="tags">
 						
 					</select>
+					<label id="_tags-error" style="color: red;" ></label>
 				</div>
+
 			</div>
 			<div class="form-group row">
 				<label
