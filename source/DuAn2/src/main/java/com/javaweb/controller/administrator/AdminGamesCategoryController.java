@@ -64,11 +64,11 @@ public class AdminGamesCategoryController {
 			
 		try {
 			GameCategory gameCategory = new GameCategory(); 
-			if(!name.equals("")) {
-				gameCategory.setName(name);
+			if(!name.trim().equals("")) {
+				gameCategory.setName(name.trim());
 			}
-			if (!slug.equals("")) {
-				gameCategory.setSlug(slug);
+			if (!slug.trim().equals("")) {
+				gameCategory.setSlug(slug.trim());
 			}
 			
 				gameCategory.setSubGameCategoryId(subGameCategoryId);
@@ -111,11 +111,11 @@ public class AdminGamesCategoryController {
 		GameCategory gameCategory = gameCategoryService.findByGameCategoryId(gameCategoryId);
 		
 		try {
-			if (!name.equals("") && gameCategoryService.findByName(name) == null) {
-				gameCategory.setName(HtmlUtils.htmlEscape(name));
+			if (!name.trim().equals("") && gameCategoryService.findByName(name.trim()) == null) {
+				gameCategory.setName(HtmlUtils.htmlEscape(name.trim()));
 			}
-			if (!slug.equals("") && gameCategoryService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
-				gameCategory.setSlug(HtmlUtils.htmlEscape(slug));
+			if (!slug.trim().equals("") && gameCategoryService.findBySlug(HtmlUtils.htmlEscape(slug.trim())) == null) {
+				gameCategory.setSlug(HtmlUtils.htmlEscape(slug.trim()));
 			}
 			gameCategory.setSubGameCategoryId(subGameCategoryId);
 			gameCategory.setStatus(status);

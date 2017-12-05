@@ -42,8 +42,8 @@ public class AdminArticlesRestController {
 		Article findBySlug = null;
 		
 		try {
-			findByTitle = articleService.findByTitle(HtmlUtils.htmlEscape(article.getTitle()));
-			findBySlug = articleService.findBySlug(HtmlUtils.htmlEscape(article.getSlug()));
+			findByTitle = articleService.findByTitle(HtmlUtils.htmlEscape(article.getTitle().trim()));
+			findBySlug = articleService.findBySlug(HtmlUtils.htmlEscape(article.getSlug().trim()));
 
 			if (article.getArticleId() == null) {
 				if (findByTitle != null && findBySlug != null) {
@@ -84,12 +84,12 @@ public class AdminArticlesRestController {
 	@PostMapping("/updateStatusArticles")
 	// Update trạng thái của bài viết
 	public String updateStatusArticles(@RequestBody Article article, Principal principal) {
-		System.out.println(article.getStatus() + article.getArticleId());
+
 		try {
 			Article getArticleById = articleService.findByArticleId(article.getArticleId());
 			getArticleById.setStatus(article.getStatus());
 			getArticleById.setActivateDate(new Date());
-			getArticleById.setActivateUserId(usersService.findByUserName(principal.getName()).getUserId());
+			getArticleById.setActivateUserId(usersService.findByUserName(principal.getName().trim()).getUserId());
 			articleService.saveorupdate(getArticleById);
 			return "success";
 		} catch (Exception e) {

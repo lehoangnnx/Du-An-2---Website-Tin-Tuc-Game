@@ -134,7 +134,7 @@ public class AdminArticlesController {
 			Model model
 
 	) {
-		System.out.println(mainContent);
+
 		// Lấy chuỗi tháng, năm từ hàm getMonthAndYearNow() trong file ImagesManager
 		String monthAndYear = imagesManager.getMonthAndYearNow();
 		// Lấy đường dẫn /WEB-INF/files/images/articles/" + monthAndYear
@@ -151,23 +151,21 @@ public class AdminArticlesController {
 		try {
 			// Set dữ liệu vào đối tượng tên article
 
-			if (!title.equals("") && articleService.findByTitle(title) == null) {
-				System.out.println(title);
-				article.setTitle(HtmlUtils.htmlEscape(title));
+			if (!title.trim().equals("") && articleService.findByTitle(title.trim()) == null) {
+				article.setTitle(HtmlUtils.htmlEscape(title.trim()));
 			}
-			if (!slug.equals("") && articleService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
-				System.out.println(slug);
-				article.setSlug(HtmlUtils.htmlEscape(slug));
+			if (!slug.trim().equals("") && articleService.findBySlug(HtmlUtils.htmlEscape(slug.trim())) == null) {
+				article.setSlug(HtmlUtils.htmlEscape(slug.trim()));
 			}
-			if (!subContent.equals("")) {
-				article.setSubContent(HtmlUtils.htmlEscape(subContent));
+			if (!subContent.trim().equals("")) {
+				article.setSubContent(HtmlUtils.htmlEscape(subContent.trim()));
 			}
 			if (!mainContent.equals("")) {
 				article.setMainContent(HtmlUtils.htmlEscape(mainContent));
 			}
-			if (!author.equals("")) {
-				System.out.println(author);
-				article.setAuthor(HtmlUtils.htmlEscape(author));
+			if (!author.trim().equals("")) {
+
+				article.setAuthor(HtmlUtils.htmlEscape(author.trim()));
 
 			}
 
@@ -183,8 +181,8 @@ public class AdminArticlesController {
 
 
 
-			if (!video.equals("")) {
-				article.setVideo(video);
+			if (!video.trim().equals("")) {
+				article.setVideo(video.trim());
 			}
 			article.setStatus(status);
 			article.setGameId(gameId);
@@ -202,25 +200,23 @@ public class AdminArticlesController {
 
 			tagsList.forEach(x -> {
 
-				if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
+				if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) == null) {
 					Tags tagss = new Tags();
-					tagss.setName(x);
-					tagss.setSlug(slugify.slugify(x));
-					System.out.println(x.getBytes());
+					tagss.setName(x.trim());
+					tagss.setSlug(slugify.slugify(x.trim()));
+
 					tagsService.saveorupdate(tagss);
-				} else if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
+				} else if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) != null) {
 
 					Tags tagss = new Tags();
-					tagss.setName(x);
-					tagss.setSlug(slugify.slugify(x) + "-" + tagsService.findBySlug(slugify.slugify(x)).getTagsId());
-					System.out.println(
-							"LLL" + slugify.slugify(x) + "-" + tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					tagss.setName(x.trim());
+					tagss.setSlug(slugify.slugify(x.trim()) + "-" + tagsService.findBySlug(slugify.slugify(x.trim())).getTagsId());
 					tagsService.saveorupdate(tagss);
 				}
 
 			});
 
-			tagsList.forEach(x -> tagses.add(tagsService.findByName(x)));
+			tagsList.forEach(x -> tagses.add(tagsService.findByName(x.trim())));
 
 			article.setArticleCategories(articleCategories);
 			article.setTagses(tagses);
@@ -310,23 +306,22 @@ public class AdminArticlesController {
 		try {
 			// Set dữ liệu vào đối tượng tên article
 
-			if (!title.equals("") && articleService.findByTitle(title) == null) {
-				System.out.println(title);
-				article.setTitle(HtmlUtils.htmlEscape(title));
+			if (!title.trim().equals("") && articleService.findByTitle(title.trim()) == null) {
+				article.setTitle(HtmlUtils.htmlEscape(title.trim()));
 			}
-			if (!slug.equals("") && articleService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
-				System.out.println(slug);
-				article.setSlug(HtmlUtils.htmlEscape(slug));
+			if (!slug.trim().equals("") && articleService.findBySlug(HtmlUtils.htmlEscape(slug.trim())) == null) {
+
+				article.setSlug(HtmlUtils.htmlEscape(slug.trim()));
 			}
-			if (!subContent.equals("")) {
-				article.setSubContent(HtmlUtils.htmlEscape(subContent));
+			if (!subContent.trim().equals("")) {
+				article.setSubContent(HtmlUtils.htmlEscape(subContent.trim()));
 			}
 			if (!mainContent.equals("")) {
 				article.setMainContent(HtmlUtils.htmlEscape(mainContent));
 			}
-			if (!author.equals("")) {
-				System.out.println(author);
-				article.setAuthor(HtmlUtils.htmlEscape(author));
+			if (!author.trim().equals("")) {
+
+				article.setAuthor(HtmlUtils.htmlEscape(author.trim()));
 
 			}
 			if(request.isUserInRole("ROLE_ADMIN")){
@@ -341,8 +336,8 @@ public class AdminArticlesController {
 				article.setShowDate(new Date());
 			}
 
-			if (!video.equals("")) {
-				article.setVideo(video);
+			if (!video.trim().equals("")) {
+				article.setVideo(video.trim());
 			}
 			article.setViews(0);
 			article.setCreatedDate(new Date());
@@ -357,23 +352,23 @@ public class AdminArticlesController {
 			// Vòng lặp dang sách tagsList và thêm một đối tượng Tags vào HashSet tagses
 
 			tagsList.forEach(x -> {
-				if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) == null) {
+				if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) == null) {
 					Tags tagss = new Tags();
-					tagss.setName(x);
-					tagss.setSlug(slugify.slugify(x));
+					tagss.setName(x.trim());
+					tagss.setSlug(slugify.slugify(x.trim()));
 
 					tagsService.saveorupdate(tagss);
-				} else if (tagsService.findByName(x) == null && tagsService.findBySlug(slugify.slugify(x)) != null) {
+				} else if (tagsService.findByName(x.trim()) == null && tagsService.findBySlug(slugify.slugify(x.trim())) != null) {
 
 					Tags tagss = new Tags();
-					tagss.setName(x);
-					tagss.setSlug(slugify.slugify(x) + "-" + tagsService.findBySlug(slugify.slugify(x)).getTagsId());
+					tagss.setName(x.trim());
+					tagss.setSlug(slugify.slugify(x.trim()) + "-" + tagsService.findBySlug(slugify.slugify(x.trim())).getTagsId());
 					tagsService.saveorupdate(tagss);
 				}
 
 			});
 
-			tagsList.forEach(x -> tagses.add(tagsService.findByName(x)));
+			tagsList.forEach(x -> tagses.add(tagsService.findByName(x.trim())));
 
 			article.setArticleCategories(articleCategories);
 			article.setTagses(tagses);
@@ -419,7 +414,7 @@ public class AdminArticlesController {
 
 		try {
 			arrayId.forEach(x -> {
-				System.out.println("ID XOA :" + x);
+
 				Article article = articleService.findByArticleId(x);
 				article.setStatus("deleted");
 				articleService.saveorupdate(article);

@@ -29,8 +29,8 @@ public class AdminGamesRestController {
     	Games findBySlug = null;
 		
 		try {
-			findByName = gamesService.findByName(HtmlUtils.htmlEscape(games.getName()));
-			findBySlug= gamesService.findBySlug(HtmlUtils.htmlEscape(games.getSlug()));
+			findByName = gamesService.findByName(HtmlUtils.htmlEscape(games.getName().trim()));
+			findBySlug= gamesService.findBySlug(HtmlUtils.htmlEscape(games.getSlug().trim()));
 			
 			if (games.getGameId() == null) {
 				if (findByName != null && findBySlug != null) {

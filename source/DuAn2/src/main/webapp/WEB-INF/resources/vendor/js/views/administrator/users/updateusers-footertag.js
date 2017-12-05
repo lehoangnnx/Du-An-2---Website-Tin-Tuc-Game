@@ -67,10 +67,10 @@
 	$(document).ready(function() {
 
 		$("#btn-submit").click(function(e) {
-			var firstName = $("#firstName").val();
-			var lastName = $("#lastName").val();
-			var email = $('#email').val();
-			var phoneNumber = $("#phoneNumber").val();
+			var firstName = $("#firstName").val().trim();
+			var lastName = $("#lastName").val().trim();
+			var email = $('#email').val().trim();
+			var phoneNumber = $("#phoneNumber").val().trim();
 			
 			var phone_regex = /^(01[2689]|09)[0-9]{8}$/;
 			var name_regex = /^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ]+$/;

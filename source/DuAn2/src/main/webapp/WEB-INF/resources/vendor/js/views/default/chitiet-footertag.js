@@ -85,8 +85,10 @@ function gamereivews(starreview) {
 $('#content').on('keyup keypress keydown', function () {
     var content = $('#content').val().trim();
     if (content != '') {
+        $('#msgsubcomment').text('');
         $('#btn-newcomment').removeAttr('disabled');
     } else {
+        $('#msgsubcomment').text(' Vui Lòng Nhập Nội Dung Bình Luận.');
         $('#btn-newcomment').attr('disabled', 'disabled');
     }
 
@@ -95,10 +97,12 @@ $('#content').on('keyup keypress keydown', function () {
 function checkcontent(commentId) {
     var content = $('#content' + commentId).val().trim();
     if (content != '') {
+
         $('#btn-replycomment' + commentId).removeAttr('disabled');
         $('#btn-updatecomment' + commentId).removeAttr('disabled');
 
     } else {
+
         $('#btn-replycomment' + commentId).attr('disabled', 'disabled');
         $('#btn-updatecomment' + commentId).attr('disabled', 'disabled');
     }
@@ -109,7 +113,7 @@ function replysubcomment(userName, avatar, commentId, subCommentId, usersBySubUs
         " </a>\n" +
         " <div class=\"comment-text\" style=\"width: auto; overflow: hidden;\">\n" +
         " <strong class=\"user-nick\"><a href=\"javascript:void(0)\">" + userName + "</a> <span id=\"msgsubcomment" + commentId + "\"></span></strong>\n" +
-        "<textarea onkeydown=\"checkcontent(" + commentId + ");\" onkeyup=\"checkcontent(" + commentId + ");\" onkeypress=\"checkcontent(" + commentId + ");\" id=\"content" + commentId + "\" name=\"content\" placeholder=\"Viết bình luận của bạn..\" style=\"width: 100%; height: 100px;\"></textarea>\n" +
+        "<textarea onkeydown=\"checkcontent(" + commentId + ");\" onkeyup=\"checkcontent(" + commentId + ");\" onkeypress=\"checkcontent(" + commentId + ");\" id=\"content" + commentId + "\" name=\"content\" placeholder=\"Viết bình luận của bạn...\" style=\"width: 100%; height: 100px;\"></textarea>\n" +
         " <p class=\"form-submit\">\n" +
         " <input id=\"btn-replycomment" + commentId + "\" disabled name=\"submit\" type=\"submit\" onclick=\"postreplycomment(" + commentId + "," + subCommentId + "," + usersBySubUserId + ");\" class=\"submit button\" value=\"Trả Lời\">\n" +
         " <input onclick=\"cancelsubcomment(" + commentId + ");\"  name=\"submit\" type=\"submit\"  class=\"submit button pull-right\" value=\"Hủy\">\n" +
@@ -151,7 +155,7 @@ function postupdatecomment(commentId) {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         
-        var content = $('#content' + commentId).val();
+        var content = $('#content' + commentId).val().trim();
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $(document).ajaxSend(function (e, xhr, options) {
@@ -189,7 +193,7 @@ function postreplycomment(commentId, subCommentId, usersBySubUserId) {
         
 
         var articleId = $('#articleId').val();
-        var content = $('#content' + commentId).val();
+        var content = $('#content' + commentId).val().trim();
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $(document).ajaxSend(function (e, xhr, options) {
@@ -297,7 +301,7 @@ $('.btn-postcomment').click(function () {
         
 
         var articleId = $('#articleId').val();
-        var content = $('#content').val();
+        var content = $('#content').val().trim();
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $(document).ajaxSend(function (e, xhr, options) {

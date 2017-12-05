@@ -31,7 +31,7 @@ public class AdminUsersRestController {
 	
 		String error = "";
 		try {
-			Users u = usersService.findByEmail(user.getEmail());
+			Users u = usersService.findByEmail(user.getEmail().trim());
 			
 			if(u == null || u.getUserId().equals(user.getUserId())) {
 				error = "successemail";

@@ -8,7 +8,7 @@
 			clearTimeout(timeout);
 			timeout = setTimeout(function ()
 			 {
-		 	var link =	$("#inputframeVideo").val();
+		 	var link =	$("#inputframeVideo").val().trim();
 		 	
 		 	if(link.search("iframe") == 1){
                 $('#ifVideo').css('display','block');
@@ -75,8 +75,8 @@
 		timeout = setTimeout(
 				function() {
 					var article = {};
-					article["title"] = $("#title").val();
-					article["slug"] = $("#slug").val();
+					article["title"] = $("#title").val().trim();
+					article["slug"] = $("#slug").val().trim();
 					article["articleId"] = $("#articleId").val();
 					var token = $("meta[name='_csrf']").attr("content");
 					var header = $("meta[name='_csrf_header']").attr("content");
@@ -152,7 +152,7 @@
 			validatorArticle();
 			});
 		$("#slug").on('keyup keypress keydown', function(event) {
-			if ($("#title").val() != '' && $("#slug").val() != '') {
+			if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
 				validatorArticle();
 			} else {
 				$("#spanTitle").text("");
@@ -162,7 +162,7 @@
 		});
 
 		$("#title").on('keyup keypress keydown', function(event) {
-			if ($("#title").val() != '' && $("#slug").val() != '') {
+			if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
 				validatorArticle();
 			} else {
 				$("#spanTitle").text("");

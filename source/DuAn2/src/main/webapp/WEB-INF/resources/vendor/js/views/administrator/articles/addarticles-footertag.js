@@ -74,8 +74,8 @@
 		timeout = setTimeout(
 				function() {
 					var article = {};
-					article["title"] = $("#title").val();
-					article["slug"] = $("#slug").val();
+					article["title"] = $("#title").val().trim();
+					article["slug"] = $("#slug").val().trim();
 
 					var token = $("meta[name='_csrf']").attr("content");
 					var header = $("meta[name='_csrf_header']").attr("content");
@@ -151,28 +151,28 @@
 	}
 
 	$(document).ready(function($) {
-		
+
 		$("#btn-submit").prop("disabled", true);
 
-		$("#slug").on('keyup keypress keydown', function(event) {
-			if ($("#title").val() != '' && $("#slug").val() != '') {
-				validatorArticle();
-			} else {
-				$("#spanTitle").text("");
-				$("#spanSlug").text("");
-			}
+        $("#slug").on('keyup keypress keydown', function(event) {
+            if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
+                validatorArticle();
+            } else {
+                $("#spanTitle").text("");
+                $("#spanSlug").text("");
+            }
 
-		});
+        });
 
-		$("#title").on('keyup keypress keydown', function(event) {
-			if ($("#title").val() != '' && $("#slug").val() != '') {
-				validatorArticle();
-			} else {
-				$("#spanTitle").text("");
-				$("#spanSlug").text("");
-			}
+        $("#title").on('keyup keypress keydown', function(event) {
+            if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
+                validatorArticle();
+            } else {
+                $("#spanTitle").text("");
+                $("#spanSlug").text("");
+            }
 
-		});
+        });
 
 	});
 
@@ -180,11 +180,12 @@
 		$('#formArticle').on('submit', function(e) {
 			  
 			  if($('#summernote').summernote('isEmpty')) {
-			    console.log('contents is empty, fill it!');
+
 			    $("#mainContent-error").text("Vui Lòng Nhập Nội Dung");
 			    // cancel submit
 			    e.preventDefault();
-			  }else {
+			  }
+			  else {
                   $("#mainContent-error").text("");
 			  }
 			  

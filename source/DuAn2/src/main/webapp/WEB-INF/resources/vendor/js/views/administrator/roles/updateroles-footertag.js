@@ -81,7 +81,7 @@
 
 
         $("#name").on('keyup keypress keydown', function(event) {
-            if ($("#name").val() != '' ) {
+            if ($("#name").val().trim() != '' ) {
                 var a = $("#name").val().toUpperCase();
                 $("#name").val(a);
                 if(a.substr(0, 5) === "ROLE_"){

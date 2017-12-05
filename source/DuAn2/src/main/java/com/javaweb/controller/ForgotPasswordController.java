@@ -49,7 +49,7 @@ public class ForgotPasswordController {
 
         Users user = null;
         try {
-            user = usersService.findByForgotpassword(key);
+            user = usersService.findByForgotpassword(key.trim());
             if (user == null){
                 return "redirect:/403.html";
             }
@@ -74,7 +74,7 @@ public class ForgotPasswordController {
             user = usersService.findByForgotpassword(key);
             if (user != null){
 
-                user.setPassword(passwordEncoder().encode(password));
+                user.setPassword(passwordEncoder().encode(password.trim()));
                 user.setForgotpassword("");
                 usersService.saveorupdate(user);
 

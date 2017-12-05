@@ -29,9 +29,9 @@ public class AdminArticlesCategoryRestController {
 		
 		try {
 			// Lấy danh mục bài viết theo name
-			findByName = articleCategoryService.findByName(HtmlUtils.htmlEscape(articleCategory.getName()));
+			findByName = articleCategoryService.findByName(HtmlUtils.htmlEscape(articleCategory.getName().trim()));
 			// Lấy danh mục bài viết theo slug
-			findBySlug= articleCategoryService.findBySlug(HtmlUtils.htmlEscape(articleCategory.getSlug()));
+			findBySlug= articleCategoryService.findBySlug(HtmlUtils.htmlEscape(articleCategory.getSlug().trim()));
 			
 			if (articleCategory.getArticleCategoryId() == null) {
 				if (findByName != null && findBySlug != null) {
@@ -50,16 +50,13 @@ public class AdminArticlesCategoryRestController {
 				if (findByName != null && findBySlug != null
 						&& !findByName.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())
 						&& !findBySlug.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())) {
-					System.out.println("2");
 					return "error";
 				} else if (findByName != null 
 						&& !findByName.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())) {
-					System.out.println("3");
+
 					return "errorname";
 				} else if (findBySlug != null 
 						&& !findBySlug.getArticleCategoryId().equals(articleCategory.getArticleCategoryId())) {
-					System.out.println("4");
-
 					return "errorslug";
 				} else {
 					return "msgsuccess";

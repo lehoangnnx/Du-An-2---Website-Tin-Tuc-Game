@@ -54,11 +54,11 @@ public class AdminRolesController {
 
 		try {
 			Roles roles = new Roles();
-			if(!name.equals("")) {
-				roles.setName(name);
+			if(!name.trim().equals("")) {
+				roles.setName(name.trim());
 			}
-			if (!description.equals("")) {
-				roles.setDescription(description);
+			if (!description.trim().equals("")) {
+				roles.setDescription(description.trim());
 			}
 
 			roles.setStatus(status);
@@ -90,11 +90,11 @@ public class AdminRolesController {
 
 		try {
 			Roles roles = rolesService.findByRoleId(roleId);
-			if(!name.equals("")) {
-				roles.setName(name);
+			if(!name.trim().equals("")) {
+				roles.setName(name.trim());
 			}
-			if (!description.equals("")) {
-				roles.setDescription(description);
+			if (!description.trim().equals("")) {
+				roles.setDescription(description.trim());
 			}
 
 			roles.setStatus(status);

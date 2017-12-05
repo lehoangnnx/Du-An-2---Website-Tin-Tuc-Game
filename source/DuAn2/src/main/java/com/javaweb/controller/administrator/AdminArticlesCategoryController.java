@@ -65,14 +65,14 @@ public class AdminArticlesCategoryController {
 			@RequestParam("slug") String slug, @RequestParam("status") String status,
 			@RequestParam( "subArticleCategoryId") Integer subArticleCategoryId,
 			RedirectAttributes redirectAttributes) {
-			
+
 		try {
 			ArticleCategory articleCategory = new ArticleCategory(); 
-			if(!name.equals("")) {
-				articleCategory.setName(name);
+			if(!name.trim().equals("")) {
+				articleCategory.setName(name.trim());
 			}
-			if (!slug.equals("")) {
-				articleCategory.setSlug(slug);
+			if (!slug.trim().equals("")) {
+				articleCategory.setSlug(slug.trim());
 			}
 			
 				articleCategory.setSubArticleCategoryId(subArticleCategoryId);
@@ -115,11 +115,11 @@ public class AdminArticlesCategoryController {
 		ArticleCategory articleCategory = articleCategoryService.findByArticleCategoryId(articleCategoryId);
 		
 		try {
-			if (!name.equals("") && articleCategoryService.findByName(name) == null) {
-				articleCategory.setName(HtmlUtils.htmlEscape(name));
+			if (!name.trim().equals("") && articleCategoryService.findByName(name.trim()) == null) {
+				articleCategory.setName(HtmlUtils.htmlEscape(name.trim()));
 			}
-			if (!slug.equals("") && articleCategoryService.findBySlug(HtmlUtils.htmlEscape(slug)) == null) {
-				articleCategory.setSlug(HtmlUtils.htmlEscape(slug));
+			if (!slug.trim().equals("") && articleCategoryService.findBySlug(HtmlUtils.htmlEscape(slug.trim())) == null) {
+				articleCategory.setSlug(HtmlUtils.htmlEscape(slug.trim()));
 			}
 			articleCategory.setSubArticleCategoryId(subArticleCategoryId);
 			articleCategory.setStatus(status);

@@ -96,7 +96,7 @@ public class AdminUsersController {
 	*/
 	@GetMapping("/users/{userId}")
 	public String getUserByUserId(Model model, @PathVariable("userId") int userId) {
-		System.out.println("Id Users :" + userId);
+
 		// Lấy User theo Id
 		Users user = usersService.findByUserId(userId);
 		//Lấy tất cả quyên
@@ -138,12 +138,12 @@ public class AdminUsersController {
 			
 		try {
 			
-			if(email != "" && usersService.findByEmail(user.getEmail()) == null) {
+			if(email.trim() != "" && usersService.findByEmail(user.getEmail()) == null) {
 				user.setEmail(HtmlUtils.htmlEscape(email));
 			}
-			user.setFirstName(HtmlUtils.htmlEscape(firstName));
-			user.setLastName(HtmlUtils.htmlEscape(lastName));
-			user.setPhoneNumber(HtmlUtils.htmlEscape(phoneNumber));
+			user.setFirstName(HtmlUtils.htmlEscape(firstName.trim()));
+			user.setLastName(HtmlUtils.htmlEscape(lastName.trim()));
+			user.setPhoneNumber(HtmlUtils.htmlEscape(phoneNumber.trim()));
 			user.setStatus(status);
 			for (String r : roleses) {
 				roles.add(rolesService.findByName(r));

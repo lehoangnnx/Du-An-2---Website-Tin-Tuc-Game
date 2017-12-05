@@ -118,47 +118,45 @@ public class AdminGamesController {
 
         try {
 
-            if (!name.equals("")) {
-                games.setName(HtmlUtils.htmlEscape(name));
+            if (!name.trim().equals("")) {
+                games.setName(HtmlUtils.htmlEscape(name.trim()));
             }
-            if (!slug.equals("")) {
-                games.setSlug(HtmlUtils.htmlEscape(slug));
+            if (!slug.trim().equals("")) {
+                games.setSlug(HtmlUtils.htmlEscape(slug.trim()));
             }
-            if (!publishers.equals("")) {
-                games.setPublishers(HtmlUtils.htmlEscape(publishers));
+            if (!publishers.trim().equals("")) {
+                games.setPublishers(HtmlUtils.htmlEscape(publishers.trim()));
             }
-            if (!developers.equals("")) {
-                games.setDevelopers(HtmlUtils.htmlEscape(developers));
+            if (!developers.trim().equals("")) {
+                games.setDevelopers(HtmlUtils.htmlEscape(developers.trim()));
             }
-            if (!writers.equals("")) {
-                games.setWriters(HtmlUtils.htmlEscape(writers));
+            if (!writers.trim().equals("")) {
+                games.setWriters(HtmlUtils.htmlEscape(writers.trim()));
             }
-            if (!composers.equals("")) {
-                games.setComposers(HtmlUtils.htmlEscape(composers));
-                ;
+            if (!composers.trim().equals("")) {
+                games.setComposers(HtmlUtils.htmlEscape(composers.trim()));
+
             }
-            if (!engine.equals("")) {
-                games.setEngine(HtmlUtils.htmlEscape(engine));
+            if (!engine.trim().equals("")) {
+                games.setEngine(HtmlUtils.htmlEscape(engine.trim()));
             }
-            if (!platforms.equals("")) {
-                games.setPlatforms(HtmlUtils.htmlEscape(platforms));
+            if (!platforms.trim().equals("")) {
+                games.setPlatforms(HtmlUtils.htmlEscape(platforms.trim()));
             }
-            if (!info.equals("")) {
-                games.setInfo(HtmlUtils.htmlEscape(info));
+            if (!info.trim().equals("")) {
+                games.setInfo(HtmlUtils.htmlEscape(info.trim()));
             }
             if (!releases.equals("")) {
                 Date date = df.parse(releases);
                 games.setReleases(date);
 
             }
-            if(!info.equals("")){
-                games.setInfo(HtmlUtils.htmlEscape(info));
+
+            if(!homeUrl.trim().equals("")){
+                games.setHomeUrl(HtmlUtils.htmlEscape(homeUrl.trim()));
             }
-            if(!homeUrl.equals("")){
-                games.setHomeUrl(HtmlUtils.htmlEscape(homeUrl));
-            }
-            if(!downloadUrl.equals("")){
-                games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl));
+            if(!downloadUrl.trim().equals("")){
+                games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl.trim()));
             }
             if(!systemRequirements.equals("")){
                 games.setSystemRequirements(HtmlUtils.htmlEscape(systemRequirements));
@@ -219,47 +217,45 @@ public class AdminGamesController {
 
         try {
 
-            if (!name.equals("")) {
-                games.setName(HtmlUtils.htmlEscape(name));
+            if (!name.trim().equals("")) {
+                games.setName(HtmlUtils.htmlEscape(name.trim()));
             }
-            if (!slug.equals("")) {
-                games.setSlug(HtmlUtils.htmlEscape(slug));
+            if (!slug.trim().equals("")) {
+                games.setSlug(HtmlUtils.htmlEscape(slug.trim()));
             }
-            if (!publishers.equals("")) {
-                games.setPublishers(HtmlUtils.htmlEscape(publishers));
+            if (!publishers.trim().equals("")) {
+                games.setPublishers(HtmlUtils.htmlEscape(publishers.trim()));
             }
-            if (!developers.equals("")) {
-                games.setDevelopers(HtmlUtils.htmlEscape(developers));
+            if (!developers.trim().equals("")) {
+                games.setDevelopers(HtmlUtils.htmlEscape(developers.trim()));
             }
-            if (!writers.equals("")) {
-                games.setWriters(HtmlUtils.htmlEscape(writers));
+            if (!writers.trim().equals("")) {
+                games.setWriters(HtmlUtils.htmlEscape(writers.trim()));
             }
-            if (!composers.equals("")) {
-                games.setComposers(HtmlUtils.htmlEscape(composers));
-                ;
+            if (!composers.trim().equals("")) {
+                games.setComposers(HtmlUtils.htmlEscape(composers.trim()));
+
             }
-            if (!engine.equals("")) {
-                games.setEngine(HtmlUtils.htmlEscape(engine));
+            if (!engine.trim().equals("")) {
+                games.setEngine(HtmlUtils.htmlEscape(engine.trim()));
             }
-            if (!platforms.equals("")) {
-                games.setPlatforms(HtmlUtils.htmlEscape(platforms));
+            if (!platforms.trim().equals("")) {
+                games.setPlatforms(HtmlUtils.htmlEscape(platforms.trim()));
             }
-            if (!info.equals("")) {
-                games.setInfo(HtmlUtils.htmlEscape(info));
+            if (!info.trim().equals("")) {
+                games.setInfo(HtmlUtils.htmlEscape(info.trim()));
             }
             if (!releases.equals("")) {
                 Date date = df.parse(releases);
                 games.setReleases(date);
 
             }
-            if(!info.equals("")){
-                games.setInfo(HtmlUtils.htmlEscape(info));
+
+            if(!homeUrl.trim().equals("")){
+                games.setHomeUrl(HtmlUtils.htmlEscape(homeUrl.trim()));
             }
-            if(!homeUrl.equals("")){
-                games.setHomeUrl(HtmlUtils.htmlEscape(homeUrl));
-            }
-            if(!downloadUrl.equals("")){
-                games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl));
+            if(!downloadUrl.trim().equals("")){
+                games.setDownloadUrl(HtmlUtils.htmlEscape(downloadUrl.trim()));
             }
             if(!systemRequirements.equals("")){
                 games.setSystemRequirements(HtmlUtils.htmlEscape(systemRequirements));

@@ -52,7 +52,7 @@ public class CommentRestController {
             Article article = articleService.findByArticleId(articleId);
             Comment comment = new Comment();
             comment.setSubCommentId(0);
-            comment.setContent(HtmlUtils.htmlEscape(content));
+            comment.setContent(HtmlUtils.htmlEscape(content.trim()));
             comment.setUsersByUserId(users);
             comment.setUsersBySubUserId(users);
             comment.setArticle(article);
@@ -111,7 +111,7 @@ public class CommentRestController {
                 userIdLogin = users.getUserId();
                 if (request.isUserInRole("ROLE_FACEBOOK")
                         || request.isUserInRole("ROLE_GOOGLE")) {
-                    userName = users.getFirstName();
+                    userName = users.getFirstName() + " " + users.getLastName();
                     avatar = users.getAvatar();
                 } else {
                     userName = users.getUserName();
@@ -148,7 +148,7 @@ public class CommentRestController {
             Article article = articleService.findByArticleId(articleId);
             Comment comment = new Comment();
             comment.setSubCommentId(subCommentId);
-            comment.setContent(HtmlUtils.htmlEscape(content));
+            comment.setContent(HtmlUtils.htmlEscape(content.trim()));
             comment.setUsersByUserId(users);
             comment.setUsersBySubUserId(subUsers);
             comment.setArticle(article);
@@ -221,7 +221,7 @@ public class CommentRestController {
     public String updatecomment(@RequestParam("commentId") Integer commentId, @RequestParam("content") String content) {
         try {
             Comment comment = commentService.findByCommentId(commentId);
-            comment.setContent(HtmlUtils.htmlEscape(content));
+            comment.setContent(HtmlUtils.htmlEscape(content.trim()));
             commentService.saveorupdate(comment);
             return "success";
         } catch (Exception e) {
@@ -340,7 +340,7 @@ public class CommentRestController {
             userIdLogin = users.getUserId();
             if (request.isUserInRole("ROLE_FACEBOOK")
                     || request.isUserInRole("ROLE_GOOGLE")) {
-                userName = users.getFirstName();
+                userName = users.getFirstName() + " " + users.getLastName();
                 avatar = users.getAvatar();
             } else {
                 userName = users.getUserName();

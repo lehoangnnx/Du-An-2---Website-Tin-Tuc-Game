@@ -196,13 +196,12 @@
 			</div>
 
 			<div class="form-group row">
-				<label  class="col-md-2 form-control-label">Thẻ <span class="error"> *</span></label>
+				<label  class="col-md-2 form-control-label">Thẻ </label>
 				<div class="col-md-10">
 
-					<select multiple data-role="tagsinput" name="tags">
+					<select multiple data-role="tagsinput" name="tags" id="tags">
 						
-					</select> <label id="select2-demo-4-error" class="error"
-						></label>
+					</select>
 				</div>
 			</div>
 			<div class="form-group row">

@@ -68,4 +68,5 @@
 <script type="text/javascript"
 	src="${contextPath}/js/js/forms-plugins.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}"</script>
-<script type="text/javascript" src="${contextPath}/js/js/views/administrator/articles/addarticles-footertag.min.js"></script>
+<script type="text/javascript"
+		src="${contextPath}/js/js/views/administrator/articles/addarticles-footertag.min.js"></script>

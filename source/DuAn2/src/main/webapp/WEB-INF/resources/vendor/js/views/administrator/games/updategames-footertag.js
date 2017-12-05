@@ -135,7 +135,7 @@
 			 validatorGames();
 		}); 
 		$("#slug").on('keyup keypress keydown', function(event) {
-			if ($("#name").val() != '' && $("#slug").val() != '') {
+			if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
 				validatorGames();
 			} else {
 				$("#spanName").text("");
@@ -145,7 +145,7 @@
 		});
 
 		$("#name").on('keyup keypress keydown', function(event) {
-			if ($("#name").val() != '' && $("#slug").val() != '') {
+			if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
 				validatorGames();
 			} else {
 				$("#spanName").text("");

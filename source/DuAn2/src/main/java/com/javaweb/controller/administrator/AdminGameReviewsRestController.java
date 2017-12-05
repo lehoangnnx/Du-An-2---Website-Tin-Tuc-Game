@@ -35,7 +35,7 @@ public class AdminGameReviewsRestController {
                                           Authentication authentication){
         GameReviews gameReviews =null;
         try {
-                Users users = usersService.findByUserName(authentication.getName());
+                Users users = usersService.findByUserName(authentication.getName().trim());
                 Games games = gamesService.findByGameId(gameId);
                 gameReviews = gameReviewsService.findByUsersAndGames(users,games);
                 if(gameReviews == null){

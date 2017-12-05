@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <style>
-.error {
+._error , .error {
 	color: red;
 }
 </style>
@@ -35,7 +35,7 @@
             <div class="col-md-10">
                <input type="email" class="form-control " maxlength="255"
                   value="${user.email }" name="email" id="email">
-               <label id="email-error" class="error" for="email"></label>
+               <label id="email-error" class="_error" for="email"></label>
             </div>
          </div>
          <div class="form-group  row">
@@ -43,7 +43,7 @@
             <div class="col-md-10">
                <input type="text" class="form-control " maxlength="255"
                   value="${user.firstName }" name="firstName" id="firstName">
-                <label id="firstName-error" class="error" for="firstName"></label>
+                <label id="firstName-error" class="_error" for="firstName"></label>
 
             </div>
          </div>
@@ -52,7 +52,7 @@
             <div class="col-md-10">
                <input type="text" class="form-control " maxlength="255"
                   value="${user.lastName }" name="lastName" id="lastName">
-                   <label id="lastName-error" class="error" for="lastName"></label>
+                   <label id="lastName-error" class="_error" for="lastName"></label>
             </div>
          </div>
          <div class="form-group  row">
@@ -61,7 +61,7 @@
             <div class="col-md-10">
                <input type="text" class="form-control " maxlength="15"
                   value="${user.phoneNumber }" name="phoneNumber" id="phoneNumber">
-                <label id="phoneNumber-error" class="error" for="phoneNumber"></label>
+                <label id="phoneNumber-error" class="_error" for="phoneNumber"></label>
             </div>
          </div>
          <div class="form-group row">
@@ -197,7 +197,7 @@
                   value="${user.avatar}" class="dropify" data-max-file-size="15M"
                   data-default-file="${contextPath}/images/avatar/${user.avatar}">
 
-               <label id="input-file-max-fs-error" class="error" for="input-file-max-fs"></label>
+               <label id="input-file-max-fs-error" class="_error" for="input-file-max-fs"></label>
             </div>
          </div>
          <input type="hidden" name="${_csrf.parameterName}"

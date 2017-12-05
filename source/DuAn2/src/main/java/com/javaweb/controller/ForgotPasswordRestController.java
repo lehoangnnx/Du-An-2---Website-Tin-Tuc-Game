@@ -35,8 +35,7 @@ public class ForgotPasswordRestController {
 	@Autowired
 	EmailService emailService;
 
-	@Autowired
-	public SimpleMailMessage template;
+
 	@Autowired
 	private JavaMailSender emailSender;
 	@PostMapping("/user/forgotpassword")
@@ -45,7 +44,7 @@ public class ForgotPasswordRestController {
 		Users users = null;
 		try {
 
-			users = usersService.findByUserNameAndStatus(userName, "active");
+			users = usersService.findByUserNameAndStatus(userName.trim(), "active");
 			if (users == null) {
 				return "error";
 			} else {
@@ -227,11 +226,5 @@ public class ForgotPasswordRestController {
 			sb.append(AB.charAt(rnd.nextInt(AB.length())));
 		return sb.toString();
 	}
-	@Bean
-	public SimpleMailMessage templateSimpleMessage() {
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setText(
-				"<button>ABC</button>");
-		return message;
-	}
+
 }

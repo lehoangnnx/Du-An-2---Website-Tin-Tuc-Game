@@ -271,11 +271,11 @@
                         <div class="comment-text">
                             <security:authorize access="hasAnyRole('FACEBOOK', 'GOOGLE')">
                                 <strong class="user-nick"><a href="#">${user.firstName} ${user.lastName}</a> <span
-                                        id="msgsubcomment"></span></strong>
+                                        id="msgsubcomment" style="color: red;"></span></strong>
                             </security:authorize>
                             <security:authorize access="!hasAnyRole('FACEBOOK', 'GOOGLE')">
                                 <strong class="user-nick"><a href="#">${user.userName}</a> <span
-                                        id="msgsubcomment"></span></strong>
+                                        id="msgsubcomment" style="color: red;"></span></strong>
                             </security:authorize>
 
                             <textarea id="content" name="content"

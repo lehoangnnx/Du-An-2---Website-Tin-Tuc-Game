@@ -30,7 +30,7 @@ public class AdminRolesRestController {
 
 		
 		try {
-			findByName = rolesService.findByName(HtmlUtils.htmlEscape(roles.getName()));
+			findByName = rolesService.findByName(HtmlUtils.htmlEscape(roles.getName().trim()));
 
 			
 			if (roles.getRoleId() == null) {
