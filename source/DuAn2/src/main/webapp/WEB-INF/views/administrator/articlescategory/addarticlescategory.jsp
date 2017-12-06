@@ -81,8 +81,8 @@
 								${articleCategory.status == 'draft' ? 'checked' : '' }
 								class="md-radiobtn"> <label for="statusdraft"> <span
 								class="inc"></span> <span class="check"></span> <span
-								class="box"></span> Chờ Kích Hoạt
-							</label>
+								class="box"></span> Bản Nháp
+						</label>
 						</div>
 						<div class="md-radio has-error">
 							<input type="radio" id="statusdeleted" name="status" value="deleted"

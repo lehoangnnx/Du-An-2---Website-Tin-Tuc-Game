@@ -20,7 +20,7 @@
 			<a href="${contextPath }/admin/users?status=inactive" >
 				<button class="tablinks ${param.status == 'inactive' ? 'active' : '' }" >Chưa Kích Hoạt</button></a>
 			<a href="${contextPath }/admin/users?status=draft" >
-				<button  class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button></a>
+				<button  class="tablinks ${param.status == 'draft' ? 'active' : '' }">Bản Nháp</button></a>
 			<a href="${contextPath }/admin/users?status=deleted" >
 				<button class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button></a>
 

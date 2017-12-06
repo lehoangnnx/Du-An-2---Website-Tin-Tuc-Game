@@ -85,18 +85,16 @@
 				var a = $("#name").val().toUpperCase();
                 $("#name").val(a);
 				if(a.substr(0, 5) === "ROLE_"){
-				    console.log(a.substr(0, 4));
                     $("#spanName").text("");
                     validatorRoles();
 				}else{
-                    console.log(a.substr(0, 4));
+
                     $("#spanName").text("Tên Quyền Phải Bắt Đầu Bằng ROLE_");
 				}
 
-			} else {
-				$("#spanName").text("");
-
-			}
+			} else if($("#name").val().trim() == ''){
+                $("#name").val("");
+            }
 
 		});
 

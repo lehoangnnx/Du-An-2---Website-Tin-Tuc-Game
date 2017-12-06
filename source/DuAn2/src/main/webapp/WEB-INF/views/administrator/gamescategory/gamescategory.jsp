@@ -64,7 +64,7 @@ give gallery's parent container a cursor: pointer.**/
 			<a href="${contextPath }/admin/games/categorys?status=inactive" >
 			<button class="tablinks ${param.status == 'inactive' ? 'active' : '' }" >Chưa Kích Hoạt</button></a>
 			<a href="${contextPath }/admin/games/categorys?status=draft" >
-			<button  class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button></a>
+			<button  class="tablinks ${param.status == 'draft' ? 'active' : '' }">Bản Nháp</button></a>
 			<a href="${contextPath }/admin/games/categorys?status=deleted" >
 			<button  class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button></a>
 

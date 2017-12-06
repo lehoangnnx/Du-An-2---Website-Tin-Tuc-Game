@@ -75,6 +75,9 @@
 			var phone_regex = /^(01[2689]|09)[0-9]{8}$/;
 			var name_regex = /^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ]+$/;
 			var email_regex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
+			if(email == ''){
+                $('#email').val("");
+			}
 			if (!email.match(email_regex) || email.length == 0) {
 
 				$('#email-error').text("Vui Lòng Nhập Email"); // This Segment Displays The Validation Rule For Email

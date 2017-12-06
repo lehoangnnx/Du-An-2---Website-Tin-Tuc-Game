@@ -44,7 +44,7 @@
 
     var timeout = null;
 
-    function validatorArticleCategory() {
+    function validatorGames() {
 
         clearTimeout(timeout);
         timeout = setTimeout(
@@ -139,24 +139,47 @@
         }); */
         $("#slug").on('keyup keypress keydown', function (event) {
             if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
-                validatorArticleCategory();
-            } else {
-                $("#spanName").text("");
-                $("#spanSlug").text("");
+                validatorGames();
+            }else if($("#name").val().trim() == '' && $("#slug").val().trim() == ''){
+                $("#name").val("");
+                $("#slug").val("");
+            }else if($("#slug").val().trim() == ''){
+                $("#slug").val("");
             }
 
         });
 
         $("#name").on('keyup keypress keydown', function (event) {
             if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
-                validatorArticleCategory();
-            } else {
-                $("#spanName").text("");
-                $("#spanSlug").text("");
+                validatorGames();
+            } else if($("#name").val().trim() == '' && $("#slug").val().trim() == ''){
+                $("#name").val("");
+                $("#slug").val("");
+            }else if($("#name").val().trim() == ''){
+                $("#name").val("");
             }
 
         });
-
+        $("#info").on('keyup keypress keydown', function(event) {
+            if ($("#info").val().trim() == '' ) {
+                $("#info").val("");
+            }
+        });
+        $("#homeUrl").on('keyup keypress keydown', function(event) {
+            if ($("#homeUrl").val().trim() == '' ) {
+                $("#homeUrl").val("");
+            }
+        });
+        $("#downloadUrl").on('keyup keypress keydown', function(event) {
+            if ($("#downloadUrl").val().trim() == '' ) {
+                $("#downloadUrl").val("");
+            }
+        });
+        $("#publishers").on('keyup keypress keydown', function(event) {
+            if ($("#publishers").val().trim() == '' ) {
+                $("#publishers").val("");
+            }
+        });
     });
 
     $(document).ready(function () {

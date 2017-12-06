@@ -253,7 +253,7 @@
 							<input type="radio" id="statusdraft" name="status" value="draft"
 								${games.status == 'draft' ? 'checked' : '' } class="md-radiobtn">
 							<label for="statusdraft"> <span class="inc"></span> <span
-								class="check"></span> <span class="box"></span> Chờ Kích Hoạt
+								class="check"></span> <span class="box"></span> Bản Nháp
 							</label>
 						</div>
 						<div class="md-radio has-error">

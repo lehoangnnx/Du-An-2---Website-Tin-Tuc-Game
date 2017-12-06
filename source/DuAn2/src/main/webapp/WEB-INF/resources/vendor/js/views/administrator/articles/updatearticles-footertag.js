@@ -151,25 +151,49 @@
 		$('#formArticle').change(function(){
 			validatorArticle();
 			});
-		$("#slug").on('keyup keypress keydown', function(event) {
-			if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
-				validatorArticle();
-			} else {
-				$("#spanTitle").text("");
-				$("#spanSlug").text("");
-			}
+        $("#slug").on('keyup keypress keydown', function(event) {
+            if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
+                validatorArticle();
+            }else if($("#title").val().trim() == '' && $("#slug").val().trim() == ''){
+                $("#title").val("");
+                $("#slug").val("");
+                $("#btn-submit").prop("disabled", true);
+            } else if($("#slug").val().trim() == ''){
+                ("#slug").val("");
+                $("#btn-submit").prop("disabled", true);
+            }
 
-		});
 
-		$("#title").on('keyup keypress keydown', function(event) {
-			if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
-				validatorArticle();
-			} else {
-				$("#spanTitle").text("");
-				$("#spanSlug").text("");
-			}
+        });
 
-		});
+        $("#title").on('keyup keypress keydown', function(event) {
+            if ($("#title").val().trim() != '' && $("#slug").val().trim() != '') {
+                validatorArticle();
+            }else if($("#title").val().trim() == '' && $("#slug").val().trim() == ''){
+                $("#title").val("");
+                $("#slug").val("");
+                $("#btn-submit").prop("disabled", true);
+            } else if($("#title").val().trim() == ''){
+                $("#title").val("");
+                $("#btn-submit").prop("disabled", true);
+            }
+
+        });
+        $("#author").on('keyup keypress keydown', function(event) {
+
+            if ($("#author").val().trim() == '' ) {
+
+                $("#author").val("");
+            }
+
+        });
+        $("#subContent").on('keyup keypress keydown', function(event) {
+
+            if ($("#subContent").val().trim() == '' ) {
+                $("#subContent").val("");
+            }
+
+        });
 
 	});
 

@@ -74,7 +74,7 @@
                 <button class="tablinks ${param.status == 'inactive' ? 'active' : '' }">Chưa Kích Hoạt</button>
             </a>
             <a href="${contextPath }/admin/articles?status=draft">
-                <button class="tablinks ${param.status == 'draft' ? 'active' : '' }">Nháp</button>
+                <button class="tablinks ${param.status == 'draft' ? 'active' : '' }">Bản Nháp</button>
             </a>
             <a href="${contextPath }/admin/articles?status=deleted">
                 <button class="tablinks ${param.status == 'deleted' ? 'active' : '' }">Đã Xóa</button>

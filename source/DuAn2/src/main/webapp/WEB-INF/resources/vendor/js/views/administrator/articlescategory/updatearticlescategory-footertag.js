@@ -130,26 +130,30 @@
 		$("#btn-submit").prop("disabled", true);
 		 $("#formArticleCategory").change(function(){
 			 validatorArticleCategory();
-		}); 
-		$("#slug").on('keyup keypress keydown', function(event) {
-			if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
-				validatorArticleCategory();
-			} else {
-				$("#spanName").text("");
-				$("#spanSlug").text("");
-			}
-
 		});
+        $("#slug").on('keyup keypress keydown', function (event) {
+            if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
+                validatorArticleCategory();
+            } else if($("#name").val().trim() == '' && $("#slug").val().trim() == ''){
+                $("#name").val("");
+                $("#slug").val("");
+            }else if($("#slug").val().trim() == ''){
+                $("#slug").val("");
+            }
 
-		$("#name").on('keyup keypress keydown', function(event) {
-			if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
-				validatorArticleCategory();
-			} else {
-				$("#spanName").text("");
-				$("#spanSlug").text("");
-			}
+        });
 
-		});
+        $("#name").on('keyup keypress keydown', function (event) {
+            if ($("#name").val().trim() != '' && $("#slug").val().trim() != '') {
+                validatorArticleCategory();
+            } else if($("#name").val().trim() == '' && $("#slug").val().trim() == ''){
+                $("#name").val("");
+                $("#slug").val("");
+            }else if($("#name").val().trim() == ''){
+                $("#name").val("");
+            }
+
+        });
 
 	});
 

@@ -14,8 +14,7 @@
 	<ol class="breadcrumb no-bg mb-1">
 		<li class="breadcrumb-item"><a href="forms-material.html#">Trang
 				Chủ</a></li>
-		<li class="breadcrumb-item"><a href="forms-material.html#">
-				Danh Mục Bài Viết</a></li>
+
 		<li class="breadcrumb-item active">Sửa Danh Mục Bài Viết</li>
 	</ol>
 
@@ -106,7 +105,7 @@
 								${articleCategory.status == 'draft' ? 'checked' : '' }
 								class="md-radiobtn"> <label for="statusdraft"> <span
 								class="inc"></span> <span class="check"></span> <span
-								class="box"></span> Chờ Kích Hoạt
+								class="box"></span> Bản Nháp
 							</label>
 						</div>
 						<div class="md-radio has-error">
