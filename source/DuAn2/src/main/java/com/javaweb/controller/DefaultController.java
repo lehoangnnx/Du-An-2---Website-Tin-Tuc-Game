@@ -81,7 +81,7 @@ public class DefaultController {
         * Đầu vào : Tên danh mục
         * Đầu ra : Danh mục bài viết
         * */
-        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByArticleCategoryId(20);
         model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
 
         /*
@@ -99,8 +99,8 @@ public class DefaultController {
         * Đầu vào : Tên danh mục
         * Đầu ra : Danh mục bài viết
         * */
-        ArticleCategory getArticleCategorySuKien = articleCategoryService.findByName("Sự Kiện");
-
+        ArticleCategory getArticleCategorySuKien = articleCategoryService.findByArticleCategoryId(24);
+        model.addAttribute("articlesCategorySuKien", getArticleCategorySuKien);
         /*
         * Lấy danh danh sách 5 bài viết có danh mục bài viết là Sự Kiện và trạng thái là active
         *  Đầu vào : danh mục bài viết , trạng thái
@@ -125,8 +125,8 @@ public class DefaultController {
         * Đầu vào : Tên danh mục game
         * Đầu ra : Danh mục game
         * */
-        GameCategory gameCategoryPcConsole = gameCategoryService.findByName("Game Pc-Console");
-
+        GameCategory gameCategoryPcConsole = gameCategoryService.findByGameCategoryId(7);
+        model.addAttribute("gameCategoryPcConsole", gameCategoryPcConsole);
         /*
         * Lấy danh danh sách 3 Game có danh mục game là Pc-Console , trạng thái là active và isHot = 1
         *  Đầu vào : trạng thái, isHot
@@ -142,8 +142,8 @@ public class DefaultController {
         * Đầu vào : Tên danh mục game
         * Đầu ra : Danh mục game
         * */
-        GameCategory gameCategoryEsport = gameCategoryService.findByName("Game Esport");
-
+        GameCategory gameCategoryEsport = gameCategoryService.findByGameCategoryId(9);
+        model.addAttribute("gameCategoryEsport", gameCategoryEsport);
         /*
         * Lấy danh danh sách 3 Game có danh mục game là Esport , trạng thái là active và isHot = 1
         *  Đầu vào : danh mục game, trạng thái, isHot
@@ -159,8 +159,8 @@ public class DefaultController {
         * Đầu vào : Tên danh mục game
         * Đầu ra : Danh mục game
         * */
-        GameCategory gameCategoryMobile = gameCategoryService.findByName("Game Mobile");
-
+        GameCategory gameCategoryMobile = gameCategoryService.findByGameCategoryId(8);
+        model.addAttribute("gameCategoryMobile", gameCategoryMobile);
         /*
         * Lấy danh danh sách 3 Game có danh mục game là Mobile , trạng thái là active và isHot = 1
         *  Đầu vào : danh mục game, trạng thái, isHot
@@ -177,13 +177,14 @@ public class DefaultController {
 
 
     @ModelAttribute("getTop5ArticleCategoryHotVideoList")
-    public List<Article> getTop5ArticleCategoryHotVideoList() {
+    public List<Article> getTop5ArticleCategoryHotVideoList(Model model) {
         /*
         * Lấy danh mục bài viết từ cơ sở dữ liệu có tên là Video
         * Đầu vào : Tên danh mục
         * Đầu ra : Danh mục bài viết
         * */
-        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByArticleCategoryId(20);
+        model.addAttribute("getArticleCategoryVideo", getArticleCategoryVideo);
          /*
         * Lấy danh danh sách 5 bài viết có danh mục là Video thuộc tính isHot = 1, trạng thái là active và có ngày hiển thị nhỏ hơn ngày hiện tại
         * sắp xếp giảm dần thuộc tính Views
@@ -202,7 +203,7 @@ public class DefaultController {
         * Đầu vào : Tên danh mục
         * Đầu ra : Danh mục bài viết
         * */
-        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByName("Video");
+        ArticleCategory getArticleCategoryVideo = articleCategoryService.findByArticleCategoryId(20);
 
         /*
         * Lấy danh danh sách 10 bài viết có danh mục khác Video thuộc tính isHot = 1, trạng thái là active
@@ -243,13 +244,14 @@ public class DefaultController {
     }
 
     @ModelAttribute("getTop10GameOnline")
-    public List<Games> getTop10GameOnline() {
+    public List<Games> getTop10GameOnline(Model model) {
           /*
         * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Online
         * Đầu vào : Tên danh mục game
         * Đầu ra : Danh mục game
         * */
-        GameCategory gameCategory = gameCategoryService.findByName("Game Online");
+        GameCategory gameCategory = gameCategoryService.findByGameCategoryId(5);
+        model.addAttribute("gameCategoryGameOnline", gameCategory);
         /*
         * Lấy danh danh sách 10 game có danh mục game là  Game Online,  trạng thái là active, isHot = 1
         *  Đầu vào : danh mục game, status = active, isHot = 1
@@ -262,13 +264,14 @@ public class DefaultController {
     }
 
     @ModelAttribute("getTop10GameOffline")
-    public List<Games> getTop10GameOffline() {
+    public List<Games> getTop10GameOffline(Model model) {
           /*
         * Lấy danh mục game từ cơ sở dữ liệu có tên là Game Offline
         * Đầu vào : Tên danh mục game
         * Đầu ra : Danh mục game
         * */
-        GameCategory gameCategory = gameCategoryService.findByName("Game Offline");
+        GameCategory gameCategory = gameCategoryService.findByGameCategoryId(6);
+        model.addAttribute("gameCategoryGameOffline", gameCategory);
          /*
         * Lấy danh danh sách 10 game có danh mục game là  Game Offline,  trạng thái là active, isHot = 1
         *  Đầu vào : danh mục game, status = active, isHot = 1
@@ -294,9 +297,10 @@ public class DefaultController {
     }
 
     @ModelAttribute("getTop10ArticleCategoryNewReviewsList")
-    public List<Article> getTop10ArticleCategoryNewReviewsList() {
-        ArticleCategory getArticleCategoryReviews = articleCategoryService.findByName("Reviews");
-
+    public List<Article> getTop10ArticleCategoryNewReviewsList(Model model) {
+    	// Lấy danh mục bài viết có tên Reivews
+        ArticleCategory getArticleCategoryReviews = articleCategoryService.findByArticleCategoryId(21);
+        model.addAttribute("getArticleCategoryReviews", getArticleCategoryReviews);
         List<Article> getTop10ArticleCategoryNewReviewsList = articleService
                 .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryReviews, "active")
                 .stream().limit(5).collect(Collectors.toList());
@@ -304,9 +308,10 @@ public class DefaultController {
     }
 
     @ModelAttribute("getTop10ArticleCategoryNewTienIchList")
-    public List<Article> getTop10ArticleCategoryNewTienIchList() {
-        ArticleCategory getArticleCategoryTienIch = articleCategoryService.findByName("Tiện Ích");
-
+    public List<Article> getTop10ArticleCategoryNewTienIchList(Model model) {
+    	// Lấy danh mục bài viết có tên Tiện ích
+        ArticleCategory getArticleCategoryTienIch = articleCategoryService.findByArticleCategoryId(22);
+        model.addAttribute("getArticleCategoryTienIch", getArticleCategoryTienIch);
         List<Article> getTop10ArticleCategoryNewTienIchList = articleService
                 .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryTienIch, "active")
                 .stream().limit(5).collect(Collectors.toList());
@@ -314,9 +319,10 @@ public class DefaultController {
     }
 
     @ModelAttribute("getTop10ArticleCategoryNewThuThuatList")
-    public List<Article> getTop10ArticleCategoryNewThuThuatList() {
-        ArticleCategory getArticleCategoryThuThuat = articleCategoryService.findByName("Thủ Thuật");
-
+    public List<Article> getTop10ArticleCategoryNewThuThuatList(Model model) {
+    	// Lấy danh mục bài viết có tên Thủ Thuật
+        ArticleCategory getArticleCategoryThuThuat = articleCategoryService.findByArticleCategoryId(23);
+        model.addAttribute("getArticleCategoryThuThuat", getArticleCategoryThuThuat);
         List<Article> getTop10ArticleCategoryNewThuThuatList = articleService
                 .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategoryThuThuat, "active")
                 .stream().limit(5).collect(Collectors.toList());
@@ -325,7 +331,8 @@ public class DefaultController {
 
     @ModelAttribute("getTop10ArticleHotAndNewGamingGearList")
     public List<Article> getTop10ArticleHotAndNewGamingGearList() {
-        ArticleCategory getArticleCategoryGamingGear = articleCategoryService.findByName("Gaming Gear");
+    	// Lấy danh mục bài viết có tên Gaming Gear
+        ArticleCategory getArticleCategoryGamingGear = articleCategoryService.findByArticleCategoryId(18);
 
         List<Article> getTop10ArticleHotAndNewGamingGearList = articleService
                 .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
@@ -335,7 +342,8 @@ public class DefaultController {
     }
     @ModelAttribute("getTop10ArticleHotAndNewMangaFilmList")
     public List<Article> getTop10ArticleHotAndNewMangaFilm() {
-        ArticleCategory getArticleCategoryMangaFilm = articleCategoryService.findByName("Manga/Film");
+    	// Lấy danh mục bài viết có tên Manga/Film
+        ArticleCategory getArticleCategoryMangaFilm = articleCategoryService.findByArticleCategoryId(19);
 
         List<Article> getTop10ArticleHotAndNewMangaFilmList = articleService
                 .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
@@ -345,7 +353,8 @@ public class DefaultController {
     }
     @ModelAttribute("getTop10ArticleHotAndNewReviewsList")
     public List<Article> getTop10ArticleHotAndNewReviewsList() {
-        ArticleCategory getArticleCategoryReviews = articleCategoryService.findByName("Reviews");
+    	// Lấy danh mục bài viết có tên Review
+        ArticleCategory getArticleCategoryReviews = articleCategoryService.findByArticleCategoryId(21);
 
         List<Article> getTop10ArticleHotAndNewReviewsList = articleService
                 .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
@@ -369,6 +378,7 @@ public class DefaultController {
 
     @ModelAttribute("gamesCategoryList")
     public List<GameCategory> gamesCategoryList() {
+    	//Lấy danh sách danh mục bài viết
         List<GameCategory> articleCategoryList = gameCategoryService.findAllByStatusOrderBySortOrderDesc("active");
 
         return articleCategoryList;
@@ -377,6 +387,7 @@ public class DefaultController {
 
 
     @RequestMapping("/{slug}.html")
+   // Hiển thị chi tiết bài viết
     String chitiet(@PathVariable("slug") String slug, Model model,HttpServletRequest request,
                    @RequestParam(value = "page", defaultValue = "1") String stpage,
                    @RequestParam(value = "limit", defaultValue = "15") String stlimit
@@ -488,7 +499,7 @@ public class DefaultController {
 
                 return "chitiet";
             } else if (articleCategory != null) {
-                if (articleCategory.getName().equals("Video")) {
+                if (articleCategory.getArticleCategoryId().equals(20)) {
                     List<Article> getTop10ArticleCategoryNewVideoList = articleService
                             .findTop10ByArticleCategoriesAndStatusAndShowDateBeforeOrderByViewsDesc(articleCategory, "active", new Date());
 
@@ -567,12 +578,11 @@ public class DefaultController {
                   @RequestParam(value = "limit", defaultValue = "15") String stlimit
             , @RequestParam(value = "sorted", defaultValue = "hots") String sorted) {
         String keywork = HtmlUtils.htmlEscape(q);
-        System.out.println("KEY WORK : " + keywork);
         Map<String, String> objectCategoryAndTagMap = new HashMap<>();
         List<Article> articleList = null;
         ArticleCategory articleCategory = null;
         Tags tags = null;
-        Comment comment = null;
+        
         model.addAttribute("sorted", "sorted=" + sorted);
         int limit =15;
         int page = 1;

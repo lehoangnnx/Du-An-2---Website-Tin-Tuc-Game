@@ -32,7 +32,7 @@
                 </div>
             </c:forEach>
 
-            <a href="${contextPath}/video.html?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
+            <a href="${contextPath}/${getArticleCategoryVideo.slug }.html?sorted=hots" class="button-read-more">Hiện thị nhiều hơn</a>
         </div>
     </div>
 
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/games/hoso.html?gamecategory=game-online" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/games/hoso.html?gamecategory=${gameCategoryGameOnline.slug}" class="button-read-more">Hiện thị thêm</a>
         </div>
 
 
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/games/hoso.html?gamecategory=game-offline" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/games/hoso.html?gamecategory=${gameCategoryGameOffline.slug}" class="button-read-more">Hiện thị thêm</a>
 
         </div>
     </div>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/reviews.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/${getArticleCategoryReviews.slug }.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
         </div>
         <div class="widget-article-list">
@@ -210,7 +210,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/tien-ich.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/${getArticleCategoryTienIch.slug }.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
 
         </div>
@@ -233,7 +233,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <a href="${contextPath}/tien-ich.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
+            <a href="${contextPath}/${getArticleCategoryThuThuat.slug }.html?sorted=news" class="button-read-more">Hiện thị thêm</a>
 
 
         </div>

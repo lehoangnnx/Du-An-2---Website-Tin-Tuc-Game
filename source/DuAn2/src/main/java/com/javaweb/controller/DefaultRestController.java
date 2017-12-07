@@ -102,18 +102,7 @@ public class DefaultRestController {
 
     }
 
-    @GetMapping("/lay1")
-    public List<Article> lay() {
-        List<ArticleCategory> a = articleCategoryService.findAll();
-        List<Article> b = articleService.findAll();
-        b.forEach(x -> {
-            if (x.getArticleId() == 278) {
-                x.getArticleCategories().forEach(y -> System.out.println(y.getName() + ": NAME C"));
-            }
-
-        });
-        return b;
-    }
+   
 
     @PostMapping("/updateuser")
     public String updateUser(@RequestBody Users users, Authentication authentication){

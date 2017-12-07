@@ -83,7 +83,8 @@ function gamereivews(starreview) {
 
 
 $('#content').on('keyup keypress keydown', function () {
-    var content = $('#content').val().trim();
+	
+	var content = $('#content').val().trim();
     if (content != '') {
         $('#msgsubcomment').text('');
         $('#btn-newcomment').removeAttr('disabled');
@@ -91,8 +92,8 @@ $('#content').on('keyup keypress keydown', function () {
         $('#msgsubcomment').text(' Vui Lòng Nhập Nội Dung Bình Luận.');
         $('#btn-newcomment').attr('disabled', 'disabled');
     }
-
 });
+
 
 function checkcontent(commentId) {
     var content = $('#content' + commentId).val().trim();
@@ -382,7 +383,7 @@ $('.btn-postcomment').click(function () {
                                 "<div id=\"childcomment" + result.commentId + "\" >\n" +
                                 "</div>\n" +
                                 "   </li>\n";
-
+                $('#btn-newcomment').attr('disabled', 'disabled');
                 $('#comments').prepend(html);
                 $('html, body').animate({
                     scrollTop: $(".article-main-next-prev").offset().top

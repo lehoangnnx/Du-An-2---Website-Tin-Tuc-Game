@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
+
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +46,39 @@ public class GamesController {
             session.setAttribute("user", usersService.findByUserName(authentication.getName()));
 
         }
+    }
+    @ModelAttribute("getTop10ArticleHotAndNewGamingGearList")
+    public List<Article> getTop10ArticleHotAndNewGamingGearList() {
+    	// Lấy danh mục bài viết có tên Gaming Gear
+        ArticleCategory getArticleCategoryGamingGear = articleCategoryService.findByArticleCategoryId(18);
+
+        List<Article> getTop10ArticleHotAndNewGamingGearList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryGamingGear,(byte) 1, "active", new Date())
+                .stream().limit(5).collect(Collectors.toList());
+        return getTop10ArticleHotAndNewGamingGearList;
+    }
+    @ModelAttribute("getTop10ArticleHotAndNewMangaFilmList")
+    public List<Article> getTop10ArticleHotAndNewMangaFilm() {
+    	// Lấy danh mục bài viết có tên Manga/Film
+        ArticleCategory getArticleCategoryMangaFilm = articleCategoryService.findByArticleCategoryId(19);
+
+        List<Article> getTop10ArticleHotAndNewMangaFilmList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryMangaFilm,(byte) 1, "active", new Date())
+                .stream().limit(5).collect(Collectors.toList());
+        return getTop10ArticleHotAndNewMangaFilmList;
+    }
+    @ModelAttribute("getTop10ArticleHotAndNewReviewsList")
+    public List<Article> getTop10ArticleHotAndNewReviewsList() {
+    	// Lấy danh mục bài viết có tên Review
+        ArticleCategory getArticleCategoryReviews = articleCategoryService.findByArticleCategoryId(21);
+
+        List<Article> getTop10ArticleHotAndNewReviewsList = articleService
+                .findTop10ByArticleCategoriesAndIsHotAndStatusAndShowDateBeforeOrderByViewsDesc
+                        (getArticleCategoryReviews,(byte) 1, "active", new Date())
+                .stream().limit(5).collect(Collectors.toList());
+        return getTop10ArticleHotAndNewReviewsList;
     }
     @ModelAttribute("articleCategoryList")
     public List<ArticleCategory> getCategory() {
