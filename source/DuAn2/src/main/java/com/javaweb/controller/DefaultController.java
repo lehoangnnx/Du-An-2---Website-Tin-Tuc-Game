@@ -107,8 +107,7 @@ public class DefaultController {
         * Đầu ra : Danh sách 5 bài viết
         * */
         List<Article> getTop5ArticleCategoryNewSuKienList = articleService
-                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategorySuKien, "active")
-                .stream().limit(5).collect(Collectors.toList());
+                .findTop10ByArticleCategoriesAndStatusOrderByShowDateDesc(getArticleCategorySuKien, "active");
         model.addAttribute("getTop5ArticleCategoryNewSuKienList", getTop5ArticleCategoryNewSuKienList);
 
         /*

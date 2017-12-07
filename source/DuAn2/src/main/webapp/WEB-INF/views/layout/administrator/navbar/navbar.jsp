@@ -48,7 +48,7 @@
                     <i class="ti-fullscreen"></i>
                 </a>
             </li>
-            <li class="nav-item dropdown hidden-sm-down">
+            <!--<li class="nav-item dropdown hidden-sm-down">
                 <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">
                     <i class="ti-layout-grid3"></i>
                 </a>
@@ -109,15 +109,15 @@
                         <strong>View all apps</strong>
                     </a>
                 </div>
-            </li>
+            </li>-->
         </ul>
-        <div class="header-form float-md-left ml-md-2">
+       <!-- <div class="header-form float-md-left ml-md-2">
             <form>
                 <input type="text" class="form-control b-a" placeholder="Search for...">
                 <button type="submit" class="btn bg-white b-a-0">
                     <i class="ti-search"></i>
                 </button>
             </form>
-        </div>
+        </div>-->
     </div>
 </nav>

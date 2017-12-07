@@ -18,7 +18,7 @@
 										<h1>Không Tìm Thấy Trang</h1>
 										<h2>Lỗi 404</h2>
 										<p>Lỗi! Đã có vần đề gì đó gây ra lỗi. Nếu bạn có bất kỳ ý tưởng gì hoặc góp ý.
-											 Vui lòng cho chúng tôi biết bằng cách <a target="_blank" href="https://goo.gl/forms/xsW3nOs2gbXr8J5D2">liên hệ với chùng tôi </a>.</p>
+											 Vui lòng cho chúng tôi biết bằng cách <a style="color: #eb6435;" target="_blank" href="https://goo.gl/forms/xsW3nOs2gbXr8J5D2">liên hệ với chùng tôi </a>.</p>
 										<a href="${contextPath }/" class="back-button"><i class="fa fa-home"></i>Quay Về Trang Chủ</a>
 									</div>
 

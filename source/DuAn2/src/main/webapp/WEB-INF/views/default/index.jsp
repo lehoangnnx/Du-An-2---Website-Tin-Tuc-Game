@@ -103,7 +103,7 @@
                     <br>
                     <div class="widget-article-list">
                         <c:forEach var="gacnskl" items="${getTop5ArticleCategoryNewSuKienList}"
-                                   begin="1" end="4">
+                                   begin="1" end="6">
                             <div class="item">
 
                                 <div class="item-header">
@@ -113,7 +113,11 @@
                                 </div>
                                 <div class="item-content">
                                     <h4>
-                                        <a href="${contextPath}/${gacnskl.slug}.html">${gacnskl.title}.</a>
+                                        <a href="${contextPath}/${gacnskl.slug}.html">${gacnskl.title}</a>
+                                        <span class="item-meta">  <a
+                                                href="${contextPath}/${gacnskl.slug}.html"><i
+                                                class="fa fa-clock-o"></i><fmt:formatDate
+                                                pattern="dd-MM-yyyy" value="${gacnskl.showDate}"/></a>
                                     </h4>
 
                                 </div>

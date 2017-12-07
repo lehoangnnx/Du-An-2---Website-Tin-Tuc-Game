@@ -331,7 +331,7 @@
                 <div class="widget">
                     <br>
                     <div class="widget-article-list">
-                        <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="7">
+                        <c:forEach var="alql" items="${articleLienQuanList}" begin="1" end="6">
                             <div class="item">
                                 <div class="item-header">
                                     <a href="${contextPath}/${alql.slug}.html"><img
@@ -340,13 +340,12 @@
                                 </div>
                                 <div class="item-content">
                                     <h4>
-                                        <a href="${contextPath}/${alql.slug}.html"> ${fn:substring(alql.title, 0, 50)}
-                                            ...</a>
+                                        <a href="${contextPath}/${alql.slug}.html"> ${alql.title}</a>
                                     </h4>
                                     <span class="item-meta"> <%--<a
                                             href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
                                             class="fa fa-comment-o"></i>82 Bình luận</a>--%> <a
-                                            href="${contextPath}/images/articles/${alql.imagesThumbnail}"><i
+                                            href="${contextPath}/${alql.slug}.html"><i
                                             class="fa fa-clock-o"></i><fmt:formatDate
                                             pattern="dd-MM-yyyy" value="${alql.showDate}"/></a>
 								</span>
@@ -418,7 +417,7 @@
                                 class="read-more-wrapper"><span class="read-more">Xem
 								chi tiết<i></i>
 						</span></span>
-                            <figure><img src="${contextPath}/images/articles/${gal.imagesThumbnail}"
+                            <figure><img style="height: 200px;" src="${contextPath}/images/articles/${gal.imagesThumbnail}"
                                          alt="${gal.title}"></figure>
                         </a>
                     </div>
