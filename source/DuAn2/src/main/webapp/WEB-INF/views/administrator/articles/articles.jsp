@@ -166,7 +166,7 @@
                                     </div>
                                 </td>
 
-                                <th></th>
+                                <td></td>
                                 <th>Tiêu Đề</th>
                                 <th>Đường Dẫn</th>
 								<th>Người Tạo</th>
