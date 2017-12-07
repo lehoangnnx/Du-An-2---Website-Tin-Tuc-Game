@@ -24,7 +24,7 @@
                                     src="${contextPath}/images/games/${gl.images}" class="img-responsive"></a></div>
                             <div class="col-md-9">
                                 <a href="${contextPath}/games/${gl.slug}.html"><h2>${gl.name}</h2></a>
-                                <p>${gl.info}</p>
+                                <p>${fn:substring(gl.info, 0, 400)} ...</p>
                             </div>
                         </div>
                     </div>
