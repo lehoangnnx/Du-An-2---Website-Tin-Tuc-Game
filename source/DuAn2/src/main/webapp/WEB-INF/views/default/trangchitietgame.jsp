@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row overview">
+            <div class="row overview" style="float: left;margin-top: 10px;">
                 <div class="col-md-4 user-pad text-center">
                     <h3 style="text-align: center;">LƯỢT XEM</h3>
                     <h4>${games.views}</h4>

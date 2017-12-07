@@ -95,8 +95,9 @@
                                 <th id="thcb" class="cbDeleteAll"><input type="checkbox"
                                                                          id="allcb" name="cb"/></th>
                                 <th>Hình</th>
-                                <th>Title</th>
-                                <th>Slug</th>
+                                <th>Tiêu Đề</th>
+                                <th>Đường Dẫn</th>
+								<th>Người Tạo</th>
                                 <th>Danh Mục Bài Viết</th>
                                 <security:authorize access="hasRole('ADMIN')">
                                     <th>Trạng Thái</th>
@@ -117,6 +118,7 @@
                                     </td>
                                     <td>${fn:substring(al.title, 0, 20)} ...</td>
                                     <td> ${fn:substring(al.slug, 0, 20)} ...</td>
+									<td> ${al.users.userName}</td>
                                     <td><c:forEach var="acl" items="${al.articleCategories}">
                                         ${acl.name },
                                     </c:forEach>
@@ -165,9 +167,9 @@
                                 </td>
 
                                 <th></th>
-                                <th>Title</th>
-
-                                <th>Slug</th>
+                                <th>Tiêu Đề</th>
+                                <th>Đường Dẫn</th>
+								<th>Người Tạo</th>
                                 <th>Danh Mục Bài Viết</th>
                                 <security:authorize access="hasRole('ADMIN')">
                                     <td></td>
