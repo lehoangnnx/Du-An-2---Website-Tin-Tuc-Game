@@ -9,7 +9,7 @@ $('#likearticle').click(function () {
 
             fnlikearticle();
 
-    }, 100);
+    }, 300);
 
     function fnlikearticle() {
         var articleId = $('#articleId').val();
@@ -76,7 +76,7 @@ function gamereivews(starreview) {
               //  alert("Lỗi ! Vui Lòng Kiểm Tra Lại");
             }
         });
-    }, 100);
+    }, 300);
 
 }
 
@@ -432,7 +432,7 @@ function commentlike(commentId) {
             }
         });
 
-    }, 100);
+    }, 300);
 }
 
 
